@@ -536,7 +536,7 @@ def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topl
         data.write(str(gozculist[i])+"\n")
     
 
-    url = "https://raw.githubusercontent.com/dapoetika/asdfasdf/refs/heads/main/game.txt"
+    url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/game.py"
 
     try:
         response = requests.get(url)
