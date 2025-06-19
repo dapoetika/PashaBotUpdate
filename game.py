@@ -1,4 +1,4 @@
-#a
+#b
 from tkinter import *
 import time
 import subprocess
@@ -214,7 +214,7 @@ def oyunac():
     win32gui.MoveWindow(hwnd,0,0,360,614,True)
 
 def hesapgiris(btn):
-   
+    global appopen
     for i in range(200):
         
         time.sleep(bekleme_carpani*1)
@@ -847,18 +847,15 @@ def sonrakidunya(btn):
         return "basarili"
 def kaynakgonder(btn):
     kacinci = 0
-    
     while kacinci < 4:
                 
-        appopen = False
+      
         
         
         girildi_dunya = ara("./images/girildi_dunya.png")
 
-        if girildi_dunya != -1:
-            appopen = True
+        if girildi_dunya == -1:
             
-        else:
             return "appopen"
         
         time.sleep(bekleme_carpani*1)
@@ -1109,7 +1106,7 @@ def askergonder(btn,hangisi):
             
         elif girildi_dunya != -1:
             logkayit(farm,"dondu 1")
-            appopen = False
+            
             return "appopen"
 
         else:
@@ -1261,6 +1258,7 @@ def main(btn,frm):
 
         global bonusal
         bonusal = dis_kaynak_bonus
+        
         global appopen
         appopen = False
         
