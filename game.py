@@ -1,4 +1,4 @@
-#a
+#u
 from tkinter import *
 import time
 import subprocess
@@ -588,6 +588,8 @@ def loncatopla(btn):
 def loncatek(btn):
 
     logkayit(farm,"lonca teknolojisi yapiliyor")
+    time.sleep(bekleme_carpani*2)
+    click(btn,290,590)
     time.sleep(bekleme_carpani*2)
     click(btn,245,390)
     time.sleep(bekleme_carpani*2)
