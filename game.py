@@ -16,6 +16,14 @@ def cikis():
 
 def logkayit(farm,mesaj):
     print(farm,mesaj)
+    datadir = "data"
+    file_path = os.path.join(datadir, "q.txt")
+    if not os.path.exists(file_path):
+        open(file_path, "w", encoding="utf-8").close()
+
+    x = open(file_path, "a", encoding="utf-8")
+    x.write(mesaj+"\n")
+    x.close()
 def click(btn,x,y):
     global stop
     if not stop:
