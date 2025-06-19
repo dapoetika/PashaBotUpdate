@@ -1,4 +1,4 @@
-#a
+#b
 from tkinter import *
 import time
 import subprocess
@@ -829,6 +829,7 @@ def hizlitamponhasat(btn):
                 break
             else:
                 click(btn,60+(i*70),150)
+                time.sleep(bekleme_carpani*2)
     if collectdata().get("hasat_et"):
         time.sleep(bekleme_carpani*2)
         click(btn,295, 525)
@@ -844,6 +845,7 @@ def hizlitamponhasat(btn):
                 break
             else:
                 click(btn,60+(i*70),150)
+                time.sleep(bekleme_carpani*2)
     if collectdata().get("tampon_hasat"):
         time.sleep(bekleme_carpani*2)
         click(btn,295, 525)
