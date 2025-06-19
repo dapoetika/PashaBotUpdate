@@ -1,4 +1,4 @@
-#b
+#a
 from tkinter import *
 import time
 import subprocess
@@ -181,7 +181,6 @@ def collectdata():
     except ValueError:
         print("hata")
         return collectdata()
-
 
 def oyunac():
     
@@ -814,22 +813,6 @@ def ganimet_karavani(btn):
     logkayit(farm,"ganimet karavani bitti")
     #ganimet_karavani bitis
 def hizlitamponhasat(btn):
-    if collectdata().get("hizli_topla"):
-        time.sleep(bekleme_carpani*2)
-        click(btn,295, 525)
-        time.sleep(bekleme_carpani*2)
-        for i in range(3):
-            hizlitopla = ara("./images/hizlitopla.png")
-            
-            if hizlitopla != -1:
-                click(btn,hizlitopla[0]+10,hizlitopla[1]+10)
-                time.sleep(bekleme_carpani*2)
-                click(btn,160, 490)
-                time.sleep(bekleme_carpani*2)
-                break
-            else:
-                click(btn,60+(i*70),150)
-                time.sleep(bekleme_carpani*2)
     if collectdata().get("hasat_et"):
         time.sleep(bekleme_carpani*2)
         click(btn,295, 525)
@@ -839,6 +822,22 @@ def hizlitamponhasat(btn):
             
             if hasatet != -1:
                 click(btn,hasatet[0]+10,hasatet[1]+10)
+                time.sleep(bekleme_carpani*2)
+                click(btn,160, 490)
+                time.sleep(bekleme_carpani*2)
+                break
+            else:
+                click(btn,60+(i*70),150)
+                time.sleep(bekleme_carpani*2)
+    if collectdata().get("hizli_topla"):
+        time.sleep(bekleme_carpani*2)
+        click(btn,295, 525)
+        time.sleep(bekleme_carpani*2)
+        for i in range(3):
+            hizlitopla = ara("./images/hizlitopla.png")
+            
+            if hizlitopla != -1:
+                click(btn,hizlitopla[0]+10,hizlitopla[1]+10)
                 time.sleep(bekleme_carpani*2)
                 click(btn,160, 490)
                 time.sleep(bekleme_carpani*2)
