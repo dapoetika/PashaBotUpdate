@@ -1,4 +1,4 @@
-#b
+#c
 from tkinter import *
 import time
 import subprocess
@@ -812,28 +812,45 @@ def ganimet_karavani(btn):
     logkayit(farm,"ganimet karavani bitti")
     #ganimet_karavani bitis
 def hizlitamponhasat(btn):
-    time.sleep(bekleme_carpani*2)
-    click(btn,295, 525)
-    time.sleep(bekleme_carpani*2)
-    
     if collectdata().get("hizli_topla"):
-        click(btn,125, 220)
         time.sleep(bekleme_carpani*2)
-        click(btn,160, 490)
+        click(btn,295, 525)
+        for i in range(3):
+            hizlitopla = ara("./images/hizlitopla.png")
+            if hizlitopla != -1:
+                click(btn,hizlitopla[0]+10,hizlitopla[1]+10)
+                time.sleep(bekleme_carpani*2)
+                click(btn,160, 490)
+                time.sleep(bekleme_carpani*2)
+                break
+            else:
+                click(btn,60+(i*70),150)
+    if collectdata().get("hasat_et"):
         time.sleep(bekleme_carpani*2)
-    
+        click(btn,295, 525)
+        for i in range(3):
+            hasatet = ara("./images/hasatet.png")
+            if hasatet != -1:
+                click(btn,hasatet[0]+10,hasatet[1]+10)
+                time.sleep(bekleme_carpani*2)
+                click(btn,160, 490)
+                time.sleep(bekleme_carpani*2)
+                break
+            else:
+                click(btn,60+(i*70),150)
     if collectdata().get("tampon_hasat"):
+        time.sleep(bekleme_carpani*2)
+        click(btn,295, 525)
+        time.sleep(bekleme_carpani*2)
         click(btn,270, 100)
         time.sleep(bekleme_carpani*2)
-        click(btn,200, 200)
-        time.sleep(bekleme_carpani*2)
-        click(btn,160, 490)
-        time.sleep(bekleme_carpani*2)
-    if collectdata().get("hasat_et"):
-        click(btn,55, 100)
-        time.sleep(bekleme_carpani*2)
-        click(btn,160, 490)
-        time.sleep(bekleme_carpani*2)
+        tamponhasat = ara("./images/tamponhasat.png")
+        if tamponhasat != -1:
+            click(btn,tamponhasat[0]+10, tamponhasat[1]+10)
+            time.sleep(bekleme_carpani*2)
+            click(btn,160, 490)
+            time.sleep(bekleme_carpani*2)
+        
     click(btn,200, 600)
     time.sleep(bekleme_carpani*1)
     
@@ -1258,7 +1275,7 @@ def main(btn,frm):
 
         global bonusal
         bonusal = dis_kaynak_bonus
-        
+
         global appopen
         appopen = False
         
