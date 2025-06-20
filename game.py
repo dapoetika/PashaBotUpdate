@@ -195,12 +195,17 @@ def oyunac():
     harf = ["C","D","E","F","G"]
     
     for k in harf:
-        try:
+        try: 
             
             proce = subprocess.Popen(k+":/Program Files/BlueStacks_nxt/HD-Player.exe --instance Pie64 --cmd launchApp --package and.onemt.boe.tr")
+                
+        except:
             
-            break
-        
+            continue
+    for k in harf:
+        try: 
+            subprocess.Popen('"'+k+':/Program Files/Microvirt/MEmu/MEmu.exe" MEmu applink and.onemt.boe.tr/org.cocos2dx.lua.AppActivity')
+            
         except:
             
             continue
@@ -210,7 +215,9 @@ def oyunac():
     time.sleep(bekleme_carpani*5)
     
     hwnd = win32gui.FindWindow(None,"BlueStacks App Player")
-    
+    if hwnd == 0:
+        hwnd = win32gui.FindWindow(None,"MEmu")
+        
     for i in range(5):
         try:
             
