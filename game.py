@@ -1,5 +1,5 @@
 
-#update 2
+#sa
 from tkinter import *
 import time
 import subprocess
@@ -33,9 +33,10 @@ def click(btn,x,y):
         terminate(btn)
 def ara(imagename):
     global stop
-    for i in range(20):
+    for i in range(10):
+        print("aranıyor ", imagename)
         if not stop:
-            aranan = imagesearch.imagesearch(imagename)
+            aranan = imagesearch.imagesearch(imagename,0.6)
             if aranan[0] != -1:
                 return aranan
         else:
@@ -135,10 +136,13 @@ def collectdata():
         gozculist = []
 
         for i in range(hesapsayisi):
-            bugdaylist.append(True) if data.readline().rstrip() == 'True' else bugdaylist.append(False)
-            odunlist.append(True) if data.readline().rstrip() == 'True' else odunlist.append(False)
-            demirlist.append(True) if data.readline().rstrip() == 'True' else demirlist.append(False)
-            kuvarslist.append(True) if data.readline().rstrip() == 'True' else kuvarslist.append(False)
+            combo = data.readline().rstrip()
+            bugdaylist.append(True) if combo == 'Bugday' else bugdaylist.append(False)
+            odunlist.append(True) if combo == 'Odun' else odunlist.append(False)
+            demirlist.append(True) if combo == 'Demir' else demirlist.append(False)
+            kuvarslist.append(True) if combo == 'Kuvars' else kuvarslist.append(False)
+
+        for i in range(hesapsayisi):
             gozculist.append(True) if data.readline().rstrip() == 'True' else gozculist.append(False)
             
         data.close()
@@ -919,7 +923,7 @@ def kaynakgonder(btn):
         time.sleep(bekleme_carpani*2)
 
         
-        for i in range(2):
+        for i in range(1):
             kaynakyardim = ara("./images/kaynakyardim.png")
             attack = ara("./images/attack.png")
             if kaynakyardim != -1:
@@ -930,17 +934,20 @@ def kaynakgonder(btn):
             if attack != -1:
                 return "attack"
             else:
-
+                
                 pyautogui.moveTo(160, 350)
                 pyautogui.dragTo(100,350,1)
-                time.sleep(bekleme_carpani*2)
-        
+                kaynakyardim = ara("./images/kaynakyardim.png")
 
-        
-        
-        time.sleep(bekleme_carpani*2)
-        
-        
+                time.sleep(bekleme_carpani*2)
+                if kaynakyardim != -1:
+                    logkayit(farm,"kaynak yardim tiklandi")
+                    click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
+                    time.sleep(bekleme_carpani*2)
+                    break
+                else:
+                    click(btn,100,350)
+
 
         vip = ara("./images/vip.png")
         
@@ -948,10 +955,8 @@ def kaynakgonder(btn):
         if vip != -1:
             return "vip"
         
-        time.sleep(bekleme_carpani*2)
         if kaynakyardim != -1:
             click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
-        time.sleep(bekleme_carpani*2)
 
         yolla = ara("./images/yolla.png")
 
