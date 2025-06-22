@@ -22,7 +22,7 @@ def logkayit(farm,mesaj):
         open(file_path, "w", encoding="utf-8").close()
 
     x = open(file_path, "a", encoding="utf-8")
-    x.write(mesaj+"\n")
+    x.write(farm,mesaj+"\n")
     x.close()
 def click(btn,x,y):
     global stop
