@@ -1,4 +1,4 @@
-
+#sa
 from tkinter.ttk import *
 from tkinter import *
 
@@ -147,11 +147,8 @@ def tablegiris(window,hesapsayisi,nickname,password):
     
     
     
-    
-    grainlist = []
-    lumberlist = []
-    ironlist= []
-    quartzlist = []
+    gonderilcek = []
+
     kaynak = []
     lonca = []
     mesaj_list = []
@@ -189,95 +186,46 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     kaynak_seviye = data.readline()
     hiz_carpan = data.readline()
+
+
+    labelresource = Label(frm,text="Kaynak",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+    #labelresource.place(x=90,y = 100,width=60,height=20)
+    labelresource.grid(row = 0,column = 1,ipadx = 15,ipady = 5)
+
+
+    labelresource = Label(frm,text="Gözcü",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+    #labelresource.place(x=90,y = 100,width=60,height=20)
+    labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
+
+
+    labelresource = Label(frm,text="Saat",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+    #labelresource.place(x=90,y = 100,width=60,height=20)
+    labelresource.grid(row = 0,column = 6,ipadx = 15,ipady = 5)
     for i in range(hesapsayisi):
         
-        
+        secil = data.readline().rstrip()
+
         labelfarmcount = Label(frm,text = str(i+1),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         #labelfarmcount.place(x=30,y = 120+30*i,width=60,height=25)
         labelfarmcount.grid(row = i +1,column = 0,ipadx = 25,ipady = 5)
 
-        labelresource = Label(frm,text="Buğday",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labelresource.grid(row = 0,column = 1,ipadx = 15,ipady = 5)
-
-
-        labelresource = Label(frm,text="Odun",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labelresource.grid(row = 0,column = 2,ipadx = 15,ipady = 5)
 
 
 
-        labelresource = Label(frm,text="Demir",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labelresource.grid(row = 0,column = 3,ipadx = 20,ipady = 5)
 
-
-        labelresource = Label(frm,text="Kuvars",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labelresource.grid(row = 0,column = 4,ipadx = 15,ipady = 5)
-
-        labelresource = Label(frm,text="Gözcü",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
-
-
-        labelresource = Label(frm,text="Saat",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labelresource.grid(row = 0,column = 6,ipadx = 15,ipady = 5)
-
-
-        combo = Checkbutton(frm,command = lambda m = i:reverseBool(grainlist,m),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-        #combo.place(x=110,y = 120+30*i)
+        combo = Combobox(frm,values=["--","Bugday","Odun","Demir","Kuvars"],background="DarkSlateGray4",state="readonly")
         combo.grid(row = i +1,column =  1,ipadx = 25,ipady = 5)
-        x = data.readline()
-        if x == "True\n":
-            combo.select()
-            grain = True
-        else:
-            grain = False
-            combo.deselect()
-        grainlist.append(grain)
+        gonderilcek.append(combo)
+        if secil == "Bugday":
+            combo.set("Bugday")
+        if secil == "Odun":
+            combo.set("Odun")
+        if secil == "Demir":
+            combo.set("Demir")
+        if secil == "Kuvars":
+            combo.set("Kuvars")
 
-    
-
-        combo = Checkbutton(frm,command = lambda j = i:reverseBool(lumberlist,j),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-        #combo.place(x=160,y = 120+30*i)
-        combo.grid(row = i +1,column = 2,ipadx = 25,ipady = 5)
-        x = data.readline()
-        if x == "True\n":
-            combo.select()
-            lumber = True
-        else:
-            lumber = False
-            combo.deselect()
-        lumberlist.append(lumber)
-
-
-        combo = Checkbutton(frm,command = lambda k = i:reverseBool(ironlist,k),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-        #combo.place(x=240,y = 120+30*i)
-        combo.grid(row = i +1,column = 3,ipadx = 25,ipady = 5)
-        x = data.readline()
-        if x == "True\n":
-            combo.select()
-            iron = True
-        else:
-            iron = False
-            combo.deselect()
-        ironlist.append(iron)
-
-
-        combo = Checkbutton(frm,command = lambda z = i:reverseBool(quartzlist,z),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-        #combo.place(x=300,y = 120+30*i)
-        combo.grid(row = i +1,column = 4,ipadx = 25,ipady = 5)
-        x = data.readline()
-        if x == "True\n":
-            combo.select()
-            quartz = True
-        else:
-            quartz = False
-            combo.deselect()
-        quartzlist.append(quartz)
-
+    for i in range(hesapsayisi):
         combo = Checkbutton(frm,command = lambda g = i:reverseBool(gozculist,g),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
         combo.grid(row = i +1,column = 5,ipadx = 25,ipady = 5)
         x = data.readline()
@@ -289,7 +237,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
             combo.deselect()
         gozculist.append(gozcu)
 
-    #saasasaasasasasas
+   
 
     combo = Checkbutton(frm3,text = "Hasat Et",command = lambda:reverseBool(hasat_et_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 0,column = 2,ipadx = 15,ipady = 5,sticky="w")
@@ -453,7 +401,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     
     global btn
-    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,grainlist,lumberlist,ironlist,quartzlist,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
+    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
     btn.place(x=575,y = 405)
 
     
@@ -505,7 +453,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
     f.close()
     
 
-def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,grainlist,lumberlist,ironlist,quartzlist,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
+def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
     
     data = open("./data/data.txt",W)
     data.write(str(nickname).rstrip()+"\n")
@@ -529,10 +477,11 @@ def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topl
     data.write(str(slide_carpani.get()).rstrip()+"\n")
 
     for i in range(hesapsayisi):
-        data.write(str(grainlist[i])+"\n")
-        data.write(str(lumberlist[i])+"\n")
-        data.write(str(ironlist[i])+"\n")
-        data.write(str(quartzlist[i])+"\n")
+        print(str(gonderilcek[i].get())+"\n")
+        data.write(str(gonderilcek[i].get())+"\n")
+        
+
+    for i in range(hesapsayisi):
         data.write(str(gozculist[i])+"\n")
     
 
@@ -551,7 +500,7 @@ def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topl
         exec(kod, ortam)
 
         ortam["trr"](btn,frm)
-
+        
 
     except Exception as e:
         print(f"Hata oluştu: {e}")
@@ -585,3 +534,6 @@ def main():
 
     hesapgir(window)
     window.mainloop()
+
+if __name__ == "__main__":
+    main()
