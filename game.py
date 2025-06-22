@@ -454,14 +454,16 @@ def mesajtopla(btn):
     click(btn,160,335)
     
     time.sleep(bekleme_carpani*2)
-    
-    for i in range(8):
-        
-        click(btn,160,590)
-        
-        time.sleep(bekleme_carpani*0.5)
-        
 
+    for i in range(20):
+        tumunu_oku = ara("./images/tumunu_oku.png")
+        if tumunu_oku != -1:
+            click(btn,160,590)
+            time.sleep(bekleme_carpani*1)
+        else:
+            click(btn,160,590)
+            time.sleep(bekleme_carpani*1)
+            break
     
     time.sleep(bekleme_carpani*2)
     click(btn,20,65)
