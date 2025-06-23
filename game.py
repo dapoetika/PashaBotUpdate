@@ -1,5 +1,5 @@
 
-#sa
+#update
 from tkinter import *
 import time
 import subprocess
@@ -33,10 +33,13 @@ def click(btn,x,y):
         terminate(btn)
 def ara(imagename):
     global stop
+    precision = 0.6
+    if imagename == "./images/ganimet_karavani.png":
+        precision = 0.8
     for i in range(10):
         print("aranıyor ", imagename)
         if not stop:
-            aranan = imagesearch.imagesearch(imagename,0.6)
+            aranan = imagesearch.imagesearch(imagename,precision)
             if aranan[0] != -1:
                 return aranan
         else:
@@ -454,16 +457,14 @@ def mesajtopla(btn):
     click(btn,160,335)
     
     time.sleep(bekleme_carpani*2)
+    
+    for i in range(8):
+        
+        click(btn,160,590)
+        
+        time.sleep(bekleme_carpani*0.5)
+        
 
-    for i in range(20):
-        tumunu_oku = ara("./images/tumunu_oku.png")
-        if tumunu_oku != -1:
-            click(btn,160,590)
-            time.sleep(bekleme_carpani*1)
-        else:
-            click(btn,160,590)
-            time.sleep(bekleme_carpani*1)
-            break
     
     time.sleep(bekleme_carpani*2)
     click(btn,20,65)
