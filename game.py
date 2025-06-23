@@ -1,5 +1,5 @@
 
-#update
+#usa
 from tkinter import *
 import time
 import subprocess
@@ -977,10 +977,10 @@ def kaynakgonder(btn):
         click(btn,165, 595)
         time.sleep(bekleme_carpani*1)
         
+        tahil_sinir =ara("./images/tahil_sinir.png")
+        odun_sinir =ara("./images/odun_sinir.png")
         girildi_dunya = ara("./images/girildi_dunya.png")
         durum_degisti = ara("./images/durum_degisti.png")
-        odun_sinir =ara("./images/odun_sinir.png")
-        tahil_sinir =ara("./images/tahil_sinir.png")
         if girildi_dunya != -1:
             if odun_sinir != -1 or tahil_sinir != -1 :
                 logkayit(farm,"kullanici sinira ulasti")
