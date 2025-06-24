@@ -691,6 +691,7 @@ def ganimet_karavani(btn):
 
     girildi = ara("./images/girildi.png")
     if girildi == -1:
+        logkayit(farm,"appopen karavan oncesi")
         return "appopen"
     
     now = datetime.datetime.now()
@@ -891,6 +892,7 @@ def sonrakidunya(btn):
     time.sleep(bekleme_carpani*5)
     girildi_dunya = ara("./images/girildi_dunya.png") 
     if girildi_dunya != -1:
+        logkayit(farm,"sonraki dunya basarili")
         return "basarili"
 def kaynakgonder(btn):
     kacinci = 0
@@ -902,7 +904,7 @@ def kaynakgonder(btn):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya == -1:
-            
+            logkayit(farm,"appopen baslangic")
             return "appopen"
         
         time.sleep(bekleme_carpani*1)
@@ -918,6 +920,7 @@ def kaynakgonder(btn):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya != -1:
+            logkayit(farm,"appopen favori")
             return "appopen"
         
         
@@ -956,6 +959,7 @@ def kaynakgonder(btn):
         
         kaynakyardim = ara("./images/kaynakyardim.png")
         if vip != -1:
+            logkayit(farm,"appopen vip")
             return "vip"
         
         if kaynakyardim != -1:
