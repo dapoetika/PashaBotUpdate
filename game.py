@@ -36,14 +36,14 @@ def ara(imagename):
     precision = 0.6
     if imagename == "./images/ganimet_karavani.png":
         precision = 0.8
-    
-    print("aranıyor ", imagename)
-    if not stop:
-        aranan = imagesearch.imagesearch_region_numLoop(imagename,0.1,10,0,0,360,614,precision)
-        if aranan[0] != -1:
-            return aranan
-    else:
-        return[1,1]
+    for i in range(10):
+        print("aranıyor ", imagename)
+        if not stop:
+            aranan = imagesearch.imagesearch(imagename,precision)
+            if aranan[0] != -1:
+                return aranan
+        else:
+            return[1,1]
     return -1
 def trr(btn,frm):
     anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
