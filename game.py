@@ -1498,7 +1498,7 @@ def main(btn,frm):
         print(farm)
         labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         #labelresource.place(x=90,y = 100,width=60,height=20)
-        labeltime.grid(row = farm+1,column = 6,ipadx = 15,ipady = 5)
+        labeltime.grid(row = farm+1,column = 4,ipadx = 15,ipady = 5)
 
         hesapsayisi = data.get("hesapsayisi") 
         kaynak_gonder = data.get("kaynak_gonder") 
