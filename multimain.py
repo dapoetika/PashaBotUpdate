@@ -223,7 +223,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
         combo.grid(row = i +1,column =  1,ipadx = 25,ipady = 5)
         gonderilcek.append(combo)
         
-        if secil == "Yok" or secil == "":
+        if secil == "Yok" or secil == "" or secil == "--":
             combo.set("--")
         elif secil == "Bugday":
             combo.set("Bugday")
@@ -241,7 +241,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
         combo = Combobox(frm,values=["Yok","Max","Tahil Arabasi"],background="DarkSlateGray4",state="readonly",width=4)
         combo.grid(row = i +1,column =  2,ipadx = 25,ipady = 5)
         askeregitcombo.append(combo)
-        if secil == "Yok" or secil == "":
+        if secil == "Yok" or secil == "" or secil == "--":
             combo.set("--")
 
         elif secil == "Max":
