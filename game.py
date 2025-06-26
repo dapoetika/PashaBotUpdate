@@ -1,4 +1,4 @@
-#utr
+#utra
 from tkinter import *
 import time
 import subprocess
@@ -662,7 +662,7 @@ def trainsoldier(btn,tahilarabasi):
         click(btn,10,320)
 
         
-        askerler = ara("./images/askerler1.png")
+        askerler = ara("./images/askerler.png")
         time.sleep(bekleme_carpani*2)
         for i in range(3):
             if askerler != -1:
