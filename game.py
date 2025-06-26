@@ -1,5 +1,4 @@
-
-#usa
+#utr
 from tkinter import *
 import time
 import subprocess
@@ -25,12 +24,14 @@ def logkayit(farm,mesaj):
     x = open(file_path, "a", encoding="utf-8")
     x.write(str(farm) + " "+ mesaj+"\n")
     x.close()
+
 def click(btn,x,y):
     global stop
     if not stop:
         pyautogui.click(x,y)
     else:
         terminate(btn)
+
 def ara(imagename):
     global stop
     precision = 0.6
@@ -47,14 +48,13 @@ def ara(imagename):
     return -1
 
 def trr(btn,frm):
+    
     anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
     anathr.start()
     
     telegramthr = Thread(target=lambda:send_message(collectdata().get("kullaniciadi")),daemon=True)
     telegramthr.start()
      
-
-
 def send_message(mesaj):
     while worker.is_alive():
         BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
@@ -75,7 +75,6 @@ def send_message(mesaj):
         "message_id": message['result']['message_id']
         })
 
-
 def sec(btn,frm):
     global stop 
     stop = False
@@ -88,6 +87,7 @@ def sec(btn,frm):
             worker.start()
             worker.join()
             print("sa")
+
 def arawork(btn):
     worker1 = Thread(target=lambda:durulan(btn),daemon=True)
     worker1.start()
@@ -102,6 +102,7 @@ def terminate(btn):
     btn.config(state=ACTIVE)
     btn_dur.config(state=DISABLED)
     exit()
+
 def collectdata():
     try:
         data = open("./data/data.txt")
@@ -138,6 +139,7 @@ def collectdata():
         kuvarslist = []
         demirlist = []
         gozculist = []
+        askeregitlist = []
 
         for i in range(hesapsayisi):
             combo = data.readline().rstrip()
@@ -147,8 +149,18 @@ def collectdata():
             kuvarslist.append(True) if combo == 'Kuvars' else kuvarslist.append(False)
 
         for i in range(hesapsayisi):
+            askersatir = data.readline().rstrip()
+            if askersatir == 'Max':
+                askeregitlist.append("Max") 
+
+            elif askersatir == 'Tahil Arabasi':
+                askeregitlist.append("Tahil Arabasi")
+            else:
+                askeregitlist.append("Yok")
+
+        for i in range(hesapsayisi):
             gozculist.append(True) if data.readline().rstrip() == 'True' else gozculist.append(False)
-            
+
         data.close()
         
         if bekleme_carpani == 1:
@@ -192,6 +204,7 @@ def collectdata():
             "kuvarslist": kuvarslist,
             "demirlist": demirlist,
             "gozculist": gozculist,
+            "askeregitlist":askeregitlist,
             "mail":mail,
             "sifre":sifre
         }
@@ -376,6 +389,7 @@ def hesapgiris(btn):
    
     click(btn,160, 375)
     time.sleep(bekleme_carpani*2)
+
 def liman(btn):
     time.sleep(bekleme_carpani*2)
     giris = ara("./images/giris.png")
@@ -385,8 +399,7 @@ def liman(btn):
         click(btn,160, 380)
     else:
         return "bulunamadi"
-    
-    
+        
 def ickaynakbonusu(btn):
     girildi = ara("./images/girildi.png")
     if girildi == -1:
@@ -438,6 +451,7 @@ def ickaynakbonusu(btn):
        
         click(btn,20,65)
         time.sleep(bekleme_carpani * 2)
+
 def mesajtopla(btn):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi.png")
@@ -501,6 +515,7 @@ def mesajtopla(btn):
     time.sleep(bekleme_carpani*4)
     pyautogui.hotkey("ctrl", "shift","3")
     time.sleep(bekleme_carpani*10)
+
 def loncatopla(btn):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi.png")
@@ -608,6 +623,7 @@ def loncatopla(btn):
     if not loncatech_yap:
         click(btn,20,65)
         time.sleep(bekleme_carpani*2)
+
 def loncatek(btn):
 
     logkayit(farm,"lonca teknolojisi yapiliyor")
@@ -633,7 +649,56 @@ def loncatek(btn):
             break
         else: 
             click(btn,240,430)
+
+def trainsoldier(btn,tahilarabasi):
+
+    for hangisi in range(5):
+        girildi = ara("./images/girildi.png")
+        if girildi != -1:
+            pass
+        else:
+            return "appopen"
+        time.sleep(bekleme_carpani*2)
+        click(btn,10,320)
+
+        
+        askerler = ara("./images/askerler1.png")
+        time.sleep(bekleme_carpani*2)
+        for i in range(3):
+            if askerler != -1:
+                if tahilarabasi:
+                    click(btn,askerler[0] +205,askerler[1] + 45 +(26*3))
+                else:
+                    click(btn,askerler[0] +205,askerler[1] + 45 +(26*hangisi))
+                time.sleep(bekleme_carpani*2)
+                break
+            else:
+                pyautogui.moveTo(140,335)
+                time.sleep(bekleme_carpani*2)
+                pyautogui.dragTo(140,145,1)
+                time.sleep(bekleme_carpani*2)
+        
+        girildi = ara("./images/girildi.png")
+        if girildi != -1:
+            pass
+        else:
+            return "appopen"
+        
+        click(btn,180,370)
+        time.sleep(bekleme_carpani*2)
+        girildi = ara("./images/girildi.png")
+        if girildi == -1:
+            click(btn,245,590)
+
+        if tahilarabasi:
+            break
+
 def hazinetopla(btn):
+    girildi = ara("./images/girildi.png")
+    if girildi != -1:
+        pass
+    else:
+        return "appopen"
     time.sleep(bekleme_carpani*2)
     click(btn,10,320)
     bulundu = False
@@ -688,6 +753,7 @@ def hazinetopla(btn):
             else:
                 click(btn,160, 150)
                 time.sleep(bekleme_carpani*1)
+
 def ganimet_karavani(btn):
 
     girildi = ara("./images/girildi.png")
@@ -837,6 +903,7 @@ def ganimet_karavani(btn):
 
     logkayit(farm,"ganimet karavani bitti")
     #ganimet_karavani bitis
+
 def hizlitamponhasat(btn):
     if collectdata().get("hasat_et"):
         time.sleep(bekleme_carpani*2)
@@ -885,8 +952,7 @@ def hizlitamponhasat(btn):
         
     click(btn,200, 600)
     time.sleep(bekleme_carpani*1)
-    
-    
+       
 def sonrakidunya(btn):
     time.sleep(bekleme_carpani*1)
     click(btn,160, 600)
@@ -895,6 +961,7 @@ def sonrakidunya(btn):
     if girildi_dunya != -1:
         logkayit(farm,"sonraki dunya basarili")
         return "basarili"
+
 def kaynakgonder(btn):
     kacinci = 0
     while kacinci < 4:
@@ -1017,6 +1084,7 @@ def kaynakgonder(btn):
             if girildi_dunya == -1:
                 click(btn,20,65)
                 logkayit(farm,"kaynak gonderme hata")
+
 def askergonder(btn,hangisi):
     ilksefer = True
     while True:
@@ -1181,14 +1249,14 @@ def askergonder(btn,hangisi):
         time.sleep(bekleme_carpani*2)
         if tamam != -1:
             logkayit(farm,"bugday tamam 2 hata")
-            click(btn,tamam)
+            click(btn,tamam[0],tamam[1])
             time.sleep(bekleme_carpani*2)
             click(btn,20, 65)
             time.sleep(bekleme_carpani*2)
         elif iptal != -1:
             logkayit(farm,"bugday iptal 2 hata")
             time.sleep(bekleme_carpani*2)
-            click(btn,iptal)
+            click(btn,iptal[0],iptal[1])
             time.sleep(bekleme_carpani*2)
             cancel = True
             continue
@@ -1200,6 +1268,146 @@ def askergonder(btn,hangisi):
             
             logkayit(farm,"Bugdaya Asker Gonderildi")
             time.sleep(bekleme_carpani*1)    
+
+def gozcugonder(btn):
+    time.sleep(1)
+    for kisi in range(9):
+        bos = False
+        vipbol = False
+        if vipbol:
+            break
+        time.sleep(1)
+        for mes in range(5):
+            time.sleep(1)
+            click(230,590)
+            time.sleep(1)
+            click(40, 110)
+            time.sleep(1)
+            click(40, 110+kisi*55)
+            time.sleep(1)
+            mesaj = imagesearch.imagesearch("mesaj.png")
+            if mesaj[0] == -1:
+                for i in range(3):
+                    time.sleep(1)
+                    pyautogui.moveTo(130,185)
+                    time.sleep(1)
+                    pyautogui.dragTo(130,510,1)
+                    time.sleep(1)
+                    
+            else:
+                bitti = True
+                break
+            time.sleep(1)
+            click(200,(200+(mes*75)))
+            time.sleep(1)
+            girildi_dunya = imagesearch.imagesearch("girildi_dunya.png")
+            if girildi_dunya[0] != -1:
+                pass
+            else:
+                bos = True
+                time.sleep(1)
+                click(20,65)
+                time.sleep(1)
+                click(20,65)
+                time.sleep(1)
+                click(20,65)
+                break
+            gozcu = imagesearch.imagesearch("gozcu.png")
+            goc = imagesearch.imagesearch("goc.png")
+            time.sleep(1)
+            if gozcu[0] != -1:
+                click(gozcu[0],gozcu[1])
+                time.sleep(1)
+                click(120,400)
+                time.sleep(1)
+                vip = imagesearch.imagesearch("vip.png")
+                if vip[0] != -1:
+                    vipbol = True
+                    click(20,65)
+                    time.sleep(1)
+                    break
+                time.sleep(1)
+                click(120,120)
+                time.sleep(1)
+                gozcu_kullan= imagesearch.imagesearch("gozcu_kullan.png")
+                time.sleep(1)
+                for i in range(20):
+                    if gozcu_kullan[0]:
+                        click(gozcu_kullan[0]+10,gozcu_kullan[1]+10)
+                        time.sleep(1)
+                    else:
+                        break
+            if goc[0] != -1:
+                time.sleep(1)
+                click(goc[0]+10,goc[1]+10)
+                time.sleep(1)
+                click(220,315)
+                time.sleep(1)
+
+        if bos:
+            continue
+        if bitti:
+            break
+
+    time.sleep(1)
+    click(230,590)
+    time.sleep(1)
+    click(40, 110)
+    time.sleep(1)
+    for i in range(10):#silme
+        click(300,595)
+        for i in range(9):
+            time.sleep(1)
+            click(35, 110+i*55)
+        time.sleep(1)
+        click(160,595)
+        tamam = imagesearch.imagesearch("tamam.png")
+        if tamam[0] != -1:
+            time.sleep(1)
+            click(tamam[0] +10,tamam[1]+10)
+            time.sleep(1)
+            click(300,595)
+        else:
+            time.sleep(1)
+            click(20,65)
+            time.sleep(1)
+            click(20,65)
+            break
+    click(230,590)
+    time.sleep(1)
+    click(40, 275)
+    for i in range(10):#paylaşma
+        for i in range(9):
+            time.sleep(1)
+            click(35, 110+i*55)
+            gozcu_basarili = imagesearch.imagesearch("gozcu-basarili.png")
+            if gozcu_basarili[0] != -1:
+                time.sleep(1)
+                click(310, 100)
+                time.sleep(1)
+                click(20,65)
+            else:
+                break
+        time.sleep(1)
+        click(300,595)
+        for i in range(9):
+            time.sleep(1)
+            click(35, 110+i*55)
+        time.sleep(1)
+        click(160,595)
+        tamam = imagesearch.imagesearch("tamam.png")
+        if tamam[0] != -1:
+            time.sleep(1)
+            click(tamam[0] +10,tamam[1]+10)
+            time.sleep(1)
+            click(300,595)
+        else:
+            time.sleep(1)
+            click(20,65)
+            time.sleep(1)
+            click(20,65)
+            break
+
 def sonrakihesap(btn):
     global farm
     hesapsayisi = collectdata().get("hesapsayisi")
@@ -1259,7 +1467,6 @@ def sonrakihesap(btn):
     
     #stop
 
-
 def main(btn,frm):
     global farm
     farm = 0
@@ -1307,7 +1514,8 @@ def main(btn,frm):
         odunlist = data.get("odunlist") 
         kuvarslist = data.get("kuvarslist") 
         demirlist = data.get("demirlist") 
-        gozculist = data.get("gozculist") 
+        gozculist = data.get("gozculist")
+        askeregitlist = data.get("askeregitlist")
 
         global bonusal
         bonusal = dis_kaynak_bonus
@@ -1326,6 +1534,18 @@ def main(btn,frm):
         x = liman(btn)
         if x == "bulunamadi":
             pass
+        
+
+        if gozculist[farm]:
+            while True:
+                x = gozcugonder(btn)
+                if x == "appopen devam":
+                    cikis()
+                    oyunac()
+                    sonrakidunya(btn)
+                    continue
+                   
+            
 
         if ic_kaynak_bonus:
             x = ickaynakbonusu(btn)
@@ -1352,6 +1572,17 @@ def main(btn,frm):
 
         if loncatech_yap:
             x = loncatek(btn)
+            if x == "appopen":
+                cikis()
+                continue
+
+        if askeregitlist[farm] == "Max":
+            x = trainsoldier(btn,False)
+            if x == "appopen":
+                cikis()
+                continue
+        elif askeregitlist[farm] == "Tahil Arabasi":
+            x =trainsoldier(btn,True)
             if x == "appopen":
                 cikis()
                 continue
@@ -1445,5 +1676,8 @@ def main(btn,frm):
                 hesapgir = False
                 sonrakihesap(btn)
                 continue
+        
         hesapgir = False
         sonrakihesap(btn)
+
+
