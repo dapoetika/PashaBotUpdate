@@ -148,6 +148,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
     
     
     gonderilcek = []
+    askeregitcombo = []
 
     kaynak = []
     lonca = []
@@ -193,14 +194,19 @@ def tablegiris(window,hesapsayisi,nickname,password):
     labelresource.grid(row = 0,column = 1,ipadx = 15,ipady = 5)
 
 
+    labelresource = Label(frm,text="Asker Eğit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+    #labelresource.place(x=90,y = 100,width=60,height=20)
+    labelresource.grid(row = 0,column = 2,ipadx = 15,ipady = 5)
+
+
     labelresource = Label(frm,text="Gözcü",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
     #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
+    labelresource.grid(row = 0,column = 3,ipadx = 15,ipady = 5)
 
 
     labelresource = Label(frm,text="Saat",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
     #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 6,ipadx = 15,ipady = 5)
+    labelresource.grid(row = 0,column = 4,ipadx = 15,ipady = 5)
     for i in range(hesapsayisi):
         
         secil = data.readline().rstrip()
@@ -213,21 +219,41 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
 
 
-        combo = Combobox(frm,values=["--","Bugday","Odun","Demir","Kuvars"],background="DarkSlateGray4",state="readonly")
+        combo = Combobox(frm,values=["Yok","Bugday","Odun","Demir","Kuvars"],background="DarkSlateGray4",state="readonly",width=2)
         combo.grid(row = i +1,column =  1,ipadx = 25,ipady = 5)
         gonderilcek.append(combo)
-        if secil == "Bugday":
+        
+        if secil == "Yok" or secil == "":
+            combo.set("--")
+        elif secil == "Bugday":
             combo.set("Bugday")
-        if secil == "Odun":
+        elif secil == "Odun":
             combo.set("Odun")
-        if secil == "Demir":
+        elif secil == "Demir":
             combo.set("Demir")
-        if secil == "Kuvars":
+        elif secil == "Kuvars":
             combo.set("Kuvars")
 
     for i in range(hesapsayisi):
+        
+        secil = data.readline().rstrip()
+
+        combo = Combobox(frm,values=["Yok","Max","Tahil Arabasi"],background="DarkSlateGray4",state="readonly",width=4)
+        combo.grid(row = i +1,column =  2,ipadx = 25,ipady = 5)
+        askeregitcombo.append(combo)
+        if secil == "Yok" or secil == "":
+            combo.set("--")
+
+        elif secil == "Max":
+            combo.set("Max")
+
+        elif secil == "Tahil Arabasi":
+            combo.set("Tahil Arabasi")
+        
+
+    for i in range(hesapsayisi):
         combo = Checkbutton(frm,command = lambda g = i:reverseBool(gozculist,g),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-        combo.grid(row = i +1,column = 5,ipadx = 25,ipady = 5)
+        combo.grid(row = i +1,column = 3,ipadx = 25,ipady = 5)
         x = data.readline()
         if x == "True\n":
             combo.select()
@@ -401,7 +427,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     
     global btn
-    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
+    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
     btn.place(x=575,y = 405)
 
     
@@ -453,7 +479,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
     f.close()
     
 
-def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
+def basla(askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
     
     data = open("./data/data.txt",W)
     data.write(str(nickname).rstrip()+"\n")
@@ -477,14 +503,14 @@ def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topl
     data.write(str(slide_carpani.get()).rstrip()+"\n")
 
     for i in range(hesapsayisi):
-        print(str(gonderilcek[i].get())+"\n")
         data.write(str(gonderilcek[i].get())+"\n")
-        
+    
+    for i in range(hesapsayisi):
+        data.write(str(askeregitcombo[i].get())+"\n")
 
     for i in range(hesapsayisi):
         data.write(str(gozculist[i])+"\n")
     
-
     url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/game.py"
 
     try:
@@ -505,7 +531,7 @@ def basla(hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topl
     except Exception as e:
         print(f"Hata oluştu: {e}")
 
-    
+ 
 
 def childsave(entry_mail,entry_password):
     f = open("./data/acc.txt", "w")
