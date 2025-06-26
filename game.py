@@ -1,4 +1,4 @@
-#utraa
+#sa
 from tkinter import *
 import time
 import subprocess
@@ -684,7 +684,7 @@ def trainsoldier(btn,tahilarabasi):
         else:
             return "appopen"
         time.sleep(bekleme_carpani*2)
-        click(btn,180,370)
+        click(btn,182,355)
         time.sleep(bekleme_carpani*2)
         girildi = ara("./images/girildi.png")
         if girildi == -1:
