@@ -1,4 +1,4 @@
-#utra
+#utraa
 from tkinter import *
 import time
 import subprocess
@@ -651,7 +651,7 @@ def loncatek(btn):
             click(btn,240,430)
 
 def trainsoldier(btn,tahilarabasi):
-
+    time.sleep(bekleme_carpani*2)
     for hangisi in range(5):
         girildi = ara("./images/girildi.png")
         if girildi != -1:
@@ -683,16 +683,18 @@ def trainsoldier(btn,tahilarabasi):
             pass
         else:
             return "appopen"
-        
+        time.sleep(bekleme_carpani*2)
         click(btn,180,370)
         time.sleep(bekleme_carpani*2)
         girildi = ara("./images/girildi.png")
         if girildi == -1:
+            time.sleep(bekleme_carpani*2)
             click(btn,245,590)
 
         if tahilarabasi:
+            time.sleep(bekleme_carpani*2)
             break
-
+        
 def hazinetopla(btn):
     girildi = ara("./images/girildi.png")
     if girildi != -1:
