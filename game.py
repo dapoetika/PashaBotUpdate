@@ -571,7 +571,7 @@ def loncatopla(btn):
     click(btn,160,100)
     
 
-    for i in range(20):
+    for i in range(5):
         time.sleep(bekleme_carpani*2)
         topla = ara("./images/topla.png")
         time.sleep(bekleme_carpani*2)
@@ -595,7 +595,7 @@ def loncatopla(btn):
 
 
 
-    for i in range(20):
+    for i in range(5):
         time.sleep(bekleme_carpani*2)
         topla = ara("./images/topla.png")
         
