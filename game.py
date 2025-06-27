@@ -1,4 +1,4 @@
-#sa
+#saa
 from tkinter import *
 import time
 import subprocess
@@ -636,9 +636,8 @@ def loncatek(btn):
     click(btn,160,180)
     for i in range(25):
         tamam = ara("./images/tamam.png")
-        time.sleep(bekleme_carpani*2)
+        time.sleep(bekleme_carpani*1)
         
-    
         if tamam != -1:
             click(btn,240,430)
             time.sleep(bekleme_carpani*2)
