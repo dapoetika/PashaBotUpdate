@@ -56,24 +56,25 @@ def trr(btn,frm):
     telegramthr.start()
      
 def send_message(mesaj):
-    while worker.is_alive():
-        BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
-        CHAT_ID = '-4858370404'
-
-        send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        message = requests.post(send_url, data={
-        "chat_id": CHAT_ID,
-        "text": f"{mesaj}"
-        }).json()
-
-        time.sleep(10)
-
-        # 3. Mesajı sil
-        delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
-        requests.post(delete_url, data={
-        "chat_id": CHAT_ID,
-        "message_id": message['result']['message_id']
-        })
+    while True:
+        while worker.is_alive():
+            BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
+            CHAT_ID = '-4858370404'
+    
+            send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+            message = requests.post(send_url, data={
+            "chat_id": CHAT_ID,
+            "text": f"{mesaj}"
+            }).json()
+    
+            time.sleep(10)
+    
+            # 3. Mesajı sil
+            delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
+            requests.post(delete_url, data={
+            "chat_id": CHAT_ID,
+            "message_id": message['result']['message_id']
+            })
 
 def sec(btn,frm):
     global stop 
@@ -1003,7 +1004,7 @@ def kaynakgonder(btn):
             kaynakyardim = ara("./images/kaynakyardim.png")
             attack = ara("./images/attack.png")
             if kaynakyardim != -1:
-                logkayit(farm,"kaynak yardim tiklandi")
+                
                 click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
                 time.sleep(bekleme_carpani*2)
                 break
@@ -1017,7 +1018,7 @@ def kaynakgonder(btn):
 
                 time.sleep(bekleme_carpani*2)
                 if kaynakyardim != -1:
-                    logkayit(farm,"kaynak yardim tiklandi")
+                    
                     click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
                     time.sleep(bekleme_carpani*2)
                     break
@@ -1062,15 +1063,15 @@ def kaynakgonder(btn):
                 
 
             elif durum_degisti != -1:
-                
+                logkayit(farm,"kacinci artti")
                 kacinci += 1
                 
             else:
-                logkayit(farm,"kaynak gonderildi")
+                pass
                     
         else:
             kacinci += 1
-            
+            logkayit(farm,"kacinci artti")
             if kacinci == 4:
                 click(btn,20,65)
                 logkayit(farm,"kaynak gonderme bitti")
@@ -1478,9 +1479,13 @@ def main(btn,frm):
     hesapgir = True
     x = ""
     while True:
+        data = collectdata()
         if x == "appopen":
             hesapgir = True
-            farm += 1
+            if farm == data.get("hesapsayisi") -1:
+                farm = 0
+            else:
+                farm += 1
             print("Truelandin")
         global btn_dur
         btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
@@ -1490,7 +1495,6 @@ def main(btn,frm):
         btn.config(state=DISABLED)
 
         now = datetime.datetime.now()
-        data = collectdata()
         
         
         
