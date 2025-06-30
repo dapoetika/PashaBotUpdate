@@ -1,4 +1,4 @@
-#usa
+#usaa
 from tkinter import *
 import time
 import subprocess
@@ -1325,7 +1325,7 @@ def altintopla(btn):
             time.sleep(2)
             x = bul(btn)
             if x == "vip":
-                exit()
+                return "vip"
 
         for k in range((2*i)-1):#yukarı
             pyautogui.moveTo(160,100)
@@ -1334,7 +1334,7 @@ def altintopla(btn):
             time.sleep(2)
             x = bul(btn)
             if x == "vip":
-                exit()
+                return "vip"
             
         for k in range(2*i):#sag
             pyautogui.moveTo(300,340)
@@ -1343,7 +1343,7 @@ def altintopla(btn):
             time.sleep(2)
             x = bul(btn)
             if x == "vip":
-                exit()
+                return "vip"
             
         for k in range(2*i):#aşşa
             pyautogui.moveTo(160,490)
@@ -1352,7 +1352,7 @@ def altintopla(btn):
             time.sleep(2)
             x = bul(btn)
             if x == "vip":
-                exit()
+                return "vip"
 
 def gozcugonder(btn):
     time.sleep(1)
@@ -1584,7 +1584,7 @@ def main(btn,frm):
         print(farm)
         labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         #labelresource.place(x=90,y = 100,width=60,height=20)
-        labeltime.grid(row = farm+1,column = 6,ipadx = 15,ipady = 5)
+        labeltime.grid(row = farm+1,column = 4,ipadx = 15,ipady = 5)
 
         hesapsayisi = data.get("hesapsayisi") 
         kaynak_gonder = data.get("kaynak_gonder") 
