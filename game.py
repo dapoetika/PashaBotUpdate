@@ -1,4 +1,4 @@
-#usaa
+#us
 from tkinter import *
 import time
 import subprocess
@@ -124,6 +124,7 @@ def collectdata():
         hasat_et = True if data.readline().rstrip() == 'True' else False
         hizli_topla = True if data.readline().rstrip() == 'True' else False
         tampon_hasat = True if data.readline().rstrip() == 'True' else False
+        kalkan_kvk = True if data.readline().rstrip() == 'True' else False
 
         global bekleme_carpani
         try:
@@ -208,7 +209,8 @@ def collectdata():
             "gozculist": gozculist,
             "askeregitlist":askeregitlist,
             "mail":mail,
-            "sifre":sifre
+            "sifre":sifre,
+            "kvkkalkan":kalkan_kvk
         }
     except ValueError:
         print("hata")
@@ -964,6 +966,39 @@ def sonrakidunya(btn):
         logkayit(farm,"sonraki dunya basarili")
         return "basarili"
 
+def kvkkalkan(btn):
+    time.sleep(bekleme_carpani*2)
+    tarihler = ['2025-07-03', '2025-07-04', '2025-07-05', '2025-07-17', '2025-07-18', '2025-07-19', '2025-07-31', '2025-08-01', '2025-08-02', '2025-08-14', '2025-08-15', '2025-08-16', '2025-08-28', '2025-08-29', '2025-08-30', '2025-09-11', '2025-09-12', '2025-09-13', '2025-09-25', '2025-09-26', '2025-09-27', '2025-10-09', '2025-10-10', '2025-10-11', '2025-10-23', '2025-10-24', '2025-10-25', '2025-11-06', '2025-11-07', '2025-11-08', '2025-11-20', '2025-11-21', '2025-11-22', '2025-12-04', '2025-12-05', '2025-12-06', '2025-12-18', '2025-12-19', '2025-12-20', '2026-01-01', '2026-01-02', '2026-01-03', '2026-01-15', '2026-01-16', '2026-01-17', '2026-01-29', '2026-01-30', '2026-01-31', '2026-02-12', '2026-02-13', '2026-02-14', '2026-02-26', '2026-02-27', '2026-02-28', '2026-03-12', '2026-03-13', '2026-03-14', '2026-03-26', '2026-03-27', '2026-03-28', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-23', '2026-04-24', '2026-04-25', '2026-05-07', '2026-05-08', '2026-05-09', '2026-05-21', '2026-05-22', '2026-05-23', '2026-06-04', '2026-06-05', '2026-06-06', '2026-06-18', '2026-06-19', '2026-06-20', '2026-07-02', '2026-07-03', '2026-07-04']
+    
+    utc_time = datetime.datetime.now(datetime.timezone.utc)
+    bugun = utc_time.strftime("%Y-%m-%d")
+    saat = utc_time.strftime("%H")
+    if bugun in tarihler and int(saat)>9:
+        time.sleep(bekleme_carpani*2)
+        click(btn,160, 350)
+        time.sleep(bekleme_carpani*2)
+        click(btn,220, 290)
+        time.sleep(bekleme_carpani*2)
+        click(btn,180, 125)
+        time.sleep(bekleme_carpani*2)
+        click(btn,275, 380)
+        time.sleep(bekleme_carpani*2)
+        tamam = ara("./images/tamam.png")
+        if tamam != -1:
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+        else:
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+
 def kaynakgonder(btn):
     kacinci = 0
     while kacinci < 4:
@@ -1285,71 +1320,71 @@ def bul(btn):
             bulundu = aranan2
             break
     if(bulundu != -1):
-        time.sleep(2)
+        time.sleep(bekleme_carpani*2)
         click(btn,bulundu[0]+30,bulundu[1]+30)
-        time.sleep(1)
+        time.sleep(bekleme_carpani*2)
         raid = ara("./images/raid.png")
         if raid != -1:
             click(btn,raid[0]+15,raid[1]+15)
             vip = ara("./images/vip.png")
             if vip != -1:
-                time.sleep(2)
+                time.sleep(bekleme_carpani*2)
                 click(btn,20,65)
                 return "vip"
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             click(btn,300,590)
         else:
             pyautogui.dragTo(0,300,1)
             raid = ara("./images/raid.png")
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             if raid != -1:
                 click(btn,raid[0]+15,raid[1]+15)
                 vip = ara("./images/vip.png")
                 if vip != -1:
-                    time.sleep(2)
+                    time.sleep(bekleme_carpani*2)
                     click(btn,20,65)
                     return "vip"
-                time.sleep(2)
+                time.sleep(bekleme_carpani*2)
                 click(btn,300,590)
             else:
                 click(btn,bulundu[0] -30,bulundu[1]+30)
-                time.sleep(2)
+                time.sleep(bekleme_carpani*2)
 
 def altintopla(btn):
     for i in range(1,100):
-        time.sleep(1)
+        time.sleep(bekleme_carpani*2)
         for k in range((2*i)-1):#sol
             pyautogui.moveTo(50,340)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(300,340,1)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             x = bul(btn)
             if x == "vip":
                 return "vip"
 
         for k in range((2*i)-1):#yukarı
             pyautogui.moveTo(160,100)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(160,490,1)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             x = bul(btn)
             if x == "vip":
                 return "vip"
             
         for k in range(2*i):#sag
             pyautogui.moveTo(300,340)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(50,340,1)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             x = bul(btn)
             if x == "vip":
                 return "vip"
             
         for k in range(2*i):#aşşa
             pyautogui.moveTo(160,490)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(160,100,1)
-            time.sleep(2)
+            time.sleep(bekleme_carpani*2)
             x = bul(btn)
             if x == "vip":
                 return "vip"
@@ -1605,7 +1640,7 @@ def main(btn,frm):
         demirlist = data.get("demirlist") 
         gozculist = data.get("gozculist")
         askeregitlist = data.get("askeregitlist")
-
+        kvk_kalkan = data.get("kvkkalkan")
         global bonusal
         bonusal = dis_kaynak_bonus
 
@@ -1694,6 +1729,8 @@ def main(btn,frm):
             hizlitamponhasat(btn)
         
         sonrakidunya(btn)
+        if (kvk_kalkan):
+            kvkkalkan(btn)
 
         if kaynak_gonder:
             x = kaynakgonder(btn)        
@@ -1773,4 +1810,3 @@ def main(btn,frm):
                 continue
         hesapgir = False
         sonrakihesap(btn)
-
