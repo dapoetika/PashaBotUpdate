@@ -159,7 +159,8 @@ def tablegiris(window,hesapsayisi,nickname,password):
     hasat_et_list = []
     hizli_topla_list = []
     tampon_hasat_list = []
-    
+    kvk_kalkan_list = []
+
     ganimet_kara = []
     ic_kaynak = []
     dis_kaynak= []
@@ -184,6 +185,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
     hasat_et = data.readline()
     hizli_topla = data.readline()
     tampon_hasat = data.readline()
+    kvk_kalkan = data.readline()
 
     kaynak_seviye = data.readline()
     hiz_carpan = data.readline()
@@ -399,7 +401,15 @@ def tablegiris(window,hesapsayisi,nickname,password):
         combo.deselect()
     dis_kaynak.append(disyap)
 
- 
+    combo = Checkbutton(frm3,text = "KVK Kalkan",command = lambda:reverseBool(kvk_kalkan_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo.grid(row = 3,column = 2,ipadx = 15,ipady = 5,sticky="w")
+    if kvk_kalkan == "True\n":
+        kalkan = True
+        combo.select()
+    else:
+        kalkan = False
+        combo.deselect()
+    kvk_kalkan_list.append(kalkan)
 
 
     
@@ -421,15 +431,16 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     slide_carpan = Scale(frm3,from_=1,to=5,orient=HORIZONTAL,background="DarkSlateGray4",activebackground="CadetBlue4", bd="0px", relief=FLAT)
     slide_carpan.grid(row = 5,column = 1,ipadx = 15,ipady = 5,pady=20,sticky="w")
-    if(hiz_carpan !=""):
-   
-        slide_carpan.set(int(hiz_carpan))
-    else:
+    try:
+        if(hiz_carpan !=""):
+            slide_carpan.set(int(hiz_carpan))
+        else:
+            slide_carpan.set(3)
+    except:
         slide_carpan.set(3)
-
     
     global btn
-    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
+    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
     btn.place(x=575,y = 405)
 
     
@@ -481,7 +492,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
     f.close()
     
 
-def basla(askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
+def basla(kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
     
     data = open("./data/data.txt",W)
     data.write(str(nickname).rstrip()+"\n")
@@ -500,6 +511,7 @@ def basla(askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_
     data.write(str(hasat_et_list[0]).rstrip()+"\n")
     data.write(str(hizli_topla_list[0]).rstrip()+"\n")
     data.write(str(tampon_hasat_list[0]).rstrip()+"\n")
+    data.write(str(kvk_kalkan_list[0]).rstrip()+"\n")
 
     data.write(str(slide_kaynak.get()).rstrip()+"\n")
     data.write(str(slide_carpani.get()).rstrip()+"\n")
