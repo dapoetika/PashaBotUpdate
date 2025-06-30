@@ -1,4 +1,4 @@
-#saa
+#usa
 from tkinter import *
 import time
 import subprocess
@@ -56,25 +56,24 @@ def trr(btn,frm):
     telegramthr.start()
      
 def send_message(mesaj):
-    while True:
-        while worker.is_alive():
-            BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
-            CHAT_ID = '-4858370404'
-    
-            send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-            message = requests.post(send_url, data={
-            "chat_id": CHAT_ID,
-            "text": f"{mesaj}"
-            }).json()
-    
-            time.sleep(10)
-    
-            # 3. Mesajı sil
-            delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
-            requests.post(delete_url, data={
-            "chat_id": CHAT_ID,
-            "message_id": message['result']['message_id']
-            })
+    while worker.is_alive():
+        BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
+        CHAT_ID = '-4858370404'
+
+        send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        message = requests.post(send_url, data={
+        "chat_id": CHAT_ID,
+        "text": f"{mesaj}"
+        }).json()
+
+        time.sleep(10)
+
+        # 3. Mesajı sil
+        delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
+        requests.post(delete_url, data={
+        "chat_id": CHAT_ID,
+        "message_id": message['result']['message_id']
+        })
 
 def sec(btn,frm):
     global stop 
@@ -138,6 +137,7 @@ def collectdata():
         bugdaylist = []
         odunlist = []
         kuvarslist = []
+        altinlist = []
         demirlist = []
         gozculist = []
         askeregitlist = []
@@ -148,7 +148,7 @@ def collectdata():
             odunlist.append(True) if combo == 'Odun' else odunlist.append(False)
             demirlist.append(True) if combo == 'Demir' else demirlist.append(False)
             kuvarslist.append(True) if combo == 'Kuvars' else kuvarslist.append(False)
-
+            altinlist.append(True) if combo == 'Altin' else altinlist.append(False)
         for i in range(hesapsayisi):
             askersatir = data.readline().rstrip()
             if askersatir == 'Max':
@@ -204,6 +204,7 @@ def collectdata():
             "odunlist": odunlist,
             "kuvarslist": kuvarslist,
             "demirlist": demirlist,
+            "altinlist":altinlist,
             "gozculist": gozculist,
             "askeregitlist":askeregitlist,
             "mail":mail,
@@ -571,7 +572,7 @@ def loncatopla(btn):
     click(btn,160,100)
     
 
-    for i in range(5):
+    for i in range(20):
         time.sleep(bekleme_carpani*2)
         topla = ara("./images/topla.png")
         time.sleep(bekleme_carpani*2)
@@ -595,7 +596,7 @@ def loncatopla(btn):
 
 
 
-    for i in range(5):
+    for i in range(20):
         time.sleep(bekleme_carpani*2)
         topla = ara("./images/topla.png")
         
@@ -636,8 +637,9 @@ def loncatek(btn):
     click(btn,160,180)
     for i in range(25):
         tamam = ara("./images/tamam.png")
-        time.sleep(bekleme_carpani*1)
+        time.sleep(bekleme_carpani*2)
         
+    
         if tamam != -1:
             click(btn,240,430)
             time.sleep(bekleme_carpani*2)
@@ -651,7 +653,7 @@ def loncatek(btn):
             click(btn,240,430)
 
 def trainsoldier(btn,tahilarabasi):
-    time.sleep(bekleme_carpani*2)
+
     for hangisi in range(5):
         girildi = ara("./images/girildi.png")
         if girildi != -1:
@@ -683,18 +685,16 @@ def trainsoldier(btn,tahilarabasi):
             pass
         else:
             return "appopen"
-        time.sleep(bekleme_carpani*2)
+        
         click(btn,182,355)
         time.sleep(bekleme_carpani*2)
         girildi = ara("./images/girildi.png")
         if girildi == -1:
-            time.sleep(bekleme_carpani*2)
             click(btn,245,590)
 
         if tahilarabasi:
-            time.sleep(bekleme_carpani*2)
             break
-        
+
 def hazinetopla(btn):
     girildi = ara("./images/girildi.png")
     if girildi != -1:
@@ -1003,7 +1003,7 @@ def kaynakgonder(btn):
             kaynakyardim = ara("./images/kaynakyardim.png")
             attack = ara("./images/attack.png")
             if kaynakyardim != -1:
-                
+                logkayit(farm,"kaynak yardim tiklandi")
                 click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
                 time.sleep(bekleme_carpani*2)
                 break
@@ -1017,7 +1017,7 @@ def kaynakgonder(btn):
 
                 time.sleep(bekleme_carpani*2)
                 if kaynakyardim != -1:
-                    
+                    logkayit(farm,"kaynak yardim tiklandi")
                     click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
                     time.sleep(bekleme_carpani*2)
                     break
@@ -1062,15 +1062,15 @@ def kaynakgonder(btn):
                 
 
             elif durum_degisti != -1:
-                logkayit(farm,"kacinci artti")
+                
                 kacinci += 1
                 
             else:
-                pass
+                logkayit(farm,"kaynak gonderildi")
                     
         else:
             kacinci += 1
-            logkayit(farm,"kacinci artti")
+            
             if kacinci == 4:
                 click(btn,20,65)
                 logkayit(farm,"kaynak gonderme bitti")
@@ -1270,6 +1270,89 @@ def askergonder(btn,hangisi):
             
             logkayit(farm,"Bugdaya Asker Gonderildi")
             time.sleep(bekleme_carpani*1)    
+
+def bul(btn):
+    bulundu = -1
+    for i in range(10):
+        aranan = imagesearch.imagesearch("./images/altin.png",0.6)
+        aranan2 = imagesearch.imagesearch("./images/altin2.png",0.6)
+        if aranan[0] != -1:
+            print(aranan)
+            bulundu = aranan
+            break
+        if aranan2[0] != -1:
+            print(aranan2)
+            bulundu = aranan2
+            break
+    if(bulundu != -1):
+        time.sleep(2)
+        click(btn,bulundu[0]+30,bulundu[1]+30)
+        time.sleep(1)
+        raid = ara("./images/raid.png")
+        if raid != -1:
+            click(btn,raid[0]+15,raid[1]+15)
+            vip = ara("./images/vip.png")
+            if vip != -1:
+                time.sleep(2)
+                click(btn,20,65)
+                return "vip"
+            time.sleep(2)
+            click(btn,300,590)
+        else:
+            pyautogui.dragTo(0,300,1)
+            raid = ara("./images/raid.png")
+            time.sleep(2)
+            if raid != -1:
+                click(btn,raid[0]+15,raid[1]+15)
+                vip = ara("./images/vip.png")
+                if vip != -1:
+                    time.sleep(2)
+                    click(btn,20,65)
+                    return "vip"
+                time.sleep(2)
+                click(btn,300,590)
+            else:
+                click(btn,bulundu[0] -30,bulundu[1]+30)
+                time.sleep(2)
+
+def altintopla(btn):
+    for i in range(1,100):
+        time.sleep(1)
+        for k in range((2*i)-1):#sol
+            pyautogui.moveTo(50,340)
+            time.sleep(2)
+            pyautogui.dragTo(300,340,1)
+            time.sleep(2)
+            x = bul(btn)
+            if x == "vip":
+                exit()
+
+        for k in range((2*i)-1):#yukarı
+            pyautogui.moveTo(160,100)
+            time.sleep(2)
+            pyautogui.dragTo(160,490,1)
+            time.sleep(2)
+            x = bul(btn)
+            if x == "vip":
+                exit()
+            
+        for k in range(2*i):#sag
+            pyautogui.moveTo(300,340)
+            time.sleep(2)
+            pyautogui.dragTo(50,340,1)
+            time.sleep(2)
+            x = bul(btn)
+            if x == "vip":
+                exit()
+            
+        for k in range(2*i):#aşşa
+            pyautogui.moveTo(160,490)
+            time.sleep(2)
+            pyautogui.dragTo(160,100,1)
+            time.sleep(2)
+            x = bul(btn)
+            if x == "vip":
+                exit()
 
 def gozcugonder(btn):
     time.sleep(1)
@@ -1501,7 +1584,7 @@ def main(btn,frm):
         print(farm)
         labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         #labelresource.place(x=90,y = 100,width=60,height=20)
-        labeltime.grid(row = farm+1,column = 4,ipadx = 15,ipady = 5)
+        labeltime.grid(row = farm+1,column = 6,ipadx = 15,ipady = 5)
 
         hesapsayisi = data.get("hesapsayisi") 
         kaynak_gonder = data.get("kaynak_gonder") 
@@ -1517,7 +1600,8 @@ def main(btn,frm):
         tampon_hasat = data.get("tampon_hasat") 
         bugdaylist = data.get("bugdaylist") 
         odunlist = data.get("odunlist") 
-        kuvarslist = data.get("kuvarslist") 
+        kuvarslist = data.get("kuvarslist")
+        altinlist = data.get("altinlist")
         demirlist = data.get("demirlist") 
         gozculist = data.get("gozculist")
         askeregitlist = data.get("askeregitlist")
@@ -1681,8 +1765,12 @@ def main(btn,frm):
                 hesapgir = False
                 sonrakihesap(btn)
                 continue
-        
+        if altinlist[farm]:
+            x = altintopla(btn)
+            if x == "vip":
+                hesapgir = False
+                sonrakihesap(btn)
+                continue
         hesapgir = False
         sonrakihesap(btn)
-
 
