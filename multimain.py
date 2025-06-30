@@ -219,11 +219,11 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
 
 
-        combo = Combobox(frm,values=["Yok","Bugday","Odun","Demir","Kuvars"],background="DarkSlateGray4",state="readonly",width=2)
+        combo = Combobox(frm,values=["Yok","Bugday","Odun","Demir","Kuvars","Altin"],background="DarkSlateGray4",state="readonly",width=2)
         combo.grid(row = i +1,column =  1,ipadx = 25,ipady = 5)
         gonderilcek.append(combo)
         
-        if secil == "Yok" or secil == "" or secil == "--":
+        if secil == "Yok" or secil == "":
             combo.set("--")
         elif secil == "Bugday":
             combo.set("Bugday")
@@ -233,6 +233,8 @@ def tablegiris(window,hesapsayisi,nickname,password):
             combo.set("Demir")
         elif secil == "Kuvars":
             combo.set("Kuvars")
+        elif secil == "Altin":
+            combo.set("Altin")
 
     for i in range(hesapsayisi):
         
@@ -241,7 +243,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
         combo = Combobox(frm,values=["Yok","Max","Tahil Arabasi"],background="DarkSlateGray4",state="readonly",width=4)
         combo.grid(row = i +1,column =  2,ipadx = 25,ipady = 5)
         askeregitcombo.append(combo)
-        if secil == "Yok" or secil == "" or secil == "--":
+        if secil == "Yok" or secil == "":
             combo.set("--")
 
         elif secil == "Max":
