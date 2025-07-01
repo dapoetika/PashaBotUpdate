@@ -1390,144 +1390,178 @@ def altintopla(btn):
                 return "vip"
 
 def gozcugonder(btn):
-    time.sleep(1)
-    for kisi in range(9):
-        bos = False
-        vipbol = False
-        if vipbol:
-            break
-        time.sleep(1)
-        for mes in range(5):
-            time.sleep(1)
-            click(230,590)
-            time.sleep(1)
-            click(40, 110)
-            time.sleep(1)
-            click(40, 110+kisi*55)
-            time.sleep(1)
-            mesaj = imagesearch.imagesearch("mesaj.png")
-            if mesaj[0] == -1:
-                for i in range(3):
-                    time.sleep(1)
-                    pyautogui.moveTo(130,185)
-                    time.sleep(1)
-                    pyautogui.dragTo(130,510,1)
-                    time.sleep(1)
-                    
-            else:
-                bitti = True
+    while True:
+        girildi_dunya = ara("./images/girildi_dunya.png") 
+        if girildi_dunya == -1:
+            return "appopen"
+        gonderilen = 0
+        time.sleep(bekleme_carpani*2)
+        for kisi in range(9):
+            print("Başladi")
+            bos = False
+            vipbol = False
+            if vipbol:
+                print("çıktım bye")
                 break
-            time.sleep(1)
-            click(200,(200+(mes*75)))
-            time.sleep(1)
-            girildi_dunya = imagesearch.imagesearch("girildi_dunya.png")
-            if girildi_dunya[0] != -1:
-                pass
-            else:
-                bos = True
-                time.sleep(1)
-                click(20,65)
-                time.sleep(1)
-                click(20,65)
-                time.sleep(1)
-                click(20,65)
-                break
-            gozcu = imagesearch.imagesearch("gozcu.png")
-            goc = imagesearch.imagesearch("goc.png")
-            time.sleep(1)
-            if gozcu[0] != -1:
-                click(gozcu[0],gozcu[1])
-                time.sleep(1)
-                click(120,400)
-                time.sleep(1)
-                vip = imagesearch.imagesearch("vip.png")
-                if vip[0] != -1:
-                    vipbol = True
-                    click(20,65)
-                    time.sleep(1)
+            time.sleep(bekleme_carpani*2)
+            for mes in range(5):
+                print(f"kisi: {kisi},mesaj :{mes}",)
+                time.sleep(bekleme_carpani*2)
+                click(btn,230,590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,40, 110)
+                time.sleep(bekleme_carpani*2)
+                click(btn,40, 110+kisi*55)
+                time.sleep(bekleme_carpani*2)
+                mesaj = ara("./images/mesaj.png")
+                if mesaj != -1:
+                    bitti = True
+                    click(btn,20, 65)
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,20, 65)
                     break
-                time.sleep(1)
-                click(120,120)
-                time.sleep(1)
-                gozcu_kullan= imagesearch.imagesearch("gozcu_kullan.png")
-                time.sleep(1)
-                for i in range(20):
-                    if gozcu_kullan[0]:
-                        click(gozcu_kullan[0]+10,gozcu_kullan[1]+10)
-                        time.sleep(1)
-                    else:
+                time.sleep(bekleme_carpani*2)
+                click(btn,200,(200+(mes*75)))
+                time.sleep(bekleme_carpani*2)
+                girildi_dunya = ara("./images/girildi_dunya.png")
+                if girildi_dunya != -1:
+                    pass
+                else:
+                    bos = True
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,20,65)
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,20,65)
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,20,65)
+                    break
+                gozcu = ara("./images/gozcu.png")
+                goc = ara("./images/goc.png",0.8)
+                
+                if goc != -1:
+                    print("göc varsa")
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,goc[0]+10,goc[1]+10)
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,220,315)
+                    time.sleep(bekleme_carpani*2)
+                time.sleep(bekleme_carpani*2)
+                if gozcu != -1:
+                    click(btn,gozcu[0],gozcu[1])
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,120,400)
+                    time.sleep(bekleme_carpani*2)
+                    vip = ara("./images/vip.png")
+                    if vip!= -1:
+                        vipbol = True
+                        click(btn,20,65)
+                        time.sleep(bekleme_carpani*2)
                         break
-            if goc[0] != -1:
-                time.sleep(1)
-                click(goc[0]+10,goc[1]+10)
-                time.sleep(1)
-                click(220,315)
-                time.sleep(1)
-
-        if bos:
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,120,120)
+                    time.sleep(bekleme_carpani*2)
+                    for i in range(20):
+                        gozcu_kullan= ara("./images/gozcu_kullan.png")
+                        time.sleep(bekleme_carpani*2)
+                        print("gözcü bass")
+                        if gozcu_kullan!= -1:
+                            click(btn,gozcu_kullan[0]+10,gozcu_kullan[1]+10)
+                            time.sleep(bekleme_carpani*2)
+                        else:
+                            break
+                    gonderilen +=1
+                    print("gözcü bass sonrası")
+                print(f"kisi: {kisi},mesaj :{mes} bitti",)
+            if bos:
+                print("bos")
+                continue
+            if bitti:
+                print("bitti")
+                break
+        print("buraya geçtim")
+        time.sleep(bekleme_carpani*2)
+        if gonderilen == 0:
+            time.sleep(bekleme_carpani*1)
+            click(btn,160, 600)
+            time.sleep(bekleme_carpani*5)
+            girildi = ara("./images/girildi.png") 
+            if girildi != -1:
+                pyautogui.hotkey("ctrl", "shift","3")
+                time.sleep(bekleme_carpani*5)
+                time.sleep(bekleme_carpani*1)
+                click(btn,160, 600)
+            print("olmadı baştan")
             continue
-        if bitti:
-            break
-
-    time.sleep(1)
-    click(230,590)
-    time.sleep(1)
-    click(40, 110)
-    time.sleep(1)
-    for i in range(10):#silme
-        click(300,595)
-        for i in range(9):
-            time.sleep(1)
-            click(35, 110+i*55)
-        time.sleep(1)
-        click(160,595)
-        tamam = imagesearch.imagesearch("tamam.png")
-        if tamam[0] != -1:
-            time.sleep(1)
-            click(tamam[0] +10,tamam[1]+10)
-            time.sleep(1)
-            click(300,595)
+        click(btn,230,590)
+        time.sleep(bekleme_carpani*2)
+        click(btn,40, 110)
+        time.sleep(bekleme_carpani*2)
+        #silme
+        click(btn,300,595)
+        for i in range(kisi):
+            time.sleep(bekleme_carpani*2)
+            click(btn,35, 110+i*55)
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,595)
+        tamam = ara("./images/tamam.png")
+        if tamam != -1:
+            time.sleep(bekleme_carpani*2)
+            click(btn,tamam[0] +10,tamam[1]+10)
+            time.sleep(bekleme_carpani*2)
+            click(btn,300,595)
         else:
-            time.sleep(1)
-            click(20,65)
-            time.sleep(1)
-            click(20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
             break
-    click(230,590)
-    time.sleep(1)
-    click(40, 275)
-    for i in range(10):#paylaşma
-        for i in range(9):
-            time.sleep(1)
-            click(35, 110+i*55)
-            gozcu_basarili = imagesearch.imagesearch("gozcu-basarili.png")
-            if gozcu_basarili[0] != -1:
-                time.sleep(1)
-                click(310, 100)
-                time.sleep(1)
-                click(20,65)
+        if kisi !=8:
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            break
+    click(btn,230,590)
+    time.sleep(bekleme_carpani*2)
+    click(btn,40, 275)
+    while True:#paylaşma
+        for rapor in range(9):
+            time.sleep(bekleme_carpani*2)
+            click(btn,35, 110+rapor*55)
+            gozcu_basarili = ara("./images/gozcu-basarili.png")
+            if gozcu_basarili!= -1:
+                time.sleep(bekleme_carpani*2)
+                click(btn,310, 100)
+                time.sleep(bekleme_carpani*2)
+                click(btn,20,65)
             else:
                 break
-        time.sleep(1)
-        click(300,595)
-        for i in range(9):
-            time.sleep(1)
-            click(35, 110+i*55)
-        time.sleep(1)
-        click(160,595)
-        tamam = imagesearch.imagesearch("tamam.png")
-        if tamam[0] != -1:
-            time.sleep(1)
-            click(tamam[0] +10,tamam[1]+10)
-            time.sleep(1)
-            click(300,595)
+        time.sleep(bekleme_carpani*2)
+        click(btn,300,595)
+        for i in range(rapor):
+            time.sleep(bekleme_carpani*2)
+            click(btn,35, 110+i*55)
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,595)
+        tamam = ara("./images/tamam.png")
+        if tamam != -1:
+            time.sleep(bekleme_carpani*2)
+            click(btn,tamam[0] +10,tamam[1]+10)
+            time.sleep(bekleme_carpani*2)
+            click(btn,300,595)
         else:
-            time.sleep(1)
-            click(20,65)
-            time.sleep(1)
-            click(20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
             break
-
+        if rapor != 9:
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            break
+   
 def sonrakihesap(btn):
     global farm
     hesapsayisi = collectdata().get("hesapsayisi")
@@ -1661,10 +1695,12 @@ def main(btn,frm):
         
 
         if gozculist[farm]:
+            sonrakidunya(btn)
             while True:
                 x = gozcugonder(btn)
-                if x == "appopen devam":
+                if x == "appopen":
                     cikis()
+                    time.sleep(bekleme_carpani*5)
                     oyunac()
                     sonrakidunya(btn)
                     continue
