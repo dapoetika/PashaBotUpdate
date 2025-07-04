@@ -1,4 +1,4 @@
-#usasdf
+#us
 from tkinter import *
 import time
 import subprocess
@@ -765,7 +765,6 @@ def loncatopla(btn):
 
 def loncatek(btn):
 
-    logkayit(farm,"lonca teknolojisi yapiliyor")
     time.sleep(bekleme_carpani*2)
     click(btn,290,590)
     time.sleep(bekleme_carpani*2)
@@ -779,15 +778,16 @@ def loncatek(btn):
     
         if tamam != -1:
             click(btn,240,430)
-            time.sleep(bekleme_carpani*2)
-            click(btn,20,65)
-            time.sleep(bekleme_carpani*2)
-            click(btn,20,65)
-            time.sleep(bekleme_carpani*2)
-            click(btn,20,65)
+            
             break
         else: 
             click(btn,240,430)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
 
 def trainsoldier(btn,tahilarabasi):
 
@@ -1707,7 +1707,7 @@ def gozcugonder(btn):
         time.sleep(bekleme_carpani*2)
         click(btn,40, 110+((kacincidayiz-1)*55))
         time.sleep(bekleme_carpani*2)
-        click(btn,100,190+(kacincimesaj*78))
+        click(btn,200,190+(kacincimesaj*78))
         time.sleep(bekleme_carpani*2)
         kacincimesaj += 1
         girildi_dunya = ara("./images/girildi_dunya.png")
@@ -1731,14 +1731,14 @@ def gozcugonder(btn):
             kacincidayiz -= 1
             kacincimesaj = 0
         if bulundu:
-            time.sleep(bekleme_carpani*4)
-            gozcu = ara("./images/gozcu.png",0.8)
-            goc = ara("./images/goc.png",0.8)
+            time.sleep(bekleme_carpani*2)
+            gozcu = ara("./images/gozcu.png")
+            goc = ara("./images/goc.png")
             
             if goc != -1:
                 print("göc varsa")
                 time.sleep(bekleme_carpani*2)
-                click(btn,goc[0]+20,goc[1]+20)
+                click(btn,goc[0]+10,goc[1]+10)
                 time.sleep(bekleme_carpani*2)
                 click(btn,220,315)
                 time.sleep(bekleme_carpani*2)
@@ -1750,7 +1750,7 @@ def gozcugonder(btn):
             elif gozcu != -1:
                 print("gozcu bulduk")
                 time.sleep(bekleme_carpani*2)
-                click(btn,gozcu[0]+20,gozcu[1]+20)
+                click(btn,gozcu[0]+10,gozcu[1]+10)
                 time.sleep(bekleme_carpani*2)
                 click(btn,120,400)
                 time.sleep(bekleme_carpani*2)
