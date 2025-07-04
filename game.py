@@ -1707,7 +1707,7 @@ def gozcugonder(btn):
         time.sleep(bekleme_carpani*2)
         click(btn,40, 110+((kacincidayiz-1)*55))
         time.sleep(bekleme_carpani*2)
-        click(btn,200,190+(kacincimesaj*78))
+        click(btn,100,190+(kacincimesaj*78))
         time.sleep(bekleme_carpani*2)
         kacincimesaj += 1
         girildi_dunya = ara("./images/girildi_dunya.png")
