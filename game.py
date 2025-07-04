@@ -1731,14 +1731,14 @@ def gozcugonder(btn):
             kacincidayiz -= 1
             kacincimesaj = 0
         if bulundu:
-            time.sleep(bekleme_carpani*2)
+            time.sleep(bekleme_carpani*4)
             gozcu = ara("./images/gozcu.png")
             goc = ara("./images/goc.png")
             
             if goc != -1:
                 print("göc varsa")
                 time.sleep(bekleme_carpani*2)
-                click(btn,goc[0]+10,goc[1]+10)
+                click(btn,goc[0]+20,goc[1]+20)
                 time.sleep(bekleme_carpani*2)
                 click(btn,220,315)
                 time.sleep(bekleme_carpani*2)
@@ -1750,7 +1750,7 @@ def gozcugonder(btn):
             elif gozcu != -1:
                 print("gozcu bulduk")
                 time.sleep(bekleme_carpani*2)
-                click(btn,gozcu[0]+10,gozcu[1]+10)
+                click(btn,gozcu[0]+20,gozcu[1]+20)
                 time.sleep(bekleme_carpani*2)
                 click(btn,120,400)
                 time.sleep(bekleme_carpani*2)
