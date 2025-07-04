@@ -1,4 +1,4 @@
-#us
+#usasdf
 from tkinter import *
 import time
 import subprocess
@@ -1732,8 +1732,8 @@ def gozcugonder(btn):
             kacincimesaj = 0
         if bulundu:
             time.sleep(bekleme_carpani*4)
-            gozcu = ara("./images/gozcu.png")
-            goc = ara("./images/goc.png")
+            gozcu = ara("./images/gozcu.png",0.8)
+            goc = ara("./images/goc.png",0.8)
             
             if goc != -1:
                 print("göc varsa")
