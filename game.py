@@ -384,7 +384,7 @@ def hesapgiris(btn):
             click(btn,devredisi[0]+10,devredisi[1]+10)
 
         if xtus != -1:
-            click(btn,xtus)
+            click(btn,xtus[0]+10,xtus[1]+10)
             
         time.sleep(bekleme_carpani*1)
         
@@ -472,7 +472,7 @@ def ickaynakbonusu(btn,arttirici_al):
                     print("sa")
                     if bugday_arttirici != -1 and not bugday:
                         time.sleep(bekleme_carpani * 2)
-                        click(bugday_arttirici[0]+100,bugday_arttirici[1]+45)
+                        click(btn,bugday_arttirici[0]+100,bugday_arttirici[1]+45)
                         print(f"bugday tıkladım {bugday}")
                         time.sleep(bekleme_carpani * 2)
                         bugday = True
