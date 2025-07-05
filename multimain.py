@@ -15,6 +15,8 @@ def hesapgir(window):
         soup = bs4.BeautifulSoup(r.content,"html.parser")
     except:
         print("internet bağlantısı yok")
+        labelhesapsayisi = Label(window,text="İnternet Yok",background="DarkSlateGray4",font='Helvetica 30 bold',justify = LEFT)
+        labelhesapsayisi.grid(row = 0,column = 0,padx = 20)
         return
 
     kkkk = soup.find_all("h6",{"class" : "wixui-rich-text__text"})
