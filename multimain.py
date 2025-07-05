@@ -10,8 +10,12 @@ def hesapgir(window):
 
  
     vericek = open("./data/data.txt")
-    r = requests.get("https://nebulousalih620.wixsite.com/muhtesemveritabani")
-    soup = bs4.BeautifulSoup(r.content,"html.parser")
+    try:
+        r = requests.get("https://nebulousalih620.wixsite.com/muhtesemveritabani")
+        soup = bs4.BeautifulSoup(r.content,"html.parser")
+    except:
+        print("internet bağlantısı yok")
+        return
 
     kkkk = soup.find_all("h6",{"class" : "wixui-rich-text__text"})
     kkkk = str(kkkk)
