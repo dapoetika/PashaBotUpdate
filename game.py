@@ -1,4 +1,4 @@
-#us
+#usasd
 from tkinter import *
 import time
 import subprocess
@@ -406,6 +406,12 @@ def liman(btn):
         return "bulunamadi"
         
 def ickaynakbonusu(btn,arttirici_al):
+    devredisi = ara("./images/devredisi.png")
+    if devredisi != -1:
+        click(btn,devredisi[0]+10,devredisi[1]+10)
+        x = mesajtopla(btn)
+        if x =="appopen":
+            return "appopen"
     girildi = ara("./images/girildi.png")
     if girildi == -1:
         return "appopen"
@@ -610,22 +616,19 @@ def mesajtopla(btn):
     time.sleep(bekleme_carpani*2)
     click(btn,160,335)
     
-    time.sleep(bekleme_carpani*2)
-    
-    for i in range(8):
-        
-        click(btn,160,590)
-        
-        time.sleep(bekleme_carpani*0.5)
-        
+    while True:
+        time.sleep(bekleme_carpani*2)
+        tumunu_oku = ara("./images/tumunu_oku.png")
+        if tumunu_oku != -1:
+            click(btn,160,590)
+        else:
+            break
 
+        time.sleep(bekleme_carpani*0.5)
     
     time.sleep(bekleme_carpani*2)
     click(btn,20,65)
     
-    
-    
-        
         
     time.sleep(bekleme_carpani*1)
     click(btn,20,65)
@@ -646,7 +649,7 @@ def mesajtopla(btn):
         pass
     else:
         logkayit(farm,"appopen 2")
-        os.system("TASKKILL /F /IM HD-Player.exe")
+        
         time.sleep(bekleme_carpani*5)
         return "appopen"
 
@@ -654,6 +657,59 @@ def mesajtopla(btn):
     time.sleep(bekleme_carpani*4)
     pyautogui.hotkey("ctrl", "shift","3")
     time.sleep(bekleme_carpani*10)
+
+def mesajtoplaoteki(btn):
+    time.sleep(bekleme_carpani*2)
+    girildi = ara("./images/girildi_dunya.png")
+    if girildi == -1:
+        return "appopen"
+    click(btn,235,590)
+    time.sleep(bekleme_carpani*2)
+    
+    click(btn,150,450)
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,160,590)
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,160,335)
+    
+    while True:
+        time.sleep(bekleme_carpani*2)
+        tumunu_oku = ara("./images/tumunu_oku.png")
+        if tumunu_oku != -1:
+            click(btn,160,590)
+        else:
+            break
+
+        time.sleep(bekleme_carpani*0.5)
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
+    
+        
+    time.sleep(bekleme_carpani*1)
+    click(btn,20,65)
+    
+    time.sleep(bekleme_carpani*1)
+    
+    time.sleep(bekleme_carpani*2)
+    girildi = ara("./images/girildi_dunya.png")
+
+    if girildi != -1:
+        appopen = True
+      
+
+    if appopen:
+        pass
+    else:
+        logkayit(farm,"appopen 2")
+        
+        time.sleep(bekleme_carpani*5)
+        return "appopen"
 
 def loncatopla(btn):
     time.sleep(bekleme_carpani*2)
@@ -1138,8 +1194,12 @@ def kaynakgonder(btn):
     kacinci = 0
     while kacinci < 4:
                 
-      
-        
+        devredisi = ara("./images/devredisi.png")
+        if devredisi != -1:
+            click(btn,devredisi[0]+10,devredisi[1]+10)
+            x = mesajtoplaoteki(btn)
+            if x =="appopen":
+                return "appopen"
         
         girildi_dunya = ara("./images/girildi_dunya.png")
 
@@ -1259,7 +1319,14 @@ def kaynakgonder(btn):
 
 def askergonder(btn,hangisi):
     ilksefer = True
+    time.sleep(bekleme_carpani*2)
     while True:
+        devredisi = ara("./images/devredisi.png")
+        if devredisi != -1:
+            click(btn,devredisi[0]+10,devredisi[1]+10)
+            x = mesajtoplaoteki(btn)
+            if x =="appopen":
+                return "appopen"
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya == -1:
@@ -1442,6 +1509,12 @@ def askergonder(btn,hangisi):
             time.sleep(bekleme_carpani*1)    
 
 def bul(btn):
+    devredisi = ara("./images/devredisi.png")
+    if devredisi != -1:
+        click(btn,devredisi[0]+10,devredisi[1]+10)
+        x = mesajtoplaoteki(btn)
+        if x =="appopen":
+            return "appopen"
     bulundu = -1
     girildi_dunya = ara("./images/girildi_dunya.png")
     if girildi_dunya == -1:
