@@ -1,4 +1,4 @@
-#usasd
+#us
 from tkinter import *
 import time
 import subprocess
@@ -1492,6 +1492,7 @@ def askergonder(btn,hangisi):
             time.sleep(bekleme_carpani*2)
             click(btn,20, 65)
             time.sleep(bekleme_carpani*2)
+            return "vip"
         elif iptal != -1:
             logkayit(farm,"bugday iptal 2 hata")
             time.sleep(bekleme_carpani*2)
