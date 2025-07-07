@@ -2118,7 +2118,7 @@ def main(btn,frm):
             print("Truelandin")
         global btn_dur
         try:
-            create_stop_button(lambda:arawork(btn))
+            btn_dur = create_stop_button(lambda:arawork(btn))
         except:
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
             btn_dur.place(x=575,y = 455)
