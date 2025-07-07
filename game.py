@@ -465,6 +465,7 @@ def ickaynakbonusu(btn,arttirici_al):
         click(btn,20,65)
         time.sleep(bekleme_carpani * 2)
         if arttirici_eksik and arttirici_al:
+            #baş
             time.sleep(bekleme_carpani * 2)
             click(btn,290,590)
             time.sleep(bekleme_carpani * 2)
@@ -475,9 +476,10 @@ def ickaynakbonusu(btn,arttirici_al):
             demir = False
             kuvars = False
             yukari = 0
-            for i in range(10):
+            for i in range(20):
                 if yukari == 3:
                     break
+                time.sleep(bekleme_carpani * 2)
                 bugday_arttirici = ara("./images/bugday_arttirici.png",0.8)
                 if (bugday_arttirici != -1 and not bugday):
                     time.sleep(bekleme_carpani * 2)
@@ -490,11 +492,12 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     yukari = 0
                     click(btn,160,395)
+                    continue
                 odun_arttirici = ara("./images/odun_arttirici.png",0.8)
                 if (odun_arttirici != -1 and not odun):
                     time.sleep(bekleme_carpani * 2)
                     click(btn,odun_arttirici[0]+100,odun_arttirici[1]+45)
-                    print(f"bugday tıkladım {bugday}")
+                    print(f"odun tıkladım {odun}")
                     time.sleep(bekleme_carpani * 2)
                     odun = True
                     for i in range(9):
@@ -502,11 +505,12 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
                     yukari = 0
+                    continue
                 demir_arttirici = ara("./images/demir_arttirici.png",0.8)
                 if (demir_arttirici != -1 and not demir):
                     time.sleep(bekleme_carpani * 2)
                     click(btn,demir_arttirici[0]+100,demir_arttirici[1]+45)
-                    print(f"bugday tıkladım {bugday}")
+                    print(f"demir tıkladım {demir}")
                     time.sleep(bekleme_carpani * 2)
                     demir = True
                     for i in range(9):
@@ -514,11 +518,12 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
                     yukari = 0
+                    continue
                 kuvars_arttirici = ara("./images/kuvars_arttirici.png",0.8)
                 if (kuvars_arttirici != -1 and not kuvars):
                     time.sleep(bekleme_carpani * 2)
                     click(btn,kuvars_arttirici[0]+100,kuvars_arttirici[1]+45)
-                    print(f"bugday tıkladım {bugday}")
+                    print(f"kuvars tıkladım {kuvars}")
                     time.sleep(bekleme_carpani * 2)
                     kuvars = True
                     for i in range(9):
@@ -526,6 +531,7 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
                     yukari = 0
+                    continue
                 
                 if(not bugday or not demir or not odun or not kuvars):
                     x = pyautogui.pixel(200,515)
@@ -538,15 +544,10 @@ def ickaynakbonusu(btn,arttirici_al):
                     else:
                         break
                 else:
-                    x = pyautogui.pixel(200,515)
-                    print(x)
-                    if x[0] > 50 or x[1] > 50 or x[2] > 50 :
-                        pyautogui.moveTo(170,500)
-                        pyautogui.dragTo(170,275,1)
-                        time.sleep(3)
-                        yukari +=1
-                    else:
-                        break
+                
+                    break
+
+            #son
             time.sleep(bekleme_carpani*2)
             click(btn,20,65)
             time.sleep(bekleme_carpani*2)
@@ -668,10 +669,6 @@ def mesajtopla(btn):
 
     time.sleep(bekleme_carpani*3)
     time.sleep(bekleme_carpani*4)
-    pyautogui.hotkey("ctrl", "shift","3")
-    time.sleep(0.5)
-    pyautogui.hotkey("ctrl", "shift","3")
-    time.sleep(0.5)
     pyautogui.hotkey("ctrl", "shift","3")
     time.sleep(bekleme_carpani*10)
 
