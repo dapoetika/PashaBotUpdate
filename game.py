@@ -1,4 +1,4 @@
-#us
+#usasdf
 from tkinter import *
 import time
 import subprocess
@@ -1560,6 +1560,7 @@ def askergonder(btn,hangisi):
             
         else:
             logkayit(farm,"bugday bulundu")
+            time.sleep(bekleme_carpani*3)
             click(btn,160, 320)
             time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(120,320,1)
