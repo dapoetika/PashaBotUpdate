@@ -65,7 +65,7 @@ def send_message(mesaj):
             "text": f"{mesaj}"
             }).json()
 
-            time.sleep(60)
+            time.sleep(10)
 
             # 3. Mesajı sil
             delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
@@ -74,7 +74,6 @@ def send_message(mesaj):
             "message_id": message['result']['message_id']
             })
         except:
-            time.sleep(60)
             pass
 
 def sec(btn,frm):
@@ -101,7 +100,6 @@ def durulan(btn):
     exit()
 
 def terminate(btn):
-    global btn_dur
     btn.config(state=ACTIVE)
     btn_dur.config(state=DISABLED)
     exit()
@@ -478,61 +476,59 @@ def ickaynakbonusu(btn,arttirici_al):
             kuvars = False
             for i in range(3):
                 bugday_arttirici = ara("./images/bugday_arttirici.png",0.8)
+                if (bugday_arttirici != -1 and not bugday):
+                    time.sleep(bekleme_carpani * 2)
+                    click(btn,bugday_arttirici[0]+100,bugday_arttirici[1]+45)
+                    print(f"bugday tıkladım {bugday}")
+                    time.sleep(bekleme_carpani * 2)
+                    bugday = True
+                    for i in range(9):
+                        click(btn,235,355)
+                        time.sleep(bekleme_carpani*1)
+                    click(btn,160,395)
                 odun_arttirici = ara("./images/odun_arttirici.png",0.8)
+                if (odun_arttirici != -1 and not odun):
+                    time.sleep(bekleme_carpani * 2)
+                    click(btn,odun_arttirici[0]+100,odun_arttirici[1]+45)
+                    print(f"bugday tıkladım {bugday}")
+                    time.sleep(bekleme_carpani * 2)
+                    odun = True
+                    for i in range(9):
+                        click(btn,235,355)
+                        time.sleep(bekleme_carpani*1)
+                    click(btn,160,395)
                 demir_arttirici = ara("./images/demir_arttirici.png",0.8)
+                if (demir_arttirici != -1 and not demir):
+                    time.sleep(bekleme_carpani * 2)
+                    click(btn,demir_arttirici[0]+100,demir_arttirici[1]+45)
+                    print(f"bugday tıkladım {bugday}")
+                    time.sleep(bekleme_carpani * 2)
+                    demir = True
+                    for i in range(9):
+                        click(btn,235,355)
+                        time.sleep(bekleme_carpani*1)
+                    click(btn,160,395)
                 kuvars_arttirici = ara("./images/kuvars_arttirici.png",0.8)
-                print([bugday_arttirici,odun_arttirici,demir_arttirici,kuvars_arttirici])
-                if ((bugday_arttirici != -1 and not bugday) or (odun_arttirici != -1 and not odun) or (demir_arttirici != -1 and not demir) or (kuvars_arttirici != -1 and not kuvars)):
-                    print("sa")
-                    if bugday_arttirici != -1 and not bugday:
-                        time.sleep(bekleme_carpani * 2)
-                        click(btn,bugday_arttirici[0]+100,bugday_arttirici[1]+45)
-                        print(f"bugday tıkladım {bugday}")
-                        time.sleep(bekleme_carpani * 2)
-                        bugday = True
-                        for i in range(9):
-                            click(btn,235,355)
-                            time.sleep(bekleme_carpani*1)
-                        click(btn,160,395)
-                    if odun_arttirici != -1 and not odun:
-                        time.sleep(bekleme_carpani * 2)
-                        click(btn,odun_arttirici[0]+100,odun_arttirici[1]+45)
-                        print(f"odun tıkladım {odun}")
-                        time.sleep(bekleme_carpani * 2)
-                        odun = True
-                        for i in range(9):
-                            click(btn,235,355)
-                            time.sleep(bekleme_carpani*1)
-                        click(btn,160,395)
-                    if demir_arttirici != -1 and not demir:
-                        time.sleep(bekleme_carpani * 2)
-                        click(btn,demir_arttirici[0]+100,demir_arttirici[1]+45)
-                        print(f"demir tıkladım {demir}")
-                        time.sleep(bekleme_carpani * 2)
-                        demir = True
-                        for i in range(9):
-                            click(btn,235,355)
-                            time.sleep(bekleme_carpani*1)
-                        click(btn,160,395)
-                    if kuvars_arttirici != -1 and not kuvars:
-                        time.sleep(bekleme_carpani * 2)
-                        click(btn,kuvars_arttirici[0]+100,kuvars_arttirici[1]+45)
-                        print(f"kuvars tıkladım {kuvars}")
-                        time.sleep(bekleme_carpani * 2)
-                        kuvars = True
-                        for i in range(9):
-                            click(btn,235,355)
-                            time.sleep(bekleme_carpani*1)
-                        click(btn,160,395)
-                    if(not bugday or not demir or not odun or not kuvars):
-                        x = pyautogui.pixel(200,515)
-                        print(x)
-                        if x[0] > 50 or x[1] > 50 or x[2] > 50 :
-                            pyautogui.moveTo(170,500)
-                            pyautogui.dragTo(170,275,1)
-                            time.sleep(3)
-                        else:
-                            break
+                if (kuvars_arttirici != -1 and not kuvars):
+                    time.sleep(bekleme_carpani * 2)
+                    click(btn,kuvars_arttirici[0]+100,kuvars_arttirici[1]+45)
+                    print(f"bugday tıkladım {bugday}")
+                    time.sleep(bekleme_carpani * 2)
+                    kuvars = True
+                    for i in range(9):
+                        click(btn,235,355)
+                        time.sleep(bekleme_carpani*1)
+                    click(btn,160,395)
+                
+                if(not bugday or not demir or not odun or not kuvars):
+                    x = pyautogui.pixel(200,515)
+                    print(x)
+                    if x[0] > 50 or x[1] > 50 or x[2] > 50 :
+                        pyautogui.moveTo(170,500)
+                        pyautogui.dragTo(170,275,1)
+                        time.sleep(3)
+                    else:
+                        break
                 else:
                     x = pyautogui.pixel(200,515)
                     print(x)
@@ -2118,22 +2114,21 @@ def main(btn,frm):
                 farm += 1
             print("Truelandin")
         global btn_dur
-        try:
-            btn_dur = create_stop_button(lambda:arawork(btn))
-        except:
-            btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
-            btn_dur.place(x=575,y = 455)
+        btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
+        btn_dur.place(x=575,y = 455)
 
     
         btn.config(state=DISABLED)
 
         now = datetime.datetime.now()
-        try:
-            update_time(0, now.strftime("%H:%M"))  # Farm 1'in saatini 14:30 yap
-        except:
-            labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-            #labelresource.place(x=90,y = 100,width=60,height=20)
-            labeltime.grid(row = farm+1,column = 5,ipadx = 15,ipady = 5)
+        
+        
+        
+
+        print(farm)
+        labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        #labelresource.place(x=90,y = 100,width=60,height=20)
+        labeltime.grid(row = farm+1,column = 4,ipadx = 15,ipady = 5)
 
         hesapsayisi = data.get("hesapsayisi") 
         kaynak_gonder = data.get("kaynak_gonder") 
