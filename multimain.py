@@ -6,17 +6,12 @@ import bs4
 import requests 
 
 def hesapgir(window):
-   
-
- 
     vericek = open("./data/data.txt")
     try:
         r = requests.get("https://nebulousalih620.wixsite.com/muhtesemveritabani")
         soup = bs4.BeautifulSoup(r.content,"html.parser")
     except:
         print("internet bağlantısı yok")
-        labelhesapsayisi = Label(window,text="İnternet Yok",background="DarkSlateGray4",font='Helvetica 30 bold',justify = LEFT)
-        labelhesapsayisi.grid(row = 0,column = 0,padx = 20)
         return
 
     kkkk = soup.find_all("h6",{"class" : "wixui-rich-text__text"})
@@ -171,6 +166,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
     ic_kaynak = []
     dis_kaynak= []
     gozculist = []
+    ifritlist = []
     data = open("./data/data.txt")
     data.readline()
     data.readline()
@@ -212,9 +208,14 @@ def tablegiris(window,hesapsayisi,nickname,password):
     labelresource.grid(row = 0,column = 3,ipadx = 15,ipady = 5)
 
 
+    labelresource = Label(frm,text="İfrit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+    #labelresource.place(x=90,y = 100,width=60,height=20)
+    labelresource.grid(row = 0,column = 4,ipadx = 25,ipady = 5)
+
+
     labelresource = Label(frm,text="Saat",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
     #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 4,ipadx = 15,ipady = 5)
+    labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
     for i in range(hesapsayisi):
         
         secil = data.readline().rstrip()
@@ -272,6 +273,19 @@ def tablegiris(window,hesapsayisi,nickname,password):
             gozcu = False
             combo.deselect()
         gozculist.append(gozcu)
+
+
+    for i in range(hesapsayisi):
+        combo = Checkbutton(frm,command = lambda ifr = i:reverseBool(ifritlist,ifr),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
+        combo.grid(row = i +1,column = 4,ipadx = 25,ipady = 5)
+        x = data.readline()
+        if x == "True\n":
+            combo.select()
+            ifrit = True
+        else:
+            ifrit = False
+            combo.deselect()
+        ifritlist.append(ifrit)
 
    
 
@@ -457,7 +471,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
         slide_carpan.set(3)
     
     global btn
-    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
+    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
     btn.place(x=575,y = 405)
 
     
@@ -509,7 +523,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
     f.close()
     
 
-def basla(arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
+def basla(ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
     
     data = open("./data/data.txt",W)
     data.write(str(nickname).rstrip()+"\n")
@@ -541,6 +555,9 @@ def basla(arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_li
 
     for i in range(hesapsayisi):
         data.write(str(gozculist[i])+"\n")
+    
+    for i in range(hesapsayisi):
+        data.write(str(ifritlist[i])+"\n")
     
     url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/game.py"
 
