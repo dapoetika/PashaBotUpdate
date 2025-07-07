@@ -474,7 +474,10 @@ def ickaynakbonusu(btn,arttirici_al):
             odun = False
             demir = False
             kuvars = False
-            for i in range(3):
+            yukari = 0
+            for i in range(10):
+                if yukari == 3:
+                    break
                 bugday_arttirici = ara("./images/bugday_arttirici.png",0.8)
                 if (bugday_arttirici != -1 and not bugday):
                     time.sleep(bekleme_carpani * 2)
@@ -485,6 +488,7 @@ def ickaynakbonusu(btn,arttirici_al):
                     for i in range(9):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
+                    yukari = 0
                     click(btn,160,395)
                 odun_arttirici = ara("./images/odun_arttirici.png",0.8)
                 if (odun_arttirici != -1 and not odun):
@@ -497,6 +501,7 @@ def ickaynakbonusu(btn,arttirici_al):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
+                    yukari = 0
                 demir_arttirici = ara("./images/demir_arttirici.png",0.8)
                 if (demir_arttirici != -1 and not demir):
                     time.sleep(bekleme_carpani * 2)
@@ -508,6 +513,7 @@ def ickaynakbonusu(btn,arttirici_al):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
+                    yukari = 0
                 kuvars_arttirici = ara("./images/kuvars_arttirici.png",0.8)
                 if (kuvars_arttirici != -1 and not kuvars):
                     time.sleep(bekleme_carpani * 2)
@@ -519,6 +525,7 @@ def ickaynakbonusu(btn,arttirici_al):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
+                    yukari = 0
                 
                 if(not bugday or not demir or not odun or not kuvars):
                     x = pyautogui.pixel(200,515)
@@ -527,6 +534,7 @@ def ickaynakbonusu(btn,arttirici_al):
                         pyautogui.moveTo(170,500)
                         pyautogui.dragTo(170,275,1)
                         time.sleep(3)
+                        yukari +=1
                     else:
                         break
                 else:
@@ -536,6 +544,7 @@ def ickaynakbonusu(btn,arttirici_al):
                         pyautogui.moveTo(170,500)
                         pyautogui.dragTo(170,275,1)
                         time.sleep(3)
+                        yukari +=1
                     else:
                         break
             time.sleep(bekleme_carpani*2)
@@ -659,6 +668,10 @@ def mesajtopla(btn):
 
     time.sleep(bekleme_carpani*3)
     time.sleep(bekleme_carpani*4)
+    pyautogui.hotkey("ctrl", "shift","3")
+    time.sleep(0.5)
+    pyautogui.hotkey("ctrl", "shift","3")
+    time.sleep(0.5)
     pyautogui.hotkey("ctrl", "shift","3")
     time.sleep(bekleme_carpani*10)
 
