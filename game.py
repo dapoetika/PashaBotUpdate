@@ -1,4 +1,4 @@
-#usasdf
+#us
 from tkinter import *
 import time
 import subprocess
@@ -412,6 +412,10 @@ def liman(btn):
         return "bulunamadi"
         
 def ickaynakbonusu(btn,arttirici_al):
+    bugday = True
+    odun = True
+    demir = True
+    kuvars = True
     devredisi = ara("./images/devredisi.png")
     if devredisi != -1:
         click(btn,devredisi[0]+10,devredisi[1]+10)
@@ -449,6 +453,11 @@ def ickaynakbonusu(btn,arttirici_al):
        
         time.sleep(bekleme_carpani * 2)
         for k in range(4):
+            x = pyautogui.pixel(250, 140 +(k*60))
+            if x[0]>100 or x[1]>100 or x[2]>100:
+                pass
+            else:
+                continue
             click(btn,280, 140 +(k*60))
             time.sleep(bekleme_carpani * 2)
             tamam = ara("./images/tamam.png")
@@ -456,6 +465,14 @@ def ickaynakbonusu(btn,arttirici_al):
                 click(btn,220, 370)
                 time.sleep(bekleme_carpani * 2)
             else:
+                if k == 0:
+                    odun = False
+                elif k==1:
+                    bugday = False
+                elif k ==2:
+                    demir = False
+                elif k == 3:
+                    kuvars = False
                 arttirici_eksik = True
                 click(btn,20,65)
                 time.sleep(bekleme_carpani * 2)
@@ -471,22 +488,20 @@ def ickaynakbonusu(btn,arttirici_al):
             time.sleep(bekleme_carpani * 2)
             click(btn,240,435)
             time.sleep(bekleme_carpani * 2)
-            bugday = False
-            odun = False
-            demir = False
-            kuvars = False
             yukari = 0
+            satinalindi = False
             for i in range(20):
                 if yukari == 3:
                     break
-                time.sleep(bekleme_carpani * 2)
                 bugday_arttirici = ara("./images/bugday_arttirici.png",0.8)
+                time.sleep(bekleme_carpani * 2)
                 if (bugday_arttirici != -1 and not bugday):
                     time.sleep(bekleme_carpani * 2)
                     click(btn,bugday_arttirici[0]+100,bugday_arttirici[1]+45)
                     print(f"bugday tıkladım {bugday}")
                     time.sleep(bekleme_carpani * 2)
                     bugday = True
+                    satinalindi = True
                     for i in range(9):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
@@ -500,6 +515,7 @@ def ickaynakbonusu(btn,arttirici_al):
                     print(f"odun tıkladım {odun}")
                     time.sleep(bekleme_carpani * 2)
                     odun = True
+                    satinalindi = True
                     for i in range(9):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
@@ -513,7 +529,8 @@ def ickaynakbonusu(btn,arttirici_al):
                     print(f"demir tıkladım {demir}")
                     time.sleep(bekleme_carpani * 2)
                     demir = True
-                    for i in range(9):
+                    satinalindi = True
+                    for i in range(7):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
@@ -526,7 +543,8 @@ def ickaynakbonusu(btn,arttirici_al):
                     print(f"kuvars tıkladım {kuvars}")
                     time.sleep(bekleme_carpani * 2)
                     kuvars = True
-                    for i in range(9):
+                    satinalindi = True
+                    for i in range(7):
                         click(btn,235,355)
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
@@ -552,7 +570,7 @@ def ickaynakbonusu(btn,arttirici_al):
             click(btn,20,65)
             time.sleep(bekleme_carpani*2)
             click(btn,20,65)
-            if bugday or odun or demir or kuvars:
+            if satinalindi:
                 time.sleep(bekleme_carpani*2)
                 click(btn,200,365)
                 time.sleep(bekleme_carpani*2)
@@ -561,55 +579,32 @@ def ickaynakbonusu(btn,arttirici_al):
                     time.sleep(bekleme_carpani*1)
                     click(btn,sehir[0] + 10, sehir[1]+ 10)
                     time.sleep(bekleme_carpani * 2)
-                    if odun:
-                        click(btn,280, 140 +(0*60))
+                    for k in range(4):
+                        x = pyautogui.pixel(250, 140 +(k*60))
+                        if x[0]>100 or x[1]>100 or x[2]>100:
+                            pass
+                        else:
+                            continue
+                        click(btn,280, 140 +(k*60))
+                        time.sleep(bekleme_carpani * 2)
                         tamam = ara("./images/tamam.png")
                         if tamam != -1:
-                            time.sleep(bekleme_carpani * 2)
                             click(btn,220, 370)
                             time.sleep(bekleme_carpani * 2)
-                            click(btn,220, 370)
                         else:
-                            time.sleep(bekleme_carpani * 2)
+                            if k == 0:
+                                odun = False
+                            elif k==1:
+                                bugday = False
+                            elif k ==2:
+                                demir = False
+                            elif k == 3:
+                                kuvars = False
+                            arttirici_eksik = True
                             click(btn,20,65)
-                            
-                    if bugday:
-                        click(btn,280, 140 +(1*60))
-                        tamam = ara("./images/tamam.png")
-                        if tamam != -1:
                             time.sleep(bekleme_carpani * 2)
-                            click(btn,220, 370)
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,220, 370)
-                        else:
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,20,65)
-                            
-                    if demir:
-                        click(btn,280, 140 +(2*60))
-                        tamam = ara("./images/tamam.png")
-                        if tamam != -1:
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,220, 370)
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,220, 370)
-                        else:
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,20,65)
-                            
-                    if kuvars:
-                        click(btn,280, 140 +(3*60))
-                        tamam = ara("./images/tamam.png")
-                        if tamam != -1:
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,220, 370)
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,220, 370)
-                        else:
-                            time.sleep(bekleme_carpani * 2)
-                            click(btn,20,65)
-            time.sleep(bekleme_carpani * 2)
-            click(btn,20,65)                
+                    time.sleep(bekleme_carpani * 2)
+                    click(btn,20,65)                
          
 def mesajtopla(btn):
     time.sleep(bekleme_carpani*2)
@@ -1560,7 +1555,7 @@ def askergonder(btn,hangisi):
             
         else:
             logkayit(farm,"bugday bulundu")
-            time.sleep(bekleme_carpani*3)
+            time.sleep(bekleme_carpani*2)
             click(btn,160, 320)
             time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(120,320,1)
@@ -2139,7 +2134,7 @@ def main(btn,frm):
         print(farm)
         labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         #labelresource.place(x=90,y = 100,width=60,height=20)
-        labeltime.grid(row = farm+1,column = 5,ipadx = 15,ipady = 5)
+        labeltime.grid(row = farm+1,column = 4,ipadx = 15,ipady = 5)
 
         hesapsayisi = data.get("hesapsayisi") 
         kaynak_gonder = data.get("kaynak_gonder") 
