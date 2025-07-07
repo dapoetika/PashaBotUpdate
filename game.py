@@ -55,23 +55,27 @@ def trr(btn,frm):
      
 def send_message(mesaj):
     while True:
-        BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
-        CHAT_ID = '-4858370404'
+        try:
+            BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
+            CHAT_ID = '-4858370404'
 
-        send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        message = requests.post(send_url, data={
-        "chat_id": CHAT_ID,
-        "text": f"{mesaj}"
-        }).json()
+            send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+            message = requests.post(send_url, data={
+            "chat_id": CHAT_ID,
+            "text": f"{mesaj}"
+            }).json()
 
-        time.sleep(10)
+            time.sleep(60)
 
-        # 3. Mesajı sil
-        delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
-        requests.post(delete_url, data={
-        "chat_id": CHAT_ID,
-        "message_id": message['result']['message_id']
-        })
+            # 3. Mesajı sil
+            delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
+            requests.post(delete_url, data={
+            "chat_id": CHAT_ID,
+            "message_id": message['result']['message_id']
+            })
+        except:
+            time.sleep(60)
+            pass
 
 def sec(btn,frm):
     global stop 
@@ -142,6 +146,7 @@ def collectdata():
         demirlist = []
         gozculist = []
         askeregitlist = []
+        ifritlist = []
 
         for i in range(hesapsayisi):
             combo = data.readline().rstrip()
@@ -162,7 +167,8 @@ def collectdata():
 
         for i in range(hesapsayisi):
             gozculist.append(True) if data.readline().rstrip() == 'True' else gozculist.append(False)
-
+        for i in range(hesapsayisi):
+            ifritlist.append(True) if data.readline().rstrip() == 'True' else ifritlist.append(False)
         data.close()
         
         if bekleme_carpani == 1:
@@ -211,7 +217,8 @@ def collectdata():
             "mail":mail,
             "sifre":sifre,
             "kvkkalkan":kalkan_kvk,
-            "arttirici_al":arttirici_al
+            "arttirici_al":arttirici_al,
+            "ifritlist":ifritlist
         }
     except ValueError:
         print("hata")
@@ -1157,6 +1164,167 @@ def sonrakidunya(btn):
         logkayit(farm,"sonraki dunya basarili")
         return "basarili"
 
+def ifritbul(btn):
+    aranan = -1
+    ifrit = ara("./images/ifrit.png")
+    ifrit2 = ara("./images/ifrit2.png")
+    ifrit3 = ara("./images/ifrit3.png")
+    devredisibirak = ara("./images/devredisi.png")
+    if devredisibirak != -1:
+        
+        click(btn,devredisibirak[0]+10,devredisibirak[1]+10)
+        time.sleep(bekleme_carpani*2)
+        mesajtoplaoteki(btn)
+    if ifrit != -1:
+        aranan = ifrit
+    if ifrit2 != -1:
+        aranan = ifrit2
+
+    if ifrit3 != -1:
+        aranan = ifrit3
+    if aranan ==-1:
+        return "devam"
+    time.sleep(bekleme_carpani*2)
+    click(btn,aranan[0]+10,aranan[1]+20)
+    time.sleep(bekleme_carpani*2)
+    elitifrit = ara("./images/elitifrit.png",0.8)
+    if elitifrit == -1:
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,85)
+        return "devam"
+    
+    click(btn,160,500)
+    time.sleep(bekleme_carpani*2)
+    vip = ara("./images/vip.png")
+    if vip !=-1:
+        click(btn,160,500)
+        return "vip"
+    click(btn,230,480)
+    time.sleep(bekleme_carpani*2)
+    click(btn,113,95)
+    time.sleep(bekleme_carpani*2)
+    click(btn,265,590)
+    time.sleep(bekleme_carpani*2)
+    click(btn,265,590)
+    time.sleep(bekleme_carpani*2)
+    tamam = ara("./images/tamam.png")
+    if tamam != -1:
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        return "energy"
+    return "basarili"
+
+def ifrit(btn):
+    kacinci = 0
+    while True:
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,530)
+        time.sleep(bekleme_carpani*2)
+        click(btn,280,170)
+        time.sleep(bekleme_carpani*2)
+        if kacinci < 9:
+            click(btn,30,220+(kacinci*40))
+        else:
+            for i in range(kacinci-8):
+                pyautogui.moveTo(100,300)
+                pyautogui.dragTo(100,300-(kacinci*3),1)
+            time.sleep(bekleme_carpani*2)
+            click(btn,30,220+(8*40))
+        time.sleep(bekleme_carpani*4)
+        click(btn,160,85)
+        girildi_dunya = ara("./images/girildi_dunya.png")
+        if girildi_dunya == -1:
+            kacinci = 0
+            time.sleep(bekleme_carpani*2)
+            click(btn,20,65)
+            time.sleep(bekleme_carpani*2)
+            continue
+        kacinci += 1
+        for i in range(1,3):
+            time.sleep(bekleme_carpani*2)
+            x = ifritbul(btn)
+            if x == "vip":
+                return "vip"
+            elif x == "appopen":
+                return "appopen"
+            elif x == "basarili":
+                break
+            elif x=="energy":
+                return "energy"
+            elif x == "vip":
+                return "vip"
+            for k in range((2*i)-1):#sol
+                pyautogui.moveTo(80,340)
+                pyautogui.dragTo(320,340,1)
+                time.sleep(bekleme_carpani*2)
+                x = ifritbul(btn)
+                if x == "vip":
+                    return "vip"
+                elif x == "appopen":
+                    return "appopen"
+                elif x == "basarili":
+                    break
+                elif x=="energy":
+                    return "energy"
+                elif x == "vip":
+                    return "vip"
+            if x == "basarili":
+                break
+            for k in range((2*i)-1):#yukarı
+                pyautogui.moveTo(160,100)
+                pyautogui.dragTo(160,490,1)
+                time.sleep(bekleme_carpani*2)
+                x = ifritbul(btn)
+                if x == "vip":
+                    return "vip"
+                elif x == "appopen":
+                    return "appopen"
+                elif x == "basarili":
+                    break
+                elif x=="energy":
+                    return "energy"
+                elif x == "vip":
+                    return "vip"
+            if x == "basarili":
+                break
+                
+            for k in range(2*i):#sag
+                pyautogui.moveTo(245,340)
+                pyautogui.dragTo(5,340,1)
+                time.sleep(bekleme_carpani*2)
+                x = ifritbul(btn)
+                if x == "vip":
+                    return "vip"
+                elif x == "appopen":
+                    return "appopen"
+                elif x == "basarili":
+                    break
+                elif x=="energy":
+                    return "energy"
+                elif x == "vip":
+                    return "vip"
+            if x == "basarili":
+                break
+                
+            for k in range(2*i):#aşşa
+                pyautogui.moveTo(160,490)
+                pyautogui.dragTo(160,100,1)
+                time.sleep(bekleme_carpani*2)
+                x = ifritbul(btn)
+                if x == "vip":
+                    return "vip"
+                elif x == "appopen":
+                    return "appopen"
+                elif x == "basarili":
+                    break
+                elif x=="energy":
+                    return "energy"
+                elif x == "vip":
+                    return "vip"
+            if x == "basarili":
+                break
+            
 def kvkkalkan(btn):
     time.sleep(bekleme_carpani*2)
     tarihler = ['2025-07-03', '2025-07-04', '2025-07-05', '2025-07-17', '2025-07-18', '2025-07-19', '2025-07-31', '2025-08-01', '2025-08-02', '2025-08-14', '2025-08-15', '2025-08-16', '2025-08-28', '2025-08-29', '2025-08-30', '2025-09-11', '2025-09-12', '2025-09-13', '2025-09-25', '2025-09-26', '2025-09-27', '2025-10-09', '2025-10-10', '2025-10-11', '2025-10-23', '2025-10-24', '2025-10-25', '2025-11-06', '2025-11-07', '2025-11-08', '2025-11-20', '2025-11-21', '2025-11-22', '2025-12-04', '2025-12-05', '2025-12-06', '2025-12-18', '2025-12-19', '2025-12-20', '2026-01-01', '2026-01-02', '2026-01-03', '2026-01-15', '2026-01-16', '2026-01-17', '2026-01-29', '2026-01-30', '2026-01-31', '2026-02-12', '2026-02-13', '2026-02-14', '2026-02-26', '2026-02-27', '2026-02-28', '2026-03-12', '2026-03-13', '2026-03-14', '2026-03-26', '2026-03-27', '2026-03-28', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-23', '2026-04-24', '2026-04-25', '2026-05-07', '2026-05-08', '2026-05-09', '2026-05-21', '2026-05-22', '2026-05-23', '2026-06-04', '2026-06-05', '2026-06-06', '2026-06-18', '2026-06-19', '2026-06-20', '2026-07-02', '2026-07-03', '2026-07-04']
@@ -1986,6 +2154,7 @@ def main(btn,frm):
         askeregitlist = data.get("askeregitlist")
         kvk_kalkan = data.get("kvkkalkan")
         arttirici_al = data.get("arttirici_al")
+        ifritlist = data.get("ifritlist")
         global bonusal
         bonusal = dis_kaynak_bonus
 
@@ -2077,6 +2246,17 @@ def main(btn,frm):
             hizlitamponhasat(btn)
         
         sonrakidunya(btn)
+        
+        if ifritlist[farm]:
+            x = ifrit(btn)
+            if x == "appopen":
+                cikis()
+                x = ""
+                continue
+            elif x =="energy":
+                pass
+            elif x == "vip":
+                pass
         if (kvk_kalkan):
             kvkkalkan(btn)
 
