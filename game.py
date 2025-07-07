@@ -101,6 +101,7 @@ def durulan(btn):
     exit()
 
 def terminate(btn):
+    global btn_dur
     btn.config(state=ACTIVE)
     btn_dur.config(state=DISABLED)
     exit()
