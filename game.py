@@ -2124,14 +2124,12 @@ def main(btn,frm):
         btn.config(state=DISABLED)
 
         now = datetime.datetime.now()
-        
-        
-        
-
-        print(farm)
-        labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labeltime.grid(row = farm+1,column = 5,ipadx = 15,ipady = 5)
+        try:
+            update_time(0, now.strftime("%H:%M"))  # Farm 1'in saatini 14:30 yap
+        except:
+            labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+            #labelresource.place(x=90,y = 100,width=60,height=20)
+            labeltime.grid(row = farm+1,column = 5,ipadx = 15,ipady = 5)
 
         hesapsayisi = data.get("hesapsayisi") 
         kaynak_gonder = data.get("kaynak_gonder") 
