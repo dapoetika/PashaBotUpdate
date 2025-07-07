@@ -2117,8 +2117,11 @@ def main(btn,frm):
                 farm += 1
             print("Truelandin")
         global btn_dur
-        btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
-        btn_dur.place(x=575,y = 455)
+        try:
+            create_stop_button(lambda:arawork(btn))
+        except:
+            btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
+            btn_dur.place(x=575,y = 455)
 
     
         btn.config(state=DISABLED)
