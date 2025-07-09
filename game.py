@@ -1,4 +1,4 @@
-#usasdasdf
+#asdf
 from tkinter import *
 import time
 import subprocess
@@ -88,9 +88,9 @@ def sec(btn,frm):
         worker = Thread(target=lambda:main(btn,frm),daemon=True)    
        
         if not worker.is_alive():
-            logkayit(0,"start"):
+            logkayit(0,"start")
             worker.start()
-            logkayit(0,"kill"):
+            logkayit(0,"kill")
             worker.join()
             print("sa")
 
