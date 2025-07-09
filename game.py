@@ -1,4 +1,4 @@
-#us
+#usasd
 from tkinter import *
 import time
 import subprocess
@@ -56,6 +56,7 @@ def trr(btn,frm):
     telegramthr.start()
      
 def send_message(mesaj):
+    
     while True:
         try:
             BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
@@ -75,6 +76,7 @@ def send_message(mesaj):
             "chat_id": CHAT_ID,
             "message_id": message['result']['message_id']
             })
+            
         except:
             pass
 
