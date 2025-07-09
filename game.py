@@ -22,7 +22,9 @@ def logkayit(farm,mesaj):
         open(file_path, "w", encoding="utf-8").close()
 
     x = open(file_path, "a", encoding="utf-8")
-    x.write(str(farm) + " "+ mesaj+"\n")
+    now = datetime.datetime.now()
+    saat = now.strftime("%H:%M")
+    x.write(f"{str(farm)} {saat} {mesaj}\n")
     x.close()
 
 def click(btn,x,y):
@@ -2127,7 +2129,6 @@ def main(btn,frm):
         btn.config(state=DISABLED)
 
         now = datetime.datetime.now()
-        
         
         
 
