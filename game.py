@@ -1,4 +1,5 @@
-#asdf
+
+#1
 from tkinter import *
 import time
 import subprocess
@@ -90,8 +91,8 @@ def sec(btn,frm):
         if not worker.is_alive():
             logkayit(0,"start")
             worker.start()
-            logkayit(0,"kill")
             worker.join()
+            logkayit(0,"kill")
             print("sa")
 
 def arawork(btn):
@@ -2116,232 +2117,235 @@ def main(btn,frm):
     hesapgir = True
     x = ""
     while True:
-        data = collectdata()
-        if x == "appopen":
-            hesapgir = True
-            if farm == data.get("hesapsayisi") -1:
-                farm = 0
-            else:
-                farm += 1
-            print("Truelandin")
-        global btn_dur
-        btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
-        btn_dur.place(x=575,y = 455)
+        try:
+            data = collectdata()
+            if x == "appopen":
+                hesapgir = True
+                if farm == data.get("hesapsayisi") -1:
+                    farm = 0
+                else:
+                    farm += 1
+                print("Truelandin")
+            global btn_dur
+            btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
+            btn_dur.place(x=575,y = 455)
 
-    
-        btn.config(state=DISABLED)
-
-        now = datetime.datetime.now()
         
-        
+            btn.config(state=DISABLED)
 
-        print(farm)
-        labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelresource.place(x=90,y = 100,width=60,height=20)
-        labeltime.grid(row = farm+1,column = 5,ipadx = 15,ipady = 5)
-
-        hesapsayisi = data.get("hesapsayisi") 
-        kaynak_gonder = data.get("kaynak_gonder") 
-        loncatech_yap = data.get("loncatech_yap") 
-        ganimet_yap = data.get("ganimet_yap") 
-        ic_kaynak_bonus = data.get("ic_kaynak_bonus") 
-        dis_kaynak_bonus = data.get("dis_kaynak_bonus") 
-        hazine_topla = data.get("hazine_topla") 
-        lonca_topla = data.get("lonca_topla") 
-        mesaj_topla = data.get("mesaj_topla") 
-        hasat_et = data.get("hasat_et") 
-        hizli_topla = data.get("hizli_topla") 
-        tampon_hasat = data.get("tampon_hasat") 
-        bugdaylist = data.get("bugdaylist") 
-        odunlist = data.get("odunlist") 
-        kuvarslist = data.get("kuvarslist")
-        altinlist = data.get("altinlist")
-        demirlist = data.get("demirlist") 
-        gozculist = data.get("gozculist")
-        askeregitlist = data.get("askeregitlist")
-        kvk_kalkan = data.get("kvkkalkan")
-        arttirici_al = data.get("arttirici_al")
-        ifritlist = data.get("ifritlist")
-        global bonusal
-        bonusal = dis_kaynak_bonus
-
-        global appopen
-        appopen = False
-        
-        time.sleep(5)
-        oyunac()
-        x = hesapgiris(btn)
-        if x == "appopen":
+            now = datetime.datetime.now()
             
-            cikis()
-            continue
+            
 
-        x = liman(btn)
-        if x == "bulunamadi":
-            pass
-        
+            print(farm)
+            labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+            #labelresource.place(x=90,y = 100,width=60,height=20)
+            labeltime.grid(row = farm+1,column = 5,ipadx = 15,ipady = 5)
 
-        if gozculist[farm]:
-            sonrakidunya(btn)
-            while True:
-                x = gozcugonder(btn)
+            hesapsayisi = data.get("hesapsayisi") 
+            kaynak_gonder = data.get("kaynak_gonder") 
+            loncatech_yap = data.get("loncatech_yap") 
+            ganimet_yap = data.get("ganimet_yap") 
+            ic_kaynak_bonus = data.get("ic_kaynak_bonus") 
+            dis_kaynak_bonus = data.get("dis_kaynak_bonus") 
+            hazine_topla = data.get("hazine_topla") 
+            lonca_topla = data.get("lonca_topla") 
+            mesaj_topla = data.get("mesaj_topla") 
+            hasat_et = data.get("hasat_et") 
+            hizli_topla = data.get("hizli_topla") 
+            tampon_hasat = data.get("tampon_hasat") 
+            bugdaylist = data.get("bugdaylist") 
+            odunlist = data.get("odunlist") 
+            kuvarslist = data.get("kuvarslist")
+            altinlist = data.get("altinlist")
+            demirlist = data.get("demirlist") 
+            gozculist = data.get("gozculist")
+            askeregitlist = data.get("askeregitlist")
+            kvk_kalkan = data.get("kvkkalkan")
+            arttirici_al = data.get("arttirici_al")
+            ifritlist = data.get("ifritlist")
+            global bonusal
+            bonusal = dis_kaynak_bonus
+
+            global appopen
+            appopen = False
+            
+            time.sleep(5)
+            oyunac()
+            x = hesapgiris(btn)
+            if x == "appopen":
+                
+                cikis()
+                continue
+
+            x = liman(btn)
+            if x == "bulunamadi":
+                pass
+            
+
+            if gozculist[farm]:
+                sonrakidunya(btn)
+                while True:
+                    x = gozcugonder(btn)
+                    if x == "appopen":
+                        cikis()
+                        time.sleep(bekleme_carpani*5)
+                        oyunac()
+                        sonrakidunya(btn)
+                        continue
+                    
+                
+
+            if ic_kaynak_bonus:
+                x = ickaynakbonusu(btn,arttirici_al)
+                if  x == "appopen":
+                    cikis()
+                    continue
+                if x == "limanyok":
+                    pass
+
+
+            if mesaj_topla:
+                x = mesajtopla(btn)
+                if  x == "appopen":
+                    cikis()
+                    continue
+                
+            if lonca_topla:     
+                x = loncatopla(btn)
                 if x == "appopen":
                     cikis()
-                    time.sleep(bekleme_carpani*5)
-                    oyunac()
-                    sonrakidunya(btn)
                     continue
-                   
+                if x == "lonca yok":
+                    lonca_topla = False
+                    loncatech_yap = False
+
+            if loncatech_yap:
+                x = loncatek(btn)
+                if x == "appopen":
+                    cikis()
+                    continue
+
+            if askeregitlist[farm] == "Max":
+                x = trainsoldier(btn,False)
+                if x == "appopen":
+                    cikis()
+                    continue
+            elif askeregitlist[farm] == "Tahil Arabasi":
+                x =trainsoldier(btn,True)
+                if x == "appopen":
+                    cikis()
+                    continue
+
+            if hazine_topla:
+                x = hazinetopla(btn)
+                if x == "appopen":
+                    cikis()
+                    continue
+
+            if ganimet_yap:
+                x = ganimet_karavani(btn)
+                if  x == "appopen":
+                    cikis()
+                    continue
+                if x == "gece":
+                    pass
+
+            if hizli_topla or tampon_hasat or hasat_et:        
+                hizlitamponhasat(btn)
             
-
-        if ic_kaynak_bonus:
-            x = ickaynakbonusu(btn,arttirici_al)
-            if  x == "appopen":
-                cikis()
-                continue
-            if x == "limanyok":
-                pass
-
-
-        if mesaj_topla:
-            x = mesajtopla(btn)
-            if  x == "appopen":
-                cikis()
-                continue
+            sonrakidunya(btn)
             
-        if lonca_topla:     
-            x = loncatopla(btn)
-            if x == "appopen":
-                cikis()
-                continue
-            if x == "lonca yok":
-                lonca_topla = False
-                loncatech_yap = False
+            if ifritlist[farm]:
+                x = ifrit(btn)
+                if x == "appopen":
+                    cikis()
+                    x = ""
+                    continue
+                elif x =="energy":
+                    pass
+                elif x == "vip":
+                    pass
+            if (kvk_kalkan):
+                kvkkalkan(btn)
 
-        if loncatech_yap:
-            x = loncatek(btn)
-            if x == "appopen":
-                cikis()
-                continue
+            if kaynak_gonder:
+                x = kaynakgonder(btn)        
+                if x == "appopen":
+                    cikis()
+                    continue
+                elif x =="vip":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
+                elif x =="attack":
+                    pass
 
-        if askeregitlist[farm] == "Max":
-            x = trainsoldier(btn,False)
-            if x == "appopen":
-                cikis()
-                continue
-        elif askeregitlist[farm] == "Tahil Arabasi":
-            x =trainsoldier(btn,True)
-            if x == "appopen":
-                cikis()
-                continue
+            if bugdaylist[farm]:        
+                x = askergonder(btn,0)
+                if x== "appopen":
+                    cikis()
+                    continue
+                elif x == "exit":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
+                elif x == "vip":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
 
-        if hazine_topla:
-            x = hazinetopla(btn)
-            if x == "appopen":
-                cikis()
-                continue
+            if odunlist[farm]:        
+                x = askergonder(btn,1)
+                if x== "appopen":
+                    cikis()
+                    continue
+                elif x == "exit":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
+                elif x == "vip":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
 
-        if ganimet_yap:
-            x = ganimet_karavani(btn)
-            if  x == "appopen":
-                cikis()
-                continue
-            if x == "gece":
-                pass
+            if demirlist[farm]:        
+                x = askergonder(btn,2)
+                if x== "appopen":
+                    cikis()
+                    continue
+                elif x == "exit":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
+                elif x == "vip":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
 
-        if hizli_topla or tampon_hasat or hasat_et:        
-            hizlitamponhasat(btn)
-        
-        sonrakidunya(btn)
-        
-        if ifritlist[farm]:
-            x = ifrit(btn)
-            if x == "appopen":
-                cikis()
-                x = ""
-                continue
-            elif x =="energy":
-                pass
-            elif x == "vip":
-                pass
-        if (kvk_kalkan):
-            kvkkalkan(btn)
+            if kuvarslist[farm]:        
+                x = askergonder(btn,3)
+                if x== "appopen":
+                    cikis()
+                    continue
 
-        if kaynak_gonder:
-            x = kaynakgonder(btn)        
-            if x == "appopen":
-                cikis()
-                continue
-            elif x =="vip":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-            elif x =="attack":
-                pass
+                elif x == "exit":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
 
-        if bugdaylist[farm]:        
-            x = askergonder(btn,0)
-            if x== "appopen":
-                cikis()
-                continue
-            elif x == "exit":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-            elif x == "vip":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-
-        if odunlist[farm]:        
-            x = askergonder(btn,1)
-            if x== "appopen":
-                cikis()
-                continue
-            elif x == "exit":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-            elif x == "vip":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-
-        if demirlist[farm]:        
-            x = askergonder(btn,2)
-            if x== "appopen":
-                cikis()
-                continue
-            elif x == "exit":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-            elif x == "vip":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-
-        if kuvarslist[farm]:        
-            x = askergonder(btn,3)
-            if x== "appopen":
-                cikis()
-                continue
-
-            elif x == "exit":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-
-            elif x == "vip":
-                
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-        if altinlist[farm]:
-            x = altintopla(btn)
-            if x == "vip":
-                hesapgir = False
-                sonrakihesap(btn)
-                continue
-        hesapgir = False
-        sonrakihesap(btn)
+                elif x == "vip":
+                    
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
+            if altinlist[farm]:
+                x = altintopla(btn)
+                if x == "vip":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
+            hesapgir = False
+            sonrakihesap(btn)
+        except Exception as e:
+            logkayit(0, f"Hata: {str(e)}")
