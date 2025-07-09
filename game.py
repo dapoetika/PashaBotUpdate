@@ -331,7 +331,7 @@ def hesapgiris(btn):
             time.sleep(bekleme_carpani*2)
             click(btn,110,227)
             time.sleep(bekleme_carpani*2)
-
+            time.sleep(bekleme_carpani*2)
             mail = collectdata().get("mail")
             mail1 = mail[farm].split("@")
 
@@ -346,14 +346,14 @@ def hesapgiris(btn):
 
             pyautogui.write(mail1[1])
             time.sleep(bekleme_carpani*2)
-
+            time.sleep(bekleme_carpani*2)
             click(btn,165,320)
             time.sleep(bekleme_carpani*2)
-
+            time.sleep(bekleme_carpani*2)
             sifre = collectdata().get("sifre")
             pyautogui.write(sifre[farm])
             time.sleep(bekleme_carpani*2)
-
+            time.sleep(bekleme_carpani*2)
             click(btn,170,390)
             time.sleep(bekleme_carpani*2)
             
@@ -2070,8 +2070,8 @@ def sonrakihesap(btn):
     time.sleep(bekleme_carpani*1)
     time.sleep(bekleme_carpani*1)
     click(btn,110,227)
-    time.sleep(bekleme_carpani*1)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
     
     
     mail = collectdata().get("mail")
@@ -2091,13 +2091,13 @@ def sonrakihesap(btn):
 
     pyautogui.write(mail1[1])
     time.sleep(bekleme_carpani*2)
-
+    time.sleep(bekleme_carpani*2)
     click(btn,165,320)
     time.sleep(bekleme_carpani*2)
-
+    time.sleep(bekleme_carpani*2)
     pyautogui.write(sifre[farm])
     time.sleep(bekleme_carpani*2)
-
+    time.sleep(bekleme_carpani*2)
     click(btn,170,390)
     time.sleep(bekleme_carpani*2)
 
