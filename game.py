@@ -1,5 +1,5 @@
 
-#1
+#1asdf
 from tkinter import *
 import time
 import subprocess
@@ -632,7 +632,8 @@ def mesajtopla(btn):
     
     time.sleep(bekleme_carpani*2)
     click(btn,160,335)
-    
+    time.sleep(bekleme_carpani*2)
+    click(btn,160,590)
     while True:
         time.sleep(bekleme_carpani*2)
         tumunu_oku = ara("./images/tumunu_oku.png")
