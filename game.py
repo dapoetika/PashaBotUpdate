@@ -1,5 +1,5 @@
 
-#asd
+#1
 from tkinter import *
 import time
 import subprocess
@@ -782,7 +782,7 @@ def loncatopla(btn):
     click(btn,160,100)
     
 
-    for i in range(20):
+    for i in range(3):
         time.sleep(bekleme_carpani*2)
         topla = ara("./images/topla.png")
         time.sleep(bekleme_carpani*2)
@@ -806,7 +806,7 @@ def loncatopla(btn):
 
 
 
-    for i in range(20):
+    for i in range(3):
         time.sleep(bekleme_carpani*2)
         topla = ara("./images/topla.png")
         
@@ -1713,13 +1713,14 @@ def bul(btn):
     if(bulundu != -1):
         time.sleep(bekleme_carpani*2)
         click(btn,bulundu[0]+30,bulundu[1]+30)
+        ilkkoordinat = [bulundu[0]+30,bulundu[1]+30]
         time.sleep(bekleme_carpani*2)
         raid = ara("./images/raid.png")
         detaylaraltin = ara("./images/detaylaraltin.png")
         if raid != -1 and detaylaraltin != -1:
             click(btn,detaylaraltin[0]+15,detaylaraltin[1]+15)
-            time.sleep(bekleme_carpani*2)
-            aramadeneme = ara("./images/aramadeneme.png")
+            time.sleep(bekleme_carpani*4)
+            aramadeneme = ara("./images/aramadeneme.png",0.8)
             if aramadeneme == -1:
                 click(btn,20,65)
                 time.sleep(bekleme_carpani*2)
@@ -1768,8 +1769,8 @@ def bul(btn):
             if raid != -1 and detaylaraltin != -1:
                 click(btn,detaylaraltin[0]+15,detaylaraltin[1]+15)
                 time.sleep(bekleme_carpani*2)
-                aramadeneme = ara("./images/aramadeneme.png")
-                if aramadeneme != -1:
+                aramadeneme = ara("./images/aramadeneme.png",0.8)
+                if aramadeneme == -1:
                     click(btn,20,65)
                     time.sleep(bekleme_carpani*2)
                     bulundu =-1
@@ -1789,6 +1790,9 @@ def bul(btn):
                         click(btn,bulundu[0]+30,bulundu[1]+30)
                         time.sleep(bekleme_carpani*2)
                     else:
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.moveTo(100,420)
+                        pyautogui.dragTo(ilkkoordinat[0],ilkkoordinat[1],1)
                         return "budegil"
                     raid = ara("./images/raid.png")
                     if raid != -1:
@@ -1800,15 +1804,19 @@ def bul(btn):
                             return "vip"
                         time.sleep(bekleme_carpani*2)
                         click(btn,300,590)
-                    print("başarılı")
                     return "basarili"
                 else:
                     time.sleep(bekleme_carpani*2)
                     click(btn,20,65)
                     time.sleep(bekleme_carpani*2)
+                    pyautogui.moveTo(100,420)
+                    pyautogui.dragTo(ilkkoordinat[0],ilkkoordinat[1],1)
                     return "budegil"
             else:
                 click(btn,200,200)
+                time.sleep(bekleme_carpani*2)
+                pyautogui.moveTo(100,420)
+                pyautogui.dragTo(ilkkoordinat[0],ilkkoordinat[1],1)
                 time.sleep(bekleme_carpani*2)
 
 def altintopla(btn):
@@ -1816,18 +1824,29 @@ def altintopla(btn):
     if girildi_dunya == -1:
         return "appopen"
     time.sleep(bekleme_carpani*2)
-    click(btn,165, 530)
+    click(btn,200, 590)
     time.sleep(bekleme_carpani*2)
     click(btn,165, 530)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
     click(btn,200, 170)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
     click(btn,125, 215)
+    girildi_dunya = ara("./images/girildi_dunya.png")
+    if girildi_dunya == -1:
+        return "arkadasbos"
     time.sleep(bekleme_carpani*3)
     click(btn,180,180)
+    sol = 0
+    yukari = 0
+    sag = 0
+    asagi = 0
+    yanlis = 0
     for i in range(1,100):
         time.sleep(bekleme_carpani*2)
+        if yanlis > 2:
+            return "vip"
         for k in range((2*i)-1):#sol
+            sol += 1
             pyautogui.moveTo(80,340)
             time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(320,340,1)
@@ -1837,7 +1856,11 @@ def altintopla(btn):
                 return "vip"
             elif x == "appopen":
                 return "appopen"
+            elif x == "budegil":
+                yanlis += 1
+                time.sleep(bekleme_carpani*2)
             elif x == "basarili":
+                yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
                 time.sleep(bekleme_carpani*2)
@@ -1846,10 +1869,33 @@ def altintopla(btn):
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
-                time.sleep(bekleme_carpani*3)
+                time.sleep(bekleme_carpani*4)
                 click(btn,180,180)
-                time.sleep(bekleme_carpani*3)
+                time.sleep(bekleme_carpani*2)
+                for dikey in range(abs(yukari-asagi)):
+                    if yukari>asagi:
+                        pyautogui.moveTo(160,100)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,490,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(160,490)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,100,1)
+                        time.sleep(bekleme_carpani*2)
+                for yatay in range(abs(sol-sag)):
+                    if sol>sag:
+                        pyautogui.moveTo(80,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(320,340,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(245,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(5,340,1)
+                        time.sleep(bekleme_carpani*2)
         for k in range((2*i)-1):#yukarı
+            yukari += 1
             pyautogui.moveTo(160,100)
             time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(160,490,1)
@@ -1859,7 +1905,11 @@ def altintopla(btn):
                 return "vip"
             elif x == "appopen":
                 return "appopen"
+            elif x == "budegil":
+                yanlis += 1
+                time.sleep(bekleme_carpani*2)
             elif x == "basarili":
+                yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
                 time.sleep(bekleme_carpani*2)
@@ -1871,7 +1921,30 @@ def altintopla(btn):
                 time.sleep(bekleme_carpani*3)
                 click(btn,180,180)
                 time.sleep(bekleme_carpani*3)
+                for dikey in range(abs(yukari-asagi)):
+                    if yukari>asagi:
+                        pyautogui.moveTo(160,100)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,490,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(160,490)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,100,1)
+                        time.sleep(bekleme_carpani*2)
+                for yatay in range(abs(sol-sag)):
+                    if sol>sag:
+                        pyautogui.moveTo(80,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(320,340,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(245,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(5,340,1)
+                        time.sleep(bekleme_carpani*2)
         for k in range(2*i):#sag
+            sag += 1
             pyautogui.moveTo(245,340)
             time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(5,340,1)
@@ -1881,7 +1954,11 @@ def altintopla(btn):
                 return "vip"
             elif x == "appopen":
                 return "appopen"
+            elif x == "budegil":
+                yanlis += 1
+                time.sleep(bekleme_carpani*2)
             elif x == "basarili":
+                yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
                 time.sleep(bekleme_carpani*2)
@@ -1893,7 +1970,30 @@ def altintopla(btn):
                 time.sleep(bekleme_carpani*3)
                 click(btn,180,180)
                 time.sleep(bekleme_carpani*3)
+                for dikey in range(abs(yukari-asagi)):
+                    if yukari>asagi:
+                        pyautogui.moveTo(160,100)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,490,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(160,490)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,100,1)
+                        time.sleep(bekleme_carpani*2)
+                for yatay in range(abs(sol-sag)):
+                    if sol>sag:
+                        pyautogui.moveTo(80,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(320,340,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(245,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(5,340,1)
+                        time.sleep(bekleme_carpani*2)
         for k in range(2*i):#aşşa
+            asagi += 1
             pyautogui.moveTo(160,490)
             time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(160,100,1)
@@ -1903,7 +2003,11 @@ def altintopla(btn):
                 return "vip"
             elif x == "appopen":
                 return "appopen"
+            elif x == "budegil":
+                yanlis += 1
+                time.sleep(bekleme_carpani*2)
             elif x == "basarili":
+                yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
                 time.sleep(bekleme_carpani*2)
@@ -1915,6 +2019,28 @@ def altintopla(btn):
                 time.sleep(bekleme_carpani*3)
                 click(btn,180,180)
                 time.sleep(bekleme_carpani*3)
+                for dikey in range(abs(yukari-asagi)):
+                    if yukari>asagi:
+                        pyautogui.moveTo(160,100)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,490,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(160,490)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(160,100,1)
+                        time.sleep(bekleme_carpani*2)
+                for yatay in range(abs(sol-sag)):
+                    if sol>sag:
+                        pyautogui.moveTo(80,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(320,340,1)
+                        time.sleep(bekleme_carpani*2)
+                    else:
+                        pyautogui.moveTo(245,340)
+                        time.sleep(bekleme_carpani*2)
+                        pyautogui.dragTo(5,340,1)
+                        time.sleep(bekleme_carpani*2)
 
 def gozcugonder(btn):
     kackisi = 0
@@ -2344,6 +2470,14 @@ def main(btn,frm):
             if altinlist[farm]:
                 x = altintopla(btn)
                 if x == "vip":
+                    hesapgir = False
+                    sonrakihesap(btn)
+                    continue
+                elif x == "appopen":
+                    cikis()
+                    continue
+                elif x == "arkadasbos":
+                    click(btn,20,65)
                     hesapgir = False
                     sonrakihesap(btn)
                     continue
