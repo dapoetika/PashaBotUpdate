@@ -1,5 +1,5 @@
 
-#1asdfasdfasdf
+#1
 from tkinter import *
 import time
 import subprocess
@@ -632,8 +632,7 @@ def mesajtopla(btn):
     
     time.sleep(bekleme_carpani*2)
     click(btn,160,335)
-    time.sleep(bekleme_carpani*2)
-    click(btn,160,590)
+    
     while True:
         time.sleep(bekleme_carpani*2)
         tumunu_oku = ara("./images/tumunu_oku.png")
@@ -1338,7 +1337,7 @@ def ifrit(btn):
             
 def kvkkalkan(btn):
     time.sleep(bekleme_carpani*2)
-    tarihler = ['2025-07-10', '2025-07-11', '2025-07-12', '2025-07-17', '2025-07-18', '2025-07-19', '2025-07-31', '2025-08-01', '2025-08-02', '2025-08-14', '2025-08-15', '2025-08-16', '2025-08-28', '2025-08-29', '2025-08-30', '2025-09-11', '2025-09-12', '2025-09-13', '2025-09-25', '2025-09-26', '2025-09-27', '2025-10-09', '2025-10-10', '2025-10-11', '2025-10-23', '2025-10-24', '2025-10-25', '2025-11-06', '2025-11-07', '2025-11-08', '2025-11-20', '2025-11-21', '2025-11-22', '2025-12-04', '2025-12-05', '2025-12-06', '2025-12-18', '2025-12-19', '2025-12-20', '2026-01-01', '2026-01-02', '2026-01-03', '2026-01-15', '2026-01-16', '2026-01-17', '2026-01-29', '2026-01-30', '2026-01-31', '2026-02-12', '2026-02-13', '2026-02-14', '2026-02-26', '2026-02-27', '2026-02-28', '2026-03-12', '2026-03-13', '2026-03-14', '2026-03-26', '2026-03-27', '2026-03-28', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-23', '2026-04-24', '2026-04-25', '2026-05-07', '2026-05-08', '2026-05-09', '2026-05-21', '2026-05-22', '2026-05-23', '2026-06-04', '2026-06-05', '2026-06-06', '2026-06-18', '2026-06-19', '2026-06-20', '2026-07-02', '2026-07-03', '2026-07-04']
+    tarihler = ['2025-07-03', '2025-07-04', '2025-07-05', '2025-07-17', '2025-07-18', '2025-07-19', '2025-07-31', '2025-08-01', '2025-08-02', '2025-08-14', '2025-08-15', '2025-08-16', '2025-08-28', '2025-08-29', '2025-08-30', '2025-09-11', '2025-09-12', '2025-09-13', '2025-09-25', '2025-09-26', '2025-09-27', '2025-10-09', '2025-10-10', '2025-10-11', '2025-10-23', '2025-10-24', '2025-10-25', '2025-11-06', '2025-11-07', '2025-11-08', '2025-11-20', '2025-11-21', '2025-11-22', '2025-12-04', '2025-12-05', '2025-12-06', '2025-12-18', '2025-12-19', '2025-12-20', '2026-01-01', '2026-01-02', '2026-01-03', '2026-01-15', '2026-01-16', '2026-01-17', '2026-01-29', '2026-01-30', '2026-01-31', '2026-02-12', '2026-02-13', '2026-02-14', '2026-02-26', '2026-02-27', '2026-02-28', '2026-03-12', '2026-03-13', '2026-03-14', '2026-03-26', '2026-03-27', '2026-03-28', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-23', '2026-04-24', '2026-04-25', '2026-05-07', '2026-05-08', '2026-05-09', '2026-05-21', '2026-05-22', '2026-05-23', '2026-06-04', '2026-06-05', '2026-06-06', '2026-06-18', '2026-06-19', '2026-06-20', '2026-07-02', '2026-07-03', '2026-07-04']
     
     utc_time = datetime.datetime.now(datetime.timezone.utc)
     bugun = utc_time.strftime("%Y-%m-%d")
@@ -1351,7 +1350,7 @@ def kvkkalkan(btn):
         time.sleep(bekleme_carpani*2)
         click(btn,180, 125)
         time.sleep(bekleme_carpani*2)
-        click(btn,275, 340)
+        click(btn,275, 380)
         time.sleep(bekleme_carpani*2)
         tamam = ara("./images/tamam.png")
         if tamam != -1:
@@ -2186,22 +2185,22 @@ def sonrakihesap(btn):
     else:
         farm += 1
 
-    time.sleep(bekleme_carpani*1)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*1)
     click(btn,20,75)
     time.sleep(bekleme_carpani*1)
-    time.sleep(bekleme_carpani*1)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
     click(btn,290,585)
-    time.sleep(bekleme_carpani*1)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
     click(btn,50,150)
-    time.sleep(bekleme_carpani*1)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
     click(btn,200,560)
-    time.sleep(bekleme_carpani*1)
-    time.sleep(bekleme_carpani*1)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
     click(btn,110,227)
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
@@ -2228,6 +2227,7 @@ def sonrakihesap(btn):
     click(btn,165,320)
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
+    
     pyautogui.write(sifre[farm])
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
@@ -2486,3 +2486,4 @@ def main(btn,frm):
             sonrakihesap(btn)
         except Exception as e:
             logkayit(0, f"Hata: {str(e)}")
+            send_message(str(collectdata().get("kullaniciadi"))+str(e))
