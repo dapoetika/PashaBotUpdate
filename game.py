@@ -1,5 +1,5 @@
 
-#1
+#asd
 from tkinter import *
 import time
 import subprocess
@@ -100,15 +100,17 @@ def arawork(btn):
     worker1.start()
     
 def durulan(btn):
+    import sys
     global stop
     stop = True
     print(stop)
-    exit()
+    sys.exit()
 
 def terminate(btn):
+    import sys
     btn.config(state=ACTIVE)
     btn_dur.config(state=DISABLED)
-    exit()
+    sys.exit()
 
 def collectdata():
     try:
