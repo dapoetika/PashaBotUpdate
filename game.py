@@ -1,5 +1,5 @@
 
-#12
+#12asdf
 from tkinter import *
 import time
 import subprocess
@@ -35,18 +35,20 @@ def click(btn,x,y):
     else:
         terminate(btn)
 
+
 def ara(imagename,precision=0.6):
     global stop
     
     
     print("aranıyor ", imagename)
     if not stop:
-        aranan = imagesearch.imagesearch_region_numLoop(imagename,0,20,0,0,360,614,precision)
+        aranan = imagesearch.imagesearch_region_numLoop(imagename,0,100,0,0,360,614,precision)
         if aranan[0] != -1:
             return aranan
     else:
         return[1,1]
     return -1
+
 
 def trr(btn,frm):
     
@@ -252,7 +254,6 @@ def oyunac():
             continue
     
     
-        
     time.sleep(bekleme_carpani*5)
     
     hwnd = win32gui.FindWindow(None,"BlueStacks App Player")
@@ -261,13 +262,10 @@ def oyunac():
         
     for i in range(5):
         try:
-            
             win32gui.MoveWindow(hwnd,0,0,360,614,True)
         except:
             pass
     
-    win32gui.MoveWindow(hwnd,0,0,360,614,True)
-
 def hesapgiris(btn):
     global appopen
     for i in range(200):
@@ -647,6 +645,7 @@ def mesajtopla(btn):
     click(btn,160,335)
     
     while True:
+        click(btn,160,590)
         time.sleep(bekleme_carpani*2)
         tumunu_oku = ara("./images/tumunu_oku.png")
         if tumunu_oku != -1:
@@ -655,7 +654,33 @@ def mesajtopla(btn):
             break
 
         time.sleep(bekleme_carpani*0.5)
+    #mesajları sil
+    time.sleep(bekleme_carpani*2)
+    click(btn,300,595)
+    time.sleep(bekleme_carpani*2)
+    click(btn,25,595)
+    time.sleep(bekleme_carpani*2)
+    click(btn,160,595)
+    time.sleep(bekleme_carpani*2)
+    click(btn,160,370)
+    time.sleep(bekleme_carpani*2)
+    click(btn,25,595)
+    time.sleep(bekleme_carpani*2)
+    click(btn,160,595)
+    time.sleep(bekleme_carpani*2)
+    click(btn,160,370)
+    time.sleep(bekleme_carpani*2)
+    click(btn,300,595)
     
+    while True:
+        click(btn,160,590)
+        time.sleep(bekleme_carpani*2)
+        tumunu_oku = ara("./images/tumunu_oku.png")
+        if tumunu_oku != -1:
+            click(btn,160,590)
+        else:
+            break
+
     time.sleep(bekleme_carpani*2)
     click(btn,20,65)
     
@@ -673,11 +698,6 @@ def mesajtopla(btn):
 
     if girildi != -1:
         appopen = True
-      
-
-    if appopen:
-        pass
-    else:
         logkayit(farm,"appopen 2")
         
         time.sleep(bekleme_carpani*5)
@@ -1350,12 +1370,11 @@ def ifrit(btn):
             
 def kvkkalkan(btn):
     time.sleep(bekleme_carpani*2)
-    tarihler = ['2025-07-03', '2025-07-04', '2025-07-05', '2025-07-17', '2025-07-18', '2025-07-19', '2025-07-31', '2025-08-01', '2025-08-02', '2025-08-14', '2025-08-15', '2025-08-16', '2025-08-28', '2025-08-29', '2025-08-30', '2025-09-11', '2025-09-12', '2025-09-13', '2025-09-25', '2025-09-26', '2025-09-27', '2025-10-09', '2025-10-10', '2025-10-11', '2025-10-23', '2025-10-24', '2025-10-25', '2025-11-06', '2025-11-07', '2025-11-08', '2025-11-20', '2025-11-21', '2025-11-22', '2025-12-04', '2025-12-05', '2025-12-06', '2025-12-18', '2025-12-19', '2025-12-20', '2026-01-01', '2026-01-02', '2026-01-03', '2026-01-15', '2026-01-16', '2026-01-17', '2026-01-29', '2026-01-30', '2026-01-31', '2026-02-12', '2026-02-13', '2026-02-14', '2026-02-26', '2026-02-27', '2026-02-28', '2026-03-12', '2026-03-13', '2026-03-14', '2026-03-26', '2026-03-27', '2026-03-28', '2026-04-09', '2026-04-10', '2026-04-11', '2026-04-23', '2026-04-24', '2026-04-25', '2026-05-07', '2026-05-08', '2026-05-09', '2026-05-21', '2026-05-22', '2026-05-23', '2026-06-04', '2026-06-05', '2026-06-06', '2026-06-18', '2026-06-19', '2026-06-20', '2026-07-02', '2026-07-03', '2026-07-04']
-    
+    tarihler = []
     utc_time = datetime.datetime.now(datetime.timezone.utc)
     bugun = utc_time.strftime("%Y-%m-%d")
     saat = utc_time.strftime("%H")
-    if bugun in tarihler and int(saat)>9:
+    if bugun in tarihler:
         time.sleep(bekleme_carpani*2)
         click(btn,160, 350)
         time.sleep(bekleme_carpani*2)
@@ -1847,6 +1866,11 @@ def altintopla(btn):
     girildi_dunya = ara("./images/girildi_dunya.png")
     if girildi_dunya == -1:
         return "arkadasbos"
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,200, 590)
+    time.sleep(bekleme_carpani*2)
+    click(btn,250, 520)
     time.sleep(bekleme_carpani*3)
     click(btn,180,180)
     sol = 0
@@ -1854,7 +1878,7 @@ def altintopla(btn):
     sag = 0
     asagi = 0
     yanlis = 0
-    for i in range(1,100):
+    for i in range(1,4):
         time.sleep(bekleme_carpani*2)
         if yanlis > 2:
             return "vip"
@@ -1876,15 +1900,17 @@ def altintopla(btn):
                 yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
-                time.sleep(bekleme_carpani*2)
-                click(btn,165, 530)
                 time.sleep(bekleme_carpani*1)
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
                 time.sleep(bekleme_carpani*4)
-                click(btn,180,180)
+                click(btn,200, 590)
                 time.sleep(bekleme_carpani*2)
+                click(btn,250, 520)
+                time.sleep(bekleme_carpani*3)
+                click(btn,180,180)
+                time.sleep(bekleme_carpani*3)
                 for dikey in range(abs(yukari-asagi)):
                     if yukari>asagi:
                         pyautogui.moveTo(160,100)
@@ -1925,12 +1951,14 @@ def altintopla(btn):
                 yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
-                time.sleep(bekleme_carpani*2)
-                click(btn,165, 530)
                 time.sleep(bekleme_carpani*1)
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
+                time.sleep(bekleme_carpani*4)
+                click(btn,200, 590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,250, 520)
                 time.sleep(bekleme_carpani*3)
                 click(btn,180,180)
                 time.sleep(bekleme_carpani*3)
@@ -1974,12 +2002,14 @@ def altintopla(btn):
                 yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
-                time.sleep(bekleme_carpani*2)
-                click(btn,165, 530)
                 time.sleep(bekleme_carpani*1)
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
+                time.sleep(bekleme_carpani*4)
+                click(btn,200, 590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,250, 520)
                 time.sleep(bekleme_carpani*3)
                 click(btn,180,180)
                 time.sleep(bekleme_carpani*3)
@@ -2023,12 +2053,14 @@ def altintopla(btn):
                 yanlis = 0
                 time.sleep(bekleme_carpani*2)
                 click(btn,165, 530)
-                time.sleep(bekleme_carpani*2)
-                click(btn,165, 530)
                 time.sleep(bekleme_carpani*1)
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
+                time.sleep(bekleme_carpani*4)
+                click(btn,200, 590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,250, 520)
                 time.sleep(bekleme_carpani*3)
                 click(btn,180,180)
                 time.sleep(bekleme_carpani*3)
