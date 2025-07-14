@@ -1,5 +1,5 @@
 
-#12asdf
+#asdf
 from tkinter import *
 import time
 import subprocess
@@ -1199,7 +1199,7 @@ def hizlitamponhasat(btn):
     time.sleep(bekleme_carpani*1)
        
 def sonrakidunya(btn):
-    for i in range(5)
+    for i in range(5):
         girildi = ara("./images/girildi.png") 
         if girildi != -1:
             click(btn,160,600)
