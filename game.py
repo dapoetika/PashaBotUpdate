@@ -1199,8 +1199,10 @@ def hizlitamponhasat(btn):
     time.sleep(bekleme_carpani*1)
        
 def sonrakidunya(btn):
-    time.sleep(bekleme_carpani*1)
-    click(btn,160, 600)
+    for i in range(5)
+        girildi = ara("./images/girildi.png") 
+        if girildi != -1:
+            click(btn,160,600)
     time.sleep(bekleme_carpani*5)
     girildi_dunya = ara("./images/girildi_dunya.png") 
     if girildi_dunya != -1:
