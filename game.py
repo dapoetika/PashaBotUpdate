@@ -696,7 +696,7 @@ def mesajtopla(btn):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi.png")
 
-    if girildi != -1:
+    if girildi == -1:
         appopen = True
         logkayit(farm,"appopen 2")
         
