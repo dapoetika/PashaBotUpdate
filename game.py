@@ -1,5 +1,5 @@
 
-#asdfaltin
+#asdfaltin2
 from tkinter import *
 import time
 import subprocess
@@ -268,9 +268,7 @@ def oyunac():
     
 def hesapgiris(btn):
     global appopen
-    for i in range(200):
-        
-        time.sleep(bekleme_carpani*1)
+    for i in range(100):
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
         if girildi != -1:
@@ -378,15 +376,15 @@ def hesapgiris(btn):
             if hesap_giris_hata != -1:
                     
                 click(btn,20,55)
-                time.sleep(bekleme_carpani*1)
+                time.sleep(bekleme_carpani*2)
                 time.sleep(bekleme_carpani*1)
                 
+                click(btn,20,55)
+                time.sleep(bekleme_carpani*2)
                 click(btn,20,65)
-                time.sleep(bekleme_carpani*1)
+                time.sleep(bekleme_carpani*2)
                 click(btn,20,65)
-                time.sleep(bekleme_carpani*1)
-                click(btn,20,65)
-                time.sleep(bekleme_carpani*1)
+                time.sleep(bekleme_carpani*2)
                 
         for i in range(200):
             
@@ -1857,8 +1855,10 @@ def altintopla(btn):
     girildi_dunya = ara("./images/girildi_dunya.png")
     if girildi_dunya == -1:
         return "appopen"
+    time.sleep(bekleme_carpani*3)
+    click(btn,200, 600)
     time.sleep(bekleme_carpani*2)
-    click(btn,200, 590)
+    click(btn,200, 600)
     time.sleep(bekleme_carpani*2)
     click(btn,165, 530)
     time.sleep(bekleme_carpani*2)
@@ -1870,7 +1870,9 @@ def altintopla(btn):
         return "arkadasbos"
     
     time.sleep(bekleme_carpani*2)
-    click(btn,200, 590)
+    click(btn,200, 600)
+    time.sleep(bekleme_carpani*2)
+    click(btn,200, 600)
     time.sleep(bekleme_carpani*2)
     click(btn,250, 520)
     time.sleep(bekleme_carpani*3)
@@ -1906,8 +1908,10 @@ def altintopla(btn):
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
-                time.sleep(bekleme_carpani*4)
-                click(btn,200, 590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
                 time.sleep(bekleme_carpani*2)
                 click(btn,250, 520)
                 time.sleep(bekleme_carpani*3)
@@ -1957,8 +1961,10 @@ def altintopla(btn):
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
-                time.sleep(bekleme_carpani*4)
-                click(btn,200, 590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
                 time.sleep(bekleme_carpani*2)
                 click(btn,250, 520)
                 time.sleep(bekleme_carpani*3)
@@ -2008,8 +2014,10 @@ def altintopla(btn):
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
-                time.sleep(bekleme_carpani*4)
-                click(btn,200, 590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
                 time.sleep(bekleme_carpani*2)
                 click(btn,250, 520)
                 time.sleep(bekleme_carpani*3)
@@ -2059,8 +2067,10 @@ def altintopla(btn):
                 click(btn,200, 170)
                 time.sleep(bekleme_carpani*1)
                 click(btn,125, 215)
-                time.sleep(bekleme_carpani*4)
-                click(btn,200, 590)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
+                time.sleep(bekleme_carpani*2)
+                click(btn,200, 600)
                 time.sleep(bekleme_carpani*2)
                 click(btn,250, 520)
                 time.sleep(bekleme_carpani*3)
@@ -2234,9 +2244,7 @@ def sonrakihesap(btn):
 
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*1)
     click(btn,20,75)
-    time.sleep(bekleme_carpani*1)
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
     click(btn,290,585)
@@ -2293,6 +2301,18 @@ def sonrakihesap(btn):
     time.sleep(bekleme_carpani*2)
     click(btn,170,390)
     time.sleep(bekleme_carpani*2)
+    hesap_giris_hata = ara("./images/hesap-giris-hata.png")
+    if hesap_giris_hata != -1:
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        time.sleep(bekleme_carpani*1)
+        
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
 
     
     #stop
