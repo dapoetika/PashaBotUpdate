@@ -1,5 +1,5 @@
 
-#asdf
+#asdfaltin
 from tkinter import *
 import time
 import subprocess
@@ -1880,7 +1880,7 @@ def altintopla(btn):
     sag = 0
     asagi = 0
     yanlis = 0
-    for i in range(1,4):
+    for i in range(1,3):
         time.sleep(bekleme_carpani*2)
         if yanlis > 2:
             return "vip"
