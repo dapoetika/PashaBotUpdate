@@ -42,7 +42,7 @@ def ara(imagename,precision=0.6):
     
     print("aranıyor ", imagename)
     if not stop:
-        aranan = imagesearch.imagesearch_region_numLoop(imagename,0,100,0,0,360,614,precision)
+        aranan = imagesearch.imagesearch_region_numLoop(imagename,0,20,0,0,360,614,precision)
         if aranan[0] != -1:
             return aranan
     else:
