@@ -2547,3 +2547,4 @@ def main(btn,frm):
         except Exception as e:
             logkayit(0, f"Hata: {str(e)}")
             send_message(str(collectdata().get("kullaniciadi"))+str(e))
+            continue
