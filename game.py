@@ -1,5 +1,5 @@
 
-#asdfaltin2
+#asdfaltin3
 from tkinter import *
 import time
 import subprocess
@@ -11,8 +11,17 @@ import requests
 import os
 import datetime
 
-def cikis():
-    
+def cikis(btn):
+    for i in range(5):
+        x = ara("./images/girildi.png")
+        y = ara("./images/girildi_dunya.png")
+        if x != -1 or y != -1:
+            if y[0] !=-1:
+                click(btn,y[0]+10,y[1]+10)
+            return "girildi"
+        else: 
+            pyautogui.hotkey("ctrl", "shift","2")
+            time.sleep(bekleme_carpani*2)
     os.system("TASKKILL /F /IM HD-Player.exe")
 
 def logkayit(farm,mesaj):
@@ -35,7 +44,6 @@ def click(btn,x,y):
     else:
         terminate(btn)
 
-
 def ara(imagename,precision=0.6):
     global stop
     
@@ -49,6 +57,19 @@ def ara(imagename,precision=0.6):
         return[1,1]
     return -1
 
+def imageclick(btn,imagename,precision=0.6):
+    global stop
+    print("aranıyor ", imagename)
+    for i in range(10):
+        if not stop:
+            aranan = imagesearch.imagesearch_region_numLoop(imagename,0,20,0,0,360,614,precision)
+            if aranan[0] != -1:
+                click(btn,aranan[0]+10,aranan[1]+10)
+                time.sleep(bekleme_carpani*2)
+                return True
+        else:
+            return[1,1]
+        return -1
 
 def trr(btn,frm):
     
@@ -268,7 +289,7 @@ def oyunac():
     
 def hesapgiris(btn):
     global appopen
-    for i in range(100):
+    for i in range(200):
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
         if girildi != -1:
@@ -289,7 +310,7 @@ def hesapgiris(btn):
         return "appopen"
     
 
-    for i in range(100):
+    for i in range(200):
         time.sleep(bekleme_carpani*1)
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
@@ -317,33 +338,24 @@ def hesapgiris(btn):
         if girildi != -1:
             click(btn,160, 375)
             time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*1)
             click(btn,20,75)
-            time.sleep(bekleme_carpani*1)
             time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
-            click(btn,290,585)
-            time.sleep(bekleme_carpani*2)
+            imageclick(btn,"./images/ayarlar.png")
             time.sleep(bekleme_carpani*2)
             click(btn,290,585)
+            time.sleep(bekleme_carpani*2)
+            imageclick(btn,"./images/hesaplar.png")
             time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
             click(btn,50,150)
             time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
-            click(btn,50,150)
-            time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
-            click(btn,200,560)
+            imageclick(btn,"./images/hesapdegistir.png")
             time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
             click(btn,110,227)
             time.sleep(bekleme_carpani*2)
             click(btn,110,227)
-            time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
             mail = collectdata().get("mail")
             mail1 = mail[farm].split("@")
@@ -368,13 +380,11 @@ def hesapgiris(btn):
             sifre = collectdata().get("sifre")
             pyautogui.write(sifre[farm])
             time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
             click(btn,170,390)
             time.sleep(bekleme_carpani*2)
             
             hesap_giris_hata = ara("./images/hesap-giris-hata.png")
             if hesap_giris_hata != -1:
-                    
                 click(btn,20,55)
                 time.sleep(bekleme_carpani*2)
                 time.sleep(bekleme_carpani*1)
@@ -524,6 +534,13 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     yukari = 0
                     click(btn,160,395)
+                    tamam = ara("./images/tamam.png",0.8)
+                    if tamam != -1:
+                        time.sleep(bekleme_carpani*1)
+                        click(btn,tamam[0]+10,tamam[1]+10)
+                        time.sleep(bekleme_carpani*1)
+                        satinalindi = False
+                        break
                     continue
                 odun_arttirici = ara("./images/odun_arttirici.png",0.8)
                 if (odun_arttirici != -1 and not odun):
@@ -538,6 +555,13 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
                     yukari = 0
+                    tamam = ara("./images/tamam.png",0.8)
+                    if tamam != -1:
+                        time.sleep(bekleme_carpani*1)
+                        click(btn,tamam[0]+10,tamam[1]+10)
+                        time.sleep(bekleme_carpani*1)
+                        satinalindi = False
+                        break
                     continue
                 demir_arttirici = ara("./images/demir_arttirici.png",0.8)
                 if (demir_arttirici != -1 and not demir):
@@ -552,6 +576,13 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
                     yukari = 0
+                    tamam = ara("./images/tamam.png",0.8)
+                    if tamam != -1:
+                        time.sleep(bekleme_carpani*1)
+                        click(btn,tamam[0]+10,tamam[1]+10)
+                        time.sleep(bekleme_carpani*1)
+                        satinalindi = False
+                        break
                     continue
                 kuvars_arttirici = ara("./images/kuvars_arttirici.png",0.8)
                 if (kuvars_arttirici != -1 and not kuvars):
@@ -566,6 +597,13 @@ def ickaynakbonusu(btn,arttirici_al):
                         time.sleep(bekleme_carpani*1)
                     click(btn,160,395)
                     yukari = 0
+                    tamam = ara("./images/tamam.png",0.8)
+                    if tamam != -1:
+                        time.sleep(bekleme_carpani*1)
+                        click(btn,tamam[0]+10,tamam[1]+10)
+                        time.sleep(bekleme_carpani*1)
+                        satinalindi = False
+                        break
                     continue
                 
                 if(not bugday or not demir or not odun or not kuvars):
@@ -877,12 +915,13 @@ def loncatek(btn):
     click(btn,160,180)
     for i in range(25):
         tamam = ara("./images/tamam.png")
-        time.sleep(bekleme_carpani*2)
-        
-    
+        time.sleep(bekleme_carpani*1)
+        x = pyautogui.pixel(200,425)
+        if x[0] > 100 or x[1] > 100 or x[2] > 100:
+            pass
+        else:
+            break
         if tamam != -1:
-            click(btn,240,430)
-            
             break
         else: 
             click(btn,240,430)
@@ -892,7 +931,9 @@ def loncatek(btn):
     click(btn,20,65)
     time.sleep(bekleme_carpani*2)
     click(btn,20,65)
-
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
+    time.sleep(bekleme_carpani*2)
 def trainsoldier(btn,tahilarabasi):
 
     for hangisi in range(5):
@@ -2246,26 +2287,19 @@ def sonrakihesap(btn):
     time.sleep(bekleme_carpani*2)
     click(btn,20,75)
     time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/ayarlar.png")
     time.sleep(bekleme_carpani*2)
     click(btn,290,585)
     time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*2)
-    click(btn,290,585)
-    time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/hesaplar.png")
     time.sleep(bekleme_carpani*2)
     click(btn,50,150)
     time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*2)
-    click(btn,50,150)
-    time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*2)
-    click(btn,200,560)
-    time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/hesapdegistir.png")
     time.sleep(bekleme_carpani*2)
     click(btn,110,227)
     time.sleep(bekleme_carpani*2)
     click(btn,110,227)
-    time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
     
     mail = collectdata().get("mail")
@@ -2384,7 +2418,7 @@ def main(btn,frm):
             x = hesapgiris(btn)
             if x == "appopen":
                 
-                cikis()
+                cikis(btn)
                 continue
 
             x = liman(btn)
@@ -2397,7 +2431,7 @@ def main(btn,frm):
                 while True:
                     x = gozcugonder(btn)
                     if x == "appopen":
-                        cikis()
+                        cikis(btn)
                         time.sleep(bekleme_carpani*5)
                         oyunac()
                         sonrakidunya(btn)
@@ -2408,7 +2442,7 @@ def main(btn,frm):
             if ic_kaynak_bonus:
                 x = ickaynakbonusu(btn,arttirici_al)
                 if  x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 if x == "limanyok":
                     pass
@@ -2417,13 +2451,13 @@ def main(btn,frm):
             if mesaj_topla:
                 x = mesajtopla(btn)
                 if  x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 
             if lonca_topla:     
                 x = loncatopla(btn)
                 if x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 if x == "lonca yok":
                     lonca_topla = False
@@ -2432,30 +2466,30 @@ def main(btn,frm):
             if loncatech_yap:
                 x = loncatek(btn)
                 if x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
 
             if askeregitlist[farm] == "Max":
                 x = trainsoldier(btn,False)
                 if x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
             elif askeregitlist[farm] == "Tahil Arabasi":
                 x =trainsoldier(btn,True)
                 if x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
 
             if hazine_topla:
                 x = hazinetopla(btn)
                 if x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
 
             if ganimet_yap:
                 x = ganimet_karavani(btn)
                 if  x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 if x == "gece":
                     pass
@@ -2468,7 +2502,7 @@ def main(btn,frm):
             if ifritlist[farm]:
                 x = ifrit(btn)
                 if x == "appopen":
-                    cikis()
+                    cikis(btn)
                     x = ""
                     continue
                 elif x =="energy":
@@ -2481,7 +2515,7 @@ def main(btn,frm):
             if kaynak_gonder:
                 x = kaynakgonder(btn)        
                 if x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 elif x =="vip":
                     hesapgir = False
@@ -2493,7 +2527,7 @@ def main(btn,frm):
             if bugdaylist[farm]:        
                 x = askergonder(btn,0)
                 if x== "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 elif x == "exit":
                     hesapgir = False
@@ -2507,7 +2541,7 @@ def main(btn,frm):
             if odunlist[farm]:        
                 x = askergonder(btn,1)
                 if x== "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 elif x == "exit":
                     hesapgir = False
@@ -2521,7 +2555,7 @@ def main(btn,frm):
             if demirlist[farm]:        
                 x = askergonder(btn,2)
                 if x== "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 elif x == "exit":
                     hesapgir = False
@@ -2535,7 +2569,7 @@ def main(btn,frm):
             if kuvarslist[farm]:        
                 x = askergonder(btn,3)
                 if x== "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
 
                 elif x == "exit":
@@ -2555,7 +2589,7 @@ def main(btn,frm):
                     sonrakihesap(btn)
                     continue
                 elif x == "appopen":
-                    cikis()
+                    cikis(btn)
                     continue
                 elif x == "arkadasbos":
                     click(btn,20,65)
