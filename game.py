@@ -16,7 +16,7 @@ def cikis(btn):
         x = ara("./images/girildi.png")
         y = ara("./images/girildi_dunya.png")
         if x != -1 or y != -1:
-            if y[0] !=-1:
+            if y !=-1:
                 click(btn,y[0]+10,y[1]+10)
             return "girildi"
         else: 
