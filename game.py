@@ -328,7 +328,7 @@ def hesapgiris(btn):
 
     time.sleep(bekleme_carpani*1)
     
-    click(btn,160, 375)
+    click(btn,160, 400)
     #hesap değişme
     if hesapgir:
         
@@ -336,7 +336,7 @@ def hesapgiris(btn):
         girildi = ara("./images/girildi.png")
         time.sleep(bekleme_carpani*2)
         if girildi != -1:
-            click(btn,160, 375)
+            click(btn,160, 400)
             time.sleep(bekleme_carpani*2)
             click(btn,20,75)
             time.sleep(bekleme_carpani*2)
@@ -425,7 +425,7 @@ def hesapgiris(btn):
             
             #stop
    
-    click(btn,160, 375)
+    click(btn,160, 400)
     time.sleep(bekleme_carpani*2)
 
 def liman(btn):
