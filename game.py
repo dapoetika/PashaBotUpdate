@@ -68,8 +68,9 @@ def imageclick(btn,imagename,precision=0.6):
                 time.sleep(bekleme_carpani*2)
                 return True
         else:
-            return[1,1]
-        return -1
+            terminate(btn)
+            return False
+    return False
 
 def trr(btn,frm):
     
@@ -664,61 +665,68 @@ def ickaynakbonusu(btn,arttirici_al):
 def mesajtopla(btn):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi.png")
-    if girildi == -1:
+    girildi_dunya = ara("./images/girildi_dunya.png")
+    if girildi != -1 or girildi_dunya != -1:
+        pass
+    else:
         return "appopen"
     click(btn,235,590)
     time.sleep(bekleme_carpani*2)
     
-    click(btn,150,450)
+    sistem = ara("./images/sistem.png")
+    if sistem != -1:
+        click(btn,sistem[0]+10,sistem[1]+10)
     
-    time.sleep(bekleme_carpani*2)
-    click(btn,160,590)
-    
-    time.sleep(bekleme_carpani*2)
-    click(btn,20,65)
-    
-    time.sleep(bekleme_carpani*2)
-    click(btn,160,335)
-    
-    while True:
-        click(btn,160,590)
         time.sleep(bekleme_carpani*2)
-        tumunu_oku = ara("./images/tumunu_oku.png")
-        if tumunu_oku != -1:
-            click(btn,160,590)
-        else:
-            break
-
-        time.sleep(bekleme_carpani*0.5)
-    #mesajları sil
-    time.sleep(bekleme_carpani*2)
-    click(btn,300,595)
-    time.sleep(bekleme_carpani*2)
-    click(btn,25,595)
-    time.sleep(bekleme_carpani*2)
-    click(btn,160,595)
-    time.sleep(bekleme_carpani*2)
-    click(btn,160,370)
-    time.sleep(bekleme_carpani*2)
-    click(btn,25,595)
-    time.sleep(bekleme_carpani*2)
-    click(btn,160,595)
-    time.sleep(bekleme_carpani*2)
-    click(btn,160,370)
-    time.sleep(bekleme_carpani*2)
-    click(btn,300,595)
-    
-    while True:
         click(btn,160,590)
+        
         time.sleep(bekleme_carpani*2)
-        tumunu_oku = ara("./images/tumunu_oku.png")
-        if tumunu_oku != -1:
-            click(btn,160,590)
-        else:
-            break
+        click(btn,20,65)
 
-    time.sleep(bekleme_carpani*2)
-    click(btn,20,65)
+    etkinlikler = ara("./images/etkinlikler.png")
+    if etkinlikler != -1:
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,335)
+        time.sleep(bekleme_carpani*2)
+        while True:
+            click(btn,160,590)
+            time.sleep(bekleme_carpani*2)
+            tumunu_oku = ara("./images/tumunu_oku.png")
+            if tumunu_oku != -1:
+                click(btn,160,590)
+            else:
+                break
+
+            time.sleep(bekleme_carpani*0.5)
+        #mesajları sil
+        time.sleep(bekleme_carpani*2)
+        click(btn,300,595)
+        time.sleep(bekleme_carpani*2)
+        click(btn,25,595)
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,595)
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,370)
+        time.sleep(bekleme_carpani*2)
+        click(btn,25,595)
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,595)
+        time.sleep(bekleme_carpani*2)
+        click(btn,160,370)
+        time.sleep(bekleme_carpani*2)
+        click(btn,300,595)
+        time.sleep(bekleme_carpani*2)
+        while True:
+            click(btn,160,590)
+            time.sleep(bekleme_carpani*2)
+            tumunu_oku = ara("./images/tumunu_oku.png")
+            if tumunu_oku != -1:
+                click(btn,160,590)
+            else:
+                break
+
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
     
         
     time.sleep(bekleme_carpani*1)
@@ -730,14 +738,6 @@ def mesajtopla(btn):
     appopen = False
     
     time.sleep(bekleme_carpani*2)
-    girildi = ara("./images/girildi.png")
-
-    if girildi == -1:
-        appopen = True
-        logkayit(farm,"appopen 2")
-        
-        time.sleep(bekleme_carpani*5)
-        return "appopen"
 
     time.sleep(bekleme_carpani*3)
     time.sleep(bekleme_carpani*4)
