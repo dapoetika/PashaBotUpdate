@@ -1,5 +1,5 @@
 
-#asdf
+#123
 from tkinter import *
 import time
 import subprocess
@@ -15,6 +15,10 @@ def cikis(btn):
     for i in range(5):
         x = ara("./images/girildi.png")
         y = ara("./images/girildi_dunya.png")
+        tamam = ara("./images/tamam.png")
+        if tamam != -1:
+            time.sleep(10)
+            break
         if x != -1 or y != -1:
             if y !=-1:
                 click(btn,y[0]+10,y[1]+10)
@@ -2379,6 +2383,7 @@ def main(btn,frm):
     while True:
         try:
             data = collectdata()
+            """
             if x == "appopen":
                 hesapgir = True
                 if farm == data.get("hesapsayisi") -1:
@@ -2386,6 +2391,7 @@ def main(btn,frm):
                 else:
                     farm += 1
                 print("Truelandin")
+            """
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
             btn_dur.place(x=575,y = 455)
