@@ -1,5 +1,5 @@
 
-#asdfaltin3
+#asdf
 from tkinter import *
 import time
 import subprocess
@@ -452,6 +452,7 @@ def ickaynakbonusu(btn,arttirici_al):
             return "appopen"
     girildi = ara("./images/girildi.png")
     if girildi == -1:
+        logkayit(0,"ic kaynak hata")
         return "appopen"
     giris = ara("./images/giris.png")
     if giris == -1:
@@ -669,6 +670,7 @@ def mesajtopla(btn):
     if girildi != -1 or girildi_dunya != -1:
         pass
     else:
+        logkayit(0,"mesaj topla appopen")
         return "appopen"
     click(btn,235,590)
     time.sleep(bekleme_carpani*2)
@@ -748,6 +750,7 @@ def mesajtoplaoteki(btn):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi_dunya.png")
     if girildi == -1:
+        logkayit(0,"mesaj topla öteki app")
         return "appopen"
     click(btn,235,590)
     time.sleep(bekleme_carpani*2)
@@ -801,6 +804,7 @@ def loncatopla(btn):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi.png")
     if girildi == -1:
+        logkayit(0,"lonca topla app")
         return "appopen"
     
     click(btn,290,590)
@@ -982,6 +986,7 @@ def hazinetopla(btn):
     if girildi != -1:
         pass
     else:
+        logkayit(0,"hazine havuzu app")
         return "appopen"
     time.sleep(bekleme_carpani*2)
     click(btn,10,320)
@@ -1331,6 +1336,7 @@ def ifrit(btn):
             if x == "vip":
                 return "vip"
             elif x == "appopen":
+                logkayit(0,"appopen ifrit ")
                 return "appopen"
             elif x == "basarili":
                 break
@@ -1346,6 +1352,7 @@ def ifrit(btn):
                 if x == "vip":
                     return "vip"
                 elif x == "appopen":
+                    logkayit(0,"appopen ifrit ")
                     return "appopen"
                 elif x == "basarili":
                     break
@@ -1363,6 +1370,7 @@ def ifrit(btn):
                 if x == "vip":
                     return "vip"
                 elif x == "appopen":
+                    logkayit(0,"appopen ifrit ")
                     return "appopen"
                 elif x == "basarili":
                     break
@@ -1381,6 +1389,7 @@ def ifrit(btn):
                 if x == "vip":
                     return "vip"
                 elif x == "appopen":
+                    logkayit(0,"appopen ifrit ")
                     return "appopen"
                 elif x == "basarili":
                     break
@@ -1399,6 +1408,7 @@ def ifrit(btn):
                 if x == "vip":
                     return "vip"
                 elif x == "appopen":
+                    logkayit(0,"appopen ifrit ")
                     return "appopen"
                 elif x == "basarili":
                     break
@@ -1581,7 +1591,7 @@ def askergonder(btn,hangisi):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya == -1:
-          
+            logkayit(0,"asker gonder app ")
             return "appopen"
             
 
@@ -1599,7 +1609,7 @@ def askergonder(btn,hangisi):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya != -1:
-         
+            logkayit(0,"appopen askergonder")
             return "appopen"
             
       
@@ -1895,6 +1905,7 @@ def bul(btn):
 def altintopla(btn):
     girildi_dunya = ara("./images/girildi_dunya.png")
     if girildi_dunya == -1:
+        logkayit(0,"appopen altintopla app")
         return "appopen"
     time.sleep(bekleme_carpani*3)
     click(btn,200, 600)
@@ -1937,6 +1948,7 @@ def altintopla(btn):
             if x == "vip":
                 return "vip"
             elif x == "appopen":
+                logkayit(0,"appopen altintopla app")
                 return "appopen"
             elif x == "budegil":
                 yanlis += 1
@@ -1990,6 +2002,7 @@ def altintopla(btn):
             if x == "vip":
                 return "vip"
             elif x == "appopen":
+                logkayit(0,"appopen altintopla app")
                 return "appopen"
             elif x == "budegil":
                 yanlis += 1
@@ -2043,6 +2056,7 @@ def altintopla(btn):
             if x == "vip":
                 return "vip"
             elif x == "appopen":
+                logkayit(0,"appopen altintopla app")
                 return "appopen"
             elif x == "budegil":
                 yanlis += 1
@@ -2096,6 +2110,7 @@ def altintopla(btn):
             if x == "vip":
                 return "vip"
             elif x == "appopen":
+                logkayit(0,"appopen altintopla app")
                 return "appopen"
             elif x == "budegil":
                 yanlis += 1
@@ -2147,6 +2162,7 @@ def gozcugonder(btn):
     kacincimesaj = 0
     girildi_dunya = ara("./images/girildi_dunya.png")
     if girildi_dunya == -1:
+        logkayit(0,"appopen gozcu1")
         return "appopen"
     time.sleep(bekleme_carpani*2)
     click(btn,230,590)
@@ -2159,6 +2175,7 @@ def gozcugonder(btn):
         kackisi = 0
         mesaj = ara("./images/mesaj.png")
         if mesaj == -1:
+            logkayit(0,"appopen gozcu 2")
             return "appopen"
         for kisi in range(9):
             x = pyautogui.pixel(40, 110+kisi*55)
