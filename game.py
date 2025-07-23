@@ -847,7 +847,7 @@ def loncatopla(btn):
         click(btn,free[0] + 10,free[1]+10)
     
     
-
+    time.sleep(bekleme_carpani*2)
     click(btn,160,100)
     
 
