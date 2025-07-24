@@ -1425,7 +1425,7 @@ def ifrit(btn):
             
 def kvkkalkan(btn):
     time.sleep(bekleme_carpani*2)
-    tarihler = ["2025-07-24"]
+    tarihler = ["2025-07-24","2025-07-25","2025-07-26"]
     utc_time = datetime.datetime.now(datetime.timezone.utc)
     bugun = utc_time.strftime("%Y-%m-%d")
     saat = utc_time.strftime("%H")
