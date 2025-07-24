@@ -1437,7 +1437,7 @@ def kvkkalkan(btn):
         time.sleep(bekleme_carpani*2)
         click(btn,180, 125)
         time.sleep(bekleme_carpani*2)
-        click(btn,275, 380)
+        click(btn,275, 330)
         time.sleep(bekleme_carpani*2)
         tamam = ara("./images/tamam.png")
         if tamam != -1:
