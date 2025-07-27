@@ -314,9 +314,7 @@ def hesapgiris(btn):
     if appopen:
         pass
     else:
-        logkayit(farm,"appopen 1")
-        os.system("TASKKILL /F /IM HD-Player.exe")
-        
+        logkayit(farm,"appopen hesap giris")
         time.sleep(bekleme_carpani*5)
         return "appopen"
     
@@ -805,7 +803,7 @@ def mesajtoplaoteki(btn):
     if appopen:
         pass
     else:
-        logkayit(farm,"appopen 2")
+        logkayit(farm,"mesaj topla oteki 2")
         
         time.sleep(bekleme_carpani*5)
         return "appopen"
@@ -1475,7 +1473,7 @@ def kaynakgonder(btn):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya == -1:
-            logkayit(farm,"appopen baslangic")
+            logkayit(farm,"kaynak gonder baslangic")
             return "appopen"
         
         time.sleep(bekleme_carpani*1)
@@ -1554,8 +1552,8 @@ def kaynakgonder(btn):
         
         tahil_sinir =ara("./images/tahil_sinir.png")
         odun_sinir =ara("./images/odun_sinir.png")
-        girildi_dunya = ara("./images/girildi_dunya.png")
         durum_degisti = ara("./images/durum_degisti.png")
+        girildi_dunya = ara("./images/girildi_dunya.png")
         if girildi_dunya != -1:
             if odun_sinir != -1 or tahil_sinir != -1 :
                 logkayit(farm,"kullanici sinira ulasti")
