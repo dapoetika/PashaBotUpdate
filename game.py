@@ -1550,16 +1550,13 @@ def kaynakgonder(btn):
         click(btn,165, 595)
         time.sleep(bekleme_carpani*1)
         
-        tahil_sinir =ara("./images/tahil_sinir.png")
         odun_sinir =ara("./images/odun_sinir.png")
         durum_degisti = ara("./images/durum_degisti.png")
         girildi_dunya = ara("./images/girildi_dunya.png")
         if girildi_dunya != -1:
-            if odun_sinir != -1 or tahil_sinir != -1 :
+            if odun_sinir != -1:
                 logkayit(farm,"kullanici sinira ulasti")
                 kacinci+= 1
-                
-
             elif durum_degisti != -1:
                 
                 kacinci += 1
