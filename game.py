@@ -15,6 +15,7 @@ def cikis(btn):
     for i in range(100):
         if not os.path.exists(str(i)+".png"):
             x = pyautogui.screenshot(f"{i}.png",region=[0,0,360,614])
+            time.sleep(2)
             break
     for i in range(5):
         x = ara("./images/girildi.png")
