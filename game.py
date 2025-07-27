@@ -1,5 +1,5 @@
 
-#123app
+#123appsa
 from tkinter import *
 import time
 import subprocess
@@ -12,12 +12,17 @@ import os
 import datetime
 
 def cikis(btn):
+    for i in range(100):
+        if not os.path.exists(str(i)+".png"):
+            x = pyautogui.screenshot(f"{i}.png",region=[0,0,360,614])
+            break
     for i in range(5):
         x = ara("./images/girildi.png")
         y = ara("./images/girildi_dunya.png")
         tamam = ara("./images/tamam.png")
         if tamam != -1:
-            time.sleep(10)
+            logkayit(0,"Başka kullanıcı girdi ya da ağ hatası")
+            time.sleep(100)
             break
         if x != -1 or y != -1:
             if y !=-1:
@@ -1909,7 +1914,7 @@ def bul(btn):
 def altintopla(btn):
     girildi_dunya = ara("./images/girildi_dunya.png")
     if girildi_dunya == -1:
-        logkayit(0,"appopen altintopla app")
+        logkayit(0,"appopen altintopla app ")
         return "appopen"
     time.sleep(bekleme_carpani*3)
     click(btn,200, 600)
