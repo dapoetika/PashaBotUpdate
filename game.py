@@ -1,5 +1,5 @@
 
-#123
+#123app
 from tkinter import *
 import time
 import subprocess
@@ -2383,7 +2383,7 @@ def main(btn,frm):
     while True:
         try:
             data = collectdata()
-            """
+           
             if x == "appopen":
                 hesapgir = True
                 if farm == data.get("hesapsayisi") -1:
@@ -2391,7 +2391,7 @@ def main(btn,frm):
                 else:
                     farm += 1
                 print("Truelandin")
-            """
+            
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
             btn_dur.place(x=575,y = 455)
