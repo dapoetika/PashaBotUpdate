@@ -1,5 +1,5 @@
 
-#123appsaasdf
+#f
 from tkinter import *
 import time
 import subprocess
@@ -1799,14 +1799,14 @@ def bul(btn):
     bulundu = -1
     for i in range(5):
         girildi_dunya = ara("./images/girildi_dunya.png")
-        if girildi == -1:
+        if girildi_dunya == -1:
             pyautogui.hotkey("ctrl", "shift","2")
             time.sleep(bekleme_carpani*2)
         else:
             break
     time.sleep(bekleme_carpani*2)
     girildi_dunya = ara("./images/girildi_dunya.png")
-    if girildi == -1:
+    if girildi_dunya == -1:
         return "appopen"
     
     for i in range(10):
