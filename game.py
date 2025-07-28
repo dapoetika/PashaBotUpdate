@@ -83,7 +83,10 @@ def imageclick(btn,imagename,precision=0.6):
     return False
 
 def trr(btn,frm):
-    
+    for i in range(100):
+        filename = f"{i}.png"
+        if os.path.exists(filename):
+            os.remove(filename)
     anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
     anathr.start()
     
@@ -300,9 +303,11 @@ def oyunac():
     
 def hesapgiris(btn):
     global appopen
-    for i in range(200):
+    appopen = False
+    for i in range(100):
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
+        time.sleep(1)
         if girildi != -1:
             appopen = True
             break
@@ -692,7 +697,7 @@ def mesajtopla(btn):
         
         time.sleep(bekleme_carpani*2)
         click(btn,20,65)
-
+    time.sleep(bekleme_carpani*2)
     etkinlikler = ara("./images/etkinlikler.png")
     if etkinlikler != -1:
         time.sleep(bekleme_carpani*2)
@@ -748,7 +753,13 @@ def mesajtopla(btn):
     appopen = False
     
     time.sleep(bekleme_carpani*2)
-
+    for i in range(5):
+        girildi = ara("./images/girildi.png")
+        if girildi == -1:
+            pyautogui.hotkey("ctrl", "shift","2")
+            time.sleep(bekleme_carpani*2)
+        else:
+            break
     time.sleep(bekleme_carpani*3)
     time.sleep(bekleme_carpani*4)
     pyautogui.hotkey("ctrl", "shift","3")
@@ -1255,11 +1266,13 @@ def sonrakidunya(btn):
         girildi = ara("./images/girildi.png") 
         if girildi != -1:
             click(btn,160,600)
-    time.sleep(bekleme_carpani*5)
-    girildi_dunya = ara("./images/girildi_dunya.png") 
-    if girildi_dunya != -1:
-        logkayit(farm,"sonraki dunya basarili")
-        return "basarili"
+            break
+    for i in range(5):
+        girildi_dunya = ara("./images/girildi_dunya.png") 
+        if girildi_dunya != -1:
+            logkayit(farm,"sonraki dunya basarili")
+            return "basarili"
+        time.sleep(2)
 
 def ifritbul(btn):
     aranan = -1
@@ -1784,9 +1797,18 @@ def bul(btn):
         if x =="appopen":
             return "appopen"
     bulundu = -1
+    for i in range(5):
+        girildi_dunya = ara("./images/girildi_dunya.png")
+        if girildi == -1:
+            pyautogui.hotkey("ctrl", "shift","2")
+            time.sleep(bekleme_carpani*2)
+        else:
+            break
+    time.sleep(bekleme_carpani*2)
     girildi_dunya = ara("./images/girildi_dunya.png")
-    if girildi_dunya == -1:
+    if girildi == -1:
         return "appopen"
+    
     for i in range(10):
         aranan = imagesearch.imagesearch("./images/altin.png",0.6)
         aranan2 = imagesearch.imagesearch("./images/altin2.png",0.6)
