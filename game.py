@@ -943,20 +943,27 @@ def loncatek(btn):
         if x[0] > 100 or x[1] > 100 or x[2] > 100:
             pass
         else:
-            break
+            time.sleep(bekleme_carpani*2)
+            for i in range(4):
+                girildi = ara("./images/girildi.png")
+                if girildi == -1:
+                    pyautogui.hotkey("ctrl", "shift","2")
+                    time.sleep(bekleme_carpani*2)
+                    continue
+                return "bitti"
         if tamam != -1:
-            break
+            time.sleep(bekleme_carpani*2)
+            for i in range(4):
+                girildi = ara("./images/girildi.png")
+                if girildi == -1:
+                    pyautogui.hotkey("ctrl", "shift","2")
+                    time.sleep(bekleme_carpani*2)
+                    continue
+                else:
+                    return "bitti"
         else: 
             click(btn,240,430)
-    time.sleep(bekleme_carpani*2)
-    click(btn,20,65)
-    time.sleep(bekleme_carpani*2)
-    click(btn,20,65)
-    time.sleep(bekleme_carpani*2)
-    click(btn,20,65)
-    time.sleep(bekleme_carpani*2)
-    click(btn,20,65)
-    time.sleep(bekleme_carpani*2)
+    
 def trainsoldier(btn,tahilarabasi):
 
     for hangisi in range(5):
