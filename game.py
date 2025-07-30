@@ -1,5 +1,5 @@
 
-#f
+#fa
 from tkinter import *
 import time
 import subprocess
@@ -2342,6 +2342,14 @@ def sonrakihesap(btn):
     time.sleep(bekleme_carpani*2)
     click(btn,290,585)
     time.sleep(bekleme_carpani*2)
+    lonca = ara("./images/lonca.png")
+    if lonca != -1:
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,290,585)
+        time.sleep(bekleme_carpani*2)
     imageclick(btn,"./images/hesaplar.png")
     time.sleep(bekleme_carpani*2)
     click(btn,50,150)
@@ -2401,6 +2409,7 @@ def sonrakihesap(btn):
 
     
     #stop
+    
 
 def main(btn,frm):
     global farm
