@@ -1,5 +1,5 @@
 
-#fa
+#faa
 from tkinter import *
 import time
 import subprocess
@@ -1270,6 +1270,7 @@ def hizlitamponhasat(btn):
        
 def sonrakidunya(btn):
     for i in range(5):
+        time.sleep(2)
         girildi = ara("./images/girildi.png") 
         if girildi != -1:
             click(btn,160,600)
@@ -1863,13 +1864,31 @@ def bul(btn):
                 raid = ara("./images/raid.png")
                 if raid != -1:
                     click(btn,raid[0]+15,raid[1]+15)
+                    time.sleep(bekleme_carpani*2)
+                    tamam = ara("./images/tamam.png")
                     vip = ara("./images/vip.png")
                     if vip != -1:
                         time.sleep(bekleme_carpani*2)
                         click(btn,20,65)
                         return "vip"
+                    elif tamam != -1:
+                        time.sleep(bekleme_carpani*2)
+                        click(btn,20,65)
+                        time.sleep(bekleme_carpani*2)
+                        click(btn,20,65)
+                        return "vip"
+                        
+                    
                     time.sleep(bekleme_carpani*2)
                     click(btn,300,590)
+                    time.sleep(bekleme_carpani*2)
+                    tamam = ara("./images/tamam.png")
+                    if tamam != -1:
+                        time.sleep(bekleme_carpani*2)
+                        click(btn,20,65)
+                        time.sleep(bekleme_carpani*2)
+                        click(btn,20,65)
+                        return "vip"
                 print("başarılı")
                 return "basarili"
             else:
@@ -1921,6 +1940,14 @@ def bul(btn):
                             return "vip"
                         time.sleep(bekleme_carpani*2)
                         click(btn,300,590)
+                        time.sleep(bekleme_carpani*2)
+                        tamam = ara("./images/tamam.png")
+                        if tamam != -1:
+                            time.sleep(bekleme_carpani*2)
+                            click(btn,20,65)
+                            time.sleep(bekleme_carpani*2)
+                            click(btn,20,65)
+                            return "vip"
                     return "basarili"
                 else:
                     time.sleep(bekleme_carpani*2)
@@ -1937,6 +1964,10 @@ def bul(btn):
                 time.sleep(bekleme_carpani*2)
 
 def altintopla(btn):
+    girildi = ara("./images/girildi.png")
+    if girildi != -1:
+        sonrakidunya(btn)
+        time.sleep(bekleme_carpani*2)
     girildi_dunya = ara("./images/girildi_dunya.png")
     if girildi_dunya == -1:
         logkayit(0,"appopen altintopla app ")
