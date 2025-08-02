@@ -2449,8 +2449,9 @@ def main(btn,frm):
     while True:
         try:
             data = collectdata()
-           
+            now = datetime.datetime.now()
             if x == "appopen":
+                log = f"{now.strftime("%H:%M")} {farm}. ATLANDI"
                 logkayit(farm, "ATLANDI")
                 farmwrite = open("./data/data.txt","w")
             
@@ -2467,13 +2468,12 @@ def main(btn,frm):
                     farmwrite.write(str(password).rstrip()+"\n")
                     farmwrite.write(str(hesapsayisi).rstrip()+"\n")
                     farmwrite.write(str(farm).rstrip()+"\n")
-                log = f"{farm} ATLANDI"
                 try:
                     r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":log})
                 except:
                     print("Atlandı")
                 farmwrite.close()
-            
+            x = ""
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
             btn_dur.place(x=575,y = 455)
@@ -2481,7 +2481,7 @@ def main(btn,frm):
         
             btn.config(state=DISABLED)
 
-            now = datetime.datetime.now()
+            
             frame = None
             print(farm)
             if farm < 15:
@@ -2502,7 +2502,7 @@ def main(btn,frm):
                 frame = frm[7]
             
             labeltime = Label(frame,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-            labeltime.grid(row = (farm+1)%15,column = 5,ipadx = 15,ipady = 5)
+            labeltime.grid(row = (farm%15)+1,column = 5,ipadx = 15,ipady = 5)
 
             hesapsayisi = data.get("hesapsayisi") 
             kaynak_gonder = data.get("kaynak_gonder") 
