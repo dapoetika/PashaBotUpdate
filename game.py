@@ -150,7 +150,7 @@ def collectdata():
 
         hazine_topla = data.get("hazineTopla")
         lonca_topla = data.get("loncaTopla")
-        mesaj_topla = data.get("true")
+        mesaj_topla = data.get("mesajTopla")
 
         hasat_et = data.get("hasatEt")
         hizli_topla = data.get("hizliTopla")
