@@ -1,4 +1,4 @@
-#latest
+#latest1
 from tkinter import *
 import time
 import subprocess
@@ -1696,7 +1696,7 @@ def askergonder(btn,hangisi,kaynakseviye):
         time.sleep(bekleme_carpani*2)
         tamam = ara("./images/tamam.png")
         vip = ara("./images/vip.png")
-        target = ara("./images/target.png")
+        target = ara("./images/target.png",0.8)
         girildi_dunya = ara("./images/girildi_dunya.png")
         if target != -1:
 
