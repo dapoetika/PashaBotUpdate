@@ -1,4 +1,4 @@
-#latest12
+#latest123
 from tkinter import *
 import time
 import subprocess
@@ -2652,7 +2652,12 @@ def main(btn,frm):
             if gonderilcekList[farm] == "Bugday":        
                 x = askergonder(btn,0,kaynakseviye)
                 if x== "appopen":
-                    cikis(btn)
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        hesapgir = False
+                        sonrakihesap(btn,mail,sifre,hesapsayisi)
+                        x = ""
+                        continue
                     continue
                 elif x == "exit":
                     hesapgir = False
@@ -2666,8 +2671,12 @@ def main(btn,frm):
             if gonderilcekList[farm] == "Odun":        
                 x = askergonder(btn,1,kaynakseviye)
                 if x== "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        hesapgir = False
+                        sonrakihesap(btn,mail,sifre,hesapsayisi)
+                        x = ""
+                        continue
                 elif x == "exit":
                     hesapgir = False
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
@@ -2680,8 +2689,12 @@ def main(btn,frm):
             if gonderilcekList[farm] == "Demir":        
                 x = askergonder(btn,2,kaynakseviye)
                 if x== "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        hesapgir = False
+                        sonrakihesap(btn,mail,sifre,hesapsayisi)
+                        x = ""
+                        continue
                 elif x == "exit":
                     hesapgir = False
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
@@ -2694,8 +2707,12 @@ def main(btn,frm):
             if gonderilcekList[farm] == "Kuvars":        
                 x = askergonder(btn,3,kaynakseviye)
                 if x== "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        hesapgir = False
+                        sonrakihesap(btn,mail,sifre,hesapsayisi)
+                        x = ""
+                        continue
 
                 elif x == "exit":
                     hesapgir = False
@@ -2714,8 +2731,12 @@ def main(btn,frm):
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
                 elif x == "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        hesapgir = False
+                        sonrakihesap(btn,mail,sifre,hesapsayisi)
+                        x = ""
+                        continue
                 elif x == "arkadasbos":
                     click(btn,20,65)
                     hesapgir = False
