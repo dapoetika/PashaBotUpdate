@@ -1,4 +1,4 @@
-#latest
+#latest2
 from tkinter.ttk import *
 from tkinter import *
 
@@ -767,7 +767,7 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
         # Kodları ortam içine çalıştır
         exec(kod, ortam)
 
-        ortam["trr"](btn,btn,ayarlarTABlist)
+        ortam["trr"](btn,ayarlarTABlist)
     except Exception as e:
         print(f"Hata oluştu: {e}")
 
