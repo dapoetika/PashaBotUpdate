@@ -2467,7 +2467,11 @@ def main(btn,frm):
                     farmwrite.write(str(password).rstrip()+"\n")
                     farmwrite.write(str(hesapsayisi).rstrip()+"\n")
                     farmwrite.write(str(farm).rstrip()+"\n")
-                print("Truelandin")
+                log = f"{farm} ATLANDI"
+                try:
+                    r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":log})
+                except:
+                    print("Atlandı")
                 farmwrite.close()
             
             global btn_dur
