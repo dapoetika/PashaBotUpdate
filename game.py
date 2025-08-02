@@ -1,4 +1,4 @@
-#latest1
+#latest12
 from tkinter import *
 import time
 import subprocess
@@ -256,6 +256,7 @@ def hesapgiris(btn,mail,sifre):
     appopen = False
     for i in range(100):
         girildi = ara("./images/girildi.png")
+        girildi_dunya = ara("./images/girildi_dunya.png")
         xtus = ara("./images/xtus.png")
         time.sleep(1)
         if girildi != -1:
@@ -263,6 +264,9 @@ def hesapgiris(btn,mail,sifre):
             break
 
         if xtus != -1:
+            appopen = True
+            break
+        if girildi_dunya != -1:
             appopen = True
             break
 
@@ -276,6 +280,7 @@ def hesapgiris(btn,mail,sifre):
 
     for i in range(200):
         time.sleep(bekleme_carpani*1)
+        girildi_dunya = ara("./images/girildi_dunya.png")
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
         devredisi = ara("./images/devredisi.png")
@@ -287,6 +292,8 @@ def hesapgiris(btn,mail,sifre):
         
 
         elif girildi != -1:
+            break
+        elif girildi_dunya != -1:
             break
     
 
