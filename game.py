@@ -1,5 +1,4 @@
-
-#faa
+#latest
 from tkinter import *
 import time
 import subprocess
@@ -81,7 +80,13 @@ def imageclick(btn,imagename,precision=0.6):
             terminate(btn)
             return False
     return False
-
+def send_heartbeat():
+    try:
+        vericek = open("./data/data.txt")
+        username = vericek.readline().rstrip()
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/heartbeat",json={"username":username})
+    except Exception as a:
+        logkayit("0",a)
 def trr(btn,frm):
     for i in range(100):
         filename = f"{i}.png"
@@ -90,33 +95,6 @@ def trr(btn,frm):
     anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
     anathr.start()
     
-    telegramthr = Thread(target=lambda:send_message(collectdata().get("kullaniciadi")),daemon=True)
-    telegramthr.start()
-     
-def send_message(mesaj):
-    
-    while True:
-        try:
-            BOT_TOKEN = '7956132126:AAF48iGuo-RD7Uq_QmJ4Xz4NuImsk2Pe41w'
-            CHAT_ID = '-4858370404'
-
-            send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-            message = requests.post(send_url, data={
-            "chat_id": CHAT_ID,
-            "text": f"{mesaj}"
-            }).json()
-
-            time.sleep(10)
-
-            # 3. Mesajı sil
-            delete_url = f"https://api.telegram.org/bot{BOT_TOKEN}/deleteMessage"
-            requests.post(delete_url, data={
-            "chat_id": CHAT_ID,
-            "message_id": message['result']['message_id']
-            })
-            
-        except:
-            pass
 
 def sec(btn,frm):
     global stop 
@@ -150,70 +128,50 @@ def terminate(btn):
     sys.exit()
 
 def collectdata():
+
     try:
-        data = open("./data/data.txt")
-        kullaniciadi = data.readline().rstrip()
-        gereksiz = data.readline().rstrip()
-        hesapsayisi = int(data.readline().rstrip())
+        vericek = open("./data/data.txt")
+        username = vericek.readline().rstrip()
+        password = vericek.readline().rstrip()
+        vericek.close()
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/login",json={"username":username,"password":password})
+        data = r.json().get("userData")
 
-        kaynak_gonder = True if data.readline().rstrip() == 'True' else False
-        loncatech_yap = True if data.readline().rstrip() == 'True' else False
-        ganimet_yap = True if data.readline().rstrip() == 'True' else False
-        ic_kaynak_bonus = True if data.readline().rstrip() == 'True' else False
-        dis_kaynak_bonus = True if data.readline().rstrip() == 'True' else False
+        kullaniciadi = username
+        gereksiz = password
+        hesapsayisi = data.get("hesapSayisi")
+
+        kaynak_gonder = data.get("kaynakGonder")
+        loncatech_yap = data.get("loncatechYap")
+        ganimet_yap = data.get("ganimetYap")
+        ic_kaynak_bonus = data.get("icKaynakBonus")
+        dis_kaynak_bonus = data.get("disKaynakBonus")
 
 
-        hazine_topla = True if data.readline().rstrip() == 'True' else False
-        lonca_topla = True if data.readline().rstrip() == 'True' else False
-        mesaj_topla = True if data.readline().rstrip() == 'True' else False
+        hazine_topla = data.get("hazineTopla")
+        lonca_topla = data.get("loncaTopla")
+        mesaj_topla = data.get("true")
 
-        hasat_et = True if data.readline().rstrip() == 'True' else False
-        hizli_topla = True if data.readline().rstrip() == 'True' else False
-        tampon_hasat = True if data.readline().rstrip() == 'True' else False
-        kalkan_kvk = True if data.readline().rstrip() == 'True' else False
-        arttirici_al = True if data.readline().rstrip() == 'True' else False
-
+        hasat_et = data.get("hasatEt")
+        hizli_topla = data.get("hizliTopla")
+        tampon_hasat = data.get("tamponHasat")
+        kalkan_kvk = data.get("kvkKalkan")
+        arttirici_al = data.get("arttiriciAl")
 
         global bekleme_carpani
         try:
-            kaynakseviye = int(data.readline().rstrip()) - 1
-            bekleme_carpani = int(data.readline().rstrip())
+            kaynakseviye = int(data.get("kaynakSeviye")) - 1
+            bekleme_carpani = int(data.get("beklemeCarpani"))
         except:
             kaynakseviye = 5
             bekleme_carpani = 3
 
 
-        bugdaylist = []
-        odunlist = []
-        kuvarslist = []
-        altinlist = []
-        demirlist = []
-        gozculist = []
-        askeregitlist = []
-        ifritlist = []
+        gonderilcekList = data.get("gonderilcekList")
+        gozculist = data.get("gozcuList")
+        askeregitlist = data.get("gonderilcekList")
+        ifritlist = data.get("ifritList")
 
-        for i in range(hesapsayisi):
-            combo = data.readline().rstrip()
-            bugdaylist.append(True) if combo == 'Bugday' else bugdaylist.append(False)
-            odunlist.append(True) if combo == 'Odun' else odunlist.append(False)
-            demirlist.append(True) if combo == 'Demir' else demirlist.append(False)
-            kuvarslist.append(True) if combo == 'Kuvars' else kuvarslist.append(False)
-            altinlist.append(True) if combo == 'Altin' else altinlist.append(False)
-        for i in range(hesapsayisi):
-            askersatir = data.readline().rstrip()
-            if askersatir == 'Max':
-                askeregitlist.append("Max") 
-
-            elif askersatir == 'Tahil Arabasi':
-                askeregitlist.append("Tahil Arabasi")
-            else:
-                askeregitlist.append("Yok")
-
-        for i in range(hesapsayisi):
-            gozculist.append(True) if data.readline().rstrip() == 'True' else gozculist.append(False)
-        for i in range(hesapsayisi):
-            ifritlist.append(True) if data.readline().rstrip() == 'True' else ifritlist.append(False)
-        data.close()
         
         if bekleme_carpani == 1:
             bekleme_carpani = 2
@@ -226,14 +184,10 @@ def collectdata():
         elif bekleme_carpani == 5:
             bekleme_carpani = 0.5
         
-        mail =[]
-        sifre = []
-        f = open("./data/acc.txt")
-        allofthem = f.readlines()
+        mail =data.get("mail")
+        sifre = data.get("sifre")
         
-        for i in range(int(len(allofthem)/2)):
-            mail.append(allofthem[2*i].rstrip())
-            sifre.append(allofthem[(2*i)+1].rstrip())
+        
 
         return {
             "kullaniciadi":kullaniciadi,
@@ -251,11 +205,7 @@ def collectdata():
             "tampon_hasat": tampon_hasat,
             "kaynakseviye": kaynakseviye,
             "bekleme_carpani": bekleme_carpani,
-            "bugdaylist": bugdaylist,
-            "odunlist": odunlist,
-            "kuvarslist": kuvarslist,
-            "demirlist": demirlist,
-            "altinlist":altinlist,
+            "gonderilcekList": gonderilcekList,
             "gozculist": gozculist,
             "askeregitlist":askeregitlist,
             "mail":mail,
@@ -266,7 +216,7 @@ def collectdata():
         }
     except ValueError:
         print("hata")
-        return collectdata()
+        return "hata"
 
 def oyunac():
     
@@ -301,7 +251,7 @@ def oyunac():
         except:
             pass
     
-def hesapgiris(btn):
+def hesapgiris(btn,mail,sifre):
     global appopen
     appopen = False
     for i in range(100):
@@ -371,7 +321,6 @@ def hesapgiris(btn):
             time.sleep(bekleme_carpani*2)
             click(btn,110,227)
             time.sleep(bekleme_carpani*2)
-            mail = collectdata().get("mail")
             mail1 = mail[farm].split("@")
 
 
@@ -391,7 +340,6 @@ def hesapgiris(btn):
             click(btn,165,320)
             time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
-            sifre = collectdata().get("sifre")
             pyautogui.write(sifre[farm])
             time.sleep(bekleme_carpani*2)
             click(btn,170,390)
@@ -452,11 +400,18 @@ def liman(btn):
     else:
         return "bulunamadi"
         
+
+
+
 def ickaynakbonusu(btn,arttirici_al):
     bugday = True
     odun = True
     demir = True
     kuvars = True
+    marketegit = False
+    for i in arttirici_al:
+        if i:
+            marketegit = True
     devredisi = ara("./images/devredisi.png")
     if devredisi != -1:
         click(btn,devredisi[0]+10,devredisi[1]+10)
@@ -523,8 +478,16 @@ def ickaynakbonusu(btn,arttirici_al):
        
         click(btn,20,65)
         time.sleep(bekleme_carpani * 2)
-        if arttirici_eksik and arttirici_al:
-            #baş
+        if arttirici_eksik and marketegit:
+            if arttirici_al[0] == False:
+                bugday = True
+            if arttirici_al[1] == False:
+                odun = True
+            if arttirici_al[2] == False:
+                demir = True
+            if arttirici_al[3] == False:
+                kuvars = True
+
             time.sleep(bekleme_carpani * 2)
             click(btn,290,590)
             time.sleep(bekleme_carpani * 2)
@@ -675,7 +638,7 @@ def ickaynakbonusu(btn,arttirici_al):
                             time.sleep(bekleme_carpani * 2)
                     time.sleep(bekleme_carpani * 2)
                     click(btn,20,65)                
-         
+               
 def mesajtopla(btn):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi.png")
@@ -819,7 +782,7 @@ def mesajtoplaoteki(btn):
         time.sleep(bekleme_carpani*5)
         return "appopen"
 
-def loncatopla(btn):
+def loncatopla(btn,loncatech_yap):
     time.sleep(bekleme_carpani*2)
     girildi = ara("./images/girildi.png")
     if girildi == -1:
@@ -923,7 +886,6 @@ def loncatopla(btn):
     else:
         click(btn,20,65)
         time.sleep(bekleme_carpani*2)
-    loncatech_yap = collectdata().get("loncatech_yap")
     if not loncatech_yap:
         click(btn,20,65)
         time.sleep(bekleme_carpani*2)
@@ -947,7 +909,7 @@ def loncatek(btn):
             for i in range(4):
                 girildi = ara("./images/girildi.png")
                 if girildi == -1:
-                    pyautogui.hotkey("ctrl", "shift","2")
+                    click(btn,20,65)
                     time.sleep(bekleme_carpani*2)
                     continue
                 return "bitti"
@@ -956,7 +918,7 @@ def loncatek(btn):
             for i in range(4):
                 girildi = ara("./images/girildi.png")
                 if girildi == -1:
-                    pyautogui.hotkey("ctrl", "shift","2")
+                    click(btn,20,65)
                     time.sleep(bekleme_carpani*2)
                     continue
                 else:
@@ -1007,7 +969,7 @@ def trainsoldier(btn,tahilarabasi):
         if tahilarabasi:
             break
 
-def hazinetopla(btn):
+def hazinetopla(btn,ganimetyap):
     girildi = ara("./images/girildi.png")
     if girildi != -1:
         pass
@@ -1048,7 +1010,7 @@ def hazinetopla(btn):
         
     else:
         
-        if collectdata().get("ganimet_yap") == True:
+        if ganimetyap == True:
             pass
         else:
             click(btn,160, 600)
@@ -1219,8 +1181,8 @@ def ganimet_karavani(btn):
     logkayit(farm,"ganimet karavani bitti")
     #ganimet_karavani bitis
 
-def hizlitamponhasat(btn):
-    if collectdata().get("hasat_et"):
+def hizlitamponhasat(btn,hizli,tampon,hasat):
+    if hasat:
         time.sleep(bekleme_carpani*2)
         click(btn,295, 525)
         time.sleep(bekleme_carpani*2)
@@ -1236,7 +1198,7 @@ def hizlitamponhasat(btn):
             else:
                 click(btn,60+(i*70),150)
                 time.sleep(bekleme_carpani*2)
-    if collectdata().get("hizli_topla"):
+    if hizli:
         time.sleep(bekleme_carpani*2)
         click(btn,295, 525)
         time.sleep(bekleme_carpani*2)
@@ -1252,7 +1214,7 @@ def hizlitamponhasat(btn):
             else:
                 click(btn,60+(i*70),150)
                 time.sleep(bekleme_carpani*2)
-    if collectdata().get("tampon_hasat"):
+    if tampon:
         time.sleep(bekleme_carpani*2)
         click(btn,295, 525)
         time.sleep(bekleme_carpani*2)
@@ -1604,7 +1566,7 @@ def kaynakgonder(btn):
                 click(btn,20,65)
                 logkayit(farm,"kaynak gonderme hata")
 
-def askergonder(btn,hangisi):
+def askergonder(btn,hangisi,kaynakseviye):
     ilksefer = True
     time.sleep(bekleme_carpani*2)
     while True:
@@ -1653,7 +1615,7 @@ def askergonder(btn,hangisi):
             for i in range(8):
                 click(btn,40, 525)
                 time.sleep(bekleme_carpani*0.2)
-            for i in range(collectdata().get("kaynakseviye")):
+            for i in range(kaynakseviye):
                 click(btn,205, 525)
                 time.sleep(bekleme_carpani*0.2)
             ilksefer = False
@@ -2357,14 +2319,28 @@ def gozcugonder(btn):
             time.sleep(bekleme_carpani*2)
             click(btn,40, 110)
    
-def sonrakihesap(btn):
+def sonrakihesap(btn,mail,sifre,hesapsayisi):
     global farm
-    hesapsayisi = collectdata().get("hesapsayisi")
-    if farm == hesapsayisi -1:
+    farmread= open("./data/data.txt")
+    username = farmread.readline().rstrip()
+    password = farmread.readline().rstrip()
+    hesapsayisi = farmread.readline().rstrip()
+    farmread.close()
+
+    farmwrite = open("./data/data.txt","w")
+    if farm == int(hesapsayisi) -1:
         farm = 0
+        farmwrite.write(str(username).rstrip()+"\n")
+        farmwrite.write(str(password).rstrip()+"\n")
+        farmwrite.write(str(hesapsayisi).rstrip()+"\n")
+        farmwrite.write(str("0").rstrip()+"\n")
     else:
         farm += 1
-
+        farmwrite.write(str(username).rstrip()+"\n")
+        farmwrite.write(str(password).rstrip()+"\n")
+        farmwrite.write(str(hesapsayisi).rstrip()+"\n")
+        farmwrite.write(str(farm).rstrip()+"\n")
+    farmwrite.close()
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
     click(btn,20,75)
@@ -2392,8 +2368,6 @@ def sonrakihesap(btn):
     click(btn,110,227)
     time.sleep(bekleme_carpani*2)
     
-    mail = collectdata().get("mail")
-    sifre = collectdata().get("sifre")
 
 
     mail1 = mail[farm].split("@")
@@ -2444,7 +2418,29 @@ def sonrakihesap(btn):
 
 def main(btn,frm):
     global farm
-    farm = 0
+
+    farmread = open("./data/data.txt")
+    username = farmread.readline().rstrip()
+    password = farmread.readline().rstrip()
+    hesapsayisi = int(farmread.readline().rstrip())
+    bu = farmread.readline().rstrip()
+    farmread.close()
+    try:
+        if bu =="":
+            farm = 0
+        else:
+            farm = int(bu)
+    except:
+        farm = 0
+
+    if farm > hesapsayisi:
+        farm = 0
+    farmwrite = open("./data/data.txt","w")
+    farmwrite.write(str(username).rstrip()+"\n")
+    farmwrite.write(str(password).rstrip()+"\n")
+    farmwrite.write(str(hesapsayisi).rstrip()+"\n")
+    farmwrite.write(str(farm).rstrip()+"\n")
+    farmwrite.close()
     print("başla")
 
     global hesapgir
@@ -2455,12 +2451,24 @@ def main(btn,frm):
             data = collectdata()
            
             if x == "appopen":
+                logkayit(farm, "ATLANDI")
+                farmwrite = open("./data/data.txt","w")
+            
                 hesapgir = True
                 if farm == data.get("hesapsayisi") -1:
                     farm = 0
+                    farmwrite.write(str(username).rstrip()+"\n")
+                    farmwrite.write(str(password).rstrip()+"\n")
+                    farmwrite.write(str(hesapsayisi).rstrip()+"\n")
+                    farmwrite.write(str("0").rstrip()+"\n")
                 else:
                     farm += 1
+                    farmwrite.write(str(username).rstrip()+"\n")
+                    farmwrite.write(str(password).rstrip()+"\n")
+                    farmwrite.write(str(hesapsayisi).rstrip()+"\n")
+                    farmwrite.write(str(farm).rstrip()+"\n")
                 print("Truelandin")
+                farmwrite.close()
             
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
@@ -2470,13 +2478,27 @@ def main(btn,frm):
             btn.config(state=DISABLED)
 
             now = datetime.datetime.now()
-            
-            
-
+            frame = None
             print(farm)
-            labeltime = Label(frm,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-            #labelresource.place(x=90,y = 100,width=60,height=20)
-            labeltime.grid(row = farm+1,column = 5,ipadx = 15,ipady = 5)
+            if farm < 15:
+                frame = frm[0]
+            elif farm < 30:
+                frame = frm[1]
+            elif farm < 45:
+                frame = frm[2]
+            elif farm < 60:
+                frame = frm[3]
+            elif farm < 75:
+                frame = frm[4]
+            elif farm < 90:
+                frame = frm[5]
+            elif farm < 105:
+                frame = frm[6]
+            elif farm < 120:
+                frame = frm[7]
+            
+            labeltime = Label(frame,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+            labeltime.grid(row = (farm+1)%15,column = 5,ipadx = 15,ipady = 5)
 
             hesapsayisi = data.get("hesapsayisi") 
             kaynak_gonder = data.get("kaynak_gonder") 
@@ -2490,25 +2512,24 @@ def main(btn,frm):
             hasat_et = data.get("hasat_et") 
             hizli_topla = data.get("hizli_topla") 
             tampon_hasat = data.get("tampon_hasat") 
-            bugdaylist = data.get("bugdaylist") 
-            odunlist = data.get("odunlist") 
-            kuvarslist = data.get("kuvarslist")
-            altinlist = data.get("altinlist")
-            demirlist = data.get("demirlist") 
+            gonderilcekList = data.get("gonderilcekList") 
             gozculist = data.get("gozculist")
             askeregitlist = data.get("askeregitlist")
             kvk_kalkan = data.get("kvkkalkan")
             arttirici_al = data.get("arttirici_al")
             ifritlist = data.get("ifritlist")
+            mail =data.get("mail")
+            sifre = data.get("sifre")
+            kaynakseviye = data.get("kaynakseviye")
             global bonusal
             bonusal = dis_kaynak_bonus
 
             global appopen
             appopen = False
-            
+            send_heartbeat()
             time.sleep(5)
             oyunac()
-            x = hesapgiris(btn)
+            x = hesapgiris(btn,mail,sifre)
             if x == "appopen":
                 
                 cikis(btn)
@@ -2548,7 +2569,7 @@ def main(btn,frm):
                     continue
                 
             if lonca_topla:     
-                x = loncatopla(btn)
+                x = loncatopla(btn,loncatech_yap)
                 if x == "appopen":
                     cikis(btn)
                     continue
@@ -2561,7 +2582,7 @@ def main(btn,frm):
                 if x == "appopen":
                     cikis(btn)
                     continue
-
+            print("loncatek bitti")
             if askeregitlist[farm] == "Max":
                 x = trainsoldier(btn,False)
                 if x == "appopen":
@@ -2574,7 +2595,7 @@ def main(btn,frm):
                     continue
 
             if hazine_topla:
-                x = hazinetopla(btn)
+                x = hazinetopla(btn,ganimet_yap)
                 if x == "appopen":
                     cikis(btn)
                     continue
@@ -2588,7 +2609,7 @@ def main(btn,frm):
                     pass
 
             if hizli_topla or tampon_hasat or hasat_et:        
-                hizlitamponhasat(btn)
+                hizlitamponhasat(btn,hizli_topla,tampon_hasat,hasat_et)
             
             sonrakidunya(btn)
             
@@ -2612,74 +2633,74 @@ def main(btn,frm):
                     continue
                 elif x =="vip":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
                 elif x =="attack":
                     pass
 
-            if bugdaylist[farm]:        
-                x = askergonder(btn,0)
+            if gonderilcekList[farm] == "Bugday":        
+                x = askergonder(btn,0,kaynakseviye)
                 if x== "appopen":
                     cikis(btn)
                     continue
                 elif x == "exit":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
                 elif x == "vip":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if odunlist[farm]:        
-                x = askergonder(btn,1)
+            if gonderilcekList[farm] == "Odun":        
+                x = askergonder(btn,1,kaynakseviye)
                 if x== "appopen":
                     cikis(btn)
                     continue
                 elif x == "exit":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
                 elif x == "vip":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if demirlist[farm]:        
-                x = askergonder(btn,2)
+            if gonderilcekList[farm] == "Demir":        
+                x = askergonder(btn,2,kaynakseviye)
                 if x== "appopen":
                     cikis(btn)
                     continue
                 elif x == "exit":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
                 elif x == "vip":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if kuvarslist[farm]:        
-                x = askergonder(btn,3)
+            if gonderilcekList[farm] == "Kuvars":        
+                x = askergonder(btn,3,kaynakseviye)
                 if x== "appopen":
                     cikis(btn)
                     continue
 
                 elif x == "exit":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
                 elif x == "vip":
                     
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
-            if altinlist[farm]:
+            if gonderilcekList[farm] == "Altin":
                 x = altintopla(btn)
                 if x == "vip":
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
                 elif x == "appopen":
                     cikis(btn)
@@ -2687,11 +2708,10 @@ def main(btn,frm):
                 elif x == "arkadasbos":
                     click(btn,20,65)
                     hesapgir = False
-                    sonrakihesap(btn)
+                    sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
             hesapgir = False
-            sonrakihesap(btn)
+            sonrakihesap(btn,mail,sifre,hesapsayisi)
         except Exception as e:
             logkayit(0, f"Hata: {str(e)}")
-            send_message(str(collectdata().get("kullaniciadi"))+str(e))
             continue
