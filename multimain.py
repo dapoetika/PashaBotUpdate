@@ -1,152 +1,269 @@
-#sa
+#latest
 from tkinter.ttk import *
 from tkinter import *
 
 import bs4
 import requests 
-
-def hesapgir(window):
+def login():
     vericek = open("./data/data.txt")
+    username = vericek.readline().rstrip()
+    password = vericek.readline().rstrip()
+    
     try:
-        r = requests.get("https://nebulousalih620.wixsite.com/muhtesemveritabani")
-        soup = bs4.BeautifulSoup(r.content,"html.parser")
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/login",json={"username":username,"password":password})
+        return r
     except:
         print("internet bağlantısı yok")
         return
+def sonrakihesapgir(window):
+    vericek = open("./data/data.txt")
+    username = vericek.readline().rstrip()
+    password = vericek.readline().rstrip()
+    hesapsayisi = vericek.readline().rstrip()
+    #sonraki girişler
 
-    kkkk = soup.find_all("h6",{"class" : "wixui-rich-text__text"})
-    kkkk = str(kkkk)
-    aa = vericek.readline()
-    bb = vericek.readline()
-    aa = aa[0:-1]
-    bb = bb[0:-1]
-   
-    if "%" + aa + " ; " + bb + "%" in kkkk:
+    frame2 = Frame(window,height = 100,width = 400,background= "DarkSlateGray4", borderwidth=2, relief="groove")
+    frame2.pack(fill='both', expand=True)
+    labelhesapsayisi = Label(frame2,text="Hesap Sayısı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    labelhesapsayisi.pack()
+    hesapentry = Entry(frame2,background="antiquewhite3",justify = CENTER)
+    hesapentry.pack()
+    hesapentry.insert(0,hesapsayisi)
+    btn = Button(frame2,text="Start", height=2, width=10, background="MediumSpringGreen",command=lambda: otekigecis(window,int(hesapentry.get()),username,password,frame2),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
+    btn.pack()
+def ilkhesapgir(window):
+    # ilk giriş
 
-        #sonraki girişler
-
-        frame2 = Frame(window,height = 100,width = 400,background= "DarkSlateGray4", borderwidth=2, relief="groove")
-        frame2.place(x=105,y = 115)
-        labelhesapsayisi = Label(frame2,text="Hesap Sayısı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
-        labelhesapsayisi.grid(row = 0,column = 0,padx = 20)
-        hesapentry = Entry(frame2,background="antiquewhite3",justify = CENTER)
-        hesapentry.grid(row = 0,column = 3)
-
-        defaulthesap = vericek.readline()
-        hesapentry.insert(0,defaulthesap)
-
-        btn = Button(text="Start", height=2, width=10, background="MediumSpringGreen",command=lambda: otekigecis(window,int(hesapentry.get()),aa,bb,labelhesapsayisi,hesapentry,btn),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
-        btn.place(x=500,y = 250)
-        
-    else:
-        # ilk giriş
-
-        frame2 = Frame(window,height = 100,width = 400,background = "DarkSlateGray4")
-        frame2.place(x=105,y = 115)
-        
-        nicknamelabel = Label(frame2,text="Kullanıcı Adı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
-        nicknamelabel.grid(row = 0,column = 0)
-        nickentry = Entry(frame2,background="antiquewhite3")
-        nickentry.grid(row = 0,column = 1)
+    frame2 = Frame(window,height = 100,width = 400,background = "DarkSlateGray4")
+    #frame2.place(x=105,y = 115)
+    frame2.pack(fill='both', expand=True)
+    nicknamelabel = Label(frame2,text="Kullanıcı Adı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    nicknamelabel.pack()
+    nickentry = Entry(frame2,background="antiquewhite3")
+    nickentry.pack()
 
 
-        """defaultnick = vericek.readline()
-        defaultnick = defaultnick[0:-1]
-        nickentry.insert(0,defaultnick)"""
+    """defaultnick = vericek.readline()
+    defaultnick = defaultnick[0:-1]
+    nickentry.insert(0,defaultnick)"""
 
 
 
-        passwordlabel = Label(frame2,text="Parola",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
-        passwordlabel.grid(row = 1,column = 0,pady = 30)
-        passwordentry = Entry(frame2,background="antiquewhite3",show = "*")
-        passwordentry.grid(row = 1,column = 1,pady = 30)
+    passwordlabel = Label(frame2,text="Parola",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    passwordlabel.pack()
+    passwordentry = Entry(frame2,background="antiquewhite3",show = "*")
+    passwordentry.pack()
 
-        """defaultpass = vericek.readline()
-        defaultpass = defaultpass[0:-1]
-        passwordentry.insert(0,defaultpass)"""
-
-
-        
-        labelhesapsayisi = Label(frame2,text="Hesap Sayısı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
-        labelhesapsayisi.grid(row = 2,column = 0,padx = 20)
-        hesapentry = Entry(frame2,background="antiquewhite3",justify = CENTER)
-        hesapentry.grid(row = 2,column = 1)
-
-        defaulthesap = vericek.readline()
-        hesapentry.insert(0,defaulthesap)
+    """defaultpass = vericek.readline()
+    defaultpass = defaultpass[0:-1]
+    passwordentry.insert(0,defaultpass)"""
 
 
-        buttonok = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: gecis(window,hesapentry,passwordentry,nickentry,labelhesapsayisi,buttonok,nicknamelabel,passwordlabel,kkkk),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
-        buttonok.place(x=500,y = 250)
-
-
-
-        
-
-def otekigecis(window,hesapsayisi,nickname,password,labelhesapsayisi,hesapentry,btn):
-    btn.destroy()
-    labelhesapsayisi.destroy()
-    hesapentry.destroy()
-    tablegiris(window,hesapsayisi,nickname,password) 
-
-def gecis(window,hesapentry,passwordentry,nickentry,labelhesapsayisi,buttonok,nickamelabel,passwordlabel,kkkk):
-
-    hesapsayisi = hesapentry.get()
-    nickname = nickentry.get()
-    password = passwordentry.get()
-
-
-
-    hesapentry.destroy()
-    passwordentry.destroy()
-    nickentry.destroy()
-
-    labelhesapsayisi.destroy()
-    buttonok.destroy()
-    nickamelabel.destroy()
-    passwordlabel.destroy()
-
-
-    if "%" + nickname + " ; " + password + "%" in kkkk:
-        
-        tablegiris(window,hesapsayisi,nickname,password) 
-        
-    else:
-        hesapgir(window)
     
+    labelhesapsayisi = Label(frame2,text="Hesap Sayısı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    labelhesapsayisi.pack()
+    hesapentry = Entry(frame2,background="antiquewhite3",justify = CENTER)
+    hesapentry.pack()
+
+    buttonok = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: gecis(window,hesapentry,passwordentry,nickentry,frame2),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
+    buttonok.place(x=500,y = 250)
+
+    
+def otekigecis(window,hesapsayisi,nickname,password,frame2):
+    frame2.destroy()
+    r = login()
+    data = open("./data/data.txt")
+
+    first = data.readline().rstrip()
+    sec = data.readline().rstrip()
+    third = data.readline().rstrip()
+    fourth = data.readline().rstrip()
+
+    data = open("./data/data.txt","w")
+    data.write(str(nickname).rstrip()+"\n")
+    data.write(str(password).rstrip()+"\n")
+    data.write(str(hesapsayisi).rstrip()+"\n")
+    data.write(str(fourth).rstrip()+"\n")
+    tablegiris(window,hesapsayisi,nickname,password,r) 
+
+def gecis(window,hesapentry,passwordentry,nickentry,frame):
+
+    hesapsayisi = hesapentry.get().rstrip()
+    username = str(nickentry.get().rstrip())
+    password = str(passwordentry.get().rstrip())
+
+    frame.destroy()
+    print(username,password)
+    r = requests.post("https://api-ofhom3zgza-uc.a.run.app/login",json={"username":username,"password":password})
+
+    if r.status_code==200:
+        data = open("./data/data.txt","w")
+        data.write(str(username).rstrip()+"\n")
+        data.write(str(password).rstrip()+"\n")
+        data.write(str(hesapsayisi).rstrip()+"\n")
+        tablegiris(window,hesapsayisi,username,password,r) 
+        
+    else:
+        ilkhesapgir(window)
+
+def show_frame(frame):
+    frame.tkraise()
+
 def reverseBool(hangiListe,m):
     hangiListe[m] = not hangiListe[m]
     
-def tablegiris(window,hesapsayisi,nickname,password):
-    global frm
+def tablegiris(window,hesapsayisi,nickname,password,r):
+    
     hesapsayisi = int(hesapsayisi)
+    data = r.json().get("userData")
+    print(data)
+    tab_buttons = Frame(window,background="DarkSlateGray4")
+    tab_buttons.pack(side="top",anchor="w")
 
-    style = Style()
-    style.configure('custom.TNotebook', background="DarkSlateGray4", borderwidth=0,margin=0, foreground="Black", padding=[10, 0],bordercolor = "DarkSlateGray4")
-    style.configure('custom.TNotebook.Tab', background="DarkSlateGray4", foreground="Black", padding=[10, 0],bordercolor = "Red")
+    content = Frame(window)
+    content.pack(fill='both', expand=True)
 
+    global ayarlarTABlist
+    ayarlarTABlist = []
+    hesaplarTABlist= []
+    """Farm Ayarları Tab Ayarları"""
+    frm = Frame(content,background="DarkSlateGray4")
+    ayarlarTABlist.append(frm)
 
-    notebook = Notebook(window,style='custom.TNotebook')
-    notebook.grid()
-   
-    frm = Frame(notebook,height = (30*(hesapsayisi-2))+65,width = 750,background= "DarkSlateGray4",  relief="groove")
-    frm.place()
+    btn1 = Button(tab_buttons, text='    Farm     ', command=lambda: show_frame(frm))
+    btn1.grid(row=0, column=0)
+    
+    if hesapsayisi > 15:
+        frm11 = Frame(content,background="DarkSlateGray4")
+        ayarlarTABlist.append(frm11)
+        btn1 = Button(tab_buttons, text='   Farm 2    ', command=lambda: show_frame(frm11))
+        btn1.grid(row=0, column=1)
+    if hesapsayisi > 30:
+        frm12 = Frame(content,background="DarkSlateGray4")
+        ayarlarTABlist.append(frm12)
+        btn1 = Button(tab_buttons, text='   Farm 3    ', command=lambda: show_frame(frm12))
+        btn1.grid(row=0, column=2)
+        
+    if hesapsayisi > 45:
+        frm13 = Frame(content,background="DarkSlateGray4")
+        ayarlarTABlist.append(frm13)
+        btn1 = Button(tab_buttons, text='   Farm 4    ', command=lambda: show_frame(frm13))
+        btn1.grid(row=0, column=3)
 
-    frm2 = Frame(notebook,height = (30*(hesapsayisi-2))+65,width = 750,background= "DarkSlateGray4", relief="groove")
+    if hesapsayisi > 60:
+        frm14 = Frame(content,background="DarkSlateGray4")
+        ayarlarTABlist.append(frm14)
+        btn1 = Button(tab_buttons, text='   Farm 5    ', command=lambda: show_frame(frm14))
+        btn1.grid(row=0, column=4)
+        
+    if hesapsayisi > 75:
+        frm15 = Frame(content,background="DarkSlateGray4")
+        ayarlarTABlist.append(frm15)
+        btn1 = Button(tab_buttons, text='   Farm 6    ', command=lambda: show_frame(frm15))
+        btn1.grid(row=0, column=5)
+        
+    if hesapsayisi > 90:
+        frm16 = Frame(content,background="DarkSlateGray4")
+        ayarlarTABlist.append(frm16)
+        btn1 = Button(tab_buttons, text='   Farm 7    ', command=lambda: show_frame(frm16))
+        btn1.grid(row=0, column=6)
+    if hesapsayisi > 105:
+        frm17 = Frame(content,background="DarkSlateGray4")
+        ayarlarTABlist.append(frm17)
+        btn1 = Button(tab_buttons, text='   Farm 8    ', command=lambda: show_frame(frm17))
+        btn1.grid(row=0, column=7)
+    
+    for f in ayarlarTABlist:
+        f.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+    """Hesap Kayıt Tab ayarları"""
+    frm2 = Frame(content,height = (30*(15-2))+65,width = 750,background= "DarkSlateGray4", relief="groove")
     frm2.place()
+    hesaplarTABlist.append(frm2)
+    btn1 = Button(tab_buttons, text=' Hesaplar  ', command=lambda: show_frame(frm2))
+    btn1.grid(row=1, column=0)
+    if hesapsayisi > 15:
+        frm21 = Frame(content,background="DarkSlateGray4")
+        hesaplarTABlist.append(frm21)
+        btn1 = Button(tab_buttons, text=' Hesaplar 2', command=lambda: show_frame(frm21))
+        btn1.grid(row=1, column=1)
 
-    frm3 = Frame(notebook,height = (30*(hesapsayisi-2))+65,width = 750,background= "DarkSlateGray4", relief="groove")
-    frm3.place()
+    if hesapsayisi > 30:
+        frm22 = Frame(content,background="DarkSlateGray4",relief="groove")
+        hesaplarTABlist.append(frm22)
+        btn1 = Button(tab_buttons, text=' Hesaplar 3', command=lambda: show_frame(frm22))
+        btn1.grid(row=1, column=2)
 
-    notebook.add(frm, text="Başlat",padding=0)
-    notebook.add(frm2, text="Hesaplar",padding=0)
-    notebook.add(frm3, text="Seçenekler",padding=0)
+    if hesapsayisi > 45:
+        frm23 = Frame(content,background="DarkSlateGray4")
+        hesaplarTABlist.append(frm23)
+        btn1 = Button(tab_buttons, text=' Hesaplar 4', command=lambda: show_frame(frm23))
+        btn1.grid(row=1, column=3)
 
-    labelfarm = Label(frm,text="Farm",background="DarkSlateGray4", relief="groove",font='Helvetica 10 bold')
-    #labelfarm.place(x=30,y=100,width=60,height=20)
-    labelfarm.grid(row = 0,column = 0,ipadx = 15,ipady = 5)
+    if hesapsayisi > 60:
+        frm24 = Frame(content,background="DarkSlateGray4")
+        hesaplarTABlist.append(frm24)
+        btn1 = Button(tab_buttons, text=' Hesaplar 5', command=lambda: show_frame(frm24))
+        btn1.grid(row=1, column=4)
+
+    if hesapsayisi > 75:
+        frm25 = Frame(content,background="DarkSlateGray4")
+        hesaplarTABlist.append(frm25)
+        btn1 = Button(tab_buttons, text=' Hesaplar 6', command=lambda: show_frame(frm25))
+        btn1.grid(row=1, column=5)
+
+    if hesapsayisi > 90:
+        frm26 = Frame(content,background="DarkSlateGray4")
+        hesaplarTABlist.append(frm26)
+        btn1 = Button(tab_buttons, text=' Hesaplar 7', command=lambda: show_frame(frm26))
+        btn1.grid(row=1, column=6)
+
+    if hesapsayisi > 105:
+        frm27 = Frame(content,background="DarkSlateGray4")
+        hesaplarTABlist.append(frm27)
+        btn1 = Button(tab_buttons, text=' Hesaplar 8', command=lambda: show_frame(frm27))
+        btn1.grid(row=1, column=7)
+
+    if hesapsayisi > 120:
+        frm27 = Frame(content,background="DarkSlateGray4")
+        hesaplarTABlist.append(frm27)
+        btn1 = Button(tab_buttons, text=' Hesaplar 9', command=lambda: show_frame(frm27))
+        btn1.grid(row=1, column=8)
+
+    for k in hesaplarTABlist:
+        k.place(relx=0, rely=0, relwidth=1, relheight=1)
+    """Seçenekler TAB """
+
+    frm3 = Frame(content,background="DarkSlateGray4")
+    frm3.place(relx=0, rely=0, relwidth=1, relheight=1)
+    btn1 = Button(tab_buttons, text='Seçenekler', command=lambda: show_frame(frm3))
+    btn1.grid(row=2, column=0)
     
-    
+
+    arttiriciAl =data.get("arttiriciAl")
+    askeregitList=data.get("askeregitList")
+    beklemeCarpani=data.get("beklemeCarpani")
+    diskaynakBonus=data.get("disKaynakBonus")
+    ganimetYap=data.get("ganimetYap")
+    gonderilcekList=data.get("gonderilcekList")
+    gozcuList=data.get("gozcuList")
+    hasatet=data.get("hasatEt")
+    hazinetopla=data.get("hazineTopla")
+    hesapSayisi=data.get("hesapSayisi")
+    hizliTopla=data.get("hizliTopla")
+    icKaynakBonus=data.get("icKaynakBonus")
+    ifritList=data.get("ifritList")
+    kaynakGonder=data.get("kaynakGonder")
+    kaynakSeviye=data.get("kaynakSeviye")
+    kvkKalkan=data.get("kvkKalkan")
+    loncaTopla=data.get("loncaTopla")
+    loncatechYap=data.get("loncatechYap")
+    mail=data.get("mail")
+    mesajTopla=data.get("mesajTopla")
+    password=data.get("password")
+    sifreList = data.get("sifre")
+    tamponHasat=data.get("tamponHasat")
+    username=data.get("username")
     
     gonderilcek = []
     askeregitcombo = []
@@ -167,131 +284,120 @@ def tablegiris(window,hesapsayisi,nickname,password):
     dis_kaynak= []
     gozculist = []
     ifritlist = []
-    data = open("./data/data.txt")
-    data.readline()
-    data.readline()
-    data.readline()
 
-    
-
-    k = data.readline()
-    l = data.readline()
-    g = data.readline()
-    ic = data.readline()
-    dis = data.readline()
-    havuz_topla =  data.readline()
-    lonca_topla =  data.readline()
-    mesaj_topla =  data.readline()
-    
-
-    hasat_et = data.readline()
-    hizli_topla = data.readline()
-    tampon_hasat = data.readline()
-    kvk_kalkan = data.readline()
-    arttirici_al = data.readline()
-    kaynak_seviye = data.readline()
-    hiz_carpan = data.readline()
+    sayac = 0
+    tur = 15
+    kalan = hesapsayisi
+    for tab in ayarlarTABlist:
+        labelfarm = Label(tab,text="Farm",background="DarkSlateGray4", relief="groove",font='Helvetica 10 bold')
+        labelfarm.grid(row = 0,column = 0,ipadx = 15,ipady = 5)
 
 
-    labelresource = Label(frm,text="Kaynak",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-    #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 1,ipadx = 15,ipady = 5)
+        labelresource = Label(tab,text="Kaynak",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource.grid(row = 0,column = 1,ipadx = 15,ipady = 5)
 
 
-    labelresource = Label(frm,text="Asker Eğit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-    #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 2,ipadx = 15,ipady = 5)
+        labelresource = Label(tab,text="Asker Eğit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource.grid(row = 0,column = 2,ipadx = 15,ipady = 5)
 
 
-    labelresource = Label(frm,text="Gözcü",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-    #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 3,ipadx = 15,ipady = 5)
+        labelresource = Label(tab,text="Gözcü",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource.grid(row = 0,column = 3,ipadx = 15,ipady = 5)
 
 
-    labelresource = Label(frm,text="İfrit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-    #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 4,ipadx = 25,ipady = 5)
+        labelresource = Label(tab,text="İfrit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource.grid(row = 0,column = 4,ipadx = 25,ipady = 5)
 
 
-    labelresource = Label(frm,text="Saat",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-    #labelresource.place(x=90,y = 100,width=60,height=20)
-    labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
-    for i in range(hesapsayisi):
-        
-        secil = data.readline().rstrip()
-
-        labelfarmcount = Label(frm,text = str(i+1),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        #labelfarmcount.place(x=30,y = 120+30*i,width=60,height=25)
-        labelfarmcount.grid(row = i +1,column = 0,ipadx = 25,ipady = 5)
-
-
-
-
-
-        combo = Combobox(frm,values=["Yok","Bugday","Odun","Demir","Kuvars","Altin"],background="DarkSlateGray4",state="readonly",width=2)
-        combo.grid(row = i +1,column =  1,ipadx = 25,ipady = 5)
-        gonderilcek.append(combo)
-        
-        if secil == "Yok" or secil == "":
-            combo.set("--")
-        elif secil == "Bugday":
-            combo.set("Bugday")
-        elif secil == "Odun":
-            combo.set("Odun")
-        elif secil == "Demir":
-            combo.set("Demir")
-        elif secil == "Kuvars":
-            combo.set("Kuvars")
-        elif secil == "Altin":
-            combo.set("Altin")
-
-    for i in range(hesapsayisi):
-        
-        secil = data.readline().rstrip()
-
-        combo = Combobox(frm,values=["Yok","Max","Tahil Arabasi"],background="DarkSlateGray4",state="readonly",width=4)
-        combo.grid(row = i +1,column =  2,ipadx = 25,ipady = 5)
-        askeregitcombo.append(combo)
-        if secil == "Yok" or secil == "":
-            combo.set("--")
-
-        elif secil == "Max":
-            combo.set("Max")
-
-        elif secil == "Tahil Arabasi":
-            combo.set("Tahil Arabasi")
-        
-
-    for i in range(hesapsayisi):
-        combo = Checkbutton(frm,command = lambda g = i:reverseBool(gozculist,g),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-        combo.grid(row = i +1,column = 3,ipadx = 25,ipady = 5)
-        x = data.readline()
-        if x == "True\n":
-            combo.select()
-            gozcu = True
+        labelresource = Label(tab,text="Saat",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
+        if kalan > 15:
+            tur = 15
+            kalan -= 15
         else:
-            gozcu = False
-            combo.deselect()
-        gozculist.append(gozcu)
+            tur = kalan
+        
+        for i in range(tur):
+            
+            try:
+                secil = gonderilcekList[sayac]
+            except:
+                secil = "Yok"
+            labelfarmcount = Label(tab,text = str(sayac+1),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+            
+            
+            labelfarmcount.grid(row = i+1,column = 0,ipadx = 25,ipady = 5)
+            combo = Combobox(tab,values=["Yok","Bugday","Odun","Demir","Kuvars","Altin"],background="DarkSlateGray4",state="readonly",width=2)
+            combo.grid(row = i +1,column =  1,ipadx = 25,ipady = 5)
+            gonderilcek.append(combo)
 
+            if secil == "Yok" or secil == "":
+                combo.set("--")
+            elif secil == "Bugday":
+                combo.set("Bugday")
+            elif secil == "Odun":
+                combo.set("Odun")
+            elif secil == "Demir":
+                combo.set("Demir")
+            elif secil == "Kuvars":
+                combo.set("Kuvars")
+            elif secil == "Altin":
+                combo.set("Altin")
+        
 
-    for i in range(hesapsayisi):
-        combo = Checkbutton(frm,command = lambda ifr = i:reverseBool(ifritlist,ifr),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-        combo.grid(row = i +1,column = 4,ipadx = 25,ipady = 5)
-        x = data.readline()
-        if x == "True\n":
-            combo.select()
-            ifrit = True
-        else:
-            ifrit = False
-            combo.deselect()
-        ifritlist.append(ifrit)
+            try:
+                secil = askeregitList[sayac]
+            except:
+                secil="Yok"
+            
+            combo = Combobox(tab,values=["Yok","Max","Tahil Arabasi"],background="DarkSlateGray4",state="readonly",width=4)
+            combo.grid(row = i +1,column =  2,ipadx = 25,ipady = 5)
+            askeregitcombo.append(combo)
+            if secil == "Yok" or secil == "" or secil == "--":
+                combo.set("--")
 
-   
+            elif secil == "Max":
+                combo.set("Max")
+
+            elif secil == "Tahil Arabasi":
+                combo.set("Tahil Arabasi")
+            
+        
+            combo = Checkbutton(tab,command = lambda g = sayac:reverseBool(gozculist,g),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
+            combo.grid(row = i +1,column = 3,ipadx = 25,ipady = 5)
+            try:
+                x = gozcuList[sayac]
+            except:
+                x = ""
+            
+            if x == True:
+                combo.select()
+                gozcu = True
+            else:
+                gozcu = False
+                combo.deselect()
+            gozculist.append(gozcu)
+
+            combo = Checkbutton(tab,command = lambda ifr = sayac:reverseBool(ifritlist,ifr),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
+            combo.grid(row = i +1,column = 4,ipadx = 25,ipady = 5)
+            try:
+                x = ifritList[sayac]
+            except:
+                x = "Yok"
+            
+            if x == True:
+                combo.select()
+                ifrit = True
+            else:
+                ifrit = False
+                combo.deselect()
+            ifritlist.append(ifrit)
+            sayac += 1
+    
 
     combo = Checkbutton(frm3,text = "Hasat Et",command = lambda:reverseBool(hasat_et_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 0,column = 2,ipadx = 15,ipady = 5,sticky="w")
-    if hasat_et == "True\n":
+    if hasatet == True:
         
         hasat = True
         combo.select()
@@ -303,7 +409,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Hızlı Topla",command = lambda:reverseBool(hizli_topla_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 1,column = 2,ipadx = 15,ipady = 5,sticky="w")
-    if hizli_topla == "True\n":
+    if hizliTopla == True:
         
         hizli = True
         combo.select()
@@ -316,7 +422,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Tampon Hasat",command = lambda:reverseBool(tampon_hasat_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 2,column = 2,ipadx = 15,ipady = 5,sticky="w")
-    if tampon_hasat == "True\n":
+    if tamponHasat == True:
         
         tampon = True
         combo.select()
@@ -328,7 +434,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Mesaj Topla",command = lambda:reverseBool(mesaj_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 0,column = 0,ipadx = 15,ipady = 5,sticky="w")
-    if mesaj_topla == "True\n":
+    if mesajTopla == True:
         
         mesaj = True
         combo.select()
@@ -340,7 +446,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Lonca Topla",command = lambda:reverseBool(lonca_topla_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 1,column = 0,ipadx = 15,ipady = 5,sticky="w")
-    if lonca_topla == "True\n":
+    if loncaTopla == True:
         
         topla = True
         combo.select()
@@ -349,9 +455,9 @@ def tablegiris(window,hesapsayisi,nickname,password):
         combo.deselect()
     lonca_topla_list.append(topla)
 
-    combo = Checkbutton(frm3,text = "Ganimet Havuzu",command = lambda:reverseBool(havuz_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Hazine Havuzu",command = lambda:reverseBool(havuz_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 2,column = 0,ipadx = 15,ipady = 5,sticky="w")
-    if havuz_topla == "True\n":
+    if hazinetopla == True:
         
         havuz = True
         combo.select()
@@ -364,7 +470,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Kaynak Yardımı",command = lambda:reverseBool(kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 3,column = 0,ipadx = 15,ipady = 5,sticky="w")
-    if k == "True\n":
+    if kaynakGonder == True:
 
         kaynak_gonder = True
         combo.select()
@@ -376,7 +482,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Lonca Bağışı",command = lambda:reverseBool(lonca,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 0,column = 1,ipadx = 15,ipady = 5,sticky="w")
-    if l == "True\n":
+    if loncatechYap == True:
 
         loncatech_yap = True
         combo.select()
@@ -388,7 +494,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Ganimet Karavanı",command = lambda:reverseBool(ganimet_kara,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 1,column = 1,ipadx = 15,ipady = 5,sticky="w")
-    if g == "True\n":
+    if ganimetYap == True:
 
         ganimet_yap = True
         combo.select()
@@ -400,7 +506,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "İç Kaynak Bonusu",command = lambda:reverseBool(ic_kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 2,column = 1,ipadx = 15,ipady = 5,sticky="w")
-    if ic == "True\n":
+    if icKaynakBonus == True:
 
         icyap = True
         combo.select()
@@ -413,7 +519,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "Dış Kaynak Bonusu",command = lambda:reverseBool(dis_kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 3,column = 1,ipadx = 15,ipady = 5,sticky="w")
-    if dis == "True\n":
+    if diskaynakBonus == True:
 
         disyap = True
         combo.select()
@@ -424,7 +530,7 @@ def tablegiris(window,hesapsayisi,nickname,password):
 
     combo = Checkbutton(frm3,text = "KVK Kalkan",command = lambda:reverseBool(kvk_kalkan_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 3,column = 2,ipadx = 15,ipady = 5,sticky="w")
-    if kvk_kalkan == "True\n":
+    if kvkKalkan == True:
         kalkan = True
         combo.select()
     else:
@@ -432,17 +538,42 @@ def tablegiris(window,hesapsayisi,nickname,password):
         combo.deselect()
     kvk_kalkan_list.append(kalkan)
 
-    
-    combo = Checkbutton(frm3,text = "İç Kaynak Arttırıcı Al",command = lambda:reverseBool(arttirici,0),background="DarkSlateGray4",activebackground="CadetBlue4")
-    combo.grid(row = 4,column = 0,ipadx = 15,ipady = 5,sticky="w")
-    if arttirici_al == "True\n":
-
-        icyap = True
-        combo.select()
+    global dictbool
+    dictbool = {}
+    value = []
+    if arttiriciAl[0]:
+        value.append("✅Bugday")
+        dictbool["Bugday"] = True
     else:
-        icyap = False
-        combo.deselect()
-    arttirici.append(icyap)
+        value.append("Bugday")
+        dictbool["Bugday"] = False
+
+    if arttiriciAl[1]:
+        value.append("✅Odun")
+        dictbool["Odun"] = True
+    else:
+        value.append("Odun")
+        dictbool["Odun"] = False
+    
+    if arttiriciAl[2]:
+        value.append("✅Demir")
+        dictbool["Demir"] = True
+    else:
+        value.append("Demir")
+        dictbool["Demir"] = False
+    
+    if arttiriciAl[3]:
+        value.append("✅Kuvars")
+        dictbool["Kuvars"] = True
+    else:
+        value.append("Kuvars")
+        dictbool["Kuvars"] = False
+
+    global comboarttirici
+    comboarttirici = Combobox(frm3,values=value,background="DarkSlateGray4",state="readonly")
+    comboarttirici.bind("<<ComboboxSelected>>",comboboxchange)
+    comboarttirici.grid(row = 4,column = 0,ipadx = 15,ipady = 5,sticky="w")
+    comboarttirici.set("Değirmen Arttırıcı Al")
 
     
     label_kaynakseviye = Label(frm3,text="Kaynak Seviyesi",background="DarkSlateGray4",font='Helvetica 10 bold')
@@ -451,8 +582,8 @@ def tablegiris(window,hesapsayisi,nickname,password):
     slide_kaynak = Scale(frm3,from_=1,to=6,orient=HORIZONTAL,background="DarkSlateGray4",activebackground="CadetBlue4", bd="0px", relief=FLAT)
     slide_kaynak.grid(row = 5,column = 1,ipadx = 15,ipady = 5,pady=20,sticky="w")
     try:
-        if(kaynak_seviye !=""):
-            slide_kaynak.set(int(kaynak_seviye))
+        if(kaynakSeviye !=""):
+            slide_kaynak.set(int(kaynakSeviye))
         else:
             slide_kaynak.set(3)
     except:
@@ -463,105 +594,168 @@ def tablegiris(window,hesapsayisi,nickname,password):
     slide_carpan = Scale(frm3,from_=1,to=5,orient=HORIZONTAL,background="DarkSlateGray4",activebackground="CadetBlue4", bd="0px", relief=FLAT)
     slide_carpan.grid(row = 6,column = 1,ipadx = 15,ipady = 5,pady=20,sticky="w")
     try:
-        if(hiz_carpan !=""):
-            slide_carpan.set(int(hiz_carpan))
+        if(beklemeCarpani !=""):
+            slide_carpan.set(int(beklemeCarpani))
         else:
             slide_carpan.set(3)
     except:
         slide_carpan.set(3)
     
     global btn
-    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
-    btn.place(x=575,y = 405)
-
     
-    
-
    
     if hesapsayisi >=6:
-        window.geometry('750x' + str(230+30*hesapsayisi))
+        window.geometry('750x' + str(230+30*17))
     else:
-        window.geometry('750x' + str(350))
+        window.geometry('750x' + str(230+30*17))
 
-    f = open("./data/acc.txt")
-
+    
     
     entry_mail = []
     entry_password = []
 
-    
-
-    
-    label = Label(frm2,text="Farmlar",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
-    label.grid(row = 0,column = 0,padx = 20,pady=5)
-
-    label = Label(frm2,text="Mail",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
-    label.grid(row = 0,column = 1,padx = 20,pady=5)
-
-    label = Label(frm2,text="Sifre",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
-    label.grid(row = 0,column = 2,padx = 20,pady=5)
-
-    for i in range(hesapsayisi):
+    sayac = 0
+    tur = 15
+    kalan = hesapsayisi
+    for frame in hesaplarTABlist:
         
-        
-        labelhesapsayisi = Label(frm2,text="Farm {hesap}".format(hesap = i),background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
-        labelhesapsayisi.grid(row = i+1,column = 0,padx = 5,pady=5)
+        label = Label(frame,text="Farmlar",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
+        label.grid(row = 0,column = 0,padx = 20,pady=5)
 
-        hesapentry = Entry(frm2,background="antiquewhite3",justify = CENTER, borderwidth=2, relief="groove",width= 30)
-        hesapentry.grid(row = i+1,column = 1,padx = 5,pady=5)
-        hesapentry.insert(0,f.readline().rstrip())
-        entry_mail.append(hesapentry)
+        label = Label(frame,text="Mail",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
+        label.grid(row = 0,column = 1,padx = 20,pady=5)
 
-        sifreentry = Entry(frm2,background="antiquewhite3",justify = CENTER, borderwidth=2, relief="groove",width= 20)
-        sifreentry.grid(row = i+1,column = 2,padx = 5,pady=5)
-        sifreentry.insert(0,f.readline().rstrip())
-        entry_password.append(sifreentry)
+        label = Label(frame,text="Sifre",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
+        label.grid(row = 0,column = 2,padx = 20,pady=5)
 
-    buttonok = Button(frm2,text="Kaydet", height=2, width=10, background="MediumSpringGreen",command=lambda: childsave(entry_mail,entry_password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
-    buttonok.grid(row = 1,column = 3)
+        if kalan > 15:
+            tur = 15
+            kalan -= 15
+        else:
+            tur = kalan
+        for i in range(tur):
+            
+            
+            labelhesapsayisi = Label(frame,text="Farm {hesap}".format(hesap=sayac+1),background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
+            labelhesapsayisi.grid(row = i+1,column = 0,padx = 5,pady=5)
+            
+            hesapentry = Entry(frame,background="antiquewhite3",justify = CENTER, borderwidth=2, relief="groove",width= 30)
+            hesapentry.grid(row = i+1,column = 1,padx = 5,pady=5)
+            try:
+                hesapentry.insert(0,mail[sayac])
+            except:
+                hesapentry.insert(0,"")
+            entry_mail.append(hesapentry)
 
-    f.close()
+            sifreentry = Entry(frame,background="antiquewhite3",justify = CENTER, borderwidth=2, relief="groove",width= 20)
+            sifreentry.grid(row = i+1,column = 2,padx = 5,pady=5)
+            try:
+                sifreentry.insert(0,sifreList[sayac])
+            except:
+                sifreentry.insert(0,"")
+            entry_password.append(sifreentry)
+            sayac += 1
+
+
+    show_frame(frm)
+
+    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
+    btn.place(x=575,y = 405)
+def comboboxchange(event):
+    secilen = comboarttirici.get()
     
-
-def basla(ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
     
-    data = open("./data/data.txt",W)
-    data.write(str(nickname).rstrip()+"\n")
-    data.write(str(password).rstrip()+"\n")
-    data.write(str(hesapsayisi).rstrip()+"\n")
-    data.write(str(kaynak[0]).rstrip()+"\n")
-    data.write(str(lonca[0]).rstrip()+"\n")
-    data.write(str(ganimet_kara[0]).rstrip()+"\n")
-    data.write(str(ic_kaynak[0]).rstrip()+"\n")
-    data.write(str(dis_kaynak[0]).rstrip()+"\n")
+    secilen = secilen.replace("✅","")
+    dictbool[secilen] = not dictbool.get(secilen)
+    value = []
+    if dictbool.get("Bugday")== True:
+        value.append("✅Bugday")
+    else:
+        value.append("Bugday")
 
-    data.write(str(havuz_list[0]).rstrip()+"\n")
-    data.write(str(lonca_topla_list[0]).rstrip()+"\n")
-    data.write(str(mesaj_list[0]).rstrip()+"\n")
+    if dictbool.get("Odun")== True:
+        value.append("✅Odun")
+    else:
+        value.append("Odun")
+    if dictbool.get("Demir")== True:
+        value.append("✅Demir")
+    else:
+        value.append("Demir")
+    if dictbool.get("Kuvars")== True:
+        value.append("✅Kuvars")
+    else:
+        value.append("Kuvars")
+    
+    print(dictbool)
+    comboarttirici.config(values=value)
+    comboarttirici.set("Değirmen Arttırıcı Al")
 
-    data.write(str(hasat_et_list[0]).rstrip()+"\n")
-    data.write(str(hizli_topla_list[0]).rstrip()+"\n")
-    data.write(str(tampon_hasat_list[0]).rstrip()+"\n")
-    data.write(str(kvk_kalkan_list[0]).rstrip()+"\n")
-    data.write(str(arttirici[0]).rstrip()+"\n")
-    data.write(str(slide_kaynak.get()).rstrip()+"\n")
-    data.write(str(slide_carpani.get()).rstrip()+"\n")
+def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
+    gonderler = []
+    askerler= []
+    gozculer = []
+    ifritler = []
+    mailler = []
+    sifreler = []
+    degirmenal = [False,False,False,False]
+    if dictbool.get("Bugday")== True:
+        degirmenal[0] = True
+    if dictbool.get("Odun")== True:
+        degirmenal[1] = True
+    if dictbool.get("Demir")== True:
+        degirmenal[2] = True
+    if dictbool.get("Kuvars")== True:
+        degirmenal[3] = True
+   
+    for i in range(hesapsayisi):
+        gonderler.append(gonderilcek[i].get())
+    
+    for i in range(hesapsayisi):
+        askerler.append(askeregitcombo[i].get())
 
     for i in range(hesapsayisi):
-        data.write(str(gonderilcek[i].get())+"\n")
+        gozculer.append(gozculist[i])
     
     for i in range(hesapsayisi):
-        data.write(str(askeregitcombo[i].get())+"\n")
+        ifritler.append(ifritlist[i])
 
     for i in range(hesapsayisi):
-        data.write(str(gozculist[i])+"\n")
-    
+        mailler.append(entry_mail[i].get())
     for i in range(hesapsayisi):
-        data.write(str(ifritlist[i])+"\n")
-    
-    url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/game.py"
+        sifreler.append(entry_password[i].get())
+
+    data = {
+    'arttiriciAl': degirmenal,
+    'askeregitList': askerler,
+    'beklemeCarpani': slide_carpani.get(),
+    'disKaynakBonus': dis_kaynak[0],
+    'ganimetYap': ganimet_kara[0],
+    'gonderilcekList': gonderler,
+    'gozcuList': gozculer,
+    'hasatEt': hasat_et_list[0],
+    'hazineTopla': havuz_list[0],
+    'hesapSayisi': hesapsayisi,
+    'hizliTopla': hizli_topla_list[0],
+    'icKaynakBonus': ic_kaynak[0],
+    'ifritList': ifritler,
+    'kaynakGonder': kaynak[0],
+    'kaynakSeviye': slide_kaynak.get(),
+    'kvkKalkan': kvk_kalkan_list[0],
+    'loncaTopla': lonca_topla_list[0],
+    'loncatechYap':lonca[0] ,
+    'mail': mailler,
+    'mesajTopla': mesaj_list[0],
+    'password': password,
+    'sifre': sifreler,
+    'tamponHasat': tampon_hasat_list[0],
+    'username': nickname
+}
+
+
 
     try:
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/edit",json=data)
+        url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/game.py"
         response = requests.get(url)
         response.raise_for_status()
         
@@ -573,23 +767,11 @@ def basla(ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampo
         # Kodları ortam içine çalıştır
         exec(kod, ortam)
 
-        ortam["trr"](btn,frm)
-        
-
+        ortam["trr"](btn,btn,ayarlarTABlist)
     except Exception as e:
         print(f"Hata oluştu: {e}")
 
  
-
-def childsave(entry_mail,entry_password):
-    f = open("./data/acc.txt", "w")
-    for i in range(len(entry_mail)):
-        f.write(str(entry_mail[i].get()).rstrip()+"\n")
-        f.write(str(entry_password[i].get()).rstrip()+"\n")
-
-    f.close()
-
-
 def main():
     
     window = Tk()
@@ -599,14 +781,16 @@ def main():
     window.iconbitmap("./images/favicon.ico")
 
     window.geometry('700x350')
-    window.configure(bg='DarkSlateGray4')
+    window.configure(background="DarkSlateGray4",pady=20)
     
     
     lbl = Label(text="PashaBot", font=("Helvetica",30,"bold"),background="DarkSlateGray4")
-    lbl.grid(row=0,column=0,padx=20,pady=20)
-
-
-    hesapgir(window)
+    lbl.pack()
+    r = login()
+    if r.status_code == 200:
+        sonrakihesapgir(window)
+    else:
+        ilkhesapgir(window)
     window.mainloop()
 
 if __name__ == "__main__":
