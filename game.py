@@ -1,4 +1,4 @@
-#latest123
+#latest123a
 from tkinter import *
 import time
 import subprocess
@@ -22,7 +22,7 @@ def cikis(btn):
         tamam = ara("./images/tamam.png")
         if tamam != -1:
             logkayit(0,"Başka kullanıcı girdi ya da ağ hatası")
-            time.sleep(100)
+            time.sleep(200)
             break
         if x != -1 or y != -1:
             if y !=-1:
@@ -32,6 +32,8 @@ def cikis(btn):
             pyautogui.hotkey("ctrl", "shift","2")
             time.sleep(bekleme_carpani*2)
     os.system("TASKKILL /F /IM HD-Player.exe")
+    logkayit(0,"Bluestacks Kapatıldı")
+    return "kapatıldı"
 
 def logkayit(farm,mesaj):
     print(farm,mesaj)
@@ -2458,7 +2460,7 @@ def main(btn,frm):
             data = collectdata()
             now = datetime.datetime.now()
             if x == "appopen":
-                log = f"{now.strftime("%H:%M")} {farm}. ATLANDI"
+                log = f"{now.strftime("%d.%m.%Y %H:%M")} Farm {farm}. ATLANDI"
                 logkayit(farm, "ATLANDI")
                 farmwrite = open("./data/data.txt","w")
             
@@ -2677,6 +2679,7 @@ def main(btn,frm):
                         sonrakihesap(btn,mail,sifre,hesapsayisi)
                         x = ""
                         continue
+                    continue
                 elif x == "exit":
                     hesapgir = False
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
@@ -2695,6 +2698,7 @@ def main(btn,frm):
                         sonrakihesap(btn,mail,sifre,hesapsayisi)
                         x = ""
                         continue
+                    continue
                 elif x == "exit":
                     hesapgir = False
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
@@ -2713,6 +2717,7 @@ def main(btn,frm):
                         sonrakihesap(btn,mail,sifre,hesapsayisi)
                         x = ""
                         continue
+                    continue
 
                 elif x == "exit":
                     hesapgir = False
@@ -2737,6 +2742,7 @@ def main(btn,frm):
                         sonrakihesap(btn,mail,sifre,hesapsayisi)
                         x = ""
                         continue
+                    continue
                 elif x == "arkadasbos":
                     click(btn,20,65)
                     hesapgir = False
