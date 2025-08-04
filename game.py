@@ -1,4 +1,4 @@
-#latest123a
+#latest123aasdf
 from tkinter import *
 import time
 import subprocess
@@ -96,14 +96,18 @@ def trr(btn,frm):
             os.remove(filename)
     anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
     anathr.start()
+    x = open("./data/data.txt")
+    username = x.readline().rstrip()
+    if username =="onderaltin":
+        dene = Thread(target=lambda:dene(btn,frm),daemon=True)
+        dene.start()
     
-
-def sec(btn,frm):
+def dene(btn,frm):
     global stop 
     stop = False
     while not stop:
-        global worker
-        worker = Thread(target=lambda:main(btn,frm),daemon=True)    
+        
+        worker = Thread(target=lambda:goym(btn,frm),daemon=True)    
        
         if not worker.is_alive():
             logkayit(0,"start")
@@ -112,6 +116,33 @@ def sec(btn,frm):
             logkayit(0,"kill")
             print("sa")
 
+def goym(btn,frm):
+    while True:
+        datadir = "data"
+        file_path = os.path.join(datadir, "dene.txt")
+        if not os.path.exists(file_path):
+            open(file_path, "w", encoding="utf-8").close()
+    
+        x = open(file_path, "a", encoding="utf-8")
+        now = datetime.datetime.now()
+        saat = now.strftime("%H:%M")
+        x.write(f"{saat}\n")
+        x.close()
+        time.sleep(60)
+    
+def sec(btn,frm):
+    global stop 
+    stop = False
+    while not stop:
+        worker = Thread(target=lambda:main(btn,frm),daemon=True)    
+       
+        if not worker.is_alive():
+            logkayit(0,"start")
+            worker.start()
+            worker.join()
+            logkayit(0,"kill")
+            print("sa")
+    logkayit(0,"----------------------------")
 def arawork(btn):
     worker1 = Thread(target=lambda:durulan(btn),daemon=True)
     worker1.start()
