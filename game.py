@@ -1,4 +1,4 @@
-#abcde
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -109,13 +109,13 @@ def dene(btn,frm):
     stop = False
     while not stop:
         
-        worker = Thread(target=lambda:goym(btn,frm),daemon=True)    
+        workerdene = Thread(target=lambda:goym(btn,frm),daemon=True)    
        
-        if not worker.is_alive():
-            logkayit(0,"start")
+        if not workerdene.is_alive():
+            logkayit(0,"dene başladı")
             worker.start()
             worker.join()
-            logkayit(0,"kill")
+            logkayit(0,"dene bitti")
             print("sa")
 
 def goym(btn,frm):
