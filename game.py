@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -99,7 +99,7 @@ def trr(btn,frm):
     x = open("./data/data.txt")
     username = x.readline().rstrip()
     logkayit(0,username)
-    if username =="onderaltin\n":
+    if "onderaltin in username:
         dene = Thread(target=lambda:dene(btn,frm),daemon=True)
         dene.start()
     
