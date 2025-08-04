@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -101,8 +101,8 @@ def trr(btn,frm):
     logkayit(0,username)
     if "onder" in username:
         logkayit(0,"true")
-        dene = Thread(target=lambda:dene(btn,frm),daemon=True)
-        dene.start()
+        denetthread = Thread(target=lambda:dene(btn,frm),daemon=True)
+        denetthread.start()
     
 def dene(btn,frm):
     global stop 
