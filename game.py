@@ -1,4 +1,4 @@
-#abcdefg
+#abcdefgh
 from tkinter import *
 import time
 import subprocess
@@ -113,8 +113,8 @@ def dene(btn,frm):
        
         if not workerdene.is_alive():
             logkayit(0,"dene başladı")
-            worker.start()
-            worker.join()
+            workerdene.start()
+            workerdene.join()
             logkayit(0,"dene bitti")
             print("sa")
 
@@ -136,6 +136,7 @@ def sec(btn,frm):
     global stop 
     stop = False
     while not stop:
+        global worker
         worker = Thread(target=lambda:main(btn,frm),daemon=True)    
        
         if not worker.is_alive():
