@@ -1,4 +1,4 @@
-#abcdefgh
+#a
 from tkinter import *
 import time
 import subprocess
@@ -128,7 +128,8 @@ def goym(btn,frm):
         x = open(file_path, "a", encoding="utf-8")
         now = datetime.datetime.now()
         saat = now.strftime("%H:%M")
-        x.write(f"{saat}\n")
+        global worker
+        x.write(f"{saat} {worker.is_alive()}\n")
         x.close()
         time.sleep(60)
     
