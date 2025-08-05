@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -16,17 +16,19 @@ def cikis(btn):
             x = pyautogui.screenshot(f"{i}.png",region=[0,0,360,614])
             time.sleep(2)
             break
-    for i in range(5):
-        x = ara("./images/girildi.png")
-        y = ara("./images/girildi_dunya.png")
+    for i in range(10):
+        time.sleep(2)
+        girildi = ara("./images/girildi.png")
+        girildi_dunya = ara("./images/girildi_dunya.png")
         tamam = ara("./images/tamam.png")
         if tamam != -1:
             logkayit(0,"Başka kullanıcı girdi ya da ağ hatası")
             time.sleep(200)
             break
-        if x != -1 or y != -1:
-            if y !=-1:
-                click(btn,y[0]+10,y[1]+10)
+        elif girildi_dunya != -1:
+            time.sleep(2)
+            click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+        elif girildi != -1:
             return "girildi"
         else: 
             pyautogui.hotkey("ctrl", "shift","2")
