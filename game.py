@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -164,6 +164,11 @@ def terminate(btn):
     import sys
     btn.config(state=ACTIVE)
     btn_dur.config(state=DISABLED)
+    try:
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":str(e)})
+        logkayit(0,"DURDURULDU")
+    except:
+        logkayit(0,"DURDURULDU")
     sys.exit()
 
 def collectdata():
@@ -1490,8 +1495,10 @@ def kvkkalkan(btn):
 
 def kaynakgonder(btn):
     kacinci = 0
+    hata = 0
     while kacinci < 4:
-                
+        if hata == 4:
+            return "vip"
         devredisi = ara("./images/devredisi.png")
         if devredisi != -1:
             click(btn,devredisi[0]+10,devredisi[1]+10)
@@ -1551,6 +1558,7 @@ def kaynakgonder(btn):
                     break
                 else:
                     click(btn,100,350)
+                    time.sleep(bekleme_carpani*2)
 
 
         vip = ara("./images/vip.png")
@@ -1562,12 +1570,15 @@ def kaynakgonder(btn):
         
         if kaynakyardim != -1:
             click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
+            time.sleep(bekleme_carpani*2)
 
         yolla = ara("./images/yolla.png")
 
         if yolla != -1:
+            hata = 0
             pass
         else:
+            hata += 1
             continue
 
 
@@ -2789,4 +2800,5 @@ def main(btn,frm):
             sonrakihesap(btn,mail,sifre,hesapsayisi)
         except Exception as e:
             logkayit(0, f"Hata: {str(e)}")
+            r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":str(e)})
             continue
