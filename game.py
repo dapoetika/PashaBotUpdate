@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -2631,25 +2631,37 @@ def main(btn,frm):
 
             if mesaj_topla:
                 x = mesajtopla(btn)
-                if  x == "appopen":
-                    cikis(btn)
-                    continue
+                if x== "appopen":
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
                 
             if lonca_topla:     
                 x = loncatopla(btn,loncatech_yap)
-                if x == "appopen":
-                    cikis(btn)
-                    continue
+                if x== "appopen":
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
                 if x == "lonca yok":
                     lonca_topla = False
                     loncatech_yap = False
 
             if loncatech_yap:
                 x = loncatek(btn)
-                if x == "appopen":
-                    cikis(btn)
-                    continue
-            print("loncatek bitti")
+                if x== "appopen":
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
+            
             if askeregitlist[farm] == "Max":
                 x = trainsoldier(btn,False)
                 if x == "appopen":
@@ -2678,8 +2690,11 @@ def main(btn,frm):
             if hizli_topla or tampon_hasat or hasat_et:        
                 hizlitamponhasat(btn,hizli_topla,tampon_hasat,hasat_et)
             
-            sonrakidunya(btn)
-            
+            kontrol = sonrakidunya(btn)
+            if kontrol != "basarili":
+                x = "appopen"
+                cikis(btn)
+                continue
             if ifritlist[farm]:
                 x = ifrit(btn)
                 if x == "appopen":
