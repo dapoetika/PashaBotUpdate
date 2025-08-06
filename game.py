@@ -1,4 +1,4 @@
-#abcde
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -31,7 +31,7 @@ def cikis(btn):
         elif girildi != -1:
             return "girildi"
         else: 
-            pyautogui.hotkey("ctrl", "shift","2")
+            click(btn,20,65)
             time.sleep(bekleme_carpani*2)
     os.system("TASKKILL /F /IM HD-Player.exe")
     logkayit(0,"Bluestacks Kapatıldı")
@@ -770,7 +770,7 @@ def mesajtopla(btn):
     for i in range(5):
         girildi = ara("./images/girildi.png")
         if girildi == -1:
-            pyautogui.hotkey("ctrl", "shift","2")
+            click(btn,20,65)
             time.sleep(bekleme_carpani*2)
         else:
             break
@@ -1495,8 +1495,13 @@ def kvkkalkan(btn):
 
 def kaynakgonder(btn):
     kacinci = 0
+    gonderilensayi = 0
     hata = 0
     while kacinci < 4:
+        gonderilensayi += 1
+        if gonderilensayi%10 == 0:
+            send_heartbeat()
+            
         if hata == 3:
             return "attack"
         devredisi = ara("./images/devredisi.png")
@@ -1827,7 +1832,7 @@ def bul(btn):
     for i in range(5):
         girildi_dunya = ara("./images/girildi_dunya.png")
         if girildi_dunya == -1:
-            pyautogui.hotkey("ctrl", "shift","2")
+            click(btn,20,65)
             time.sleep(bekleme_carpani*2)
         else:
             break
