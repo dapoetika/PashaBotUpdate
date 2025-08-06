@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -165,7 +165,7 @@ def terminate(btn):
     btn.config(state=ACTIVE)
     btn_dur.config(state=DISABLED)
     try:
-        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":str(e)})
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT DURDURULDU"})
         logkayit(0,"DURDURULDU")
     except:
         logkayit(0,"DURDURULDU")
@@ -1497,8 +1497,8 @@ def kaynakgonder(btn):
     kacinci = 0
     hata = 0
     while kacinci < 4:
-        if hata == 4:
-            return "vip"
+        if hata == 3:
+            return "attack"
         devredisi = ara("./images/devredisi.png")
         if devredisi != -1:
             click(btn,devredisi[0]+10,devredisi[1]+10)
@@ -2475,7 +2475,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
 
 def main(btn,frm):
     global farm
-
+    r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT BAŞLATILDI"})
     farmread = open("./data/data.txt")
     username = farmread.readline().rstrip()
     password = farmread.readline().rstrip()
