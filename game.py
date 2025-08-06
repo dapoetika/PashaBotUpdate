@@ -1,4 +1,4 @@
-#abcd
+#abcde
 from tkinter import *
 import time
 import subprocess
@@ -2475,13 +2475,14 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
 
 def main(btn,frm):
     global farm
-    r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT BAŞLATILDI"})
+    global username
     farmread = open("./data/data.txt")
     username = farmread.readline().rstrip()
     password = farmread.readline().rstrip()
     hesapsayisi = int(farmread.readline().rstrip())
     bu = farmread.readline().rstrip()
     farmread.close()
+    r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT BAŞLATILDI"})
     try:
         if bu =="":
             farm = 0
