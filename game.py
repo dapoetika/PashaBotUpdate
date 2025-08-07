@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -135,7 +135,7 @@ def goym(btn,frm):
         now = datetime.datetime.now()
         saat = now.strftime("%H:%M")
         global sonheartbeat
-        if now - sonheartbeat > timedelta(minutes=30):
+        if now - sonheartbeat > datetime.timedelta(minutes=30):
             x.write(f"Bot Durdu ve Yeniden Başlatıldı")
             anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
             anathr.start()
