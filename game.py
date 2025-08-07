@@ -1,4 +1,4 @@
-#abcdefgh
+#a
 from tkinter import *
 import time
 import subprocess
@@ -88,10 +88,14 @@ def send_heartbeat():
     try:
         vericek = open("./data/data.txt")
         username = vericek.readline().rstrip()
+        global sonheartbeat
+        sonheartbeat = datetime.datetime.now()
         r = requests.post("https://api-ofhom3zgza-uc.a.run.app/heartbeat",json={"username":username})
     except Exception as a:
         logkayit("0",a)
 def trr(btn,frm):
+    global sonheartbeat
+    sonheartbeat = datetime.datetime.now()
     for i in range(100):
         filename = f"{i}.png"
         if os.path.exists(filename):
@@ -130,6 +134,11 @@ def goym(btn,frm):
         x = open(file_path, "a", encoding="utf-8")
         now = datetime.datetime.now()
         saat = now.strftime("%H:%M")
+        global sonheartbeat
+        if now - sonheartbeat > timedelta(minutes=30):
+            x.write(f"Bot Durdu ve Yeniden Başlatıldı")
+            anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
+            anathr.start()
         global worker
         x.write(f"{saat} {worker.is_alive()}\n")
         x.close()
