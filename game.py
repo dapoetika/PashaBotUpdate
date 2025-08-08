@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -104,18 +104,19 @@ def trr(btn,frm):
     anathr.start()
     x = open("./data/data.txt")
     username = x.readline().rstrip()
+    x.close()
     logkayit(0,username)
     if "onder" in username:
         logkayit(0,"true")
-        denetthread = Thread(target=lambda:dene(btn,frm),daemon=True)
+        denetthread = Thread(target=lambda:dene(btn,frm,username),daemon=True)
         denetthread.start()
     
-def dene(btn,frm):
+def dene(btn,frm,username):
     global stop 
     stop = False
     while not stop:
         
-        workerdene = Thread(target=lambda:goym(btn,frm),daemon=True)    
+        workerdene = Thread(target=lambda:goym(btn,frm,username),daemon=True)    
        
         if not workerdene.is_alive():
             logkayit(0,"dene başladı")
@@ -124,8 +125,9 @@ def dene(btn,frm):
             logkayit(0,"dene bitti")
             print("sa")
 
-def goym(btn,frm):
+def goym(btn,frm,username):
     while True:
+        
         datadir = "data"
         file_path = os.path.join(datadir, "dene.txt")
         if not os.path.exists(file_path):
@@ -136,7 +138,11 @@ def goym(btn,frm):
         saat = now.strftime("%H:%M")
         global sonheartbeat
         if now - sonheartbeat > datetime.timedelta(minutes=30):
-            x.write(f"Bot Durdu ve Yeniden Başlatıldı")
+            try:
+                r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT KAPANDI"})
+                x.write(f"Bot Durdu ve Yeniden Başlatıldı")
+            except:
+                x.write(f"Bot Durdu ve Yeniden Başlatıldı")
             anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
             anathr.start()
         global worker
