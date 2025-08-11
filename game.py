@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -105,11 +105,8 @@ def trr(btn,frm):
     x = open("./data/data.txt")
     username = x.readline().rstrip()
     x.close()
-    logkayit(0,username)
-    if "onder" in username:
-        logkayit(0,"true")
-        denetthread = Thread(target=lambda:dene(btn,frm,username),daemon=True)
-        denetthread.start()
+    denetthread = Thread(target=lambda:dene(btn,frm,username),daemon=True)
+    denetthread.start()
     
 def dene(btn,frm,username):
     global stop 
@@ -139,7 +136,8 @@ def goym(btn,frm,username):
         global sonheartbeat
         if now - sonheartbeat > datetime.timedelta(minutes=30):
             try:
-                r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT KAPANDI"})
+                log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT KAPANDI"
+                r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":log})
                 x.write(f"Bot Durdu ve Yeniden Başlatıldı")
             except:
                 x.write(f"Bot Durdu ve Yeniden Başlatıldı")
@@ -179,8 +177,11 @@ def terminate(btn):
     import sys
     btn.config(state=ACTIVE)
     btn_dur.config(state=DISABLED)
+    now = datetime.datetime.now()
+    
     try:
-        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT DURDURULDU"})
+        log = f"{now.strftime('%d.%m.%Y %H:%M')} BOT DURDURULDU"
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":log})
         logkayit(0,"DURDURULDU")
     except:
         logkayit(0,"DURDURULDU")
@@ -387,18 +388,12 @@ def hesapgiris(btn,mail,sifre):
             time.sleep(bekleme_carpani*2)
             click(btn,110,227)
             time.sleep(bekleme_carpani*2)
-            mail1 = mail[farm].split("@")
 
-
-            
-            pyautogui.write(mail1[0])
-            time.sleep(bekleme_carpani*2)
-
-            pyautogui.keyDown('altright')  # AltGr tuşuna bas
-            pyautogui.write('q')           # q tuşuna bas
-            pyautogui.keyUp('altright')
-
-            pyautogui.write(mail1[1])
+            for i in mail[farm]:
+                if i == "@":
+                    pyautogui.hotkey("altright","q")
+                else:
+                    pyautogui.write(i)
             time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
             click(btn,165,320)
@@ -406,7 +401,11 @@ def hesapgiris(btn,mail,sifre):
             click(btn,165,320)
             time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
-            pyautogui.write(sifre[farm])
+            for i in sifre[farm]:
+                if i == "@":
+                    pyautogui.hotkey("altright","q")
+                else:
+                    pyautogui.write(i)
             time.sleep(bekleme_carpani*2)
             click(btn,170,390)
             time.sleep(bekleme_carpani*2)
@@ -2446,21 +2445,12 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     time.sleep(bekleme_carpani*2)
     click(btn,110,227)
     time.sleep(bekleme_carpani*2)
-    
 
-
-    mail1 = mail[farm].split("@")
-    pyautogui.write(mail1[0])
-    
-    logkayit(farm,"Giriliyor")
-    time.sleep(bekleme_carpani*2)
-
-
-    pyautogui.keyDown('altright')  # AltGr tuşuna bas
-    pyautogui.write('q')           # q tuşuna bas
-    pyautogui.keyUp('altright')
-
-    pyautogui.write(mail1[1])
+    for i in mail[farm]:
+        if i == "@":
+            pyautogui.hotkey("altright","q")
+        else:
+            pyautogui.write(i)
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
     click(btn,165,320)
@@ -2471,7 +2461,11 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
     
-    pyautogui.write(sifre[farm])
+    for i in sifre[farm]:
+        if i == "@":
+            pyautogui.hotkey("altright","q")
+        else:
+            pyautogui.write(i)
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
     click(btn,170,390)
@@ -2504,7 +2498,12 @@ def main(btn,frm):
     hesapsayisi = int(farmread.readline().rstrip())
     bu = farmread.readline().rstrip()
     farmread.close()
-    r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":"BOT BAŞLATILDI"})
+    now = datetime.datetime.now()
+    log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT BAŞLATILDI"
+    try:
+        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":log})
+    except:
+        pass
     try:
         if bu =="":
             farm = 0
