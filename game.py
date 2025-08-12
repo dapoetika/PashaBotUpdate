@@ -1,4 +1,4 @@
-#abcd
+#abcde
 from tkinter import *
 import time
 import subprocess
@@ -124,30 +124,32 @@ def dene(btn,frm,username):
 
 def goym(btn,frm,username):
     while True:
+        try:
+            datadir = "data"
+            file_path = os.path.join(datadir, "dene.txt")
+            if not os.path.exists(file_path):
+                open(file_path, "w", encoding="utf-8").close()
         
-        datadir = "data"
-        file_path = os.path.join(datadir, "dene.txt")
-        if not os.path.exists(file_path):
-            open(file_path, "w", encoding="utf-8").close()
-    
-        x = open(file_path, "a", encoding="utf-8")
-        now = datetime.datetime.now()
-        saat = now.strftime("%H:%M")
-        global sonheartbeat
-        if now - sonheartbeat > datetime.timedelta(minutes=30):
-            try:
+            x = open(file_path, "a", encoding="utf-8")
+            now = datetime.datetime.now()
+            saat = now.strftime("%H:%M")
+            global sonheartbeat
+            if now - sonheartbeat > datetime.timedelta(minutes=30):
+                
                 log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT KAPANDI"
                 r = requests.post("https://api-ofhom3zgza-uc.a.run.app/logs",json={"username":username,"log":log})
                 x.write(f"Bot Durdu ve Yeniden Başlatıldı")
-            except:
-                x.write(f"Bot Durdu ve Yeniden Başlatıldı")
-            anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
-            anathr.start()
-        global worker
-        x.write(f"{saat} {worker.is_alive()}\n")
-        x.close()
-        time.sleep(60)
-    
+                anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
+                anathr.start()
+            global worker
+            x.write(f"{saat} {worker.is_alive()}\n")
+            x.close()
+            time.sleep(60)
+        except Exception as hata:
+            with open("./data/dene.txt","a") as x:
+                x.write(str(hata))
+
+
 def sec(btn,frm):
     global stop 
     stop = False
