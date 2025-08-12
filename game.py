@@ -1,4 +1,4 @@
-#abcde
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -160,6 +160,7 @@ def sec(btn,frm):
         if not worker.is_alive():
             logkayit(0,"start")
             worker.start()
+            logkayit(0,"started")
             worker.join()
             logkayit(0,"kill")
             print("sa")
@@ -2492,6 +2493,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     
 
 def main(btn,frm):
+    send_heartbeat()
     global farm
     global username
     farmread = open("./data/data.txt")
@@ -2529,6 +2531,7 @@ def main(btn,frm):
     x = ""
     while True:
         try:
+            send_heartbeat()
             data = collectdata()
             now = datetime.datetime.now()
             if x == "appopen":
@@ -2611,7 +2614,6 @@ def main(btn,frm):
 
             global appopen
             appopen = False
-            send_heartbeat()
             time.sleep(5)
             oyunac()
             x = hesapgiris(btn,mail,sifre)
