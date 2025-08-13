@@ -1,4 +1,4 @@
-#latest2
+#latest22
 from tkinter.ttk import *
 from tkinter import *
 
@@ -10,7 +10,7 @@ def login():
     password = vericek.readline().rstrip()
     
     try:
-        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/login",json={"username":username,"password":password})
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password})
         return r
     except:
         print("internet bağlantısı yok")
@@ -94,7 +94,7 @@ def gecis(window,hesapentry,passwordentry,nickentry,frame):
 
     frame.destroy()
     print(username,password)
-    r = requests.post("https://api-ofhom3zgza-uc.a.run.app/login",json={"username":username,"password":password})
+    r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password})
 
     if r.status_code==200:
         data = open("./data/data.txt","w")
@@ -754,7 +754,7 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
 
 
     try:
-        r = requests.post("https://api-ofhom3zgza-uc.a.run.app/edit",json=data)
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/edit",json=data)
         url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/game.py"
         response = requests.get(url)
         response.raise_for_status()
