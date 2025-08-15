@@ -1,4 +1,4 @@
-#abcdefgh
+#abcdefghj
 from tkinter import *
 import time
 import subprocess
@@ -1349,7 +1349,7 @@ def ifritbul(btn):
         return "vip"
     click(btn,230,480)
     time.sleep(bekleme_carpani*2)
-    click(btn,113,95)
+    click(btn,60,95)
     time.sleep(bekleme_carpani*2)
     click(btn,265,590)
     time.sleep(bekleme_carpani*2)
@@ -2713,6 +2713,7 @@ def main(btn,frm):
             kontrol = sonrakidunya(btn)
             if kontrol != "basarili":
                 x = "appopen"
+                logkayit(0, f"SONRAKİ DUNYA BAŞARISIZ")
                 cikis(btn)
                 continue
             if ifritlist[farm]:
