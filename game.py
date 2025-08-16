@@ -1,4 +1,4 @@
-#abcdefghj
+#a
 from tkinter import *
 import time
 import subprocess
@@ -1366,6 +1366,7 @@ def ifritbul(btn):
 def ifrit(btn):
     kacinci = 0
     while True:
+        send_heartbeat()
         time.sleep(bekleme_carpani*2)
         click(btn,160,530)
         time.sleep(bekleme_carpani*2)
