@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -2426,8 +2426,13 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
     click(btn,20,75)
-    time.sleep(bekleme_carpani*2)
-    imageclick(btn,"./images/ayarlar.png")
+    for i in range(5):
+        time.sleep(bekleme_carpani*2)
+        ayarlar = ara("./images/ayarlar.png")
+        if ayarlar != -1:
+            imageclick(btn,"./images/ayarlar.png")
+        else:
+            click(btn,20,65)
     time.sleep(bekleme_carpani*2)
     click(btn,290,585)
     time.sleep(bekleme_carpani*2)
