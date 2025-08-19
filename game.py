@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -780,9 +780,6 @@ def mesajtopla(btn):
     
     time.sleep(bekleme_carpani*1)
     
-
-    appopen = False
-    
     time.sleep(bekleme_carpani*2)
     for i in range(5):
         girildi = ara("./images/girildi.png")
@@ -839,10 +836,6 @@ def mesajtoplaoteki(btn):
     girildi = ara("./images/girildi_dunya.png")
 
     if girildi != -1:
-        appopen = True
-      
-
-    if appopen:
         pass
     else:
         logkayit(farm,"mesaj topla oteki 2")
