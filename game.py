@@ -31,7 +31,7 @@ def cikis(btn):
         elif girildi != -1:
             return "girildi"
         else: 
-            click(btn,20,65)
+            click(btn,20,60)
             time.sleep(bekleme_carpani*2)
     os.system("TASKKILL /F /IM HD-Player.exe")
     logkayit(0,"Bluestacks Kapatıldı")
@@ -1292,12 +1292,15 @@ def hizlitamponhasat(btn,hizli,tampon,hasat):
     time.sleep(bekleme_carpani*1)
        
 def sonrakidunya(btn):
-    for i in range(5):
+    for i in range(7):
         time.sleep(2)
         girildi = ara("./images/girildi.png") 
         if girildi != -1:
             click(btn,160,600)
             break
+        else:
+            click(btn,20,60)
+            time.sleep(1)
     for i in range(5):
         girildi_dunya = ara("./images/girildi_dunya.png") 
         if girildi_dunya != -1:
@@ -2617,9 +2620,12 @@ def main(btn,frm):
             oyunac()
             x = hesapgiris(btn,mail,sifre)
             if x == "appopen":
-                
-                cikis(btn)
-                continue
+                girdimi = cikis(btn)
+                if girdimi == "girildi":
+                    x = ""
+                    continue
+                else:
+                    continue
 
             x = liman(btn)
             if x == "bulunamadi":
