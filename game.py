@@ -1,4 +1,4 @@
-#abctra
+#abctrab
 from tkinter import *
 import time
 import subprocess
@@ -1292,21 +1292,24 @@ def hizlitamponhasat(btn,hizli,tampon,hasat):
     time.sleep(bekleme_carpani*1)
        
 def sonrakidunya(btn):
-    for i in range(7):
+    for i in range(10):
         time.sleep(2)
-        girildi = ara("./images/girildi.png") 
-        if girildi != -1:
-            click(btn,160,600)
+        girildi = ara("./images/girildi.png")
+        girildi_dunya = ara("./images/girildi_dunya.png")
+        tamam = ara("./images/tamam.png")
+        if tamam != -1:
+            logkayit(0,"Başka kullanıcı girdi ya da ağ hatası")
+            time.sleep(200)
             break
-        else:
-            click(btn,20,60)
-            time.sleep(1)
-    for i in range(5):
-        girildi_dunya = ara("./images/girildi_dunya.png") 
-        if girildi_dunya != -1:
-            logkayit(farm,"sonraki dunya basarili")
+        elif girildi_dunya != -1:
+            time.sleep(2)
             return "basarili"
-        time.sleep(2)
+        elif girildi != -1:
+            click(btn,girildi[0]+10,girildi[1]+10)
+        else: 
+            click(btn,20,60)
+            time.sleep(bekleme_carpani*2)
+    return "basarisiz"
 
 def ifritbul(btn):
     aranan = -1
@@ -1661,8 +1664,25 @@ def askergonder(btn,hangisi,kaynakseviye):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya == -1:
-            logkayit(0,"asker gonder app ")
-            return "appopen"
+            for i in range(10):
+                time.sleep(2)
+                girildi = ara("./images/girildi.png")
+                girildi_dunya = ara("./images/girildi_dunya.png")
+                tamam = ara("./images/tamam.png")
+                if tamam != -1:
+                    logkayit(0,"asker gonder app ")
+                    return "appopen"
+                elif girildi_dunya != -1:
+                    time.sleep(2)
+                    break
+                elif girildi != -1:
+                    click(btn,girildi[0]+10,girildi[1]+10)
+                    break
+                else: 
+                    click(btn,20,60)
+                    time.sleep(bekleme_carpani*2)
+                
+            
             
 
         senden = False
