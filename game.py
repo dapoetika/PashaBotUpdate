@@ -1,4 +1,4 @@
-#abctr
+#abctra
 from tkinter import *
 import time
 import subprocess
@@ -1363,6 +1363,10 @@ def ifrit(btn):
     kacinci = 0
     while True:
         send_heartbeat()
+        tamam = ara("./images/tamam.png")
+        if tamam != -1:
+            click(btn,tamam[0]+5,tamam[1]+5)
+            time.sleep(5)
         time.sleep(bekleme_carpani*2)
         click(btn,160,530)
         time.sleep(bekleme_carpani*2)
