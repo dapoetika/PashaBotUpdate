@@ -1,4 +1,4 @@
-#abctrab
+#abctrabcd
 from tkinter import *
 import time
 import subprocess
@@ -488,8 +488,26 @@ def ickaynakbonusu(btn,arttirici_al):
             return "appopen"
     girildi = ara("./images/girildi.png")
     if girildi == -1:
-        logkayit(0,"ic kaynak hata")
-        return "appopen"
+        isOkey = False
+        for i in range(10):
+            time.sleep(2)
+            girildi = ara("./images/girildi.png")
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            tamam = ara("./images/tamam.png")
+            if tamam != -1:
+                return "appopen"
+            elif girildi_dunya != -1:
+                time.sleep(2)
+                click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+            elif girildi != -1:
+                isOkey = True
+                break
+            else: 
+                click(btn,20,60)
+                time.sleep(bekleme_carpani*2)
+        if not isOkey:
+            logkayit(0,"appopen isokey 2")
+            return "appopen"
     giris = ara("./images/giris.png")
     if giris == -1:
         return "limanyok"
@@ -1664,6 +1682,7 @@ def askergonder(btn,hangisi,kaynakseviye):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya == -1:
+            isOkey = False
             for i in range(10):
                 time.sleep(2)
                 girildi = ara("./images/girildi.png")
@@ -1674,15 +1693,17 @@ def askergonder(btn,hangisi,kaynakseviye):
                     return "appopen"
                 elif girildi_dunya != -1:
                     time.sleep(2)
+                    isOkey = True
                     break
                 elif girildi != -1:
                     click(btn,girildi[0]+10,girildi[1]+10)
-                    break
                 else: 
                     click(btn,20,60)
                     time.sleep(bekleme_carpani*2)
                 
-            
+            if not isOkey:
+                logkayit(0,"appopen isOkey 1")
+                return "appopen"
             
 
         senden = False
