@@ -1,4 +1,4 @@
-#abctrabcd
+#abctrabcde
 from tkinter import *
 import time
 import subprocess
@@ -1114,8 +1114,25 @@ def ganimet_karavani(btn):
 
     girildi = ara("./images/girildi.png")
     if girildi == -1:
-        logkayit(farm,"appopen karavan oncesi")
-        return "appopen"
+        isOkey = False
+        for i in range(10):
+            time.sleep(2)
+            girildi = ara("./images/girildi.png")
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            tamam = ara("./images/tamam.png")
+            if tamam != -1:
+                return "appopen"
+            elif girildi_dunya != -1:
+                time.sleep(2)
+                click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+            elif girildi != -1:
+                isOkey = True
+            else: 
+                click(btn,20,60)
+                time.sleep(bekleme_carpani*2)
+        if not isOkey:
+            logkayit(farm,"appopen karavan oncesi")
+            return "appopen"
     
     now = datetime.datetime.now()
     if int(now.strftime("%H") ) < 6 and int(now.strftime("%H") ) > 0:
