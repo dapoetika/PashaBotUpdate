@@ -1,4 +1,4 @@
-#abctrabcde
+#abctrabcdef
 from tkinter import *
 import time
 import subprocess
@@ -727,11 +727,17 @@ def ickaynakbonusu(btn,arttirici_al):
                
 def mesajtopla(btn):
     time.sleep(bekleme_carpani*2)
-    girildi = ara("./images/girildi.png")
-    girildi_dunya = ara("./images/girildi_dunya.png")
-    if girildi != -1 or girildi_dunya != -1:
-        pass
-    else:
+    isOkey = False
+    for i in range(10):
+        time.sleep(bekleme_carpani*2)
+        girildi = ara("./images/girildi.png")
+        girildi_dunya = ara("./images/girildi_dunya.png")
+        if girildi != -1 or girildi_dunya != -1:
+            isOkey = True
+            break
+        else:
+            click(btn,20,60)
+    if not isOkey:
         logkayit(0,"mesaj topla appopen")
         return "appopen"
     click(btn,235,590)
@@ -1114,6 +1120,7 @@ def ganimet_karavani(btn):
 
     girildi = ara("./images/girildi.png")
     if girildi == -1:
+        logkayit(farm,"appopen karavan oncesi hata çıktı")
         isOkey = False
         for i in range(10):
             time.sleep(2)
@@ -1124,10 +1131,14 @@ def ganimet_karavani(btn):
                 return "appopen"
             elif girildi_dunya != -1:
                 time.sleep(2)
+                logkayit(farm,"appopen karavan oncesi girildi_dunya basıldı")
                 click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
             elif girildi != -1:
+                logkayit(farm,"appopen karavan oncesi girildi bulundu")
                 isOkey = True
+                break
             else: 
+                logkayit(farm,"appopen karavan oncesi geri basıldı")
                 click(btn,20,60)
                 time.sleep(bekleme_carpani*2)
         if not isOkey:
@@ -1689,6 +1700,7 @@ def kaynakgonder(btn):
 def askergonder(btn,hangisi,kaynakseviye):
     ilksefer = True
     time.sleep(bekleme_carpani*2)
+    hata = 0
     while True:
         devredisi = ara("./images/devredisi.png")
         if devredisi != -1:
@@ -1719,8 +1731,10 @@ def askergonder(btn,hangisi,kaynakseviye):
                     time.sleep(bekleme_carpani*2)
                 
             if not isOkey:
-                logkayit(0,"appopen isOkey 1")
-                return "appopen"
+                hata += 1
+                if hata>2:
+                    logkayit(0,"appopen isOkey 1")
+                    return "appopen"
             
 
         senden = False
@@ -1730,9 +1744,6 @@ def askergonder(btn,hangisi,kaynakseviye):
         time.sleep(bekleme_carpani*1)
         click(btn,255, 525)
         time.sleep(bekleme_carpani*2)
-
-       
-       
             
         girildi_dunya = ara("./images/girildi_dunya.png")
 
@@ -1740,8 +1751,6 @@ def askergonder(btn,hangisi,kaynakseviye):
             logkayit(0,"appopen askergonder")
             return "appopen"
             
-      
-        
         pyautogui.moveTo(260, 445)
         time.sleep(bekleme_carpani*2)
         pyautogui.dragTo(120, 445, 1)
@@ -1751,7 +1760,6 @@ def askergonder(btn,hangisi,kaynakseviye):
         
         
         if ilksefer:
-            
             for i in range(8):
                 click(btn,40, 525)
                 time.sleep(bekleme_carpani*0.2)
