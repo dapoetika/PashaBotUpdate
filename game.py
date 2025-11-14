@@ -1,4 +1,4 @@
-#abctrabcdef
+#
 from tkinter import *
 import time
 import subprocess
@@ -883,8 +883,6 @@ def loncatopla(btn,loncatech_yap):
         return "lonca yok"
     
     time.sleep(bekleme_carpani*2)
-    logkayit(farm,"lonca toplanıyor")
-    time.sleep(bekleme_carpani*2)
     click(btn,160,520)
     
     time.sleep(bekleme_carpani*2)
@@ -1283,9 +1281,6 @@ def ganimet_karavani(btn):
             time.sleep(bekleme_carpani*3)
             click(btn,20,65)
             
-      
-
-    logkayit(farm,"ganimet karavani bitti")
     #ganimet_karavani bitis
 
 def hizlitamponhasat(btn,hizli,tampon,hasat):
@@ -1583,7 +1578,7 @@ def kaynakgonder(btn):
         girildi_dunya = ara("./images/girildi_dunya.png")
 
         if girildi_dunya == -1:
-            logkayit(farm,"kaynak gonder baslangic")
+            logkayit(farm,"kaynak gonder baslangic appopen")
             return "appopen"
         
         time.sleep(bekleme_carpani*1)
@@ -1612,7 +1607,6 @@ def kaynakgonder(btn):
             kaynakyardim = ara("./images/kaynakyardim.png")
             attack = ara("./images/attack.png")
             if kaynakyardim != -1:
-                logkayit(farm,"kaynak yardim tiklandi")
                 click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
                 time.sleep(bekleme_carpani*2)
                 break
@@ -1626,7 +1620,6 @@ def kaynakgonder(btn):
 
                 time.sleep(bekleme_carpani*2)
                 if kaynakyardim != -1:
-                    logkayit(farm,"kaynak yardim tiklandi")
                     click(btn,kaynakyardim[0] + 10,kaynakyardim[1] + 10)
                     time.sleep(bekleme_carpani*2)
                     break
@@ -1674,10 +1667,6 @@ def kaynakgonder(btn):
             elif durum_degisti != -1:
                 
                 kacinci += 1
-                
-            else:
-                logkayit(farm,"kaynak gonderildi")
-                    
         else:
             kacinci += 1
             
@@ -1781,7 +1770,6 @@ def askergonder(btn,hangisi,kaynakseviye):
             return "exit"
             
         else:
-            logkayit(farm,"bugday bulundu")
             time.sleep(bekleme_carpani*2)
             click(btn,160, 320)
             time.sleep(bekleme_carpani*2)
@@ -1828,14 +1816,12 @@ def askergonder(btn,hangisi,kaynakseviye):
                 
                 click(btn,raid[0] + 20, raid[1] + 20)
                 time.sleep(bekleme_carpani*2)
-                logkayit(farm,"bugday saldiri tiklandi")
                 senden = True
                 
        
         if senden:
             pass
         else:
-            logkayit(farm,"bugday saldiri bulunamadi")
             continue
 
 
@@ -1847,8 +1833,6 @@ def askergonder(btn,hangisi,kaynakseviye):
         target = ara("./images/target.png",0.8)
         girildi_dunya = ara("./images/girildi_dunya.png")
         if target != -1:
-
-            logkayit(farm,"bugday tespit edildi")
             time.sleep(bekleme_carpani*2)
 
         elif vip != -1:
@@ -1903,8 +1887,6 @@ def askergonder(btn,hangisi,kaynakseviye):
     
             return "vip"
         else:
-            
-            logkayit(farm,"Bugdaya Asker Gonderildi")
             time.sleep(bekleme_carpani*1)    
 
 def bul(btn):
