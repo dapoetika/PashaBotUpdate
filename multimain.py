@@ -1,4 +1,4 @@
-#latest3
+#latest34
 from tkinter.ttk import *
 from tkinter import *
 
@@ -341,7 +341,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
                 combo.set("Demir")
             elif secil == "Kuvars" or secil == "Quartz":
                 combo.set("Kuvars")
-            elif secil == "Altin" or or secil == "Gold":
+            elif secil == "Altin" or secil == "Gold":
                 combo.set("Altin")
         
 
