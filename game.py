@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -1016,7 +1016,24 @@ def trainsoldier(btn,tahilarabasi):
         if girildi != -1:
             pass
         else:
-            return "appopen"
+            isOkey = False
+            for i in range(10):
+                time.sleep(2)
+                girildi = ara("./images/girildi.png")
+                girildi_dunya = ara("./images/girildi_dunya.png")
+                if girildi_dunya != -1:
+                    time.sleep(2)
+                    click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+                elif girildi != -1:
+                    isOkey = True
+                    break
+                else: 
+                    click(btn,20,60)
+                    time.sleep(bekleme_carpani*2)
+            if not isOkey:
+                logkayit(0,"appopen isokey 4")
+                return "appopen"
+            
         time.sleep(bekleme_carpani*2)
         click(btn,10,320)
 
@@ -1041,7 +1058,23 @@ def trainsoldier(btn,tahilarabasi):
         if girildi != -1:
             pass
         else:
-            return "appopen"
+            isOkey = False
+            for i in range(10):
+                time.sleep(2)
+                girildi = ara("./images/girildi.png")
+                girildi_dunya = ara("./images/girildi_dunya.png")
+                if girildi_dunya != -1:
+                    time.sleep(2)
+                    click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+                elif girildi != -1:
+                    isOkey = True
+                    break
+                else: 
+                    click(btn,20,60)
+                    time.sleep(bekleme_carpani*2)
+            if not isOkey:
+                logkayit(0,"appopen isokey 4")
+                return "appopen"
         
         click(btn,182,355)
         time.sleep(bekleme_carpani*2)
