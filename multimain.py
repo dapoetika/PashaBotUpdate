@@ -1,4 +1,4 @@
-#latest34
+#latest344
 from tkinter.ttk import *
 from tkinter import *
 
@@ -359,7 +359,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
             elif secil == "Max":
                 combo.set("Max")
 
-            elif secil == "Tahil Arabasi" or or secil == "Grain Car":
+            elif secil == "Tahil Arabasi" or secil == "Grain Car":
                 combo.set("Tahil Arabasi")
             
         
