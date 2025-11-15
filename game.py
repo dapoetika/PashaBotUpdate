@@ -1,4 +1,4 @@
-#
+#a
 from tkinter import *
 import time
 import subprocess
@@ -2798,7 +2798,7 @@ def main(btn,frm):
                 elif x =="attack":
                     pass
 
-            if gonderilcekList[farm] == "Bugday":        
+            if gonderilcekList[farm] == "Bugday" or gonderilcekList[farm] == "Grain":        
                 x = askergonder(btn,0,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2817,7 +2817,7 @@ def main(btn,frm):
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if gonderilcekList[farm] == "Odun":        
+            if gonderilcekList[farm] == "Odun" or gonderilcekList[farm] == "Lumber":        
                 x = askergonder(btn,1,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2836,7 +2836,7 @@ def main(btn,frm):
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if gonderilcekList[farm] == "Demir":        
+            if gonderilcekList[farm] == "Demir" or gonderilcekList[farm] == "Iron":        
                 x = askergonder(btn,2,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2855,7 +2855,7 @@ def main(btn,frm):
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if gonderilcekList[farm] == "Kuvars":        
+            if gonderilcekList[farm] == "Kuvars" or gonderilcekList[farm] == "Quartz":        
                 x = askergonder(btn,3,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
