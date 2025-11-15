@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -232,7 +232,7 @@ def collectdata():
 
         gonderilcekList = data.get("gonderilcekList")
         gozculist = data.get("gozcuList")
-        askeregitlist = data.get("gonderilcekList")
+        askeregitlist = data.get("askeregitList")
         ifritlist = data.get("ifritList")
 
         
