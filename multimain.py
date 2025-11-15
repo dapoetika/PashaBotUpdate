@@ -333,15 +333,15 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
 
             if secil == "Yok" or secil == "":
                 combo.set("--")
-            elif secil == "Bugday":
+            elif secil == "Bugday" or secil == "Grain":
                 combo.set("Bugday")
-            elif secil == "Odun":
+            elif secil == "Odun" or secil == "Lumber":
                 combo.set("Odun")
-            elif secil == "Demir":
+            elif secil == "Demir" or secil == "Iron":
                 combo.set("Demir")
-            elif secil == "Kuvars":
+            elif secil == "Kuvars" or secil == "Quartz":
                 combo.set("Kuvars")
-            elif secil == "Altin":
+            elif secil == "Altin" or or secil == "Gold":
                 combo.set("Altin")
         
 
@@ -359,7 +359,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
             elif secil == "Max":
                 combo.set("Max")
 
-            elif secil == "Tahil Arabasi":
+            elif secil == "Tahil Arabasi" or or secil == "Grain Car":
                 combo.set("Tahil Arabasi")
             
         
