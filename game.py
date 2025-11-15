@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -1057,8 +1057,24 @@ def hazinetopla(btn,ganimetyap):
     if girildi != -1:
         pass
     else:
-        logkayit(0,"hazine havuzu app")
-        return "appopen"
+        isOkey = False
+        for i in range(10):
+            time.sleep(2)
+            girildi = ara("./images/girildi.png")
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            if girildi_dunya != -1:
+                time.sleep(2)
+                click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+            elif girildi != -1:
+                isOkey = True
+                break
+            else: 
+                click(btn,20,60)
+                time.sleep(bekleme_carpani*2)
+        if not isOkey:
+            logkayit(0,"hazine havuzu app")
+            return "appopen"
+        
     time.sleep(bekleme_carpani*2)
     click(btn,10,320)
     bulundu = False
