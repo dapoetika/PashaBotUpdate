@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -2820,8 +2820,14 @@ def main(btn,frm):
             if kontrol != "basarili":
                 x = "appopen"
                 logkayit(0, f"SONRAKİ DUNYA BAŞARISIZ")
+                click(btn,300,300)
+                time.sleep(bekleme_carpani*5)
                 event = ara("./images/event.png")
                 if event != -1:
+                    click(btn,300,300)
+                    time.sleep(bekleme_carpani*5)
+                    click(btn,110,260)
+                    time.sleep(bekleme_carpani*5)
                     click(btn,225,285)
                     time.sleep(bekleme_carpani*5)
                     click(btn,225,285)
