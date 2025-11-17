@@ -1,4 +1,4 @@
-#abcdefg
+#abcdefgh
 from tkinter import *
 import time
 import subprocess
@@ -322,6 +322,7 @@ def hesapgiris(btn,mail,sifre):
         girildi_dunya = ara("./images/girildi_dunya.png")
         xtus = ara("./images/xtus.png")
         time.sleep(1)
+        click(btn,160, 400)
         if girildi != -1:
             appopen = True
             break
@@ -347,6 +348,7 @@ def hesapgiris(btn,mail,sifre):
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
         devredisi = ara("./images/devredisi.png")
+        click(btn,160, 400)
         if devredisi != -1:
             click(btn,devredisi[0]+10,devredisi[1]+10)
 
