@@ -1,4 +1,4 @@
-#abcdefgh
+#
 from tkinter import *
 import time
 import subprocess
@@ -2892,6 +2892,7 @@ def main(btn,frm):
                     time.sleep(bekleme_carpani*5)
                     click(btn,20,65)
                     time.sleep(bekleme_carpani*5)
+                    click(btn,200,355)
 
                 
                 cikis(btn)
