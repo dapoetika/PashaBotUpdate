@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -1394,11 +1394,14 @@ def sonrakidunya(btn):
             time.sleep(200)
             break
         elif girildi_dunya != -1:
+            logkayit(0,"SONRAKİ DUNYA BULUNDU")
             time.sleep(2)
             return "basarili"
         elif girildi != -1:
+            logkayit(0,"İLK DUNYADAYIZ SONRAKİNE TIKLANDI")
             click(btn,girildi[0]+10,girildi[1]+10)
         else: 
+            logkayit(0,"DUNYA BULUNAMADI GERI TIKLANDI")
             click(btn,20,60)
             time.sleep(bekleme_carpani*2)
     return "basarisiz"
