@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -1821,12 +1821,11 @@ def askergonder(btn,hangisi,kaynakseviye):
             return "exit"
             
         else:
-            time.sleep(bekleme_carpani*2)
+            time.sleep(bekleme_carpani*3)
             click(btn,160, 320)
             time.sleep(bekleme_carpani*2)
             pyautogui.dragTo(120,320,1)
-
-       
+            time.sleep(bekleme_carpani*2)
             
         raid = ara("./images/raid.png")
 
@@ -1863,8 +1862,6 @@ def askergonder(btn,hangisi,kaynakseviye):
                 senden = True
                 
             else:
-            
-                
                 click(btn,raid[0] + 20, raid[1] + 20)
                 time.sleep(bekleme_carpani*2)
                 senden = True
@@ -1876,38 +1873,52 @@ def askergonder(btn,hangisi,kaynakseviye):
             continue
 
 
-        
-            
-        time.sleep(bekleme_carpani*2)
-        tamam = ara("./images/tamam.png")
-        vip = ara("./images/vip.png")
-        target = ara("./images/target.png",0.8)
-        girildi_dunya = ara("./images/girildi_dunya.png")
-        if target != -1:
+        targetHata = False
+        for i in range(2):   
             time.sleep(bekleme_carpani*2)
-
-        elif vip != -1:
-            logkayit(farm,"bugday vip 1 hata")
-            click(btn,265, 585)
-            time.sleep(bekleme_carpani*2)
-            return "vip"
-        
-        elif tamam != -1:
-            click(btn,tamam[0]+20,tamam[1]+20)
-            logkayit(farm,"bugday tamam 1 hata")
-            return "vip"
+            tamam = ara("./images/tamam.png")
+            vip = ara("./images/vip.png")
+            target = ara("./images/target.png",0.8)
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            if target != -1:
+                time.sleep(bekleme_carpani*2)
+                break
+    
+            elif vip != -1:
+                logkayit(farm,"bugday vip 1 hata")
+                click(btn,265, 585)
+                time.sleep(bekleme_carpani*2)
+                return "vip"
             
-        elif girildi_dunya != -1:
-            logkayit(farm,"dondu 1")
-            
-            return "appopen"
+            elif tamam != -1:
+                click(btn,tamam[0]+20,tamam[1]+20)
+                logkayit(farm,"bugday tamam 1 hata")
+                return "vip"
+                
+            elif girildi_dunya != -1:
+                click(btn,255, 530)
+                time.sleep(bekleme_carpani*2)
+                click(btn,20, 65)
+                time.sleep(bekleme_carpani*2)
+                click(btn,130, 320)
+                time.sleep(bekleme_carpani*2)
 
-        else:
-            logkayit(farm,"bugday target 1 hata")
-            click(btn,20, 65)
-            cancel = True
+                raid = ara("./images/raid.png")
+                if raid != -1:
+                    click(btn,raid[0]+20,raid[1]+20)
+                    continue
+                else:
+                    logkayit(farm,"dondu 1")
+                    return "appopen"
+    
+            else:
+                logkayit(farm,"bugday target 1 hata")
+                targetHata = True
+                click(btn,20, 65)
+                cancel = True
+                break
+        if targetHata:
             continue
-            
 
         
         
@@ -2530,6 +2541,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         ayarlar = ara("./images/ayarlar.png")
         if ayarlar != -1:
             imageclick(btn,"./images/ayarlar.png")
+            break
         else:
             click(btn,20,65)
     time.sleep(bekleme_carpani*2)
