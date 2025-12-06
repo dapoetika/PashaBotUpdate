@@ -1,4 +1,4 @@
-#abcd
+#abcde
 from tkinter import *
 import time
 import subprocess
@@ -1744,6 +1744,7 @@ def askergonder(btn,hangisi,kaynakseviye):
     time.sleep(bekleme_carpani*2)
     hata = 0
     while True:
+        send_heartbeat()
         devredisi = ara("./images/devredisi.png")
         if devredisi != -1:
             click(btn,devredisi[0]+10,devredisi[1]+10)
@@ -2833,6 +2834,7 @@ def main(btn,frm):
                 hizlitamponhasat(btn,hizli_topla,tampon_hasat,hasat_et)
             
             kontrol = sonrakidunya(btn)
+            send_heartbeat()
             if kontrol != "basarili":
                 x = "appopen"
                 logkayit(0, f"SONRAKİ DUNYA BAŞARISIZ")
