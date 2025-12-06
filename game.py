@@ -1,4 +1,4 @@
-#abcde
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -2744,7 +2744,7 @@ def main(btn,frm):
                     continue
                 else:
                     continue
-
+            logkayit(farm,"Liman Yapılıyor")
             x = liman(btn)
             if x == "bulunamadi":
                 pass
@@ -2764,6 +2764,7 @@ def main(btn,frm):
                 
 
             if ic_kaynak_bonus:
+                logkayit(farm,"İç Kaynak Bonus")
                 x = ickaynakbonusu(btn,arttirici_al)
                 if  x == "appopen":
                     cikis(btn)
@@ -2773,6 +2774,7 @@ def main(btn,frm):
 
 
             if mesaj_topla:
+                logkayit(farm,"Mesaj Topla")
                 x = mesajtopla(btn)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2783,6 +2785,7 @@ def main(btn,frm):
                         continue
                 
             if lonca_topla:     
+                logkayit(farm,"Lonca Topla")
                 x = loncatopla(btn,loncatech_yap)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2796,6 +2799,7 @@ def main(btn,frm):
                     loncatech_yap = False
 
             if loncatech_yap:
+                logkayit(farm,"Lonca Tech")
                 x = loncatek(btn)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2806,23 +2810,27 @@ def main(btn,frm):
                         continue
             
             if askeregitlist[farm] == "Max":
+                logkayit(farm,"Asker Egit")
                 x = trainsoldier(btn,False)
                 if x == "appopen":
                     cikis(btn)
                     continue
             elif askeregitlist[farm] == "Tahil Arabasi":
+                logkayit(farm,"Asker Egit")
                 x =trainsoldier(btn,True)
                 if x == "appopen":
                     cikis(btn)
                     continue
 
             if hazine_topla:
+                logkayit(farm,"Hazine Topla")
                 x = hazinetopla(btn,ganimet_yap)
                 if x == "appopen":
                     cikis(btn)
                     continue
 
             if ganimet_yap:
+                logkayit(farm,"Ganimet Karavani")
                 x = ganimet_karavani(btn)
                 if  x == "appopen":
                     cikis(btn)
@@ -2830,7 +2838,8 @@ def main(btn,frm):
                 if x == "gece":
                     pass
 
-            if hizli_topla or tampon_hasat or hasat_et:        
+            if hizli_topla or tampon_hasat or hasat_et:  
+                logkayit(farm,"Hızlı Tampon Hasat")
                 hizlitamponhasat(btn,hizli_topla,tampon_hasat,hasat_et)
             
             kontrol = sonrakidunya(btn)
@@ -2866,7 +2875,8 @@ def main(btn,frm):
                 elif x =="attack":
                     pass
 
-            if gonderilcekList[farm] == "Bugday" or gonderilcekList[farm] == "Grain":        
+            if gonderilcekList[farm] == "Bugday" or gonderilcekList[farm] == "Grain":
+                logkayit(farm,"Bugday Gonderiliyor")
                 x = askergonder(btn,0,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2885,7 +2895,8 @@ def main(btn,frm):
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if gonderilcekList[farm] == "Odun" or gonderilcekList[farm] == "Lumber":        
+            if gonderilcekList[farm] == "Odun" or gonderilcekList[farm] == "Lumber":   
+                logkayit(farm,"Odun GÖnderiliyor")
                 x = askergonder(btn,1,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2904,7 +2915,8 @@ def main(btn,frm):
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if gonderilcekList[farm] == "Demir" or gonderilcekList[farm] == "Iron":        
+            if gonderilcekList[farm] == "Demir" or gonderilcekList[farm] == "Iron":   
+                logkayit(farm,"Demir GÖnderiliyor")
                 x = askergonder(btn,2,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
@@ -2923,7 +2935,8 @@ def main(btn,frm):
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
                     continue
 
-            if gonderilcekList[farm] == "Kuvars" or gonderilcekList[farm] == "Quartz":        
+            if gonderilcekList[farm] == "Kuvars" or gonderilcekList[farm] == "Quartz":  
+                logkayit(farm,"Kuvars Gönderiliyor")
                 x = askergonder(btn,3,kaynakseviye)
                 if x== "appopen":
                     girdimi = cikis(btn)
