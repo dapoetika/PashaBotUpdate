@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -315,6 +315,7 @@ def oyunac():
             pass
     
 def hesapgiris(btn,mail,sifre):
+    logkayit(farm,"Hesap Giriliyor")
     global appopen
     appopen = False
     for i in range(100):
@@ -333,7 +334,7 @@ def hesapgiris(btn,mail,sifre):
         if girildi_dunya != -1:
             appopen = True
             break
-
+    
     if appopen:
         pass
     else:
@@ -341,7 +342,7 @@ def hesapgiris(btn,mail,sifre):
         time.sleep(bekleme_carpani*5)
         return "appopen"
     
-
+    logkayit(farm,"Hesap giriliyor 1")
     for i in range(200):
         time.sleep(bekleme_carpani*1)
         girildi_dunya = ara("./images/girildi_dunya.png")
@@ -361,7 +362,7 @@ def hesapgiris(btn,mail,sifre):
         elif girildi_dunya != -1:
             break
     
-
+    logkayit(farm,"Hesap Giriliyor 2")
     time.sleep(bekleme_carpani*1)
     
     click(btn,160, 400)
@@ -459,7 +460,7 @@ def hesapgiris(btn,mail,sifre):
    
     click(btn,160, 400)
     time.sleep(bekleme_carpani*2)
-
+    logkayit(farm,"Hesap Giriliyor 3")
 def liman(btn):
     time.sleep(bekleme_carpani*2)
     giris = ara("./images/giris.png")
