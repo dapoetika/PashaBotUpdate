@@ -1,4 +1,4 @@
-#abcdefg
+#abcdefgh
 from tkinter import *
 import time
 import subprocess
@@ -1448,6 +1448,9 @@ def ifritbul(btn):
     click(btn,265,590)
     time.sleep(bekleme_carpani*2)
     click(btn,265,590)
+    girildi_dunya = ara("./images/girildi_dunya.png")
+    if girildi_dunya == -1:
+        return "appopen"
     time.sleep(bekleme_carpani*2)
     tamam = ara("./images/tamam.png")
     if tamam != -1:
@@ -1461,10 +1464,9 @@ def ifrit(btn):
     kacinci = 0
     while True:
         send_heartbeat()
-        tamam = ara("./images/tamam.png")
-        if tamam != -1:
-            click(btn,tamam[0]+5,tamam[1]+5)
-            time.sleep(5)
+        girildi_dunya = ara("./images/girildi_dunya.png")
+        if girildi_dunya == -1:
+            return "appopen"
         time.sleep(bekleme_carpani*2)
         click(btn,160,530)
         time.sleep(bekleme_carpani*2)
@@ -2852,15 +2854,33 @@ def main(btn,frm):
                 cikis(btn)
                 continue
             if ifritlist[farm]:
-                x = ifrit(btn)
-                if x == "appopen":
-                    cikis(btn)
-                    x = ""
-                    continue
-                elif x =="energy":
-                    pass
-                elif x == "vip":
-                    pass
+                while True:
+                    x = ifrit(btn)
+                    if x == "appopen":
+                        cikis(btn)
+                        oyunac()
+                        for i in range(200):
+                            time.sleep(bekleme_carpani*1)
+                            girildi_dunya = ara("./images/girildi_dunya.png")
+                            girildi = ara("./images/girildi.png")
+                            xtus = ara("./images/xtus.png")
+                            devredisi = ara("./images/devredisi.png")
+                            click(btn,150, 440)
+                            if devredisi != -1:
+                                click(btn,devredisi[0]+10,devredisi[1]+10)
+                            elif xtus != -1:
+                                click(btn,xtus[0]+5,xtus[1]+5)
+                            elif girildi != -1:
+                                break
+                            elif girildi_dunya != -1:
+                                break
+                        sonrakidunya(btn)
+                        x = ""
+                        continue
+                    elif x =="energy":
+                        pass
+                    elif x == "vip":
+                        pass
             if (kvk_kalkan):
                 kvkkalkan(btn)
 
