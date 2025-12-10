@@ -1,4 +1,4 @@
-#abcdefgh
+#
 from tkinter import *
 import time
 import subprocess
@@ -1472,6 +1472,9 @@ def ifrit(btn):
         time.sleep(bekleme_carpani*2)
         click(btn,280,170)
         time.sleep(bekleme_carpani*2)
+        girildi_dunya = ara("./images/girildi_dunya.png")
+        if girildi_dunya != -1:
+            return "appopen"
         if kacinci < 9:
             click(btn,30,220+(kacinci*40))
         else:
