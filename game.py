@@ -1,4 +1,4 @@
-#
+#a
 from tkinter import *
 import time
 import subprocess
@@ -343,23 +343,26 @@ def hesapgiris(btn,mail,sifre):
         return "appopen"
     
     logkayit(farm,"Hesap giriliyor 1")
-    for i in range(200):
+    for i in range(100):
         time.sleep(bekleme_carpani*1)
         girildi_dunya = ara("./images/girildi_dunya.png")
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
         devredisi = ara("./images/devredisi.png")
-        click(btn,150, 440)
         if devredisi != -1:
+            logkayit(farm,"Hesap giriliyor 1 Devre Dışı Basıldı")
             click(btn,devredisi[0]+10,devredisi[1]+10)
 
         elif xtus != -1:
+            logkayit(farm,"Hesap giriliyor 1 Xtus Basıldı")
             click(btn,xtus[0]+5,xtus[1]+5)
         
 
         elif girildi != -1:
+            logkayit(farm,"Hesap giriliyor 1 Girildi Tamamlandı")
             break
         elif girildi_dunya != -1:
+            logkayit(farm,"Hesap giriliyor 1 GirildiDunya Tamamlandı")
             break
     
     logkayit(farm,"Hesap Giriliyor 2")
