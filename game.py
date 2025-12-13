@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -364,6 +364,9 @@ def hesapgiris(btn,mail,sifre):
         elif girildi_dunya != -1:
             logkayit(farm,"Hesap giriliyor 1 GirildiDunya Tamamlandı")
             break
+        else:
+            logkayit(farm,"Hesap giriliyor 1 Hic Birsey bulunamadı")
+            
     
     logkayit(farm,"Hesap Giriliyor 2")
     time.sleep(bekleme_carpani*1)
