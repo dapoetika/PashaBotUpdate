@@ -1,4 +1,4 @@
-#abcdefg
+#abcdefgh
 from tkinter import *
 import time
 import subprocess
@@ -101,7 +101,7 @@ def trr(btn,frm):
         filename = f"{i}.png"
         if os.path.exists(filename):
             os.remove(filename)
-    deletefiles = open("q.txt","w").close()
+    deletefiles = open("./data/q.txt","w").close()
     anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
     anathr.start()
     x = open("./data/data.txt")
