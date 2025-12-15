@@ -1,4 +1,4 @@
-#abcd
+#abcde
 from tkinter import *
 import time
 import subprocess
@@ -46,7 +46,8 @@ def logkayit(farm,mesaj):
 
     x = open(file_path, "a", encoding="utf-8")
     now = datetime.datetime.now()
-    saat = now.strftime("%H:%M")
+    saat = now.strftime("%d.%m.%Y %H:%M")
+    
     x.write(f"{str(farm)} {saat} {mesaj}\n")
     x.close()
 
@@ -100,6 +101,7 @@ def trr(btn,frm):
         filename = f"{i}.png"
         if os.path.exists(filename):
             os.remove(filename)
+    deletefiles = open("q.txt","w").close()
     anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
     anathr.start()
     x = open("./data/data.txt")
