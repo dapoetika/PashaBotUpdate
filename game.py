@@ -1,4 +1,4 @@
-#abcde
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -325,7 +325,7 @@ def hesapgiris(btn,mail,sifre):
         girildi_dunya = ara("./images/girildi_dunya.png")
         xtus = ara("./images/xtus.png")
         time.sleep(1)
-        click(btn,150, 440)
+        click(btn,165, 415)
         if girildi != -1:
             appopen = True
             break
@@ -381,7 +381,7 @@ def hesapgiris(btn,mail,sifre):
         girildi = ara("./images/girildi.png")
         time.sleep(bekleme_carpani*2)
         if girildi != -1:
-            click(btn,160, 400)
+            click(btn,160, 415)
             time.sleep(bekleme_carpani*2)
             click(btn,20,75)
             time.sleep(bekleme_carpani*2)
@@ -436,7 +436,7 @@ def hesapgiris(btn,mail,sifre):
                 time.sleep(bekleme_carpani*2)
                 click(btn,20,65)
                 time.sleep(bekleme_carpani*2)
-                
+        logkayit(farm,"Geçiliyor 1")
         for i in range(200):
             
             time.sleep(bekleme_carpani*1)
@@ -448,7 +448,7 @@ def hesapgiris(btn,mail,sifre):
 
             if xtus != -1:
                 break
-        
+        logkayit(farm,"Geçiliyor Bitti")
         
         time.sleep(bekleme_carpani*1)
         
@@ -461,12 +461,12 @@ def hesapgiris(btn,mail,sifre):
             click(btn,xtus[0]+10,xtus[1]+10)
             
         time.sleep(bekleme_carpani*1)
-        
+        logkayit(farm,"Geçiliyor Son")
             
             
             #stop
-   
-    click(btn,160, 400)
+       
+    click(btn,165, 415)
     time.sleep(bekleme_carpani*2)
     logkayit(farm,"Hesap Giriliyor 3")
 def liman(btn):
@@ -2876,7 +2876,7 @@ def main(btn,frm):
                             girildi = ara("./images/girildi.png")
                             xtus = ara("./images/xtus.png")
                             devredisi = ara("./images/devredisi.png")
-                            click(btn,150, 440)
+                            click(btn,165, 415)
                             if devredisi != -1:
                                 click(btn,devredisi[0]+10,devredisi[1]+10)
                             elif xtus != -1:
