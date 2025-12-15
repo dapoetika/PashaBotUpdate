@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -90,7 +90,7 @@ def send_heartbeat():
         username = vericek.readline().rstrip()
         global sonheartbeat
         sonheartbeat = datetime.datetime.now()
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/heartbeat",json={"username":username}, timeout=10)
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/heartbeat",json={"username":username},timeout=(3, 20))
     except Exception as a:
         logkayit("0",a)
 def trr(btn,frm):
@@ -137,7 +137,7 @@ def goym(btn,frm,username):
             if now - sonheartbeat > datetime.timedelta(minutes=30):
                 
                 log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT KAPANDI"
-                r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=10)
+                r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(3, 20))
                 x.write(f"Bot Durdu ve Yeniden Başlatıldı")
                 anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
                 anathr.start()
@@ -184,7 +184,7 @@ def terminate(btn):
     
     try:
         log = f"{now.strftime('%d.%m.%Y %H:%M')} BOT DURDURULDU"
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=10)
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(3, 20))
         logkayit(0,"DURDURULDU")
     except:
         logkayit(0,"DURDURULDU")
@@ -197,7 +197,7 @@ def collectdata():
         username = vericek.readline().rstrip()
         password = vericek.readline().rstrip()
         vericek.close()
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password}, timeout=10)
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password}, timeout=(3, 20))
         data = r.json().get("userData")
 
         kullaniciadi = username
@@ -2637,7 +2637,7 @@ def main(btn,frm):
     now = datetime.datetime.now()
     log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT BAŞLATILDI"
     try:
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=10)
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(3, 20))
     except:
         pass
     try:
@@ -2685,7 +2685,7 @@ def main(btn,frm):
                     farmwrite.write(str(hesapsayisi).rstrip()+"\n")
                     farmwrite.write(str(farm).rstrip()+"\n")
                 try:
-                    r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=10)
+                    r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(3, 20))
                 except:
                     print("Atlandı")
                 farmwrite.close()
@@ -3010,5 +3010,5 @@ def main(btn,frm):
             sonrakihesap(btn,mail,sifre,hesapsayisi)
         except Exception as e:
             logkayit(0, f"Hata: {str(e)}")
-            r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":str(e)}, timeout=10)
+            r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":str(e)}, timeout=(3, 20))
             continue
