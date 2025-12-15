@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -344,7 +344,7 @@ def hesapgiris(btn,mail,sifre):
     
     logkayit(farm,"Hesap giriliyor 1")
     for i in range(100):
-        time.sleep(bekleme_carpani*1)
+        logkayit(farm,"Hesap giriliyor 1 loop " + str(i))
         girildi_dunya = ara("./images/girildi_dunya.png")
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
