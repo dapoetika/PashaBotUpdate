@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -384,25 +384,36 @@ def hesapgiris(btn,mail,sifre):
             click(btn,160, 415)
             time.sleep(bekleme_carpani*2)
             click(btn,20,75)
-            time.sleep(bekleme_carpani*2)
-            imageclick(btn,"./images/ayarlar.png")
+            for i in range(5):
+                time.sleep(bekleme_carpani*2)
+                ayarlar = ara("./images/ayarlar.png")
+                if ayarlar != -1:
+                    imageclick(btn,"./images/ayarlar.png")
+                    break
+                else:
+                    click(btn,20,65)
             time.sleep(bekleme_carpani*2)
             click(btn,290,585)
             time.sleep(bekleme_carpani*2)
+            lonca = ara("./images/lonca.png")
+            if lonca != -1:
+                click(btn,20,65)
+                time.sleep(bekleme_carpani*2)
+                click(btn,20,65)
+                time.sleep(bekleme_carpani*2)
+                click(btn,290,585)
+                time.sleep(bekleme_carpani*2)
             imageclick(btn,"./images/hesaplar.png")
-            time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
             click(btn,50,150)
             time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
             imageclick(btn,"./images/hesapdegistir.png")
             time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
             click(btn,110,227)
             time.sleep(bekleme_carpani*2)
             click(btn,110,227)
             time.sleep(bekleme_carpani*2)
-
+        
             for i in mail[farm]:
                 if i == "@":
                     pyautogui.hotkey("altright","q")
@@ -410,10 +421,15 @@ def hesapgiris(btn,mail,sifre):
                     pyautogui.write(i)
             time.sleep(bekleme_carpani*2)
             time.sleep(bekleme_carpani*2)
+        
             click(btn,165,320)
             time.sleep(bekleme_carpani*2)
             click(btn,165,320)
             time.sleep(bekleme_carpani*2)
+            click(btn,165,320)
+            time.sleep(bekleme_carpani*2)
+            time.sleep(bekleme_carpani*2)
+            click(btn,150,270)
             time.sleep(bekleme_carpani*2)
             for i in sifre[farm]:
                 if i == "@":
@@ -421,9 +437,11 @@ def hesapgiris(btn,mail,sifre):
                 else:
                     pyautogui.write(i)
             time.sleep(bekleme_carpani*2)
+            time.sleep(bekleme_carpani*2)
             click(btn,170,390)
             time.sleep(bekleme_carpani*2)
-            
+            click(btn,170,390)
+            time.sleep(bekleme_carpani*2)
             hesap_giris_hata = ara("./images/hesap-giris-hata.png")
             if hesap_giris_hata != -1:
                 click(btn,20,55)
@@ -436,6 +454,20 @@ def hesapgiris(btn,mail,sifre):
                 time.sleep(bekleme_carpani*2)
                 click(btn,20,65)
                 time.sleep(bekleme_carpani*2)
+            renk = pyautogui.pixel(250,390)
+            if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
+                logkayit(farm, "şifre yanlış ya da mail şifre yanlış yere yazıldı")
+                click(btn,20,55)
+                time.sleep(bekleme_carpani*2)
+                time.sleep(bekleme_carpani*1)
+                
+                click(btn,20,55)
+                time.sleep(bekleme_carpani*2)
+                click(btn,20,65)
+                time.sleep(bekleme_carpani*2)
+                click(btn,20,65)
+                time.sleep(bekleme_carpani*2)
+
         logkayit(farm,"Geçiliyor 1")
         for i in range(200):
             
