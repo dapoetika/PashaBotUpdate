@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -428,8 +428,14 @@ def hesapgiris(btn,mail,sifre):
             time.sleep(bekleme_carpani*2)
             click(btn,165,320)
             time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
-            click(btn,150,270)
+            for i in range(5):
+                renk = pyautogui.pixel(250,390)
+                if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,150,270)
+                    time.sleep(bekleme_carpani*2)
+                    click(btn,150,270)
+                    break
             time.sleep(bekleme_carpani*2)
             for i in sifre[farm]:
                 if i == "@":
@@ -2629,7 +2635,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     time.sleep(bekleme_carpani*2)
     click(btn,165,320)
     time.sleep(bekleme_carpani*2)
-    for i in range(5)
+    for i in range(5):
         renk = pyautogui.pixel(250,390)
         if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
             time.sleep(bekleme_carpani*2)
