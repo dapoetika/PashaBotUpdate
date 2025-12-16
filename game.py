@@ -1,4 +1,4 @@
-#abcd
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -16,15 +16,15 @@ def cikis(btn):
             x = pyautogui.screenshot(f"{i}.png",region=[0,0,360,614])
             time.sleep(2)
             break
-    for i in range(10):
+    for i in range(15):
         time.sleep(2)
         girildi = ara("./images/girildi.png")
         girildi_dunya = ara("./images/girildi_dunya.png")
         tamam = ara("./images/tamam.png")
         if tamam != -1:
             logkayit(0,"Başka kullanıcı girdi ya da ağ hatası")
-            
-            break
+            click(btn,tamam[0]+10,tamam[1]+10)
+            time.sleep(2)
         elif girildi_dunya != -1:
             time.sleep(2)
             click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
@@ -2821,8 +2821,6 @@ def main(btn,frm):
             x = liman(btn)
             if x == "bulunamadi":
                 pass
-            
-
             if gozculist[farm]:
                 sonrakidunya(btn)
                 while True:
@@ -2840,8 +2838,12 @@ def main(btn,frm):
                 logkayit(farm,"İç Kaynak Bonus")
                 x = ickaynakbonusu(btn,arttirici_al)
                 if  x == "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
                 if x == "limanyok":
                     pass
 
@@ -2886,28 +2888,45 @@ def main(btn,frm):
                 logkayit(farm,"Asker Egit")
                 x = trainsoldier(btn,False)
                 if x == "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
+                    
             elif askeregitlist[farm] == "Tahil Arabasi":
                 logkayit(farm,"Asker Egit")
                 x =trainsoldier(btn,True)
                 if x == "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
 
             if hazine_topla:
                 logkayit(farm,"Hazine Topla")
                 x = hazinetopla(btn,ganimet_yap)
                 if x == "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
 
             if ganimet_yap:
                 logkayit(farm,"Ganimet Karavani")
                 x = ganimet_karavani(btn)
                 if  x == "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
                 if x == "gece":
                     pass
 
@@ -2921,8 +2940,13 @@ def main(btn,frm):
                 x = "appopen"
                 logkayit(0, f"SONRAKİ DUNYA BAŞARISIZ")
                 click(btn,300,300)
-                cikis(btn)
-                continue
+                girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
+                
             if ifritlist[farm]:
                 while True:
                     x = ifrit(btn)
@@ -2957,8 +2981,12 @@ def main(btn,frm):
             if kaynak_gonder:
                 x = kaynakgonder(btn)        
                 if x == "appopen":
-                    cikis(btn)
-                    continue
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
                 elif x =="vip":
                     hesapgir = False
                     sonrakihesap(btn,mail,sifre,hesapsayisi)
