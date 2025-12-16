@@ -1,4 +1,4 @@
-#
+#a
 from tkinter import *
 import time
 import subprocess
@@ -2590,6 +2590,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
             pyautogui.write(i)
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
+
     click(btn,165,320)
     time.sleep(bekleme_carpani*2)
     click(btn,165,320)
@@ -2597,7 +2598,8 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     click(btn,165,320)
     time.sleep(bekleme_carpani*2)
     time.sleep(bekleme_carpani*2)
-    
+    click(btn,150,270)
+    time.sleep(bekleme_carpani*2)
     for i in sifre[farm]:
         if i == "@":
             pyautogui.hotkey("altright","q")
@@ -2621,8 +2623,20 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         time.sleep(bekleme_carpani*2)
         click(btn,20,65)
         time.sleep(bekleme_carpani*2)
-
-    
+    renk = pyautogui.pixel(250,390)
+    if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
+        logkayit(farm, "şifre yanlış ya da mail şifre yanlış yere yazıldı")
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        time.sleep(bekleme_carpani*1)
+        
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        
     #stop
     
 
