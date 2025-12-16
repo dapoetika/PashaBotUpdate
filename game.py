@@ -1,4 +1,4 @@
-#abcdefg
+#abcdefgh
 from tkinter import *
 import time
 import subprocess
@@ -2947,11 +2947,14 @@ def main(btn,frm):
                 logkayit(0, f"SONRAKİ DUNYA BAŞARISIZ")
                 click(btn,300,300)
                 girdimi = cikis(btn)
-                    if girdimi == "girildi":
-                        x = ""
-                        pass
-                    else:
-                        continue
+                if girdimi == "girildi":
+                    x = ""
+                    girildi = ara("./images/girildi.png")
+                    click(btn,girildi[0]+10,girildi[1]+10)
+                    time.sleep(2)
+                    pass
+                else:
+                    continue
                 
             if ifritlist[farm]:
                 while True:
