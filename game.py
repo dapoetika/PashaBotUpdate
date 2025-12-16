@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -324,6 +324,7 @@ def hesapgiris(btn,mail,sifre):
         girildi = ara("./images/girildi.png")
         girildi_dunya = ara("./images/girildi_dunya.png")
         xtus = ara("./images/xtus.png")
+        tamam = ara("./images/tamam.png")
         time.sleep(1)
         click(btn,165, 415)
         if girildi != -1:
@@ -336,6 +337,8 @@ def hesapgiris(btn,mail,sifre):
         if girildi_dunya != -1:
             appopen = True
             break
+        if tamam != -1:
+            click(btn,tamam[0]+10,tamam[1]+10)
     
     if appopen:
         pass
@@ -351,6 +354,7 @@ def hesapgiris(btn,mail,sifre):
         girildi = ara("./images/girildi.png")
         xtus = ara("./images/xtus.png")
         devredisi = ara("./images/devredisi.png")
+        tamam = ara("./images/tamam.png")
         if devredisi != -1:
             logkayit(farm,"Hesap giriliyor 1 Devre Dışı Basıldı")
             click(btn,devredisi[0]+10,devredisi[1]+10)
@@ -366,6 +370,8 @@ def hesapgiris(btn,mail,sifre):
         elif girildi_dunya != -1:
             logkayit(farm,"Hesap giriliyor 1 GirildiDunya Tamamlandı")
             break
+        elif tamam != -1:
+            click(btn,tamam[0]+10,tamam[1]+10)
         else:
             logkayit(farm,"Hesap giriliyor 1 Hic Birsey bulunamadı")
             
