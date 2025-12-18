@@ -1,4 +1,4 @@
-#abcd
+#abcde
 from tkinter import *
 import time
 import subprocess
@@ -328,18 +328,20 @@ def hesapgiris(btn,mail,sifre):
         tamam = ara("./images/tamam.png")
         time.sleep(1)
         click(btn,165, 415)
-        if girildi != -1:
+        if tamam != -1:
+            click(btn,tamam[0]+10,tamam[1]+10)
+            
+        elif girildi != -1:
             appopen = True
             break
 
-        if xtus != -1:
+        elif xtus != -1:
             appopen = True
             break
-        if girildi_dunya != -1:
+        elif girildi_dunya != -1:
             appopen = True
             break
-        if tamam != -1:
-            click(btn,tamam[0]+10,tamam[1]+10)
+        
     
     if appopen:
         pass
@@ -356,7 +358,10 @@ def hesapgiris(btn,mail,sifre):
         xtus = ara("./images/xtus.png")
         devredisi = ara("./images/devredisi.png")
         tamam = ara("./images/tamam.png")
-        if devredisi != -1:
+        if tamam != -1:
+            logkayit(farm,"Hesap giriliyor 1 Tamam Basıldı")
+            click(btn,tamam[0]+10,tamam[1]+10)
+        elif devredisi != -1:
             logkayit(farm,"Hesap giriliyor 1 Devre Dışı Basıldı")
             click(btn,devredisi[0]+10,devredisi[1]+10)
 
@@ -371,9 +376,7 @@ def hesapgiris(btn,mail,sifre):
         elif girildi_dunya != -1:
             logkayit(farm,"Hesap giriliyor 1 GirildiDunya Tamamlandı")
             break
-        elif tamam != -1:
-            logkayit(farm,"Hesap giriliyor 1 Tamam Basıldı")
-            click(btn,tamam[0]+10,tamam[1]+10)
+        
         else:
             logkayit(farm,"Hesap giriliyor 1 Hic Birsey bulunamadı")
             
@@ -790,14 +793,15 @@ def mesajtopla(btn):
         girildi = ara("./images/girildi.png")
         girildi_dunya = ara("./images/girildi_dunya.png")
         tamam = ara("./images/tamam.png")
-        if girildi != -1:
+        if tamam != -1:
+            click(btn, tamam[0]+10,tamam[1]+10)
+        elif girildi != -1:
             isOkey = True
             break
         elif girildi_dunya != -1:
             click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
             
-        elif tamam != -1:
-            click(btn, tamam[0]+10,tamam[1]+10)
+        
         else:
             click(btn,20,60)
     if not isOkey:
@@ -1085,14 +1089,14 @@ def trainsoldier(btn,tahilarabasi):
                 girildi = ara("./images/girildi.png")
                 girildi_dunya = ara("./images/girildi_dunya.png")
                 tamam = ara("./images/tamam.png")
-                if girildi_dunya != -1:
+                if tamam != -1:
+                    click(btn,tamam[0]+10,tamam[1]+10)
+                elif girildi_dunya != -1:
                     time.sleep(2)
                     click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
                 elif girildi != -1:
                     isOkey = True
                     break
-                elif tamam != -1:
-                    click(btn,tamam[0]+10,tamam[1]+10)
                 else: 
                     click(btn,20,60)
                     time.sleep(bekleme_carpani*2)
@@ -1130,15 +1134,14 @@ def trainsoldier(btn,tahilarabasi):
                 girildi = ara("./images/girildi.png")
                 girildi_dunya = ara("./images/girildi_dunya.png")
                 tamam = ara("./images/tamam.png")
-                
-                if girildi_dunya != -1:
+                if tamam != -1:
+                    click(btn,tamam[0]+10,tamam[1]+10)
+                elif girildi_dunya != -1:
                     time.sleep(2)
                     click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
                 elif girildi != -1:
                     isOkey = True
                     break
-                elif tamam != -1:
-                    click(btn,tamam[0]+10,tamam[1]+10)
                 else: 
                     click(btn,20,60)
                     time.sleep(bekleme_carpani*2)
@@ -1166,15 +1169,14 @@ def hazinetopla(btn,ganimetyap):
             girildi = ara("./images/girildi.png")
             girildi_dunya = ara("./images/girildi_dunya.png")
             tamam = ara("./images/tamam.png")
-            
-            if girildi_dunya != -1:
+            if tamam != -1:
+                click(btn,tamam[0]+10,tamam[1]+10)
+            elif girildi_dunya != -1:
                 time.sleep(2)
                 click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
             elif girildi != -1:
                 isOkey = True
                 break
-            elif tamam != -1:
-                click(btn,tamam[0]+10,tamam[1]+10)
             else: 
                 click(btn,20,60)
                 time.sleep(bekleme_carpani*2)
