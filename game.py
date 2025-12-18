@@ -370,6 +370,7 @@ def hesapgiris(btn,mail,sifre):
             logkayit(farm,"Hesap giriliyor 1 GirildiDunya Tamamlandı")
             break
         elif tamam != -1:
+            logkayit(farm,"Hesap giriliyor 1 Tamam Basıldı")
             click(btn,tamam[0]+10,tamam[1]+10)
         else:
             logkayit(farm,"Hesap giriliyor 1 Hic Birsey bulunamadı")
