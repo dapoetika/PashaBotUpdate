@@ -1,4 +1,4 @@
-#
+#a
 from tkinter import *
 import time
 import subprocess
@@ -2721,20 +2721,17 @@ def main(btn,frm):
     farmwrite.write(str(farm).rstrip()+"\n")
     farmwrite.close()
     print("başla")
-
+    
     global hesapgir
     hesapgir = True
     x = ""
-    gecici_data = ""
     while True:
         try:
-            
             try:
                 send_heartbeat()
                 data = collectdata()
-                gecici_data = data
             except:
-                data = gecici_data
+                pass
             now = datetime.datetime.now()
             if x == "appopen":
                 log = f"{now.strftime("%d.%m.%Y %H:%M")} Farm {farm}. ATLANDI"
