@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -787,9 +787,12 @@ def mesajtopla(btn):
         girildi = ara("./images/girildi.png")
         girildi_dunya = ara("./images/girildi_dunya.png")
         tamam = ara("./images/tamam.png")
-        if girildi != -1 or girildi_dunya != -1:
+        if girildi != -1:
             isOkey = True
             break
+        elif girildi_dunya != -1:
+            click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+            
         elif tamam != -1:
             click(btn, tamam[0]+10,tamam[1]+10)
         else:
