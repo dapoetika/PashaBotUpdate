@@ -1,4 +1,4 @@
-#abcdefghi
+#
 from tkinter import *
 import time
 import subprocess
@@ -2725,8 +2725,10 @@ def main(btn,frm):
     global hesapgir
     hesapgir = True
     x = ""
+    gecici_data = ""
     while True:
         try:
+            
             try:
                 send_heartbeat()
                 data = collectdata()
