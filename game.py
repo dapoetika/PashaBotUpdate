@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -86,6 +86,7 @@ def imageclick(btn,imagename,precision=0.6):
             return False
     return False
 def send_heartbeat():
+    logkayit("0","HeartBeat Gönderiliyor")
     try:
         vericek = open("./data/data.txt")
         username = vericek.readline().rstrip()
@@ -194,6 +195,7 @@ def terminate(btn):
 
 def collectdata():
     try:
+        logkayit("0","Data toplanıyor")
         vericek = open("./data/data.txt")
         username = vericek.readline().rstrip()
         password = vericek.readline().rstrip()
