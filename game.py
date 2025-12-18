@@ -1,4 +1,4 @@
-#abcdefgh
+#abcdefghi
 from tkinter import *
 import time
 import subprocess
@@ -193,7 +193,6 @@ def terminate(btn):
     sys.exit()
 
 def collectdata():
-
     try:
         vericek = open("./data/data.txt")
         username = vericek.readline().rstrip()
@@ -1802,7 +1801,6 @@ def askergonder(btn,hangisi,kaynakseviye):
     time.sleep(bekleme_carpani*2)
     hata = 0
     while True:
-        send_heartbeat()
         devredisi = ara("./images/devredisi.png")
         if devredisi != -1:
             click(btn,devredisi[0]+10,devredisi[1]+10)
@@ -2692,7 +2690,6 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     
 
 def main(btn,frm):
-    send_heartbeat()
     global farm
     global username
     farmread = open("./data/data.txt")
@@ -2730,8 +2727,12 @@ def main(btn,frm):
     x = ""
     while True:
         try:
-            send_heartbeat()
-            data = collectdata()
+            try:
+                send_heartbeat()
+                data = collectdata()
+                gecici_data = data
+            except:
+                data = gecici_data
             now = datetime.datetime.now()
             if x == "appopen":
                 log = f"{now.strftime("%d.%m.%Y %H:%M")} Farm {farm}. ATLANDI"
