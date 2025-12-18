@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -549,7 +549,7 @@ def ickaynakbonusu(btn,arttirici_al):
             girildi_dunya = ara("./images/girildi_dunya.png")
             tamam = ara("./images/tamam.png")
             if tamam != -1:
-                return "appopen"
+                click(btn,tamam[0]+10,tamam[1]+10)
             elif girildi_dunya != -1:
                 time.sleep(2)
                 click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
@@ -786,9 +786,12 @@ def mesajtopla(btn):
         time.sleep(bekleme_carpani*2)
         girildi = ara("./images/girildi.png")
         girildi_dunya = ara("./images/girildi_dunya.png")
+        tamam = ara("./images/tamam.png")
         if girildi != -1 or girildi_dunya != -1:
             isOkey = True
             break
+        elif tamam != -1:
+            click(btn, tamam[0]+10,tamam[1]+10)
         else:
             click(btn,20,60)
     if not isOkey:
@@ -1075,12 +1078,15 @@ def trainsoldier(btn,tahilarabasi):
                 time.sleep(2)
                 girildi = ara("./images/girildi.png")
                 girildi_dunya = ara("./images/girildi_dunya.png")
+                tamam = ara("./images/tamam.png")
                 if girildi_dunya != -1:
                     time.sleep(2)
                     click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
                 elif girildi != -1:
                     isOkey = True
                     break
+                elif tamam != -1:
+                    click(btn,tamam[0]+10,tamam[1]+10)
                 else: 
                     click(btn,20,60)
                     time.sleep(bekleme_carpani*2)
@@ -1117,12 +1123,16 @@ def trainsoldier(btn,tahilarabasi):
                 time.sleep(2)
                 girildi = ara("./images/girildi.png")
                 girildi_dunya = ara("./images/girildi_dunya.png")
+                tamam = ara("./images/tamam.png")
+                
                 if girildi_dunya != -1:
                     time.sleep(2)
                     click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
                 elif girildi != -1:
                     isOkey = True
                     break
+                elif tamam != -1:
+                    click(btn,tamam[0]+10,tamam[1]+10)
                 else: 
                     click(btn,20,60)
                     time.sleep(bekleme_carpani*2)
@@ -1149,12 +1159,16 @@ def hazinetopla(btn,ganimetyap):
             time.sleep(2)
             girildi = ara("./images/girildi.png")
             girildi_dunya = ara("./images/girildi_dunya.png")
+            tamam = ara("./images/tamam.png")
+            
             if girildi_dunya != -1:
                 time.sleep(2)
                 click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
             elif girildi != -1:
                 isOkey = True
                 break
+            elif tamam != -1:
+                click(btn,tamam[0]+10,tamam[1]+10)
             else: 
                 click(btn,20,60)
                 time.sleep(bekleme_carpani*2)
@@ -1229,7 +1243,7 @@ def ganimet_karavani(btn):
             girildi_dunya = ara("./images/girildi_dunya.png")
             tamam = ara("./images/tamam.png")
             if tamam != -1:
-                return "appopen"
+                click(btn,tamam[0]+10,tamam[1]+10)
             elif girildi_dunya != -1:
                 time.sleep(2)
                 logkayit(farm,"appopen karavan oncesi girildi_dunya basıldı")
@@ -1817,8 +1831,8 @@ def askergonder(btn,hangisi,kaynakseviye):
                 girildi_dunya = ara("./images/girildi_dunya.png")
                 tamam = ara("./images/tamam.png")
                 if tamam != -1:
-                    logkayit(0,"asker gonder app ")
-                    return "appopen"
+                    click(btn,tamam[0]+10,tamam[1]+10)
+                   
                 elif girildi_dunya != -1:
                     time.sleep(2)
                     isOkey = True
