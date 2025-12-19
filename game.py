@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -90,7 +90,7 @@ def clicktamam(btn):
     global stop
     if not stop:
         aranan = ara("./images/tamam.png")
-        if aranan[0] != -1:
+        if aranan != -1:
             click(btn,aranan[0]+10,aranan[1]+10)
             time.sleep(bekleme_carpani*2)
             return True
@@ -330,7 +330,7 @@ def oyunac():
         except:
             pass
             
-def hesapdegisme(btn,mail,sifre)
+def hesapdegisme(btn,mail,sifre):
     tamamciktimi = clicktamam(btn)
     if tamamciktimi:
         hesapdegisme(btn,mail,sifre)
