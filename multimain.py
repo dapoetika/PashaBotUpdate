@@ -1,4 +1,4 @@
-#latest344
+#latest3444
 from tkinter.ttk import *
 from tkinter import *
 
@@ -15,7 +15,7 @@ def login():
     except:
         print("internet bağlantısı yok")
         return
-def sonrakihesapgir(window):
+def sonrakihesapgir(window,r):
     vericek = open("./data/data.txt")
     username = vericek.readline().rstrip()
     password = vericek.readline().rstrip()
@@ -29,7 +29,7 @@ def sonrakihesapgir(window):
     hesapentry = Entry(frame2,background="antiquewhite3",justify = CENTER)
     hesapentry.pack()
     hesapentry.insert(0,hesapsayisi)
-    btn = Button(frame2,text="Start", height=2, width=10, background="MediumSpringGreen",command=lambda: otekigecis(window,int(hesapentry.get()),username,password,frame2),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
+    btn = Button(frame2,text="Start", height=2, width=10, background="MediumSpringGreen",command=lambda: otekigecis(window,int(hesapentry.get()),username,password,frame2,r),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
     btn.pack()
 def ilkhesapgir(window):
     # ilk giriş
@@ -69,9 +69,8 @@ def ilkhesapgir(window):
     buttonok.place(x=500,y = 250)
 
     
-def otekigecis(window,hesapsayisi,nickname,password,frame2):
+def otekigecis(window,hesapsayisi,nickname,password,frame2,r):
     frame2.destroy()
-    r = login()
     data = open("./data/data.txt")
 
     first = data.readline().rstrip()
@@ -754,7 +753,7 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
 
 
     try:
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/edit",json=data, timeout=10)
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/edit",json=data, timeout=(15, 30))
         url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/game.py"
         response = requests.get(url)
         response.raise_for_status()
@@ -767,7 +766,7 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
         # Kodları ortam içine çalıştır
         exec(kod, ortam)
 
-        ortam["trr"](btn,ayarlarTABlist)
+        ortam["trr"](btn,ayarlarTABlist,data)
     except Exception as e:
         print(f"Hata oluştu: {e}")
 
@@ -788,7 +787,7 @@ def main():
     lbl.pack()
     r = login()
     if r.status_code == 200:
-        sonrakihesapgir(window)
+        sonrakihesapgir(window,r)
     else:
         ilkhesapgir(window)
     window.mainloop()
