@@ -1,4 +1,4 @@
-#abcde
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -387,7 +387,7 @@ def hesapgiris(btn,mail,sifre):
     click(btn,160, 400)
     #hesap değişme
     if hesapgir:
-        
+        imageclick(btn,"./images/tamam.png")
         logkayit(farm,"Geçiliyor")
         girildi = ara("./images/girildi.png")
         time.sleep(bekleme_carpani*2)
@@ -395,7 +395,9 @@ def hesapgiris(btn,mail,sifre):
             click(btn,160, 415)
             time.sleep(bekleme_carpani*2)
             click(btn,20,75)
+            imageclick(btn,"./images/tamam.png")
             for i in range(5):
+                imageclick(btn,"./images/tamam.png")
                 time.sleep(bekleme_carpani*2)
                 ayarlar = ara("./images/ayarlar.png")
                 if ayarlar != -1:
@@ -403,9 +405,11 @@ def hesapgiris(btn,mail,sifre):
                     break
                 else:
                     click(btn,20,65)
+            imageclick(btn,"./images/tamam.png")
             time.sleep(bekleme_carpani*2)
             click(btn,290,585)
             time.sleep(bekleme_carpani*2)
+            imageclick(btn,"./images/tamam.png")
             lonca = ara("./images/lonca.png")
             if lonca != -1:
                 click(btn,20,65)
@@ -415,10 +419,13 @@ def hesapgiris(btn,mail,sifre):
                 click(btn,290,585)
                 time.sleep(bekleme_carpani*2)
             imageclick(btn,"./images/hesaplar.png")
+            imageclick(btn,"./images/tamam.png")
             time.sleep(bekleme_carpani*2)
             click(btn,50,150)
+            imageclick(btn,"./images/tamam.png")
             time.sleep(bekleme_carpani*2)
             imageclick(btn,"./images/hesapdegistir.png")
+            imageclick(btn,"./images/tamam.png")
             time.sleep(bekleme_carpani*2)
             click(btn,110,227)
             time.sleep(bekleme_carpani*2)
@@ -2615,9 +2622,11 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         farmwrite.write(str(farm).rstrip()+"\n")
     farmwrite.close()
     time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/tamam.png")
     time.sleep(bekleme_carpani*2)
     click(btn,20,75)
     for i in range(5):
+        imageclick(btn,"./images/tamam.png")
         time.sleep(bekleme_carpani*2)
         ayarlar = ara("./images/ayarlar.png")
         if ayarlar != -1:
@@ -2626,6 +2635,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         else:
             click(btn,20,65)
     time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/tamam.png")
     click(btn,290,585)
     time.sleep(bekleme_carpani*2)
     lonca = ara("./images/lonca.png")
@@ -2636,7 +2646,9 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         time.sleep(bekleme_carpani*2)
         click(btn,290,585)
         time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/tamam.png")
     imageclick(btn,"./images/hesaplar.png")
+    imageclick(btn,"./images/tamam.png")
     time.sleep(bekleme_carpani*2)
     click(btn,50,150)
     time.sleep(bekleme_carpani*2)
