@@ -1,4 +1,4 @@
-#
+#a
 from tkinter import *
 import time
 import subprocess
@@ -75,7 +75,7 @@ def clickclickclicktamam(btn):
     for i in range(10):
         if not stop:
             tamam = ara("./images/tamam.png")
-            if tamam[0] != -1:
+            if tamam != -1:
                 click(btn,tamam[0]+10,tamam[1]+10)
                 time.sleep(10)
                 return True
