@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -92,10 +92,10 @@ def send_heartbeat():
         username = vericek.readline().rstrip()
         global sonheartbeat
         sonheartbeat = datetime.datetime.now()
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/heartbeat",json={"username":username},timeout=(15, 30))
+        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/heartbeat",json={"username":username},timeout=(15, 30))
     except Exception as a:
         logkayit("0",a)
-def trr(btn,frm):
+def trr(btn,frm,data):
     global sonheartbeat
     sonheartbeat = datetime.datetime.now()
     for i in range(100):
@@ -103,7 +103,7 @@ def trr(btn,frm):
         if os.path.exists(filename):
             os.remove(filename)
     deletefiles = open("./data/q.txt","w").close()
-    anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
+    anathr = Thread(target=lambda:sec(btn,frm,data),daemon=True)
     anathr.start()
     x = open("./data/data.txt")
     username = x.readline().rstrip()
@@ -140,7 +140,7 @@ def goym(btn,frm,username):
             if now - sonheartbeat > datetime.timedelta(minutes=30):
                 
                 log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT KAPANDI"
-                r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
+                #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
                 x.write(f"Bot Durdu ve Yeniden Başlatıldı")
                 anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
                 anathr.start()
@@ -153,12 +153,12 @@ def goym(btn,frm,username):
                 x.write(str(hata))
 
 
-def sec(btn,frm):
+def sec(btn,frm,data):
     global stop 
     stop = False
     while not stop:
         global worker
-        worker = Thread(target=lambda:main(btn,frm),daemon=True)    
+        worker = Thread(target=lambda:main(btn,frm,data),daemon=True)    
        
         if not worker.is_alive():
             logkayit(0,"start")
@@ -187,21 +187,21 @@ def terminate(btn):
     
     try:
         log = f"{now.strftime('%d.%m.%Y %H:%M')} BOT DURDURULDU"
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
+        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
         logkayit(0,"DURDURULDU")
     except:
         logkayit(0,"DURDURULDU")
     sys.exit()
 
-def collectdata():
+def collectdata(data):
     try:
         logkayit("0","Data toplanıyor")
         vericek = open("./data/data.txt")
         username = vericek.readline().rstrip()
         password = vericek.readline().rstrip()
         vericek.close()
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password}, timeout=(15, 30))
-        data = r.json().get("userData")
+        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password}, timeout=(15, 30))
+        #data = r.json().get("userData")
 
         kullaniciadi = username
         gereksiz = password
@@ -2723,7 +2723,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
     #stop
     
 
-def main(btn,frm):
+def main(btn,frm,gamedata):
     global farm
     global username
     farmread = open("./data/data.txt")
@@ -2734,10 +2734,10 @@ def main(btn,frm):
     farmread.close()
     now = datetime.datetime.now()
     log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT BAŞLATILDI"
-    try:
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
-    except:
-        pass
+    #try:
+        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
+    #except:
+        #pass
     try:
         if bu =="":
             farm = 0
@@ -2763,7 +2763,7 @@ def main(btn,frm):
         try:
             try:
                 send_heartbeat()
-                data = collectdata()
+                data = collectdata(gamedata)
             except:
                 pass
             now = datetime.datetime.now()
@@ -2785,10 +2785,10 @@ def main(btn,frm):
                     farmwrite.write(str(password).rstrip()+"\n")
                     farmwrite.write(str(hesapsayisi).rstrip()+"\n")
                     farmwrite.write(str(farm).rstrip()+"\n")
-                try:
-                    r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
-                except:
-                    print("Atlandı")
+                #try:
+                    #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
+                #except:
+                    #print("Atlandı")
                 farmwrite.close()
             x = ""
             global btn_dur
@@ -3142,5 +3142,5 @@ def main(btn,frm):
             sonrakihesap(btn,mail,sifre,hesapsayisi)
         except Exception as e:
             logkayit(0, f"Hata: {str(e)}")
-            r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":str(e)}, timeout=(15, 30))
+            #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":str(e)}, timeout=(15, 30))
             continue
