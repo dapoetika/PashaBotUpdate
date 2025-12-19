@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -70,19 +70,6 @@ def ara(imagename,precision=0.6):
     else:
         return[1,1]
     return -1
-def clickclickclicktamam(btn):
-    global stop
-    for i in range(10):
-        if not stop:
-            tamam = ara("./images/tamam.png")
-            if tamam != -1:
-                click(btn,tamam[0]+10,tamam[1]+10)
-                time.sleep(10)
-                return True
-        else:
-            terminate(btn)
-            return False
-    return False
 
 def imageclick(btn,imagename,precision=0.6):
     global stop
@@ -97,6 +84,19 @@ def imageclick(btn,imagename,precision=0.6):
         else:
             terminate(btn)
             return False
+    return False
+
+def clicktamam(btn):
+    global stop
+    if not stop:
+        aranan = ara("./images/tamam.png")
+        if aranan[0] != -1:
+            click(btn,aranan[0]+10,aranan[1]+10)
+            time.sleep(bekleme_carpani*2)
+            return True
+    else:
+        terminate(btn)
+        return False
     return False
 def send_heartbeat():
     logkayit("0","HeartBeat Gönderiliyor")
@@ -329,6 +329,133 @@ def oyunac():
             win32gui.MoveWindow(hwnd,0,0,360,614,True)
         except:
             pass
+            
+def hesapdegisme(btn,mail,sifre)
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
+        
+    click(btn,160, 415)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,75)
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
+    
+    for i in range(5):
+
+        time.sleep(bekleme_carpani*2)
+        ayarlar = ara("./images/ayarlar.png")
+        if ayarlar != -1:
+            imageclick(btn,"./images/ayarlar.png")
+            break
+        else:
+            click(btn,20,65)
+            
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,290,585)
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
+    time.sleep(bekleme_carpani*2)
+    
+    lonca = ara("./images/lonca.png")
+    if lonca != -1:
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,290,585)
+        time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/hesaplar.png")
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,50,150)
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
+    
+    time.sleep(bekleme_carpani*2)
+    imageclick(btn,"./images/hesapdegistir.png")
+    
+    time.sleep(bekleme_carpani*2)
+    click(btn,110,227)
+    time.sleep(bekleme_carpani*2)
+    click(btn,110,227)
+    time.sleep(bekleme_carpani*2)
+
+    for i in mail[farm]:
+        if i == "@":
+            pyautogui.hotkey("altright","q")
+        else:
+            pyautogui.write(i)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
+
+    click(btn,165,320)
+    time.sleep(bekleme_carpani*2)
+    click(btn,165,320)
+    time.sleep(bekleme_carpani*2)
+    click(btn,165,320)
+    time.sleep(bekleme_carpani*2)
+    for i in range(5):
+        renk = pyautogui.pixel(250,390)
+        if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
+            time.sleep(bekleme_carpani*2)
+            click(btn,150,270)
+            time.sleep(bekleme_carpani*2)
+            click(btn,150,270)
+            break
+    time.sleep(bekleme_carpani*2)
+    for i in sifre[farm]:
+        if i == "@":
+            pyautogui.hotkey("altright","q")
+        else:
+            pyautogui.write(i)
+    time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
+    click(btn,170,390)
+    time.sleep(bekleme_carpani*2)
+    click(btn,170,390)
+    time.sleep(bekleme_carpani*2)
+    hesap_giris_hata = ara("./images/hesap-giris-hata.png")
+    if hesap_giris_hata != -1:
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        time.sleep(bekleme_carpani*1)
+        
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+    renk = pyautogui.pixel(250,390)
+    if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
+        logkayit(farm, "şifre yanlış ya da mail şifre yanlış yere yazıldı")
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        time.sleep(bekleme_carpani*1)
+        
+        click(btn,20,55)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
+        click(btn,20,65)
+        time.sleep(bekleme_carpani*2)
     
 def hesapgiris(btn,mail,sifre):
     logkayit(farm,"Hesap Giriliyor")
@@ -400,110 +527,14 @@ def hesapgiris(btn,mail,sifre):
     click(btn,160, 400)
     #hesap değişme
     if hesapgir:
-        clickclickclicktamam(btn)
+        hesapdegisme(btn,mail,sifre)
+        
         logkayit(farm,"Geçiliyor")
         girildi = ara("./images/girildi.png")
+        tamam = ara()
         time.sleep(bekleme_carpani*2)
         if girildi != -1:
-            click(btn,160, 415)
-            time.sleep(bekleme_carpani*2)
-            click(btn,20,75)
-            clickclickclicktamam(btn)
-            for i in range(5):
-                clickclickclicktamam(btn)
-                time.sleep(bekleme_carpani*2)
-                ayarlar = ara("./images/ayarlar.png")
-                if ayarlar != -1:
-                    imageclick(btn,"./images/ayarlar.png")
-                    break
-                else:
-                    click(btn,20,65)
-            clickclickclicktamam(btn)
-            time.sleep(bekleme_carpani*2)
-            click(btn,290,585)
-            time.sleep(bekleme_carpani*2)
-            clickclicktamam(btn)
-            lonca = ara("./images/lonca.png")
-            if lonca != -1:
-                click(btn,20,65)
-                time.sleep(bekleme_carpani*2)
-                click(btn,20,65)
-                time.sleep(bekleme_carpani*2)
-                click(btn,290,585)
-                time.sleep(bekleme_carpani*2)
-            imageclick(btn,"./images/hesaplar.png")
-            clickclicktamam(btn)
-            time.sleep(bekleme_carpani*2)
-            click(btn,50,150)
-            clickclicktamam(btn)
-            time.sleep(bekleme_carpani*2)
-            imageclick(btn,"./images/hesapdegistir.png")
-            clickclicktamam(btn)
-            time.sleep(bekleme_carpani*2)
-            click(btn,110,227)
-            time.sleep(bekleme_carpani*2)
-            click(btn,110,227)
-            time.sleep(bekleme_carpani*2)
-        
-            for i in mail[farm]:
-                if i == "@":
-                    pyautogui.hotkey("altright","q")
-                else:
-                    pyautogui.write(i)
-            time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
-        
-            click(btn,165,320)
-            time.sleep(bekleme_carpani*2)
-            click(btn,165,320)
-            time.sleep(bekleme_carpani*2)
-            click(btn,165,320)
-            time.sleep(bekleme_carpani*2)
-            for i in range(5):
-                renk = pyautogui.pixel(250,390)
-                if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
-                    time.sleep(bekleme_carpani*2)
-                    click(btn,150,270)
-                    time.sleep(bekleme_carpani*2)
-                    click(btn,150,270)
-                    break
-            time.sleep(bekleme_carpani*2)
-            for i in sifre[farm]:
-                if i == "@":
-                    pyautogui.hotkey("altright","q")
-                else:
-                    pyautogui.write(i)
-            time.sleep(bekleme_carpani*2)
-            time.sleep(bekleme_carpani*2)
-            click(btn,170,390)
-            time.sleep(bekleme_carpani*2)
-            click(btn,170,390)
-            time.sleep(bekleme_carpani*2)
-            hesap_giris_hata = ara("./images/hesap-giris-hata.png")
-            if hesap_giris_hata != -1:
-                click(btn,20,55)
-                time.sleep(bekleme_carpani*2)
-                time.sleep(bekleme_carpani*1)
-                
-                click(btn,20,55)
-                time.sleep(bekleme_carpani*2)
-                click(btn,20,65)
-                time.sleep(bekleme_carpani*2)
-                click(btn,20,65)
-                time.sleep(bekleme_carpani*2)
-            renk = pyautogui.pixel(250,390)
-            if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
-                logkayit(farm, "şifre yanlış ya da mail şifre yanlış yere yazıldı")
-                click(btn,20,55)
-                time.sleep(bekleme_carpani*2)
-                time.sleep(bekleme_carpani*1)
-                
-                click(btn,20,55)
-                time.sleep(bekleme_carpani*2)
-                click(btn,20,65)
-                time.sleep(bekleme_carpani*2)
-                click(btn,20,65)
-                time.sleep(bekleme_carpani*2)
+            
 
         logkayit(farm,"Geçiliyor 1")
         for i in range(200):
@@ -2640,104 +2671,8 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         farmwrite.write(str(farm).rstrip()+"\n")
     farmwrite.close()
     time.sleep(bekleme_carpani*2)
-    clickclicktamam(btn)
-    time.sleep(bekleme_carpani*2)
-    click(btn,20,75)
-    for i in range(5):
-        clickclicktamam(btn)
-        time.sleep(bekleme_carpani*2)
-        ayarlar = ara("./images/ayarlar.png")
-        if ayarlar != -1:
-            imageclick(btn,"./images/ayarlar.png")
-            break
-        else:
-            click(btn,20,65)
-    time.sleep(bekleme_carpani*2)
-    clickclicktamam(btn)
-    click(btn,290,585)
-    time.sleep(bekleme_carpani*2)
-    lonca = ara("./images/lonca.png")
-    if lonca != -1:
-        click(btn,20,65)
-        time.sleep(bekleme_carpani*2)
-        click(btn,20,65)
-        time.sleep(bekleme_carpani*2)
-        click(btn,290,585)
-        time.sleep(bekleme_carpani*2)
-    clickclicktamam(btn)
-    imageclick(btn,"./images/hesaplar.png")
-    clickclicktamam(btn)
-    time.sleep(bekleme_carpani*2)
-    click(btn,50,150)
-    time.sleep(bekleme_carpani*2)
-    imageclick(btn,"./images/hesapdegistir.png")
-    time.sleep(bekleme_carpani*2)
-    click(btn,110,227)
-    time.sleep(bekleme_carpani*2)
-    click(btn,110,227)
-    time.sleep(bekleme_carpani*2)
-
-    for i in mail[farm]:
-        if i == "@":
-            pyautogui.hotkey("altright","q")
-        else:
-            pyautogui.write(i)
-    time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*2)
-
-    click(btn,165,320)
-    time.sleep(bekleme_carpani*2)
-    click(btn,165,320)
-    time.sleep(bekleme_carpani*2)
-    click(btn,165,320)
-    time.sleep(bekleme_carpani*2)
-    for i in range(5):
-        renk = pyautogui.pixel(250,390)
-        if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
-            time.sleep(bekleme_carpani*2)
-            click(btn,150,270)
-            time.sleep(bekleme_carpani*2)
-            click(btn,150,270)
-            break
-            
-    time.sleep(bekleme_carpani*2)
-    for i in sifre[farm]:
-        if i == "@":
-            pyautogui.hotkey("altright","q")
-        else:
-            pyautogui.write(i)
-    time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*2)
-    click(btn,170,390)
-    time.sleep(bekleme_carpani*2)
-    click(btn,170,390)
-    time.sleep(bekleme_carpani*2)
-    hesap_giris_hata = ara("./images/hesap-giris-hata.png")
-    if hesap_giris_hata != -1:
-        click(btn,20,55)
-        time.sleep(bekleme_carpani*2)
-        time.sleep(bekleme_carpani*1)
-        
-        click(btn,20,55)
-        time.sleep(bekleme_carpani*2)
-        click(btn,20,65)
-        time.sleep(bekleme_carpani*2)
-        click(btn,20,65)
-        time.sleep(bekleme_carpani*2)
-    renk = pyautogui.pixel(250,390)
-    if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
-        logkayit(farm, "şifre yanlış ya da mail şifre yanlış yere yazıldı")
-        click(btn,20,55)
-        time.sleep(bekleme_carpani*2)
-        time.sleep(bekleme_carpani*1)
-        
-        click(btn,20,55)
-        time.sleep(bekleme_carpani*2)
-        click(btn,20,65)
-        time.sleep(bekleme_carpani*2)
-        click(btn,20,65)
-        time.sleep(bekleme_carpani*2)
-        
+    
+    hesapdegisme(btn,mail,sifre)
     #stop
     
 
