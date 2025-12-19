@@ -1,4 +1,4 @@
-#latest3444
+#
 from tkinter.ttk import *
 from tkinter import *
 
@@ -10,7 +10,7 @@ def login():
     password = vericek.readline().rstrip()
     
     try:
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password}, timeout=10)
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password}, timeout=(15, 30))
         return r
     except:
         print("internet bağlantısı yok")
