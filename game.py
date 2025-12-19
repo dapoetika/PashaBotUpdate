@@ -1,4 +1,4 @@
-#abcd
+#abcde
 from tkinter import *
 import time
 import subprocess
@@ -527,11 +527,8 @@ def hesapgiris(btn,mail,sifre):
     click(btn,160, 400)
     #hesap değişme
     if hesapgir:
-        
-        
         logkayit(farm,"Geçiliyor")
         girildi = ara("./images/girildi.png")
-        tamam = ara()
         time.sleep(bekleme_carpani*2)
         if girildi != -1:
             hesapdegisme(btn,mail,sifre)
