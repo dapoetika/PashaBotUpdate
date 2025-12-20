@@ -1,4 +1,4 @@
-#abcde
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -877,7 +877,7 @@ def mesajtopla(btn):
         time.sleep(bekleme_carpani*2)
         click(btn,160,335)
         time.sleep(bekleme_carpani*2)
-        while True:
+        for i in range(5):
             click(btn,160,590)
             time.sleep(bekleme_carpani*2)
             tumunu_oku = ara("./images/tumunu_oku.png")
@@ -905,7 +905,7 @@ def mesajtopla(btn):
         time.sleep(bekleme_carpani*2)
         click(btn,300,595)
         time.sleep(bekleme_carpani*2)
-        while True:
+        for i in range(5):
             click(btn,160,590)
             time.sleep(bekleme_carpani*2)
             tumunu_oku = ara("./images/tumunu_oku.png")
@@ -956,7 +956,7 @@ def mesajtoplaoteki(btn):
     time.sleep(bekleme_carpani*2)
     click(btn,160,335)
     
-    while True:
+    for i in range(5):
         time.sleep(bekleme_carpani*2)
         tumunu_oku = ara("./images/tumunu_oku.png")
         if tumunu_oku != -1:
