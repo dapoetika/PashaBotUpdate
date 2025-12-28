@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -403,34 +403,35 @@ def hesapdegisme(btn,mail,sifre):
         else:
             pyautogui.write(i)
     time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*2)
-
-    click(btn,165,320)
-    time.sleep(bekleme_carpani*2)
-    click(btn,165,320)
-    time.sleep(bekleme_carpani*2)
-    click(btn,165,320)
-    time.sleep(bekleme_carpani*2)
-    for i in range(5):
-        renk = pyautogui.pixel(250,390)
-        if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
+    pyautogui.hotkey("enter")
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
+    for i in range(15):
+        time.sleep(bekleme_carpani*2)
+        renk = pyautogui.pixel(120,310)
+        if renk[0] == 250 and renk[1] == 250 and renk[2] == 250:
             time.sleep(bekleme_carpani*2)
-            click(btn,150,270)
-            time.sleep(bekleme_carpani*2)
-            click(btn,150,270)
             break
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
     time.sleep(bekleme_carpani*2)
     for i in sifre[farm]:
         if i == "@":
             pyautogui.hotkey("altright","q")
         else:
             pyautogui.write(i)
+
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
     time.sleep(bekleme_carpani*2)
-    time.sleep(bekleme_carpani*2)
-    click(btn,170,390)
-    time.sleep(bekleme_carpani*2)
-    click(btn,170,390)
-    time.sleep(bekleme_carpani*2)
+    pyautogui.hotkey("enter")
+    
     hesap_giris_hata = ara("./images/hesap-giris-hata.png")
     if hesap_giris_hata != -1:
         click(btn,20,55)
@@ -456,6 +457,10 @@ def hesapdegisme(btn,mail,sifre):
         time.sleep(bekleme_carpani*2)
         click(btn,20,65)
         time.sleep(bekleme_carpani*2)
+    tamamciktimi = clicktamam(btn)
+    if tamamciktimi:
+        hesapdegisme(btn,mail,sifre)
+        return ""
     
 def hesapgiris(btn,mail,sifre):
     logkayit(farm,"Hesap Giriliyor")
