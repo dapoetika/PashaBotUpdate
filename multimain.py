@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter.ttk import *
 from tkinter import *
 
@@ -542,31 +542,31 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     value = []
     if arttiriciAl[0]:
         value.append("✅Grain")
-        dictbool["Bugday"] = True
+        dictbool["Grain"] = True
     else:
         value.append("Grain")
-        dictbool["Bugday"] = False
+        dictbool["Grain"] = False
 
     if arttiriciAl[1]:
         value.append("✅Lumber")
-        dictbool["Odun"] = True
+        dictbool["Lumber"] = True
     else:
         value.append("Lumber")
-        dictbool["Odun"] = False
+        dictbool["Lumber"] = False
     
     if arttiriciAl[2]:
         value.append("✅Iron")
-        dictbool["Demir"] = True
+        dictbool["Iron"] = True
     else:
         value.append("Iron")
-        dictbool["Demir"] = False
+        dictbool["Iron"] = False
     
     if arttiriciAl[3]:
         value.append("✅Quartz")
-        dictbool["Kuvars"] = True
+        dictbool["Quartz"] = True
     else:
         value.append("Quartz")
-        dictbool["Kuvars"] = False
+        dictbool["Quartz"] = False
 
     global comboarttirici
     comboarttirici = Combobox(frm3,values=value,background="DarkSlateGray4",state="readonly")
@@ -667,20 +667,20 @@ def comboboxchange(event):
     secilen = secilen.replace("✅","")
     dictbool[secilen] = not dictbool.get(secilen)
     value = []
-    if dictbool.get("Bugday")== True:
+    if dictbool.get("Grain")== True:
         value.append("✅Grain")
     else:
         value.append("Grain")
 
-    if dictbool.get("Odun")== True:
+    if dictbool.get("Lumber")== True:
         value.append("✅Lumber")
     else:
         value.append("Lumber")
-    if dictbool.get("Demir")== True:
+    if dictbool.get("Iron")== True:
         value.append("✅Iron")
     else:
         value.append("Iron")
-    if dictbool.get("Kuvars")== True:
+    if dictbool.get("Quartz")== True:
         value.append("✅Quartz")
     else:
         value.append("Quartz")
@@ -697,13 +697,13 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
     mailler = []
     sifreler = []
     degirmenal = [False,False,False,False]
-    if dictbool.get("Bugday")== True:
+    if dictbool.get("Grain")== True:
         degirmenal[0] = True
-    if dictbool.get("Odun")== True:
+    if dictbool.get("Lumber")== True:
         degirmenal[1] = True
-    if dictbool.get("Demir")== True:
+    if dictbool.get("Iron")== True:
         degirmenal[2] = True
-    if dictbool.get("Kuvars")== True:
+    if dictbool.get("Quartz")== True:
         degirmenal[3] = True
    
     for i in range(hesapsayisi):
