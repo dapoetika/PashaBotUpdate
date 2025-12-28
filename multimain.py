@@ -1,4 +1,4 @@
-#
+#a
 from tkinter.ttk import *
 from tkinter import *
 
@@ -24,7 +24,7 @@ def sonrakihesapgir(window,r):
 
     frame2 = Frame(window,height = 100,width = 400,background= "DarkSlateGray4", borderwidth=2, relief="groove")
     frame2.pack(fill='both', expand=True)
-    labelhesapsayisi = Label(frame2,text="Hesap Sayısı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    labelhesapsayisi = Label(frame2,text="Farm Count",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
     labelhesapsayisi.pack()
     hesapentry = Entry(frame2,background="antiquewhite3",justify = CENTER)
     hesapentry.pack()
@@ -37,7 +37,7 @@ def ilkhesapgir(window):
     frame2 = Frame(window,height = 100,width = 400,background = "DarkSlateGray4")
     #frame2.place(x=105,y = 115)
     frame2.pack(fill='both', expand=True)
-    nicknamelabel = Label(frame2,text="Kullanıcı Adı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    nicknamelabel = Label(frame2,text="Username",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
     nicknamelabel.pack()
     nickentry = Entry(frame2,background="antiquewhite3")
     nickentry.pack()
@@ -49,7 +49,7 @@ def ilkhesapgir(window):
 
 
 
-    passwordlabel = Label(frame2,text="Parola",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    passwordlabel = Label(frame2,text="Password",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
     passwordlabel.pack()
     passwordentry = Entry(frame2,background="antiquewhite3",show = "*")
     passwordentry.pack()
@@ -60,12 +60,12 @@ def ilkhesapgir(window):
 
 
     
-    labelhesapsayisi = Label(frame2,text="Hesap Sayısı",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
+    labelhesapsayisi = Label(frame2,text="Farm Count",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT)
     labelhesapsayisi.pack()
     hesapentry = Entry(frame2,background="antiquewhite3",justify = CENTER)
     hesapentry.pack()
 
-    buttonok = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: gecis(window,hesapentry,passwordentry,nickentry,frame2),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
+    buttonok = Button(text="Start", height=2, width=10, background="MediumSpringGreen",command=lambda: gecis(window,hesapentry,passwordentry,nickentry,frame2),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised")
     buttonok.place(x=500,y = 250)
 
     
@@ -292,15 +292,15 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
         labelfarm.grid(row = 0,column = 0,ipadx = 15,ipady = 5)
 
 
-        labelresource = Label(tab,text="Kaynak",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource = Label(tab,text="Source",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         labelresource.grid(row = 0,column = 1,ipadx = 15,ipady = 5)
 
 
-        labelresource = Label(tab,text="Asker Eğit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource = Label(tab,text="Train Soldier",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         labelresource.grid(row = 0,column = 2,ipadx = 15,ipady = 5)
 
 
-        labelresource = Label(tab,text="Gözcü",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource = Label(tab,text="Scout",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         labelresource.grid(row = 0,column = 3,ipadx = 15,ipady = 5)
 
 
@@ -308,7 +308,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
         labelresource.grid(row = 0,column = 4,ipadx = 25,ipady = 5)
 
 
-        labelresource = Label(tab,text="Saat",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource = Label(tab,text="Time",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
         if kalan > 15:
             tur = 15
@@ -326,22 +326,22 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
             
             
             labelfarmcount.grid(row = i+1,column = 0,ipadx = 25,ipady = 5)
-            combo = Combobox(tab,values=["Yok","Bugday","Odun","Demir","Kuvars","Altin"],background="DarkSlateGray4",state="readonly",width=2)
+            combo = Combobox(tab,values=["Yok","Grain","Lumber","Iron","Quartz","Gold"],background="DarkSlateGray4",state="readonly",width=2)
             combo.grid(row = i +1,column =  1,ipadx = 25,ipady = 5)
             gonderilcek.append(combo)
 
             if secil == "Yok" or secil == "":
                 combo.set("--")
             elif secil == "Bugday" or secil == "Grain":
-                combo.set("Bugday")
+                combo.set("Grain")
             elif secil == "Odun" or secil == "Lumber":
-                combo.set("Odun")
+                combo.set("Lumber")
             elif secil == "Demir" or secil == "Iron":
-                combo.set("Demir")
+                combo.set("Iron")
             elif secil == "Kuvars" or secil == "Quartz":
-                combo.set("Kuvars")
+                combo.set("Quartz")
             elif secil == "Altin" or secil == "Gold":
-                combo.set("Altin")
+                combo.set("Gold")
         
 
             try:
@@ -349,7 +349,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
             except:
                 secil="Yok"
             
-            combo = Combobox(tab,values=["Yok","Max","Tahil Arabasi"],background="DarkSlateGray4",state="readonly",width=4)
+            combo = Combobox(tab,values=["Yok","Max","Grain Car"],background="DarkSlateGray4",state="readonly",width=4)
             combo.grid(row = i +1,column =  2,ipadx = 25,ipady = 5)
             askeregitcombo.append(combo)
             if secil == "Yok" or secil == "" or secil == "--":
@@ -359,7 +359,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
                 combo.set("Max")
 
             elif secil == "Tahil Arabasi" or secil == "Grain Car":
-                combo.set("Tahil Arabasi")
+                combo.set("Grain Car")
             
         
             combo = Checkbutton(tab,command = lambda g = sayac:reverseBool(gozculist,g),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
@@ -394,7 +394,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
             sayac += 1
     
 
-    combo = Checkbutton(frm3,text = "Hasat Et",command = lambda:reverseBool(hasat_et_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Harvest",command = lambda:reverseBool(hasat_et_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 0,column = 2,ipadx = 15,ipady = 5,sticky="w")
     if hasatet == True:
         
@@ -406,7 +406,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     hasat_et_list.append(hasat)
 
 
-    combo = Checkbutton(frm3,text = "Hızlı Topla",command = lambda:reverseBool(hizli_topla_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Quick Collect",command = lambda:reverseBool(hizli_topla_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 1,column = 2,ipadx = 15,ipady = 5,sticky="w")
     if hizliTopla == True:
         
@@ -419,7 +419,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
 
 
 
-    combo = Checkbutton(frm3,text = "Tampon Hasat",command = lambda:reverseBool(tampon_hasat_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Bumper Harvest",command = lambda:reverseBool(tampon_hasat_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 2,column = 2,ipadx = 15,ipady = 5,sticky="w")
     if tamponHasat == True:
         
@@ -431,7 +431,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     tampon_hasat_list.append(tampon)
 
 
-    combo = Checkbutton(frm3,text = "Mesaj Topla",command = lambda:reverseBool(mesaj_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Collect MailBox",command = lambda:reverseBool(mesaj_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 0,column = 0,ipadx = 15,ipady = 5,sticky="w")
     if mesajTopla == True:
         
@@ -443,7 +443,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     mesaj_list.append(mesaj)
 
 
-    combo = Checkbutton(frm3,text = "Lonca Topla",command = lambda:reverseBool(lonca_topla_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Collect Alliance Box",command = lambda:reverseBool(lonca_topla_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 1,column = 0,ipadx = 15,ipady = 5,sticky="w")
     if loncaTopla == True:
         
@@ -454,7 +454,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
         combo.deselect()
     lonca_topla_list.append(topla)
 
-    combo = Checkbutton(frm3,text = "Hazine Havuzu",command = lambda:reverseBool(havuz_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Treasue Pool",command = lambda:reverseBool(havuz_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 2,column = 0,ipadx = 15,ipady = 5,sticky="w")
     if hazinetopla == True:
         
@@ -467,7 +467,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
 
     
 
-    combo = Checkbutton(frm3,text = "Kaynak Yardımı",command = lambda:reverseBool(kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Resource Aid",command = lambda:reverseBool(kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 3,column = 0,ipadx = 15,ipady = 5,sticky="w")
     if kaynakGonder == True:
 
@@ -479,7 +479,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     kaynak.append(kaynak_gonder)
 
 
-    combo = Checkbutton(frm3,text = "Lonca Bağışı",command = lambda:reverseBool(lonca,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Technology Donation",command = lambda:reverseBool(lonca,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 0,column = 1,ipadx = 15,ipady = 5,sticky="w")
     if loncatechYap == True:
 
@@ -491,7 +491,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     lonca.append(loncatech_yap)
 
 
-    combo = Checkbutton(frm3,text = "Ganimet Karavanı",command = lambda:reverseBool(ganimet_kara,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Loot Caravan",command = lambda:reverseBool(ganimet_kara,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 1,column = 1,ipadx = 15,ipady = 5,sticky="w")
     if ganimetYap == True:
 
@@ -503,7 +503,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     ganimet_kara.append(ganimet_yap)
 
 
-    combo = Checkbutton(frm3,text = "İç Kaynak Bonusu",command = lambda:reverseBool(ic_kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Water Mill",command = lambda:reverseBool(ic_kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 2,column = 1,ipadx = 15,ipady = 5,sticky="w")
     if icKaynakBonus == True:
 
@@ -516,7 +516,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
 
 
 
-    combo = Checkbutton(frm3,text = "Dış Kaynak Bonusu",command = lambda:reverseBool(dis_kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "Collecting Bonus",command = lambda:reverseBool(dis_kaynak,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 3,column = 1,ipadx = 15,ipady = 5,sticky="w")
     if diskaynakBonus == True:
 
@@ -527,7 +527,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
         combo.deselect()
     dis_kaynak.append(disyap)
 
-    combo = Checkbutton(frm3,text = "KVK Kalkan",command = lambda:reverseBool(kvk_kalkan_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo = Checkbutton(frm3,text = "KVK Shield",command = lambda:reverseBool(kvk_kalkan_list,0),background="DarkSlateGray4",activebackground="CadetBlue4")
     combo.grid(row = 3,column = 2,ipadx = 15,ipady = 5,sticky="w")
     if kvkKalkan == True:
         kalkan = True
@@ -541,41 +541,41 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     dictbool = {}
     value = []
     if arttiriciAl[0]:
-        value.append("✅Bugday")
+        value.append("✅Grain")
         dictbool["Bugday"] = True
     else:
-        value.append("Bugday")
+        value.append("Grain")
         dictbool["Bugday"] = False
 
     if arttiriciAl[1]:
-        value.append("✅Odun")
+        value.append("✅Lumber")
         dictbool["Odun"] = True
     else:
-        value.append("Odun")
+        value.append("Lumber")
         dictbool["Odun"] = False
     
     if arttiriciAl[2]:
-        value.append("✅Demir")
+        value.append("✅Iron")
         dictbool["Demir"] = True
     else:
-        value.append("Demir")
+        value.append("Iron")
         dictbool["Demir"] = False
     
     if arttiriciAl[3]:
-        value.append("✅Kuvars")
+        value.append("✅Quartz")
         dictbool["Kuvars"] = True
     else:
-        value.append("Kuvars")
+        value.append("Quartz")
         dictbool["Kuvars"] = False
 
     global comboarttirici
     comboarttirici = Combobox(frm3,values=value,background="DarkSlateGray4",state="readonly")
     comboarttirici.bind("<<ComboboxSelected>>",comboboxchange)
     comboarttirici.grid(row = 4,column = 0,ipadx = 15,ipady = 5,sticky="w")
-    comboarttirici.set("Değirmen Arttırıcı Al")
+    comboarttirici.set("Water Mill")
 
     
-    label_kaynakseviye = Label(frm3,text="Kaynak Seviyesi",background="DarkSlateGray4",font='Helvetica 10 bold')
+    label_kaynakseviye = Label(frm3,text="Resource Level",background="DarkSlateGray4",font='Helvetica 10 bold')
     label_kaynakseviye.grid(row = 5,column = 0,ipadx = 15,ipady = 5,sticky="w")
 
     slide_kaynak = Scale(frm3,from_=1,to=6,orient=HORIZONTAL,background="DarkSlateGray4",activebackground="CadetBlue4", bd="0px", relief=FLAT)
@@ -587,7 +587,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
             slide_kaynak.set(3)
     except:
         slide_kaynak.set(3)
-    label_kaynakseviye = Label(frm3,text="Hız",background="DarkSlateGray4",font='Helvetica 10 bold')
+    label_kaynakseviye = Label(frm3,text="Speed",background="DarkSlateGray4",font='Helvetica 10 bold')
     label_kaynakseviye.grid(row = 6,column = 0,ipadx = 15,ipady = 5,sticky="w")
 
     slide_carpan = Scale(frm3,from_=1,to=5,orient=HORIZONTAL,background="DarkSlateGray4",activebackground="CadetBlue4", bd="0px", relief=FLAT)
@@ -618,13 +618,13 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     kalan = hesapsayisi
     for frame in hesaplarTABlist:
         
-        label = Label(frame,text="Farmlar",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
+        label = Label(frame,text="Farms",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
         label.grid(row = 0,column = 0,padx = 20,pady=5)
 
         label = Label(frame,text="Mail",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
         label.grid(row = 0,column = 1,padx = 20,pady=5)
 
-        label = Label(frame,text="Sifre",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
+        label = Label(frame,text="Password",background="DarkSlateGray4",font='Helvetica 10 bold',justify = LEFT, borderwidth=2, relief="groove")
         label.grid(row = 0,column = 2,padx = 20,pady=5)
 
         if kalan > 15:
@@ -668,22 +668,22 @@ def comboboxchange(event):
     dictbool[secilen] = not dictbool.get(secilen)
     value = []
     if dictbool.get("Bugday")== True:
-        value.append("✅Bugday")
+        value.append("✅Grain")
     else:
-        value.append("Bugday")
+        value.append("Grain")
 
     if dictbool.get("Odun")== True:
-        value.append("✅Odun")
+        value.append("✅Lumber")
     else:
-        value.append("Odun")
+        value.append("Lumber")
     if dictbool.get("Demir")== True:
-        value.append("✅Demir")
+        value.append("✅Iron")
     else:
-        value.append("Demir")
+        value.append("Iron")
     if dictbool.get("Kuvars")== True:
-        value.append("✅Kuvars")
+        value.append("✅Quartz")
     else:
-        value.append("Kuvars")
+        value.append("Quartz")
     
     print(dictbool)
     comboarttirici.config(values=value)
