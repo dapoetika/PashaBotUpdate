@@ -1,9 +1,18 @@
-#ab
-from tkinter.ttk import *
-from tkinter import *
+#0
+import requests
 
+from tkinter.ttk import *
 import bs4
-import requests 
+
+from tkinter import *
+import time
+import subprocess
+from threading import Thread
+import win32gui
+import pyautogui
+from python_imagesearch import imagesearch
+import os
+import datetime
 def login():
     vericek = open("./data/data.txt")
     username = vericek.readline().rstrip()
@@ -660,6 +669,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
 
     btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
     btn.place(x=575,y = 405)
+
 def comboboxchange(event):
     secilen = comboarttirici.get()
     
@@ -724,31 +734,31 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
         sifreler.append(entry_password[i].get())
 
     data = {
-    'arttiriciAl': degirmenal,
-    'askeregitList': askerler,
-    'beklemeCarpani': slide_carpani.get(),
-    'disKaynakBonus': dis_kaynak[0],
-    'ganimetYap': ganimet_kara[0],
-    'gonderilcekList': gonderler,
-    'gozcuList': gozculer,
-    'hasatEt': hasat_et_list[0],
-    'hazineTopla': havuz_list[0],
-    'hesapSayisi': hesapsayisi,
-    'hizliTopla': hizli_topla_list[0],
-    'icKaynakBonus': ic_kaynak[0],
-    'ifritList': ifritler,
-    'kaynakGonder': kaynak[0],
-    'kaynakSeviye': slide_kaynak.get(),
-    'kvkKalkan': kvk_kalkan_list[0],
-    'loncaTopla': lonca_topla_list[0],
-    'loncatechYap':lonca[0] ,
-    'mail': mailler,
-    'mesajTopla': mesaj_list[0],
-    'password': password,
-    'sifre': sifreler,
-    'tamponHasat': tampon_hasat_list[0],
-    'username': nickname
-}
+        'arttiriciAl': degirmenal,
+        'askeregitList': askerler,
+        'beklemeCarpani': slide_carpani.get(),
+        'disKaynakBonus': dis_kaynak[0],
+        'ganimetYap': ganimet_kara[0],
+        'gonderilcekList': gonderler,
+        'gozcuList': gozculer,
+        'hasatEt': hasat_et_list[0],
+        'hazineTopla': havuz_list[0],
+        'hesapSayisi': hesapsayisi,
+        'hizliTopla': hizli_topla_list[0],
+        'icKaynakBonus': ic_kaynak[0],
+        'ifritList': ifritler,
+        'kaynakGonder': kaynak[0],
+        'kaynakSeviye': slide_kaynak.get(),
+        'kvkKalkan': kvk_kalkan_list[0],
+        'loncaTopla': lonca_topla_list[0],
+        'loncatechYap':lonca[0] ,
+        'mail': mailler,
+        'mesajTopla': mesaj_list[0],
+        'password': password,
+        'sifre': sifreler,
+        'tamponHasat': tampon_hasat_list[0],
+        'username': nickname
+    }
 
 
 
@@ -767,30 +777,118 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
         exec(kod, ortam)
 
         ortam["trr"](btn,ayarlarTABlist,data)
+     
     except Exception as e:
         print(f"Hata oluştu: {e}")
 
- 
+
+def label_guncelle(lbl, text):
+    # Tkinter thread-safe label güncelleme
+    lbl.after(0, lambda: lbl.config(text=text))
+
+
+def dosyakontrol(lblkontrol,window):
+    # GitHub bilgileri
+    GITHUB_USER = "dapoetika"
+    REPO_NAME = "PashaBotUpdate"
+    BRANCH = "main"
+    FOLDER = "images"
+
+    # Dosya listesi URL
+    url = "https://raw.githubusercontent.com/dapoetika/PashaBotUpdate/refs/heads/main/images/aafiles"
+
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        remote_files = response.text.split(",")
+    except Exception as e:
+        label_guncelle(lblkontrol, f"Dosya kontrolü başarısız: {e}")
+        return
+
+    # Klasörler
+    LOCAL_FOLDER = "images"
+    DATADIR = "data"
+
+    os.makedirs(LOCAL_FOLDER, exist_ok=True)
+    os.makedirs(DATADIR, exist_ok=True)
+
+    # Gerekli txt dosyaları
+    for fname in ["data.txt","logs.txt"]:
+        fpath = os.path.join(DATADIR, fname)
+        if not os.path.exists(fpath):
+            open(fpath, "w", encoding="utf-8").close()
+
+    # Dosya kontrol / indirme
+    for x in remote_files:
+        filename = x.strip()
+        if not filename:
+            continue
+
+        local_path = os.path.join(LOCAL_FOLDER, filename)
+
+        if not os.path.exists(local_path):
+            label_guncelle(lblkontrol, f"[+] Eksik: {filename} — indiriliyor...")
+
+            raw_url = f"https://raw.githubusercontent.com/{GITHUB_USER}/{REPO_NAME}/{BRANCH}/{FOLDER}/{filename}"
+
+            try:
+                r = requests.get(raw_url, timeout=10)
+                r.raise_for_status()
+                with open(local_path, "wb") as f:
+                    f.write(r.content)
+            except Exception as e:
+                label_guncelle(lblkontrol, f"[!] {filename} indirilemedi: {e}")
+        else:
+            label_guncelle(lblkontrol, f"[=] Zaten var: {filename}")
+
+    label_guncelle(lblkontrol, "Dosya kontrolü tamamlandı ✔")
+    r = login()
+    if r.status_code == 200:
+        sonrakihesapgir(window, r)
+    else:
+        ilkhesapgir(window)
+
+
+
+
 def main():
     
     window = Tk()
-    
-    
     window.title("PashaBot")
-    window.iconbitmap("./images/favicon.ico")
 
-    window.geometry('700x350')
-    window.configure(background="DarkSlateGray4",pady=20)
-    
-    
-    lbl = Label(text="PashaBot", font=("Helvetica",30,"bold"),background="DarkSlateGray4")
+    try:
+        window.iconbitmap("./images/favicon.ico")
+    except:
+        pass
+
+    window.geometry("700x350")
+    window.configure(background="DarkSlateGray4", pady=20)
+
+    lbl = Label(
+        window,
+        text="PashaBot",
+        font=("Helvetica", 30, "bold"),
+        background="DarkSlateGray4"
+    )
     lbl.pack()
-    r = login()
-    if r.status_code == 200:
-        sonrakihesapgir(window,r)
-    else:
-        ilkhesapgir(window)
+
+    lblkontrol = Label(
+        window,
+        text="Dosyalar kontrol ediliyor...",
+        font=("Helvetica", 14),
+        background="DarkSlateGray4"
+    )
+    lblkontrol.pack(pady=10)
+
+    # Thread BAŞLAT (DOĞRU ŞEKİLDE)
+    Thread(
+        target=dosyakontrol,
+        args=(lblkontrol,window,),
+        daemon=True
+    ).start()
+
     window.mainloop()
+
 
 if __name__ == "__main__":
     main()
