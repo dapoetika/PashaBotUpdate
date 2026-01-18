@@ -1,4 +1,4 @@
-#abcdefg
+#
 from tkinter import *
 import time
 import subprocess
@@ -40,7 +40,7 @@ def cikis(btn):
 def logkayit(farm,mesaj):
     print(farm,mesaj)
     datadir = "data"
-    file_path = os.path.join(datadir, "q.txt")
+    file_path = os.path.join(datadir, "logs.txt")
     if not os.path.exists(file_path):
         open(file_path, "w", encoding="utf-8").close()
 
@@ -105,65 +105,22 @@ def send_heartbeat():
         username = vericek.readline().rstrip()
         global sonheartbeat
         sonheartbeat = datetime.datetime.now()
-        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/heartbeat",json={"username":username},timeout=(15, 30))
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/heartbeat",json={"username":username},timeout=(15, 30))
     except Exception as a:
         logkayit("0",a)
 def trr(btn,frm,data):
     global sonheartbeat
     sonheartbeat = datetime.datetime.now()
-    for i in range(100):
+    for i in range(1000):
         filename = f"{i}.png"
         if os.path.exists(filename):
             os.remove(filename)
-    deletefiles = open("./data/q.txt","w").close()
+    deletefiles = open("./data/logs.txt","w").close()
     anathr = Thread(target=lambda:sec(btn,frm,data),daemon=True)
     anathr.start()
     x = open("./data/data.txt")
     username = x.readline().rstrip()
     x.close()
-    denetthread = Thread(target=lambda:dene(btn,frm,username),daemon=True)
-    denetthread.start()
-    
-def dene(btn,frm,username):
-    global stop 
-    stop = False
-    while not stop:
-        
-        workerdene = Thread(target=lambda:goym(btn,frm,username),daemon=True)    
-       
-        if not workerdene.is_alive():
-            logkayit(0,"dene başladı")
-            workerdene.start()
-            workerdene.join()
-            logkayit(0,"dene bitti")
-            print("sa")
-
-def goym(btn,frm,username):
-    while True:
-        try:
-            datadir = "data"
-            file_path = os.path.join(datadir, "dene.txt")
-            if not os.path.exists(file_path):
-                open(file_path, "w", encoding="utf-8").close()
-        
-            x = open(file_path, "a", encoding="utf-8")
-            now = datetime.datetime.now()
-            saat = now.strftime("%H:%M")
-            global sonheartbeat
-            if now - sonheartbeat > datetime.timedelta(minutes=30):
-                
-                log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT KAPANDI"
-                #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
-                x.write(f"Bot Durdu ve Yeniden Başlatıldı")
-                anathr = Thread(target=lambda:sec(btn,frm),daemon=True)
-                anathr.start()
-            global worker
-            x.write(f"{saat} {worker.is_alive()}\n")
-            x.close()
-            time.sleep(60)
-        except Exception as hata:
-            with open("./data/dene.txt","a") as x:
-                x.write(str(hata))
 
 
 def sec(btn,frm,data):
@@ -200,21 +157,21 @@ def terminate(btn):
     
     try:
         log = f"{now.strftime('%d.%m.%Y %H:%M')} BOT DURDURULDU"
-        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
         logkayit(0,"DURDURULDU")
     except:
         logkayit(0,"DURDURULDU")
     sys.exit()
 
-def collectdata(data):
+def collectdata(data,farm):
     try:
         logkayit("0","Data toplanıyor")
         vericek = open("./data/data.txt")
         username = vericek.readline().rstrip()
         password = vericek.readline().rstrip()
         vericek.close()
-        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password}, timeout=(15, 30))
-        #data = r.json().get("userData")
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password,"farm":farm}, timeout=(15, 30))
+        data = r.json().get("userData")
 
         kullaniciadi = username
         gereksiz = password
@@ -331,18 +288,10 @@ def oyunac():
             pass
             
 def hesapdegisme(btn,mail,sifre):
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
-        
+    
     click(btn,160, 415)
     time.sleep(bekleme_carpani*2)
     click(btn,20,75)
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
     
     for i in range(5):
 
@@ -353,18 +302,7 @@ def hesapdegisme(btn,mail,sifre):
             break
         else:
             click(btn,20,65)
-            
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
     
-    time.sleep(bekleme_carpani*2)
-    click(btn,290,585)
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
     time.sleep(bekleme_carpani*2)
     
     lonca = ara("./images/lonca.png")
@@ -376,23 +314,9 @@ def hesapdegisme(btn,mail,sifre):
         click(btn,290,585)
         time.sleep(bekleme_carpani*2)
     imageclick(btn,"./images/hesaplar.png")
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
-    
-    time.sleep(bekleme_carpani*2)
-    click(btn,50,150)
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
-    
     time.sleep(bekleme_carpani*2)
     imageclick(btn,"./images/hesapdegistir.png")
     
-    time.sleep(bekleme_carpani*2)
-    click(btn,110,227)
     time.sleep(bekleme_carpani*2)
     click(btn,110,227)
     time.sleep(bekleme_carpani*2)
@@ -403,21 +327,22 @@ def hesapdegisme(btn,mail,sifre):
         else:
             pyautogui.write(i)
     time.sleep(bekleme_carpani*2)
-    pyautogui.hotkey("enter")
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
-    for i in range(15):
+    
+    renk = pyautogui.pixel(290,330)
+    if renk[0] == 255 and renk[1] == 160 and renk[2] == 48:
         time.sleep(bekleme_carpani*2)
-        renk = pyautogui.pixel(120,310)
-        if renk[0] == 250 and renk[1] == 250 and renk[2] == 250:
-            time.sleep(bekleme_carpani*2)
+        pyautogui.hotkey("enter")
+    else:
+        return "appopen"
+    
+    time.sleep(bekleme_carpani*2)
+
+    for i in range(5):
+        time.sleep(bekleme_carpani*2)
+        renk = pyautogui.pixel(250,390)
+        if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
             break
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
+
     time.sleep(bekleme_carpani*2)
     for i in sifre[farm]:
         if i == "@":
@@ -425,10 +350,6 @@ def hesapdegisme(btn,mail,sifre):
         else:
             pyautogui.write(i)
 
-    tamamciktimi = clicktamam(btn)
-    if tamamciktimi:
-        hesapdegisme(btn,mail,sifre)
-        return ""
     time.sleep(bekleme_carpani*2)
     pyautogui.hotkey("enter")
     
@@ -445,7 +366,7 @@ def hesapdegisme(btn,mail,sifre):
         click(btn,20,65)
         time.sleep(bekleme_carpani*2)
     renk = pyautogui.pixel(250,390)
-    if renk[0] == 250 and renk[1] == 190 and renk[2] == 119:
+    if (renk[0] == 250 and renk[1] == 190 and renk[2] == 119) or (renk[0] == 250 and renk[1] == 250 and renk[2] == 250):
         logkayit(farm, "şifre yanlış ya da mail şifre yanlış yere yazıldı")
         click(btn,20,55)
         time.sleep(bekleme_carpani*2)
@@ -457,6 +378,8 @@ def hesapdegisme(btn,mail,sifre):
         time.sleep(bekleme_carpani*2)
         click(btn,20,65)
         time.sleep(bekleme_carpani*2)
+        
+
     tamamciktimi = clicktamam(btn)
     if tamamciktimi:
         hesapdegisme(btn,mail,sifre)
@@ -2014,26 +1937,26 @@ def askergonder(btn,hangisi,kaynakseviye):
         targetHata = False
         for i in range(2):   
             time.sleep(bekleme_carpani*2)
-            tamam = ara("./images/tamam.png")
-            vip = ara("./images/vip.png")
             target = ara("./images/target.png",0.8)
-            girildi_dunya = ara("./images/girildi_dunya.png")
             if target != -1:
                 time.sleep(bekleme_carpani*2)
                 break
     
-            elif vip != -1:
+            vip = ara("./images/vip.png")
+            if vip != -1:
                 logkayit(farm,"bugday vip 1 hata")
                 click(btn,265, 585)
                 time.sleep(bekleme_carpani*2)
                 return "vip"
             
-            elif tamam != -1:
+            tamam = ara("./images/tamam.png")
+            if tamam != -1:
                 click(btn,tamam[0]+20,tamam[1]+20)
                 logkayit(farm,"bugday tamam 1 hata")
                 return "vip"
                 
-            elif girildi_dunya != -1:
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            if girildi_dunya != -1:
                 click(btn,255, 530)
                 time.sleep(bekleme_carpani*2)
                 click(btn,20, 65)
@@ -2679,6 +2602,8 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
 
 def main(btn,frm,gamedata):
     global farm
+    farm = 0
+
     global username
     farmread = open("./data/data.txt")
     username = farmread.readline().rstrip()
@@ -2688,10 +2613,10 @@ def main(btn,frm,gamedata):
     farmread.close()
     now = datetime.datetime.now()
     log = f"{now.strftime("%d.%m.%Y %H:%M")} BOT BAŞLATILDI"
-    #try:
-        #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
-    #except:
-        #pass
+    try:
+        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
+    except:
+        logkayit(farm,"Log kaydı gönderilemedi.")
     try:
         if bu =="":
             farm = 0
@@ -2715,11 +2640,6 @@ def main(btn,frm,gamedata):
     x = ""
     while True:
         try:
-            try:
-                send_heartbeat()
-                data = collectdata(gamedata)
-            except:
-                pass
             now = datetime.datetime.now()
             if x == "appopen":
                 log = f"{now.strftime("%d.%m.%Y %H:%M")} Farm {farm}. ATLANDI"
@@ -2727,7 +2647,7 @@ def main(btn,frm,gamedata):
                 farmwrite = open("./data/data.txt","w")
             
                 hesapgir = True
-                if farm == data.get("hesapsayisi") -1:
+                if farm == hesapsayisi -1:
                     farm = 0
                     farmwrite.write(str(username).rstrip()+"\n")
                     farmwrite.write(str(password).rstrip()+"\n")
@@ -2739,11 +2659,36 @@ def main(btn,frm,gamedata):
                     farmwrite.write(str(password).rstrip()+"\n")
                     farmwrite.write(str(hesapsayisi).rstrip()+"\n")
                     farmwrite.write(str(farm).rstrip()+"\n")
-                #try:
-                    #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
-                #except:
-                    #print("Atlandı")
+                try:
+                    r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":log}, timeout=(15, 30))
+                except:
+                    print("Atlandı")
                 farmwrite.close()
+
+            try:
+                if farm < 15:
+                    frame = frm[0]
+                elif farm < 30:
+                    frame = frm[1]
+                elif farm < 45:
+                    frame = frm[2]
+                elif farm < 60:
+                    frame = frm[3]
+                elif farm < 75:
+                    frame = frm[4]
+                elif farm < 90:
+                    frame = frm[5]
+                elif farm < 105:
+                    frame = frm[6]
+                elif farm < 120:
+                    frame = frm[7]
+                
+                labeltime = Label(frame,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+                labeltime.grid(row = (farm%15)+1,column = 5,ipadx = 15,ipady = 5)
+                send_heartbeat()
+                data = collectdata(gamedata,farm)
+            except:
+                logkayit(farm,"Ayarlar okunamadı.")
             x = ""
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
@@ -2755,26 +2700,7 @@ def main(btn,frm,gamedata):
             
             frame = None
             print(farm)
-            if farm < 15:
-                frame = frm[0]
-            elif farm < 30:
-                frame = frm[1]
-            elif farm < 45:
-                frame = frm[2]
-            elif farm < 60:
-                frame = frm[3]
-            elif farm < 75:
-                frame = frm[4]
-            elif farm < 90:
-                frame = frm[5]
-            elif farm < 105:
-                frame = frm[6]
-            elif farm < 120:
-                frame = frm[7]
             
-            labeltime = Label(frame,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-            labeltime.grid(row = (farm%15)+1,column = 5,ipadx = 15,ipady = 5)
-
             hesapsayisi = data.get("hesapsayisi") 
             kaynak_gonder = data.get("kaynak_gonder") 
             loncatech_yap = data.get("loncatech_yap") 
@@ -3096,5 +3022,5 @@ def main(btn,frm,gamedata):
             sonrakihesap(btn,mail,sifre,hesapsayisi)
         except Exception as e:
             logkayit(0, f"Hata: {str(e)}")
-            #r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":str(e)}, timeout=(15, 30))
+            r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/logs",json={"username":username,"log":str(e)}, timeout=(15, 30))
             continue
