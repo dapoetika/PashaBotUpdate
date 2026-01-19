@@ -1,4 +1,4 @@
-#asdf
+#a
 from tkinter import *
 import time
 import subprocess
@@ -210,6 +210,7 @@ def collectdata(data,farm):
         askeregitlist = data.get("askeregitList")
         ifritlist = data.get("ifritList")
         hayvan = data.get("hayvan")
+        kahraman = data.get("kahraman")
 
         
         if bekleme_carpani == 1:
@@ -253,6 +254,7 @@ def collectdata(data,farm):
             "arttirici_al":arttirici_al,
             "ifritlist":ifritlist,
             "hayvan":hayvan,
+            "kahraman":kahraman,
         }
     except ValueError:
         print("hata")
@@ -1494,6 +1496,65 @@ def pet(btn,hayvan):
     click(btn,20,65)
 
 
+def kahramansalonu(btn):
+    girildi = ara("./images/girildi.png")
+    if girildi != -1:
+        pass
+    else:
+        isOkey = False
+        for i in range(10):
+            time.sleep(2)
+            girildi = ara("./images/girildi.png")
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            tamam = ara("./images/tamam.png")
+            if tamam != -1:
+                click(btn,tamam[0]+10,tamam[1]+10)
+            elif girildi_dunya != -1:
+                time.sleep(2)
+                click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+            elif girildi != -1:
+                isOkey = True
+                break
+            else: 
+                click(btn,20,60)
+                time.sleep(bekleme_carpani*2)
+        if not isOkey:
+            logkayit(0,"pet app")
+            return "appopen"
+        
+    time.sleep(bekleme_carpani*2)
+    click(btn,10,320)
+
+    for i in range(5):
+        kahramansalonu = ara("./images/kahramansalonu.png")
+        time.sleep(bekleme_carpani*2)
+        if kahramansalonu != -1:
+            click(btn,kahramansalonu[0] +210,kahramansalonu[1] +45)
+            time.sleep(bekleme_carpani*2)
+            break
+        else:
+            pyautogui.moveTo(140,335)
+            time.sleep(bekleme_carpani*2)
+            pyautogui.dragTo(140,145,1)
+            time.sleep(bekleme_carpani*2)
+            
+    time.sleep(bekleme_carpani*2)
+
+    click(btn,50, 100)
+    time.sleep(bekleme_carpani*2)
+    click(btn,80, 525)
+    time.sleep(bekleme_carpani*8)
+    click(btn,245, 555) 
+    time.sleep(bekleme_carpani*2)   
+    click(btn,150, 100)
+    time.sleep(bekleme_carpani*2)
+    click(btn,85, 550)
+    time.sleep(bekleme_carpani*2)
+    click(btn,250, 490)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20, 65)
+
+
 def hizlitamponhasat(btn,hizli,tampon,hasat):
     if hasat:
         time.sleep(bekleme_carpani*2)
@@ -1543,6 +1604,7 @@ def hizlitamponhasat(btn,hizli,tampon,hasat):
     click(btn,200, 600)
     time.sleep(bekleme_carpani*1)
        
+
 def sonrakidunya(btn):
     for i in range(10):
         time.sleep(2)
@@ -2798,7 +2860,7 @@ def main(btn,frm,gamedata):
             x = ""
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
-            btn_dur.place(x=600,y = 455)
+            btn_dur.place(x=575,y = 455)
 
         
             btn.config(state=DISABLED)
@@ -2829,6 +2891,8 @@ def main(btn,frm,gamedata):
             sifre = data.get("sifre")
             kaynakseviye = data.get("kaynakseviye")
             hayvan = data.get("hayvan")
+            kahraman = data.get("kahraman")
+
             global bonusal
             bonusal = dis_kaynak_bonus
 
@@ -2956,9 +3020,20 @@ def main(btn,frm,gamedata):
                         continue
                 if x == "gece":
                     pass
-            if hayvan[farm] != "" or hayvan[farm] != "Yok":
+            if hayvan[farm] != "" or hayvan[farm] != "Yok" or hayvan[farm] != "--":
                 logkayit(farm,"Pet Devriye")
                 x = pet(btn,hayvan[farm])
+                if x == "appopen":
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
+            
+            if kahraman:
+                logkayit(farm,"Kahraman Görev")
+                x = kahramansalonu(btn)
                 if x == "appopen":
                     girdimi = cikis(btn)
                     if girdimi == "girildi":
