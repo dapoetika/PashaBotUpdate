@@ -1,4 +1,4 @@
-#1
+#asd
 import requests
 
 from tkinter.ttk import *
@@ -273,6 +273,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     tamponHasat=data.get("tamponHasat")
     username=data.get("username")
     hayvan=data.get("hayvan")
+    kahraman = data.get("kahraman")
 
     gonderilcek = []
     askeregitcombo = []
@@ -294,6 +295,7 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     gozculist = []
     ifritlist = []
     hayvanlist = []
+    kahramanList = []
 
     sayac = 0
     tur = 15
@@ -593,6 +595,17 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
         combo.deselect()
     kvk_kalkan_list.append(kalkan)
 
+
+    combo = Checkbutton(frm3,text = "Kahraman Salonu",command = lambda:reverseBool(kahramanList,0),background="DarkSlateGray4",activebackground="CadetBlue4")
+    combo.grid(row = 0,column = 3,ipadx = 15,ipady = 5,sticky="w")
+    if kahraman == True:
+        salonyap = True
+        combo.select()
+    else:
+        salonyap = False
+        combo.deselect()
+    kahramanList.append(salonyap)
+
     global dictbool
     dictbool = {}
     value = []
@@ -714,8 +727,8 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
 
     show_frame(frm)
 
-    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(entry_mail,entry_password,hayvanlist,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
-    btn.place(x=600,y = 405)
+    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(entry_mail,entry_password,kahramanList,hayvanlist,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
+    btn.place(x=575,y = 405)
 
 def comboboxchange(event):
     secilen = comboarttirici.get()
@@ -746,7 +759,7 @@ def comboboxchange(event):
     comboarttirici.config(values=value)
     comboarttirici.set("Değirmen Arttırıcı Al")
 
-def basla(entry_mail,entry_password,hayvan,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
+def basla(entry_mail,entry_password,kahraman,hayvan,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
     gonderler = []
     askerler= []
     gozculer = []
@@ -810,6 +823,7 @@ def basla(entry_mail,entry_password,hayvan,ifritlist,arttirici,kvk_kalkan_list,a
         'tamponHasat': tampon_hasat_list[0],
         'username': nickname,
         "hayvan": hayvanlist,
+        "kahraman": kahraman[0],
     }
 
 
@@ -829,7 +843,7 @@ def basla(entry_mail,entry_password,hayvan,ifritlist,arttirici,kvk_kalkan_list,a
         exec(kod, ortam)
 
         ortam["trr"](btn,ayarlarTABlist,data)
-    
+        
     except Exception as e:
         print(f"Hata oluştu: {e}")
 
