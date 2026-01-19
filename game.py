@@ -1,4 +1,4 @@
-#
+#asdf
 from tkinter import *
 import time
 import subprocess
@@ -11,7 +11,7 @@ import os
 import datetime
 
 def cikis(btn):
-    for i in range(100):
+    for i in range(1000):
         if not os.path.exists(str(i)+".png"):
             x = pyautogui.screenshot(f"{i}.png",region=[0,0,360,614])
             time.sleep(2)
@@ -115,6 +115,8 @@ def trr(btn,frm,data):
         filename = f"{i}.png"
         if os.path.exists(filename):
             os.remove(filename)
+        else:
+            break
     deletefiles = open("./data/logs.txt","w").close()
     anathr = Thread(target=lambda:sec(btn,frm,data),daemon=True)
     anathr.start()
@@ -207,6 +209,7 @@ def collectdata(data,farm):
         gozculist = data.get("gozcuList")
         askeregitlist = data.get("askeregitList")
         ifritlist = data.get("ifritList")
+        hayvan = data.get("hayvan")
 
         
         if bekleme_carpani == 1:
@@ -248,7 +251,8 @@ def collectdata(data,farm):
             "sifre":sifre,
             "kvkkalkan":kalkan_kvk,
             "arttirici_al":arttirici_al,
-            "ifritlist":ifritlist
+            "ifritlist":ifritlist,
+            "hayvan":hayvan,
         }
     except ValueError:
         print("hata")
@@ -1139,6 +1143,7 @@ def trainsoldier(btn,tahilarabasi):
             break
 
 def hazinetopla(btn,ganimetyap):
+
     girildi = ara("./images/girildi.png")
     if girildi != -1:
         pass
@@ -1171,7 +1176,6 @@ def hazinetopla(btn,ganimetyap):
    
 
     for i in range(5):
-        
         hazinehavuzu = ara("./images/hazinehavuzu.png")
         time.sleep(bekleme_carpani*2)
         
@@ -1218,6 +1222,7 @@ def hazinetopla(btn,ganimetyap):
             else:
                 click(btn,160, 150)
                 time.sleep(bekleme_carpani*1)
+
 
 def ganimet_karavani(btn):
 
@@ -1387,6 +1392,107 @@ def ganimet_karavani(btn):
             click(btn,20,65)
             
     #ganimet_karavani bitis
+
+
+def pet(btn,hayvan):
+    girildi = ara("./images/girildi.png")
+    if girildi != -1:
+        pass
+    else:
+        isOkey = False
+        for i in range(10):
+            time.sleep(2)
+            girildi = ara("./images/girildi.png")
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            tamam = ara("./images/tamam.png")
+            if tamam != -1:
+                click(btn,tamam[0]+10,tamam[1]+10)
+            elif girildi_dunya != -1:
+                time.sleep(2)
+                click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+            elif girildi != -1:
+                isOkey = True
+                break
+            else: 
+                click(btn,20,60)
+                time.sleep(bekleme_carpani*2)
+        if not isOkey:
+            logkayit(0,"pet app")
+            return "appopen"
+        
+    time.sleep(bekleme_carpani*2)
+    click(btn,10,320)
+    bulundu = False
+
+   
+
+    for i in range(5):
+        pethouse = ara("./images/pethouse.png")
+        time.sleep(bekleme_carpani*2)
+        if pethouse != -1:
+            click(btn,pethouse[0] +210,pethouse[1] +45)
+            time.sleep(bekleme_carpani*2)
+            break
+        else:
+            pyautogui.moveTo(140,335)
+            time.sleep(bekleme_carpani*2)
+            pyautogui.dragTo(140,145,1)
+            time.sleep(bekleme_carpani*2)
+            
+    time.sleep(bekleme_carpani*2)
+
+    click(btn,165, 310)
+    time.sleep(bekleme_carpani*2)
+    pets = ara("./images/pets.png")
+    time.sleep(bekleme_carpani*2)
+    if pets != -1:
+        click(btn,pets[0]+10, pets[1]+10)
+        time.sleep(bekleme_carpani*2)   
+    else:
+        return ""
+    
+    click(btn,30, 335)
+    time.sleep(bekleme_carpani*2)   
+    click(btn,30, 335)
+    time.sleep(bekleme_carpani*2)
+        
+    locs = {"Ofkeli Kaplan":[0,0],
+            "Grifon":[0,1],
+            "Gergedan":[1,0],
+            "Kaplan":[1,1],
+            "Aslan":[2,0],
+            "Kartal":[2,1],
+            "Bozkurt":[3,0],
+            "Panter":[3,1],
+            "Ayi":[4,0],
+            "Fil":[4,1],
+            "Bufalo":[5,0],
+            "Kangal":[5,1]}
+    hayvan_loc = locs.get(hayvan, None)
+    if hayvan_loc is None:
+        return ""
+    if hayvan_loc[0]!= 0:
+        for i in range(hayvan_loc[0]):
+            pyautogui.moveTo(220, 460)
+            pyautogui.dragTo(220, 158, duration=2)
+            time.sleep(bekleme_carpani*2)
+        if hayvan_loc[0] == 0:
+            click(btn,150,150)
+            time.sleep(bekleme_carpani*2)
+        else:
+            click(btn,220, 350)
+            time.sleep(bekleme_carpani*2)
+    elif hayvan_loc[0]== 0:
+        if hayvan_loc[0] == 0:
+            click(btn,150,150)
+            time.sleep(bekleme_carpani*2)
+        else:
+            click(btn,220, 350)
+            time.sleep(bekleme_carpani*2)
+    click(btn,165,585)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
+
 
 def hizlitamponhasat(btn,hizli,tampon,hasat):
     if hasat:
@@ -2684,7 +2790,7 @@ def main(btn,frm,gamedata):
                     frame = frm[7]
                 
                 labeltime = Label(frame,text=now.strftime("%H:%M"),background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-                labeltime.grid(row = (farm%15)+1,column = 5,ipadx = 15,ipady = 5)
+                labeltime.grid(row = (farm%15)+1,column = 6,ipadx = 15,ipady = 5)
                 send_heartbeat()
                 data = collectdata(gamedata,farm)
             except:
@@ -2692,7 +2798,7 @@ def main(btn,frm,gamedata):
             x = ""
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
-            btn_dur.place(x=575,y = 455)
+            btn_dur.place(x=600,y = 455)
 
         
             btn.config(state=DISABLED)
@@ -2722,6 +2828,7 @@ def main(btn,frm,gamedata):
             mail =data.get("mail")
             sifre = data.get("sifre")
             kaynakseviye = data.get("kaynakseviye")
+            hayvan = data.get("hayvan")
             global bonusal
             bonusal = dis_kaynak_bonus
 
@@ -2849,7 +2956,17 @@ def main(btn,frm,gamedata):
                         continue
                 if x == "gece":
                     pass
-
+            if hayvan[farm] != "" or hayvan[farm] != "Yok":
+                logkayit(farm,"Pet Devriye")
+                x = pet(btn,hayvan[farm])
+                if x == "appopen":
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
+            
             if hizli_topla or tampon_hasat or hasat_et:  
                 logkayit(farm,"Hızlı Tampon Hasat")
                 hizlitamponhasat(btn,hizli_topla,tampon_hasat,hasat_et)
