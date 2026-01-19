@@ -1,4 +1,4 @@
-#0
+#1
 import requests
 
 from tkinter.ttk import *
@@ -272,7 +272,8 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     sifreList = data.get("sifre")
     tamponHasat=data.get("tamponHasat")
     username=data.get("username")
-    
+    hayvan=data.get("hayvan")
+
     gonderilcek = []
     askeregitcombo = []
 
@@ -292,11 +293,13 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
     dis_kaynak= []
     gozculist = []
     ifritlist = []
+    hayvanlist = []
 
     sayac = 0
     tur = 15
     kalan = hesapsayisi
     for tab in ayarlarTABlist:
+
         labelfarm = Label(tab,text="Farm",background="DarkSlateGray4", relief="groove",font='Helvetica 10 bold')
         labelfarm.grid(row = 0,column = 0,ipadx = 15,ipady = 5)
 
@@ -309,16 +312,20 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
         labelresource.grid(row = 0,column = 2,ipadx = 15,ipady = 5)
 
 
-        labelresource = Label(tab,text="Scout",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource = Label(tab,text="Pet Patrol",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
         labelresource.grid(row = 0,column = 3,ipadx = 15,ipady = 5)
 
 
+        labelresource = Label(tab,text="Scout",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
+        labelresource.grid(row = 0,column = 4,ipadx = 15,ipady = 5)
+
+
         labelresource = Label(tab,text="İfrit",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        labelresource.grid(row = 0,column = 4,ipadx = 25,ipady = 5)
+        labelresource.grid(row = 0,column = 5,ipadx = 25,ipady = 5)
 
 
         labelresource = Label(tab,text="Time",background="DarkSlateGray4", borderwidth=2, relief="groove",font='Helvetica 10 bold')
-        labelresource.grid(row = 0,column = 5,ipadx = 15,ipady = 5)
+        labelresource.grid(row = 0,column = 6,ipadx = 15,ipady = 5)
         if kalan > 15:
             tur = 15
             kalan -= 15
@@ -370,9 +377,48 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
             elif secil == "Tahil Arabasi" or secil == "Grain Car":
                 combo.set("Grain Car")
             
+
+
+            #-----------------------------
+            try:
+                secil = hayvan[sayac]
+            except:
+                secil = "Yok"
+            combo = Combobox(tab,values=["Yok","Ofkeli Kaplan","Grifon","Gergedan","Kaplan","Aslan","Kartal","Bozkurt","Panter","Ayi","Fil","Bufalo","Kangal"],background="DarkSlateGray4",state="readonly",width=2)
+            combo.grid(row = i +1,column =  3,ipadx = 25,ipady = 5)
+            hayvanlist.append(combo)
+
+            if secil == "Yok" or secil == "":
+                combo.set("--")
+            elif secil == "Ofkeli Kaplan" or secil == "Angry Tiger":
+                combo.set("Ofkeli Kaplan")
+            elif secil == "Grifon" or secil == "Griffin":
+                combo.set("Grifon")
+            elif secil == "Gergedan" or secil == "Rhinoceros":
+                combo.set("Gergedan")
+            elif secil == "Kaplan" or secil == "Tiger":
+                combo.set("Kaplan")
+            elif secil == "Aslan" or secil == "Lion":
+                combo.set("Aslan")
+            elif secil == "Kartal" or secil == "Eagle":
+                combo.set("Kartal")
+            elif secil == "Bozkurt" or secil == "Gray Wolf":
+                combo.set("Bozkurt")
+            elif secil == "Panter" or secil == "Panther":
+                combo.set("Panter")
+            elif secil == "Ayi" or secil == "Bear":
+                combo.set("Ayi")
+            elif secil == "Fil" or secil == "Elephant":
+                combo.set("Fil")
+            elif secil == "Bufalo" or secil == "Buffalo":
+                combo.set("Bufalo")
+            elif secil == "Kangal" or secil == "Kangal Dog":
+                combo.set("Kangal")
+            
+            #-----------------------------
         
             combo = Checkbutton(tab,command = lambda g = sayac:reverseBool(gozculist,g),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-            combo.grid(row = i +1,column = 3,ipadx = 25,ipady = 5)
+            combo.grid(row = i +1,column = 4,ipadx = 25,ipady = 5)
             try:
                 x = gozcuList[sayac]
             except:
@@ -386,8 +432,9 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
                 combo.deselect()
             gozculist.append(gozcu)
 
+
             combo = Checkbutton(tab,command = lambda ifr = sayac:reverseBool(ifritlist,ifr),background="DarkSlateGray4",activebackground="CadetBlue4", borderwidth=2, relief="groove")
-            combo.grid(row = i +1,column = 4,ipadx = 25,ipady = 5)
+            combo.grid(row = i +1,column = 5,ipadx = 25,ipady = 5)
             try:
                 x = ifritList[sayac]
             except:
@@ -667,8 +714,8 @@ def tablegiris(window,hesapsayisi,nickname,password,r):
 
     show_frame(frm)
 
-    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
-    btn.place(x=575,y = 405)
+    btn = Button(text="Başla", height=2, width=10, background="MediumSpringGreen",command=lambda: basla(entry_mail,entry_password,hayvanlist,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpan,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password),activebackground="MediumSeaGreen",font=("Helvetica",10,"bold"), borderwidth=2, relief="raised",)
+    btn.place(x=600,y = 405)
 
 def comboboxchange(event):
     secilen = comboarttirici.get()
@@ -699,13 +746,14 @@ def comboboxchange(event):
     comboarttirici.config(values=value)
     comboarttirici.set("Değirmen Arttırıcı Al")
 
-def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
+def basla(entry_mail,entry_password,hayvan,ifritlist,arttirici,kvk_kalkan_list,askeregitcombo,hasat_et_list,tampon_hasat_list,hizli_topla_list,havuz_list,lonca_topla_list,mesaj_list,gozculist,ic_kaynak,dis_kaynak,btn,slide_carpani,slide_kaynak,gonderilcek,hesapsayisi,kaynak,lonca,ganimet_kara,frm,nickname,password):
     gonderler = []
     askerler= []
     gozculer = []
     ifritler = []
     mailler = []
     sifreler = []
+    hayvanlist = []
     degirmenal = [False,False,False,False]
     if dictbool.get("Grain")== True:
         degirmenal[0] = True
@@ -721,6 +769,9 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
     
     for i in range(hesapsayisi):
         askerler.append(askeregitcombo[i].get())
+    
+    for i in range(hesapsayisi):
+        hayvanlist.append(hayvan[i].get())
 
     for i in range(hesapsayisi):
         gozculer.append(gozculist[i])
@@ -757,7 +808,8 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
         'password': password,
         'sifre': sifreler,
         'tamponHasat': tampon_hasat_list[0],
-        'username': nickname
+        'username': nickname,
+        "hayvan": hayvanlist,
     }
 
 
@@ -777,7 +829,7 @@ def basla(entry_mail,entry_password,ifritlist,arttirici,kvk_kalkan_list,askeregi
         exec(kod, ortam)
 
         ortam["trr"](btn,ayarlarTABlist,data)
-     
+    
     except Exception as e:
         print(f"Hata oluştu: {e}")
 
@@ -847,8 +899,6 @@ def dosyakontrol(lblkontrol,window):
         sonrakihesapgir(window, r)
     else:
         ilkhesapgir(window)
-
-
 
 
 def main():
