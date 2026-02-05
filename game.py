@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -165,16 +165,21 @@ def terminate(btn):
         logkayit(0,"DURDURULDU")
     sys.exit()
 
-def collectdata(data,farm):
+def collectdata(eskidata,farm):
     try:
         logkayit("0","Data toplanıyor")
         vericek = open("./data/data.txt")
         username = vericek.readline().rstrip()
         password = vericek.readline().rstrip()
         vericek.close()
-        r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password,"farm":farm}, timeout=(15, 30))
+        global hesapkaynak
+        if hesapkaynak != "":
+            print(hesapkaynak,"login requesti yapılıyor kaynak ile farm:",farm) 
+            r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password,"farm":farm,"hesapkaynak":hesapkaynak}, timeout=(15, 30))
+        else:
+            r = requests.post("https://us-central1-my-awesome-3e5e8.cloudfunctions.net/api/login",json={"username":username,"password":password,"farm":farm}, timeout=(15, 30))
         data = r.json().get("userData")
-
+        hesapkaynak = ""   
         kullaniciadi = username
         gereksiz = password
         hesapsayisi = data.get("hesapSayisi")
@@ -211,7 +216,8 @@ def collectdata(data,farm):
         ifritlist = data.get("ifritList")
         hayvan = data.get("hayvan")
         kahraman = data.get("kahraman")
-
+        dailyvip = data.get("dailyvip")
+        banka=data.get("banka")
         
         if bekleme_carpani == 1:
             bekleme_carpani = 2
@@ -255,10 +261,12 @@ def collectdata(data,farm):
             "ifritlist":ifritlist,
             "hayvan":hayvan,
             "kahraman":kahraman,
+            "dailyvip":dailyvip,
+            "banka":banka,
         }
     except ValueError:
         print("hata")
-        return "hata"
+        return eskidata
 
 def oyunac():
     
@@ -506,6 +514,8 @@ def hesapgiris(btn,mail,sifre):
     click(btn,165, 415)
     time.sleep(bekleme_carpani*2)
     logkayit(farm,"Hesap Giriliyor 3")
+
+
 def liman(btn):
     time.sleep(bekleme_carpani*2)
     giris = ara("./images/giris.png")
@@ -516,6 +526,19 @@ def liman(btn):
     else:
         return "bulunamadi"
         
+
+def daily_vip(btn):
+    time.sleep(bekleme_carpani*2)
+    girildi = ara("./images/girildi.png")
+    if girildi == -1:
+        logkayit(0,"daily vip app")
+        return "appopen"
+    time.sleep(bekleme_carpani*2)
+    click(btn,60, 60)
+    time.sleep(bekleme_carpani*2)
+    click(btn,275, 550)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20, 65)
 
 def ickaynakbonusu(btn,arttirici_al):
     bugday = True
@@ -1554,6 +1577,72 @@ def kahramansalonu(btn):
     time.sleep(bekleme_carpani*2)
     click(btn,20, 65)
 
+def market(btn,kacgun):
+    girildi = ara("./images/girildi.png")
+    if girildi != -1:
+        pass
+    else:
+        isOkey = False
+        for i in range(10):
+            time.sleep(2)
+            girildi = ara("./images/girildi.png")
+            girildi_dunya = ara("./images/girildi_dunya.png")
+            tamam = ara("./images/tamam.png")
+            if tamam != -1:
+                click(btn,tamam[0]+10,tamam[1]+10)
+            elif girildi_dunya != -1:
+                time.sleep(2)
+                click(btn,girildi_dunya[0]+10,girildi_dunya[1]+10)
+            elif girildi != -1:
+                isOkey = True
+                break
+            else: 
+                click(btn,20,60)
+                time.sleep(bekleme_carpani*2)
+        if not isOkey:
+            logkayit(0,"pet app")
+            return "appopen"
+        
+    time.sleep(bekleme_carpani*2)
+    click(btn,10,320)
+
+    for i in range(5):
+        market = ara("./images/market.png",0.8)
+        time.sleep(bekleme_carpani*2)
+        if market != -1:
+            click(btn,market[0] +210,market[1] +45)
+            time.sleep(bekleme_carpani*2)
+            break
+        else:
+            pyautogui.moveTo(140,335)
+            time.sleep(bekleme_carpani*2)
+            pyautogui.dragTo(140,145,1)
+            time.sleep(bekleme_carpani*2)
+            
+    time.sleep(bekleme_carpani*2)
+    click(btn,260, 325)
+    if kacgun=="1":
+        time.sleep(bekleme_carpani*2)
+        click(btn,80, 410)
+    if kacgun=="7":
+        time.sleep(bekleme_carpani*2)
+        click(btn,245, 410)
+    elif kacgun=="15":
+        time.sleep(bekleme_carpani*2)
+        click(btn,80, 605) 
+    elif kacgun=="30":
+        time.sleep(bekleme_carpani*2)       
+        click(btn,240, 605) 
+    time.sleep(bekleme_carpani*2)
+    pyautogui.moveTo(60,435)
+    pyautogui.dragTo(200,435,1)
+    time.sleep(bekleme_carpani*2)
+    click(btn,230, 480)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20, 65)
+    time.sleep(bekleme_carpani*2)
+    click(btn,20, 65)
+
 
 def hizlitamponhasat(btn,hizli,tampon,hasat):
     if hasat:
@@ -1625,6 +1714,37 @@ def sonrakidunya(btn):
             logkayit(0,"DUNYA BULUNAMADI GERI TIKLANDI")
             click(btn,20,60)
             time.sleep(bekleme_carpani*2)
+    time.sleep(bekleme_carpani*2)
+    click(btn,265,320)
+    time.sleep(bekleme_carpani*2)
+    click(btn,250,340)
+    time.sleep(bekleme_carpani*2)
+    for i in range(7):
+        click(btn,150,60)
+        time.sleep(bekleme_carpani*2)
+    click(btn,20,65)
+    time.sleep(bekleme_carpani*2)
+
+    for i in range(10):
+        time.sleep(2)
+        girildi = ara("./images/girildi.png")
+        girildi_dunya = ara("./images/girildi_dunya.png")
+        tamam = ara("./images/tamam.png")
+        if tamam != -1:
+            logkayit(0,"Başka kullanıcı girdi ya da ağ hatası")
+            break
+        elif girildi_dunya != -1:
+            logkayit(0,"SONRAKİ DUNYA BULUNDU")
+            time.sleep(2)
+            return "basarili"
+        elif girildi != -1:
+            logkayit(0,"İLK DUNYADAYIZ SONRAKİNE TIKLANDI")
+            click(btn,girildi[0]+10,girildi[1]+10)
+        else: 
+            logkayit(0,"DUNYA BULUNAMADI GERI TIKLANDI")
+            click(btn,20,60)
+            time.sleep(bekleme_carpani*2)
+    
     return "basarisiz"
 
 def ifritbul(btn):
@@ -2763,7 +2883,30 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         farmwrite.write(str(farm).rstrip()+"\n")
     farmwrite.close()
     time.sleep(bekleme_carpani*2)
-    
+
+    try:
+        def ocr_space_file(filename, overlay=False, api_key='helloworld', language='eng'):
+            payload = {'isOverlayRequired': overlay,
+                    'apikey': "K83797043388957",
+                    'language': language,
+                    "OCREngine": 3
+                    }
+            with open(filename, 'rb') as f:
+                r = requests.post('https://api.ocr.space/parse/image',
+                                files={filename: f},
+                                data=payload,
+                                )
+            return r.json()
+        pyautogui.screenshot(f"kaynak.png",region=[15,35,190,11])
+        print("Kaynak ekran görüntüsü alındı, OCR işlemi başlatılıyor...")
+        test_file = ocr_space_file(filename='kaynak.png', language='eng')
+        global hesapkaynak
+        hesapkaynak = test_file['ParsedResults'][0]['ParsedText'].replace('\n', ' ')
+
+
+        print("hesapkaynak:",farm ,hesapkaynak)
+    except Exception as e:
+        logkayit(farm,e)
     hesapdegisme(btn,mail,sifre)
     #stop
     
@@ -2806,6 +2949,9 @@ def main(btn,frm,gamedata):
     global hesapgir
     hesapgir = True
     x = ""
+
+    global hesapkaynak
+    hesapkaynak = ""
     while True:
         try:
             now = datetime.datetime.now()
@@ -2855,8 +3001,9 @@ def main(btn,frm,gamedata):
                 labeltime.grid(row = (farm%15)+1,column = 6,ipadx = 15,ipady = 5)
                 send_heartbeat()
                 data = collectdata(gamedata,farm)
-            except:
-                logkayit(farm,"Ayarlar okunamadı.")
+                
+            except Exception as e:
+                logkayit(farm,str(e))
             x = ""
             global btn_dur
             btn_dur = Button( text="Durdur",command= lambda:arawork(btn), height=2, width=10, background="IndianRed2",activebackground="IndianRed3",font=("Helvetica",10,"bold",))
@@ -2892,6 +3039,8 @@ def main(btn,frm,gamedata):
             kaynakseviye = data.get("kaynakseviye")
             hayvan = data.get("hayvan")
             kahraman = data.get("kahraman")
+            dailyvip = data.get("dailyvip")
+            banka = data.get("banka")
 
             global bonusal
             bonusal = dis_kaynak_bonus
@@ -2912,6 +3061,17 @@ def main(btn,frm,gamedata):
             x = liman(btn)
             if x == "bulunamadi":
                 pass
+
+            if dailyvip:
+                logkayit(farm,"Daily VIP")
+                x = daily_vip(btn)
+                if x == "appopen":
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
             if gozculist[farm]:
                 sonrakidunya(btn)
                 while True:
@@ -3020,7 +3180,7 @@ def main(btn,frm,gamedata):
                         continue
                 if x == "gece":
                     pass
-            if hayvan[farm] != "" or hayvan[farm] != "Yok" or hayvan[farm] != "--":
+            if hayvan[farm] != "" and hayvan[farm] != "Yok" and hayvan[farm] != "--":
                 logkayit(farm,"Pet Devriye")
                 x = pet(btn,hayvan[farm])
                 if x == "appopen":
@@ -3034,6 +3194,16 @@ def main(btn,frm,gamedata):
             if kahraman:
                 logkayit(farm,"Kahraman Görev")
                 x = kahramansalonu(btn)
+                if x == "appopen":
+                    girdimi = cikis(btn)
+                    if girdimi == "girildi":
+                        x = ""
+                        pass
+                    else:
+                        continue
+            if banka and banka[farm]:
+                logkayit(farm,"Kahraman Görev")
+                x = market(btn,banka[farm])
                 if x == "appopen":
                     girdimi = cikis(btn)
                     if girdimi == "girildi":
