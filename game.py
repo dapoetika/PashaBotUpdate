@@ -1,4 +1,4 @@
-#ab
+#abc
 from tkinter import *
 import time
 import subprocess
@@ -2902,7 +2902,7 @@ def sonrakihesap(btn,mail,sifre,hesapsayisi):
         test_file = ocr_space_file(filename='kaynak.png', language='eng')
         global hesapkaynak
         hesapkaynak = test_file['ParsedResults'][0]['ParsedText'].replace('\n', ' ')
-
+        logkayit(farm,hesapkaynak)
 
         print("hesapkaynak:",farm ,hesapkaynak)
     except Exception as e:
