@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -3047,6 +3047,9 @@ def main(btn,frm,gamedata):
 
             global appopen
             appopen = False
+            if mail[farm] == "":
+                farm = 0
+                continue
             time.sleep(5)
             oyunac()
             x = hesapgiris(btn,mail,sifre)
