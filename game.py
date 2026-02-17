@@ -1,4 +1,4 @@
-#abcd
+#abcdef
 from tkinter import *
 import time
 import subprocess
@@ -341,15 +341,11 @@ def hesapdegisme(btn,mail,sifre):
         else:
             pyautogui.write(i)
     time.sleep(bekleme_carpani*2)
-    
-    renk = pyautogui.pixel(290,330)
-    if renk[0] == 255 and renk[1] == 160 and renk[2] == 48:
-        time.sleep(bekleme_carpani*2)
-        pyautogui.hotkey("enter")
-    else:
-        return "appopen"
-    
+    pyautogui.hotkey("enter")
     time.sleep(bekleme_carpani*2)
+    pyautogui.hotkey("enter")
+    time.sleep(bekleme_carpani*2)
+    
 
     for i in range(5):
         time.sleep(bekleme_carpani*2)
