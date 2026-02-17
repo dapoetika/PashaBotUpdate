@@ -1,4 +1,4 @@
-#abcdef
+#abcdefg
 from tkinter import *
 import time
 import subprocess
@@ -340,8 +340,6 @@ def hesapdegisme(btn,mail,sifre):
             pyautogui.hotkey("altright","q")
         else:
             pyautogui.write(i)
-    time.sleep(bekleme_carpani*2)
-    pyautogui.hotkey("enter")
     time.sleep(bekleme_carpani*2)
     pyautogui.hotkey("enter")
     time.sleep(bekleme_carpani*2)
