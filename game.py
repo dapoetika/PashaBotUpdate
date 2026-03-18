@@ -1,4 +1,4 @@
-#a
+#ab
 from tkinter import *
 import time
 import subprocess
@@ -1812,6 +1812,12 @@ def ifrit(btn,gamedata):
         girildi_dunya = ara("./images/girildi_dunya.png")
         if girildi_dunya != -1:
             return "appopen"
+        devredisibirak = ara("./images/devredisi.png")
+        if devredisibirak != -1:
+            
+            click(btn,devredisibirak[0]+10,devredisibirak[1]+10)
+            time.sleep(bekleme_carpani*2)
+            mesajtoplaoteki(btn)
         if kacinci < 9:
             click(btn,30,220+(kacinci*40))
         else:
@@ -1833,6 +1839,12 @@ def ifrit(btn,gamedata):
             continue
         kacinci += 1
         for i in range(1,3):
+            devredisibirak = ara("./images/devredisi.png")
+            if devredisibirak != -1:
+                
+                click(btn,devredisibirak[0]+10,devredisibirak[1]+10)
+                time.sleep(bekleme_carpani*2)
+                mesajtoplaoteki(btn)
             time.sleep(bekleme_carpani*2)
             x = ifritbul(btn)
             if x == "vip":
@@ -1847,6 +1859,12 @@ def ifrit(btn,gamedata):
             elif x == "vip":
                 return "vip"
             for k in range((2*i)-1):#sol
+                devredisibirak = ara("./images/devredisi.png")
+                if devredisibirak != -1:
+                    
+                    click(btn,devredisibirak[0]+10,devredisibirak[1]+10)
+                    time.sleep(bekleme_carpani*2)
+                    mesajtoplaoteki(btn)
                 pyautogui.moveTo(80,340)
                 pyautogui.dragTo(320,340,1)
                 time.sleep(bekleme_carpani*2)
@@ -1865,6 +1883,12 @@ def ifrit(btn,gamedata):
             if x == "basarili":
                 break
             for k in range((2*i)-1):#yukarı
+                devredisibirak = ara("./images/devredisi.png")
+                if devredisibirak != -1:
+                    
+                    click(btn,devredisibirak[0]+10,devredisibirak[1]+10)
+                    time.sleep(bekleme_carpani*2)
+                    mesajtoplaoteki(btn)
                 pyautogui.moveTo(160,100)
                 pyautogui.dragTo(160,490,1)
                 time.sleep(bekleme_carpani*2)
@@ -1884,6 +1908,12 @@ def ifrit(btn,gamedata):
                 break
                 
             for k in range(2*i):#sag
+                devredisibirak = ara("./images/devredisi.png")
+                if devredisibirak != -1:
+                    
+                    click(btn,devredisibirak[0]+10,devredisibirak[1]+10)
+                    time.sleep(bekleme_carpani*2)
+                    mesajtoplaoteki(btn)
                 pyautogui.moveTo(245,340)
                 pyautogui.dragTo(5,340,1)
                 time.sleep(bekleme_carpani*2)
@@ -1903,6 +1933,12 @@ def ifrit(btn,gamedata):
                 break
                 
             for k in range(2*i):#aşşa
+                devredisibirak = ara("./images/devredisi.png")
+                if devredisibirak != -1:
+                    
+                    click(btn,devredisibirak[0]+10,devredisibirak[1]+10)
+                    time.sleep(bekleme_carpani*2)
+                    mesajtoplaoteki(btn)
                 pyautogui.moveTo(160,490)
                 pyautogui.dragTo(160,100,1)
                 time.sleep(bekleme_carpani*2)
