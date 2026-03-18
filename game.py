@@ -1,4 +1,4 @@
-#
+#a
 from tkinter import *
 import time
 import subprocess
@@ -1795,7 +1795,7 @@ def ifritbul(btn):
         return "energy"
     return "basarili"
 
-def ifrit(btn):
+def ifrit(btn,gamedata):
     kacinci = 0
     data = collectdata(gamedata,farm)
     ifritlist = data.get("ifritlist")
@@ -1824,6 +1824,8 @@ def ifrit(btn):
         click(btn,160,85)
         girildi_dunya = ara("./images/girildi_dunya.png")
         if girildi_dunya == -1:
+            data = collectdata(gamedata,farm)
+            ifritlist = data.get("ifritlist")
             kacinci = 0
             time.sleep(bekleme_carpani*2)
             click(btn,20,65)
@@ -3237,7 +3239,7 @@ def main(btn,frm,gamedata):
                     data = collectdata(gamedata,farm)
                     ifritlist = data.get("ifritlist")
                     
-                    x = ifrit(btn)
+                    x = ifrit(btn,gamedata)
                     if x == "appopen":
                         cikis(btn)
                         oyunac()
