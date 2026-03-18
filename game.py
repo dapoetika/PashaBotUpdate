@@ -1,4 +1,4 @@
-#abcdefg
+#
 from tkinter import *
 import time
 import subprocess
@@ -1797,7 +1797,9 @@ def ifritbul(btn):
 
 def ifrit(btn):
     kacinci = 0
-    while True:
+    data = collectdata(gamedata,farm)
+    ifritlist = data.get("ifritlist")
+    while ifritlist[farm]:
         send_heartbeat()
         girildi_dunya = ara("./images/girildi_dunya.png")
         if girildi_dunya == -1:
@@ -3230,7 +3232,11 @@ def main(btn,frm,gamedata):
                     continue
                 
             if ifritlist[farm]:
-                while True:
+                
+                while ifritlist[farm]:
+                    data = collectdata(gamedata,farm)
+                    ifritlist = data.get("ifritlist")
+                    
                     x = ifrit(btn)
                     if x == "appopen":
                         cikis(btn)
