@@ -1,4 +1,4 @@
-#abc
+#abcd
 from tkinter import *
 import time
 import subprocess
@@ -2176,7 +2176,7 @@ def askergonder(btn,hangisi,kaynakseviye):
             
         pyautogui.moveTo(260, 445)
         time.sleep(bekleme_carpani*2)
-        pyautogui.dragTo(120, 445, 1)
+        pyautogui.dragTo(50, 445, 1)
         time.sleep(bekleme_carpani*2)
         click(btn,120+(60*hangisi), 445)
         time.sleep(bekleme_carpani*2)
